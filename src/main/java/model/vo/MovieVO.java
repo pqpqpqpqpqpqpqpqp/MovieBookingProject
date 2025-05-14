@@ -12,9 +12,6 @@ public class MovieVO {
 	private String movieImg;
 	private String moviePlayTime;
 	
-	public MovieVO() {
-		
-	}
 	
 	public int getMovieIdx() {
 		return movieIdx;
