@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class moviecontroller
+ * Servlet implementation class ticketcontroller
  */
-@WebServlet("/moviecontroller")
-public class moviecontroller extends HttpServlet {
+@WebServlet("/ticketcontroller")
+public class ticketController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public moviecontroller() {
+    public ticketController() {
         // TODO Auto-generated constructor stub
     }
 
