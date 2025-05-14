@@ -18,6 +18,9 @@
 *.zip
 *.tar.gz
 *.rar
+# .gitignore 예외 처리
+!/src/main/webapp/WEB-INF/lib/mysql-connector.jar
+!/src/main/webapp/WEB-INF/lib/servlet-api.jar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
