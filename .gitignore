@@ -1,3 +1,7 @@
+# workspace1
+src/main/webapp/META-INF/
+src/main/webapp/META-INF/context.xml
+
 # Compiled class file
 *.class
 
@@ -19,7 +23,7 @@
 *.tar.gz
 *.rar
 # .gitignore 예외 처리
-!/src/main/webapp/WEB-INF/lib/mysql-connector.jar
+!/src/main/webapp/WEB-INF/lib/mysql-connector-j-8.0.32.jar
 !/src/main/webapp/WEB-INF/lib/servlet-api.jar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
