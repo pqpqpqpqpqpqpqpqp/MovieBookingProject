@@ -2,72 +2,71 @@ package model.vo;
 
 public class MemberVO {
 	
-	private int user_idx;
-	private String user_name;
-	private String user_tel;
-	private String user_id;
-	private String user_pw;
-	private String user_num;
-	private String user_del;
-	private String user_img;
-	private String user_nickname;
+	private int userIdx;
+	private String userName;
+	private String userTel;
+	private String userId;
+	private String userPw;
+	private String userNum;
+	private String userDel;
+	private String userImg;
+	private String userNickname;
 	
 	
-	public int getUser_idx() {
-		return user_idx;
+	public int getUserIdx() {
+		return userIdx;
 	}
-	public void setUser_idx(int user_idx) {
-		this.user_idx = user_idx;
+	public void setUserIdx(int userIdx) {
+		this.userIdx = userIdx;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getUser_tel() {
-		return user_tel;
+	public String getUserTel() {
+		return userTel;
 	}
-	public void setUser_tel(String user_tel) {
-		this.user_tel = user_tel;
+	public void setUserTel(String userTel) {
+		this.userTel = userTel;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getUser_pw() {
-		return user_pw;
+	public String getUserPw() {
+		return userPw;
 	}
-	public void setUser_pw(String user_pw) {
-		this.user_pw = user_pw;
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
 	}
-	public String getUser_num() {
-		return user_num;
+	public String getUserNum() {
+		return userNum;
 	}
-	public void setUser_num(String user_num) {
-		this.user_num = user_num;
+	public void setUserNum(String userNum) {
+		this.userNum = userNum;
 	}
-	public String getUser_del() {
-		return user_del;
+	public String getUserDel() {
+		return userDel;
 	}
-	public void setUser_del(String user_del) {
-		this.user_del = user_del;
+	public void setUserDel(String userDel) {
+		this.userDel = userDel;
 	}
-	public String getUser_img() {
-		return user_img;
+	public String getUserImg() {
+		return userImg;
 	}
-	public void setUser_img(String user_img) {
-		this.user_img = user_img;
+	public void setUserImg(String userImg) {
+		this.userImg = userImg;
 	}
-	public String getUser_nickname() {
-		return user_nickname;
+	public String getUserNickname() {
+		return userNickname;
 	}
-	public void setUser_nickname(String user_nickname) {
-		this.user_nickname = user_nickname;
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
 	}
-	
 	
 	
 }
