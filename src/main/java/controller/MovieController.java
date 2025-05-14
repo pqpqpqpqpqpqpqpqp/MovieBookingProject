@@ -19,6 +19,9 @@ public class MovieController extends HttpServlet {
 	
 	protected void doPocess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("hello world");
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 	}
 }
 
