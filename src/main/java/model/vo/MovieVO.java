@@ -13,6 +13,7 @@ public class MovieVO {
 	private String moviePlayTime;
 	
 	
+	
 	public int getMovieIdx() {
 		return movieIdx;
 	}
