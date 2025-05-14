@@ -14,22 +14,39 @@
 	</welcome-file-list>
 
 	<servlet>
-		<servlet-name>boController</servlet-name>
-		<servlet-class>controller.BoardController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>boController</servlet-name>
-		<url-pattern>*.bo</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
 		<servlet-name>meController</servlet-name>
 		<servlet-class>controller.MemberController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>meController</servlet-name>
 		<url-pattern>*.me</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>moController</servlet-name>
+		<servlet-class>controller.MovieController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>moController</servlet-name>
+		<url-pattern>*.mo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>tiController</servlet-name>
+		<servlet-class>controller.TicketController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tiController</servlet-name>
+		<url-pattern>*.ti</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>reController</servlet-name>
+		<servlet-class>controller.ReviewController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>reController</servlet-name>
+		<url-pattern>*.re</url-pattern>
 	</servlet-mapping>
 
 	<resource-ref>
