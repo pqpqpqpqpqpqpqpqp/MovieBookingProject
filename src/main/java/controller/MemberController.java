@@ -18,6 +18,6 @@ public class MemberController extends HttpServlet {
 
 	
 	protected void doPocess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		System.out.println("hello world");
 	}
 }

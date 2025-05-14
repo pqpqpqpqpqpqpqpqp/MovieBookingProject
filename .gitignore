@@ -1,6 +1,23 @@
 # workspace1
+
+# Eclipse
+# db information
 src/main/webapp/META-INF/
 src/main/webapp/META-INF/context.xml
+
+# Eclipse Core files 배포파일
+build/
+
+
+
+
+
+
+
+
+
+
+################# auto
 
 # Compiled class file
 *.class
