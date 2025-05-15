@@ -39,7 +39,8 @@
         }
 
         .logo-area img {
-            height: 40px;
+        
+            height: 60px;
             margin-right: 10px;
         }
 
@@ -84,9 +85,9 @@
 		<div class="logo-area">
 	<!--  onclick 넣어주기 -->
 	
-			<h1 onclick="">
-				<a href="/"><img src="https://img.cgv.co.kr/R2014/images/common/logo/logoRed.png"
-					alt="C G V"></a><span>홍남제황 Team</span>
+			<h1 >
+				<img src="https://img.cgv.co.kr/R2014/images/common/logo/logoRed.png" id ="logo" style="cursor: pointer;"
+					alt="C G V"><span>홍남제황 Team</span>
 			</h1>
 			</div>
 			
@@ -104,11 +105,15 @@
             <img src="https://img.icons8.com/ios/50/user--v1.png" alt="MY CGV 아이콘">
             MY CGV
         </a>
-        <a href="#" class="menu-item">
-            <img src="https://img.icons8.com/ios/50/headphones--v1.png" alt="고객센터 아이콘">
-            고객센터
-        </a>
-		</div>
+       	</div>
 	</div>
+	
+	<script type="text/javascript">
+	
+	document.getElementById("logo").addEventListener("click", function () {
+	      location.href = "mainHome.vo";  // 컨트롤러 요청
+	  });
+	
+	</script>
 </body>
 </html>

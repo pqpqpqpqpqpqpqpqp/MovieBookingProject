@@ -48,6 +48,14 @@
 		<servlet-name>reController</servlet-name>
 		<url-pattern>*.re</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>voController</servlet-name>
+		<servlet-class>controller.ViewController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>voController</servlet-name>
+		<url-pattern>*.vo</url-pattern>
+	</servlet-mapping>
 
 	<resource-ref>
 		<description>Connection</description>

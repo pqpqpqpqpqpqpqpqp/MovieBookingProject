@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CGV_MAIN</title>
 </head>
 <body>
+<jsp:include page="common/header.jsp"/>
+<form >
+
+
+
+</form>
+
 
 </body>
 </html>
