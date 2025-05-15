@@ -16,74 +16,6 @@
     <meta property="og:site_name" content="깊이 빠져 보다, CGV"/>
     <meta id="ctl00_og_title" property="og:title" content="무비차트 &lt; 무비차트 | 깊이 빠져 보다, CGV"></meta>
 
-    <!-- 24.02 네이버 웹 검색 연관 채널 방식 수정 -->
-     <script type="application/ld+json">
-    {
-         "@context": "http://schema.org",
-         "@type": "Organization",
-         "name": "CGV",
-         "url": "https://www.cgv.co.kr",
-         "sameAs": [
-           "https://www.instagram.com/cgv_korea/",
-           "https://www.youtube.com/channel/UCmjUMtUw6wXLrsULdxuXWdg",
-           "https://www.facebook.com/CJCGV",
-           "https://play.google.com/store/apps/details?id=com.cgv.android.movieapp&pli=1" ]
-    }
-    </script>
-    
-    
-    <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png"></meta>
-    <link rel="alternate" href="http://m.cgv.co.kr/" />
-    <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon" />
-    <title id="ctl00_headerTitle">무비차트 &lt; 무비차트 | 깊이 빠져 보다, CGV</title>
-    <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico" />
-    <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/webfont.css" />
-   <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/reset.css" />
-    <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/layout.css" />
-    <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/moduleff2a.css?20211209" />    
-    <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/content.css" />
-    <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/common.css" />
-    
-    <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/eggupdate.css" />
-    <link rel="stylesheet" media="print" type="text/css" href="../../img.cgv.co.kr/R2014/css/print.css" />    
-    <link rel="stylesheet" type="text/css" href="../../img.cgv.co.kr/R2014/js/jquery.ui/smoothness/jquery-ui-1.10.4.custom.min.css" />
-    
-    <script type="text/javascript" src="../common/js/extraTheaters.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/app.config.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/jquery.plugin/jquery.tmpl.min.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/jquery.plugin/jquery.validate.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/jquery.plugin/jquery.paging.min.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/jquery.ui/jquery-ui-1.10.4.custom.min.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/jquery.utils.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/app.utils.js"></script>
-   <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/jquery.utils.pageing.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/app.init.js"></script>
-
-    <!--[if lte IE 9]><script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.placeholder.js"></script><![endif]-->
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/jquery.plugin/jquery.dotdotdot.min.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/silverlight_link.js"></script>
-   <script src="../../img.cgv.co.kr/R2014/js/slick/slick.js" type="text/javascript" charset="utf-8"></script>
-
-    <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/phototicket/phototicket.css" />
-    <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/slick.css" />
-   <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/slick-theme-custom.css" />
-
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/icheck/login.timer.js"></script>
-    <script src="../../img.cgv.co.kr/R2014/js/icheck/icheck.min.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="../../img.cgv.co.kr/R2014/js/icheck/iCheck.css" />
-
-   <!-- 2020.05.07 감정지수/프리에그 프로젝트 추가 -->
-    <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/preegg.css" />
-
-    <!-- 2023.03.27 홈페이지 스토어 영역 內 배너 영역 미노출의 件 -->
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/giftstore/giftstore.js"></script>
-    <script type="text/javascript" src="../../img.cgv.co.kr/R2014/js/giftstore/commonstore.js"></script>
-    <link rel="stylesheet" media="all" type="text/css" href="../../img.cgv.co.kr/R2014/css/giftstore/giftstore.css" /> 
-
-    <!-- 홈페이지 CSS 일원화로 인한 반영 20220721 -->
-    <link rel="stylesheet" type="text/css" href="../../img.cgv.co.kr/resource_pc/css/cgv.min.css" />
-    <script type="text/javascript" src="../../img.cgv.co.kr/resource_pc/js/cgvUi.js"></script>
 
     <!-- 각페이지 Header Start--> 
     
@@ -517,7 +449,7 @@
                         <strong class="rank">No.2</strong>   
                         <a href="detail-view/index739e.html?midx=89454">
                             <span class="thumb-image">
-                                <img src="../../img.cgv.co.kr/Movie/Thumbnail/Poster/000089/89454/89454_320.jpg" alt="야당 포스터" onerror="errorImage(this)"/>
+                                <img src='https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20130122_180%2F1358819064231daPKK_JPEG%2Fmovie_image.jpg' alt="야당 포스터" onerror="errorImage(this)"/>
                                 <!-- 영상물 등급 노출 변경 2022.08.24 -->
                                 <i class="cgvIcon etc age18">18</i>
                                 <!-- <span class="ico-grade 18">18</span> -->
