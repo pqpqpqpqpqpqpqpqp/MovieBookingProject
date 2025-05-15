@@ -1,266 +1,279 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>CGV 통합 드롭다운 메뉴</title>
-    <style>
-    
-     	body {
-   			margin: 0;
-    		font-family: "Noto Sans KR", sans-serif;
-    		width: 100vw;           
-    		min-width: 1024px; 
-    		overflow-x: auto;              
-		}
-        
-        .nav-bar {          
-    		
-        	border-bottom: 3px solid red;
-            border-top: 1px solid #ccc;
-            background-color: white;
-            padding: 0 40px;
-            position: relative;
-        }
+<meta charset="UTF-8">
+<title>CGV 통합 드롭다운 메뉴</title>
+<style>
+.nav-bar {
+	border-bottom: 3px solid red;
+	border-top: 1px solid #ccc;
+	background-color: white;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
 
-        .menu-container {
-            width: max-content;            
-    		min-width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 50px;
-        }
+.nav-bar .menu-container {
+	position: relative;
+	width: 980px;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 50px;
+}
 
-        .menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+.nav-bar .menu-container .menu {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display:flex;
+	justify-content: flex-start;
+	
+	
+}
 
-        .menu > li {
-            padding: 15px 25px;
-            cursor: pointer;
-            font-weight: bold;
-            position: relative;
-        }
+.nav-bar .menu-container .menu>li {
+	padding: 15px 0px;
+	padding-left: 0px;
+	padding-right: 40px;
+	cursor: pointer;
+	font-weight: bold;
+	position: relative;
+	font-size: large;
+	text-align: left;
+}
 
-        .menu > li:hover {
-            color: red;
-            border-bottom: 2px solid red;
-        }
+.nav-bar .menu-container .menu>li:hover {
+	color: red;
+	border-bottom: 2px solid red;
+}
 
-        .menu:hover ~ .dropdown-wrapper {
-            display: flex;
-        }
+.nav-bar .menu-container .menu:hover ~ .dropdown-wrapper {
+	display: flex;
+}
 
-        .search-box {
-            display: flex;
-            align-items: center;
-        }
+.nav-bar .menu-container .search-box {
+	display: flex;
+	align-items: center;
+}
 
-        .search-box input[type="text"] {
-            border: none;
-            border-bottom: 1px solid #999;
-            padding: 5px 10px;
-            font-size: 14px;
-            outline: none;
-        }
+.nav-bar .menu-container .search-box input[type="text"] {
+	border: none;
+	border-bottom: 1px solid #999;
+	padding: 5px 10px;
+	font-size: 14px;
+	outline: none;
+}
 
-        .search-box img {
-            width: 18px;
-            height: 18px;
-        }
+.nav-bar .menu-container .search-box img {
+	width: 18px;
+	height: 18px;
+}
 
-        .dropdown-wrapper {
-            
-            display: none;
-            position: absolute;
-            top: 51px;
-            left: 0;
-            width: max-content;           
-    		min-width: 100%;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-            flex-direction: row;
-            gap: 30px;
-           padding: 20px 50px;
-            justify-content: left;
-            border-top: 3px solid red;
-            transform: translateY(0px);
-     	 	transition: opacity 0.3s ease, transform 0.3s ease;
-    	}
-   		 .dropdown-wrapper.active {
- 			display: flex;
-    		animation: slideDown 0.5s ease-out forwards;
-		}
 
-		/* 사라질 때 (선택사항) */
-		.dropdown-wrapper.hide {
-    		animation: slideUp 0.4s ease-in forwards;
-		}
+.nav-bar .dropdown-wrapper {
+	display: none;
+	position: absolute;
+	top: 51px;
+	left: 0px;
+	width: max-content;
+	min-width: 100%;
+	background-color: white;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	z-index: 10;
+	gap: 30px;
+/* 	padding: 20px 10px; */
+	flex-direction: row;
+	justify-content: center;
+	border-top: 3px solid red;
+	transform: translateY(0px);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.nav-bar .dropdown-wrapper .dropdown-wrapper-container{
+	position: relative;
+	display: flex;
+	width: 980px;
+	height: 100%;
+	justify-content: space-between;
+	align-items: top;
+	
+}
 
-		/* slideDown 애니메이션 */
-		@keyframes slideDown {
-   			0% {
-        	opacity: 0;
-        	transform: translateY(0px);
-        	padding-top: 0;
-        	padding-bottom: 0;
-    		}
-    		100% {
-        	opacity: 1;
-        	transform: translateY(0);
-        	padding-top: 20px;
-       		padding-bottom: 30px;
-    		}
+.nav-bar .dropdown-wrapper.active {
+	display: flex;
+	animation: slideDown 0.5s ease-out forwards;
+}
+
+/* 사라질 때 (선택사항) */
+.nav-bar .dropdown-wrapper.hide {
+	animation: slideUp 0.4s ease-in forwards;
+}
+
+/* slideDown 애니메이션 */
+@keyframes slideDown {
+	0% {
+		opacity: 0;
+		transform: translateY(0px);
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	100%
+	{
+	 opacity: 1;
+	transform:translateY(0);
+	padding-top:20px;
+	padding-bottom:30px;
+	}
 }
 
 /* slideUp 애니메이션 (선택) */
-@keyframes slideUp {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-        padding-top: 20px;
-        padding-bottom: 30px;
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(0px);
-        padding-top: 0;
-        padding-bottom: 0;
-    }
+@keyframes slideUp { 
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+		padding-top: 20px;
+		padding-bottom: 30px;
+	}
+
+	100%
+	{
+	opacity:0;
+	transform:translateY(0px);
+	padding-top:0;
+	padding-bottom:0;
+	}
 }
-    }
-        }
-        
-     
-        .dropdown-section {
-	        display: flex;
-            flex-direction: column;
-           	width: 12%;
-			max-width: 160px;
-			flex: 0 0 160px; 
-           
-        }
-
-		
-        .dropdown-section h4 {
-            margin: 0 0 10px;
-            font-size: 15px;
-            color: #000;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
-            padding-left: 2px;
-        }
-
-        .dropdown-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .dropdown-section ul li {
-   			font-size: 13px;
-   			color: #333;
-  			margin: 6px 0;
-    		cursor: pointer;
-    		transition: color 0.2s ease; /* 부드러운 색 변화 효과 */
-		}
-
-		.dropdown-section ul li:hover {
-    		color: red;  /*  마우스를 올렸을 때 빨간색으로 */
-    		text-decoration: none;  /* 기존 밑줄 제거 */
-		}
 
 
-    </style>
-    
+}
+}
+.nav-bar .dropdown-wrapper .dropdown-section {
+	display: flex;
+	flex-direction: column;
+	width: 12%;
+	max-width: 160px;
+	flex: 0 0 160px;
+}
+
+.nav-bar .dropdown-wrapper .dropdown-section h4 {
+	margin: 0 0 10px;
+	font-size: 15px;
+	color: #000;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 5px;
+}
+
+.nav-bar .dropdown-wrapper .dropdown-section ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.nav-bar .dropdown-wrapper .dropdown-section ul li {
+	font-size: 13px;
+	color: #333;
+	margin: 6px 0;
+	cursor: pointer;
+	transition: color 0.2s ease; /* 부드러운 색 변화 효과 */
+}
+
+.nav-bar .dropdown-wrapper .dropdown-section ul li:hover {
+	color: red; /*  마우스를 올렸을 때 빨간색으로 */
+	text-decoration: none; /* 기존 밑줄 제거 */
+}
+</style>
+
 </head>
 <body>
 
-<!-- 상단 메뉴 -->
-<div class="nav-bar" >
-    <div class="menu-container" >
-        <ul class="menu"  id="menuBar">
-            <li>영화</li>
-            <li>극장</li>
-            <li>예매</li>
-            <li>스토어</li>
-            <li>이벤트</li>
-            <li>혜택</li>
-        </ul>
-        <!-- 검색창 -->
-        <div class="search-box">
-            <input type="text"  placeholder="나모그세">
-            <img src="https://img.icons8.com/ios/50/search--v1.png"  alt="검색">
-        </div>
-    </div>
+	<!-- 상단 메뉴 -->
+	<div class="nav-bar">
+		<div class="menu-container">
+			<ul class="menu" id="menuBar">
+				<li>영화</li>
+				<li>극장</li>
+				<li>예매</li>
+				<li>스토어</li>
+				<li>이벤트</li>
+				<li>혜택</li>
+			</ul>
+			<!-- 검색창 -->
+			<div class="search-box">
+				<input type="text" placeholder="나모그세"> <img
+					src="https://img.icons8.com/ios/50/search--v1.png" alt="검색">
+			</div>
+		</div>
 
-    <!-- 통합 드롭다운 메뉴 -->
-    <div class="dropdown-wrapper" id="dropDown">
-        <div class="dropdown-section">
-            <h4>영화</h4>
-            <ul>
-                <li>무비차트</li>
-                <li>아트하우스</li>
-                <li>ICECON</li>
-            </ul>
-        </div>
-        <div class="dropdown-section">
-            <h4>극장</h4>
-            <ul>
-                <li>CGV 극장</li>
-                <li>특별관</li>
-            </ul>
-        </div>
-        <div class="dropdown-section">
-            <h4>예매</h4>
-            <ul>
-                <li>빠른예매</li>
-                <li>상영스케줄</li>
-                <li>English Ticketing</li>
-                <li>English Schedule</li>
-            </ul>
-        </div>
-        <div class="dropdown-section">
-            <h4>스토어</h4>
-            <ul>
-                <li>패키지</li>
-                <li>영화관람권</li>
-                <li>기프트카드</li>
-                <li>콤보</li>
-                <li>팝콘</li>
-                <li>음료</li>
-                <li>스낵</li>
-                <li>씨네샵</li>
-            </ul>
-        </div>
-        <div class="dropdown-section">
-            <h4>이벤트</h4>
-            <ul>
-                <li>SPECIAL</li>
-                <li>영화/예매</li>
-                <li>멤버십/CLUB</li>
-                <li>CGV 극장별</li>
-                <li>제휴할인</li>
-                <li>당첨자 발표</li>
-                <li>종료된 이벤트</li>
-            </ul>
-        </div>
-        <div class="dropdown-section">
-            <h4>혜택</h4>
-            <ul>
-                <li>CGV 할인정보</li>
-                <li>CLUB 서비스</li>
-                <li>VIP 라운지</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<script>
+		<!-- 통합 드롭다운 메뉴 -->
+		<div class="dropdown-wrapper" id="dropDown">
+		<div class="dropdown-wrapper-container">
+			<div class="dropdown-section">
+				<h4>영화</h4>
+				<ul>
+					<li>무비차트</li>
+					<li>아트하우스</li>
+					<li>ICECON</li>
+				</ul>
+			</div>
+			<div class="dropdown-section">
+				<h4>극장</h4>
+				<ul>
+					<li>CGV 극장</li>
+					<li>특별관</li>
+				</ul>
+			</div>
+			<div class="dropdown-section">
+				<h4>예매</h4>
+				<ul>
+					<li>빠른예매</li>
+					<li>상영스케줄</li>
+					<li>English Ticketing</li>
+					<li>English Schedule</li>
+				</ul>
+			</div>
+			<div class="dropdown-section">
+				<h4>스토어</h4>
+				<ul>
+					<li>패키지</li>
+					<li>영화관람권</li>
+					<li>기프트카드</li>
+					<li>콤보</li>
+					<li>팝콘</li>
+					<li>음료</li>
+					<li>스낵</li>
+					<li>씨네샵</li>
+				</ul>
+			</div>
+			<div class="dropdown-section">
+				<h4>이벤트</h4>
+				<ul>
+					<li>SPECIAL</li>
+					<li>영화/예매</li>
+					<li>멤버십/CLUB</li>
+					<li>CGV 극장별</li>
+					<li>제휴할인</li>
+					<li>당첨자 발표</li>
+					<li>종료된 이벤트</li>
+				</ul>
+			</div>
+			<div class="dropdown-section">
+				<h4>혜택</h4>
+				<ul>
+					<li>CGV 할인정보</li>
+					<li>CLUB 서비스</li>
+					<li>VIP 라운지</li>
+				</ul>
+			</div>
+			</div>
+		</div>
+	</div>
+	<script>
     const menuBar = document.getElementById("menuBar");
     const dropdown = document.getElementById("dropDown");
 
