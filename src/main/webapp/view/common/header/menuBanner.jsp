@@ -12,11 +12,15 @@
 	background-color: white;
 	padding: 0 40px;
 	position: relative;
+	display: flex;
+	justify-content: center;
+	align-content: center;
 }
 
 .nav-bar .menu-container {
-	width: max-content;
-	min-width: 100%;
+	position: relative;
+	width: 980px;
+	height: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -35,6 +39,7 @@
 	cursor: pointer;
 	font-weight: bold;
 	position: relative;
+	font-size: large;
 }
 
 .nav-bar .menu-container .menu>li:hover {
@@ -69,19 +74,28 @@
 	display: none;
 	position: absolute;
 	top: 51px;
-	left: 0;
+	left: 0px;
 	width: max-content;
 	min-width: 100%;
 	background-color: white;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	z-index: 10;
-	flex-direction: row;
 	gap: 30px;
-	padding: 20px 50px;
-	justify-content: left;
+	padding: 20px 40px;
+	flex-direction: row;
+	justify-content: center;
 	border-top: 3px solid red;
 	transform: translateY(0px);
 	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.nav-bar .dropdown-wrapper .dropdown-wrapper-container{
+	position: relative;
+	display: flex;
+	width: 980px;
+	height: 100%;
+	justify-content: space-between;
+	align-items: top;
+	
 }
 
 .nav-bar .dropdown-wrapper.active {
@@ -193,6 +207,7 @@
 
 		<!-- 통합 드롭다운 메뉴 -->
 		<div class="dropdown-wrapper" id="dropDown">
+		<div class="dropdown-wrapper-container">
 			<div class="dropdown-section">
 				<h4>영화</h4>
 				<ul>
@@ -249,6 +264,7 @@
 					<li>CLUB 서비스</li>
 					<li>VIP 라운지</li>
 				</ul>
+			</div>
 			</div>
 		</div>
 	</div>
