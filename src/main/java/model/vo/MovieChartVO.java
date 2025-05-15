@@ -2,12 +2,20 @@ package model.vo;
 
 public class MovieChartVO {
 
+	private String movieChartAgeGrade;
 	private String movieChartImg;
 	private String movieChartName;
 	private Double movieChartReviewScore;
 	private String movieChartOpenDate;
 	private String movieChartCount;
 	
+	
+	public String getMovieChartAgeGrade() {
+		return movieChartAgeGrade;
+	}
+	public void setMovieChartAgeGrade(String movieChartAgeGrade) {
+		this.movieChartAgeGrade = movieChartAgeGrade;
+	}
 	public String getMovieChartImg() {
 		return movieChartImg;
 	}
