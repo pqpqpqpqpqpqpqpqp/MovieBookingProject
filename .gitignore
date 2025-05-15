@@ -5,6 +5,9 @@
 src/main/webapp/META-INF/
 src/main/webapp/META-INF/context.xml
 
+# Eclipse 인식 파일
+.classpath
+
 # Eclipse Core files 배포파일
 build/
 
