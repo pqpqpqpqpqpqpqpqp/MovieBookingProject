@@ -103,7 +103,7 @@
 <body>
     <div class="register-container">
         <h2>회원가입</h2>
-        <form action="register.do" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
+        <form action="register.me" method="post">
             <div class="form-group">
                 <label for="userId">아이디</label>
                 <input type="text" id="userId" name="userId" required>
