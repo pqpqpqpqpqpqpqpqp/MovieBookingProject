@@ -6,7 +6,7 @@ public class MovieChartVO {
 	private String movieChartName;
 	private Double movieChartReviewScore;
 	private String movieChartOpenDate;
-	
+	private String movieChartCount;
 	
 	public String getMovieChartImg() {
 		return movieChartImg;
@@ -31,6 +31,12 @@ public class MovieChartVO {
 	}
 	public void setMovieChartOpenDate(String movieChartOpenDate) {
 		this.movieChartOpenDate = movieChartOpenDate;
+	}
+	public String getMovieChartCount() {
+		return movieChartCount;
+	}
+	public void setMovieChartCount(String movieChartCount) {
+		this.movieChartCount = movieChartCount;
 	}
 	
 	
