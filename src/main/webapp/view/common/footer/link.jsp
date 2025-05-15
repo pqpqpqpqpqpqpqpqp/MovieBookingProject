@@ -7,21 +7,31 @@
 <title>Iink</title>
 <style>
 .footer-link {
+border-bottom: 1px solid #cccccc;
 	background-color: #f9f9f9;
-	padding: 40px;
+	padding-top: 40px;
+	padding-bottom: 40px;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 13px;
 	color: #666;
 	position: relative;
+	justify-content: center;
+	
 }
 
 .footer-link .footer-link-container {
 	display: flex;
 	width: 980px;
+	justify-content: center;
+	margin: 0 auto;
+	
 }
 
 .footer-link .footer-link-content {
-	margin-bottom: 15px;
+display:flex;
+	justify-content: space-between;
+	padding: 15px 15px;
+	width: 100%;
 }
 
 .footer-link .footer-link-content a {

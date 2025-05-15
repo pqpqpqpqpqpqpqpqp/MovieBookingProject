@@ -5,11 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>CGV_MAIN</title>
+<style>
+body{
+min-height: 100vh;
+height: 100%;
+
+}
+</style>
 </head>
 <body>
 <jsp:include page="common/header.jsp"/>
 
-
-
 </body>
+<footer>
+<jsp:include page="common/footer.jsp"/>
+</footer>
 </html>
