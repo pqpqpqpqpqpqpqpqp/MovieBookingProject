@@ -40,7 +40,7 @@ public class MemberDAO {
 
 		try {
 
-			String input = "INSERT INTO USER (USER_NAME, USER_TEL, USER_ID, USER_PW, USER_NUM, USER_DEL, USER_IMG, USER_NICKNAME) VALUES (?,?,?,?,?,?,?,?)";
+			String input = "INSERT INTO USER (USER_NAME, USER_TEL, USER_ID, USER_PW, USER_NUM, USER_NICKNAME) VALUES (?,?,?,?,?,?,?)";
 			
 			pstmt = conn.prepareStatement(input);
 			pstmt.setString(1, memberVO.getUserName());
@@ -48,9 +48,7 @@ public class MemberDAO {
 			pstmt.setString(3, memberVO.getUserId());
 			pstmt.setString(4, memberVO.getUserPw());
 			pstmt.setString(5, memberVO.getUserNum());
-			pstmt.setString(6, memberVO.getUserDel());
-			pstmt.setString(7, memberVO.getUserImg());
-			pstmt.setString(8, memberVO.getUserNickname());
+			pstmt.setString(6, memberVO.getUserNickname());
 			
 			
 			int result = pstmt.executeUpdate();
