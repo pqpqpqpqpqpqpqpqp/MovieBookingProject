@@ -39,7 +39,32 @@ body {
 }
 
 /* 닫기 버튼 */
-.cgv_ad_container .cgv_ad_top .btn_ad_close {
+/*.btn_ad_close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	z-index: 10;
+	background-color: transparent;
+}*/
+
+.close-pop-container {
+	position: absolute;
+	top:0px;
+	left: 0px;
+	z-index: 10;
+	width: 100vw;
+	height: 20px;
+	display: flex;
+	justify-content: center;
+}
+.close-pop-container .close-pop-rel{
+	position: relative;
+	width: 980px;
+	height: 100%;
+}
+
+.close-pop-container .close-pop-rel .btn_ad_close {
 	position: absolute;
 	top: 10px;
 	right: 10px;
@@ -73,6 +98,17 @@ body {
 			</a>
 
 			<!-- 닫기 버튼: iframe 위에 겹쳐지도록 위치 -->
+<!-- 			<a href="#" class="btn_ad_close" id="btnAdClose"
+				onclick="parent.closeBanner()"> <img
+				src="https://img.cgv.co.kr/sample/2015/ad_main_top/btn_ad_close.png"
+				alt="닫기" border="0">
+			</a>-->
+		</div>
+	</div>
+	
+	<div class="close-pop-container">
+		<div class="close-pop-rel">
+		<!-- 닫기 버튼: iframe 위에 겹쳐지도록 위치 -->
 			<a href="#" class="btn_ad_close" id="btnAdClose"
 				onclick="parent.closeBanner()"> <img
 				src="https://img.cgv.co.kr/sample/2015/ad_main_top/btn_ad_close.png"
