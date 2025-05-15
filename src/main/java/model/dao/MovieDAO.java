@@ -20,7 +20,7 @@ public class MovieDAO {
 	private ResultSet rs;
 
     // 예매 건수 기준 무비차트 리스트 조회
-    public List<MovieChartVO> movieList() {
+    public List<MovieChartVO> movieChartTicketingList() {
         List<MovieChartVO> chartlist = new ArrayList<>();
         String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE, COUNT(*)"
         		+ "FROM TICKETING T"
@@ -52,7 +52,18 @@ public class MovieDAO {
         } catch(Exception e) {
             e.printStackTrace();
 
-    } return chartlist;
+        } 
+        return chartlist;
     
+    }
+    
+    // 평점순 예매 리스트 조회
+    public List<MovieChartVO> movieChartScoreList() {
+		
+    	
+    	
+    	
+    	
+    	return null;
     }
 }
