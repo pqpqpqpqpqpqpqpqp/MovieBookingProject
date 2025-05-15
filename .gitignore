@@ -40,6 +40,8 @@ build/
 *.tar.gz
 *.rar
 # .gitignore 예외 처리
+!/src/main/webapp/asset
+!/src/main/webapp/WEB-INF/lib/gson-2.10.jar
 !/src/main/webapp/WEB-INF/lib/mysql-connector-j-8.0.32.jar
 !/src/main/webapp/WEB-INF/lib/servlet-api.jar
 
