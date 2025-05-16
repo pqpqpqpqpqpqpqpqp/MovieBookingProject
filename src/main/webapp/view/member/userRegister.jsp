@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>회원가입</title>
-<link rel="stylesheet" href="../../asset/css/register.css" />
+<link rel="stylesheet" href="../../asset/css/userRegister.css" />
 <script>
 	function validateForm() {
 		const pw = document.getElementById("userPw").value;
