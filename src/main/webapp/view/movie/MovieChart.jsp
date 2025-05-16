@@ -17,9 +17,12 @@
 			data: {},
 			dataType: 'json',
 			success: function(res) {
-				console.log(res)
 				
-				if(res.code == 200) {
+				console.log(res)
+				console.log(res.data)
+				
+				if(res.code == 200 && res.data ) {
+					
 					alert('성공');
 				}
 				else {
