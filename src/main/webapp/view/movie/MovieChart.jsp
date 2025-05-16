@@ -3,7 +3,8 @@
 
 <h2> 무비차트 페이지</h2>
 
-<script src="../jquery-3.7.1.min.js"></script>
+
+<script src="../../asset/js/jquery-3.7.1.min.js"></script>
 <script>
 
 	$(document).ready(function() {
@@ -13,7 +14,7 @@
 		$.ajax ({
 			url:'${pageContext.request.contextPath}/MovieChart.mo',
 			type: 'post',
-			data: objmvc,
+			data: {},
 			dataType: 'json',
 			success: function(res) {
 				console.log(res)
