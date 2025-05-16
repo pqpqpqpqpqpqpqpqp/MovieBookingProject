@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import member.service.MemberLoginService;
-import member.service.MemberRegisterService;
-import member.vo.UserVO;
+import model.service.MemberRegisterService;
 import util.ResponseData;
 
 public class APIController extends HttpServlet {
@@ -42,9 +40,6 @@ public class APIController extends HttpServlet {
 		
 		if(command.equals("/register.api")) {
 			MemberRegisterService action = new MemberRegisterService();
-			responseData = action.execute(request, response);
-		}else if(command.equals("/login.api")) {
-			MemberLoginService action = new MemberLoginService();
 			responseData = action.execute(request, response);
 		}
 
