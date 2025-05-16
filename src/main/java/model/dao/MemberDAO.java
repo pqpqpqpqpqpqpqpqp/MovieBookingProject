@@ -40,7 +40,7 @@ public class MemberDAO {
 
 		try {
 
-			String input = "INSERT INTO USER (USER_NAME, USER_TEL, USER_ID, USER_PW, USER_NUM, USER_NICKNAME) VALUES (?,?,?,?,?,?,?)";
+			String input = "INSERT INTO USER (USER_NAME, USER_TEL, USER_ID, USER_PW, USER_NUM, USER_NICKNAME) VALUES (?,?,?,?,?,?)";
 			
 			pstmt = conn.prepareStatement(input);
 			pstmt.setString(1, memberVO.getUserName());
