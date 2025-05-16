@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Action.ViewMainHomeAction;
+import model.service.ViewMainHomeService;
 
 public class ViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,7 +37,7 @@ public class ViewController extends HttpServlet {
 		System.out.println("viewHome");
 
 		if (url.endsWith("mainHome.vo")) {
-			action = new ViewMainHomeAction();
+			action = new ViewMainHomeService();
 			forward = new ActionForward();
 			forward.setPath("mainHome.jsp");
 			forward.setRedirect(false);
