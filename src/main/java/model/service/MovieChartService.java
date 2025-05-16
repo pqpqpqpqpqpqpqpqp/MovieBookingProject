@@ -16,6 +16,7 @@ public class MovieChartService {
 
 		MovieChartDAO moviechartDAO = new MovieChartDAO();
 
+		// 예매율순 차트리스트
 		List<MovieChartVO> moviechartlist = moviechartDAO.movieChartTicketingList();
 
 		ResponseData data = new ResponseData();
