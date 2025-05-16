@@ -3,36 +3,40 @@ package model.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.dao.UserDAO;
-import member.vo.UserVO;
+import model.dao.MemberDAO;
+import model.vo.MemberVO;
 import util.ResponseData;
 
 public class MemberRegisterService {
 
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		/******
-		 *  REQUEST 연결 구간
-		 ******/
+		
+		
 		String userId = request.getParameter("userId");
-		String userPassword = request.getParameter("password");
-		String nickname = request.getParameter("nickname");
+		String userPw = request.getParameter("userPw");
+		String userName  = request.getParameter("userName");
+		String userNickname  = request.getParameter("userNickname");
+		String userNum  = request.getParameter("userNum");
+		String userTel  = request.getParameter("userTel");
 		
-		UserVO userVO = new UserVO();
-		userVO.setUserId(userId);
-		userVO.setPassword(userPassword);
-		userVO.setNickname(nickname);
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUserId(userId);
+		memberVO.setUserPw(userPw);
+		memberVO.setUserName(userName);
+		memberVO.setUserNickname(userNickname);
+		memberVO.setUserNum(userNum);
+		memberVO.setUserTel(userTel);
 		
 		
-		/******
-		 *  DB 연결 구간
-		 ******/
-		UserDAO userDAO = new UserDAO();
-		int result = userDAO.regiset(userVO);
+		// DB 연결 구간
+		MemberDAO memberDAO = new MemberDAO();
+		int result = memberDAO.regiset(memberVO);
 		
 		
 		
 		ResponseData data = null;
+		System.out.println(result);
 		if(result > 0) {
 			data = new ResponseData();
 		} else {

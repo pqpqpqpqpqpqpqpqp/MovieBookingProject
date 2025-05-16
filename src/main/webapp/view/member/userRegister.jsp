@@ -43,7 +43,7 @@
 		<div class="form-group">
 			<label for="userTel">전화번호</label> <input type="text" id="userTel" required>
 		</div>
-		<button type="button" class="submit-btn" value="가입하기" onclick="joinAction()"></button>
+		<button type="button" class="submit-btn" onclick="joinAction()">가입하기</button>
 		<div class="form-footer">
 			이미 계정이 있으신가요? <a href="login.jsp">로그인</a>
 		</div>
@@ -81,7 +81,7 @@
     				console.log(res);
     				if(res.code ==200) {
     					alert('성공');
-    					location.href = "login.jsp";
+    					location.href = "userLogin.jsp";
     				} else {
     					alert('실패');
     				}

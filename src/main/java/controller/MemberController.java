@@ -36,32 +36,13 @@ public class MemberController extends HttpServlet {
 		
 		String result = null;
 		if(command.equals("/test.api")) {
-			MemberVO memberVO = new MemberVO();
-			memberVO.setUserId(request.getAttribute());
-			
-			
-			result = gson.toJson(user);
+	
 		}else if(command.equals("/main.api")) {
-			MainRes res = new MainRes();
-			res.setName("슈퍼맨");
-			res.setNum(123);
-			
-			ResponseData responseData = new ResponseData();
-			responseData.setData(res);
-			result = gson.toJson(responseData);
+	
 			
 		}
 		
-//		ResponseData responseData = new ResponseData();
-//		try {
-//			responseData.setData(200);
-//			result = gson.toJson(responseData);
-//		}catch (Exception e) {
-//			responseData.setData(500);
-//			result = gson.toJson("서비스를 이용할 수 없습니다.");
-//		}
-		
-		
+
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
 		
