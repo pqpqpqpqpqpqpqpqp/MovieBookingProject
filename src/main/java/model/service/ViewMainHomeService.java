@@ -1,4 +1,4 @@
-package model.Action;
+package model.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +9,7 @@ import controller.ActionForward;
 import model.dao.MemberDAO;
 import model.vo.MemberVO;
 
-public class ViewMainHomeAction implements Action{
+public class ViewMainHomeService implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
