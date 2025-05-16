@@ -11,13 +11,13 @@
 		console.log("DOM이 준비되었습니다.");
 		
 		$.ajax ({
-			url:'${pageContext.request.contextPath}/login.api',
+			url:'${pageContext.request.contextPath}/MovieChart.mo',
 			type: 'post',
-			data: objlg,
+			data: objmvc,
 			dataType: 'json',
 			success: function(res) {
 				console.log(res)
-				location.href = 'hello.jsp';
+				
 				if(res.code == 200) {
 					alert('성공');
 				}
