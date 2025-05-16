@@ -12,35 +12,36 @@ import model.Action.ViewMainHomeAction;
 
 public class ViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPocess(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPocess(request, response);
 	}
 
-	
-	protected void doPocess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPocess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
+
 		String url = request.getRequestURI();
 		System.out.println(url);
-		
+
 		Action action = null;
 		ActionForward forward = null;
-		
+
 		System.out.println("viewHome");
-		
-		if(url.endsWith("mainHome.vo")) {
+
+		if (url.endsWith("mainHome.vo")) {
 			action = new ViewMainHomeAction();
 			forward = new ActionForward();
 			forward.setPath("mainHome.jsp");
 			forward.setRedirect(false);
 		}
-		
 
 		try {
 			if (action != null) {
@@ -58,4 +59,3 @@ public class ViewController extends HttpServlet {
 		}
 	}
 }
-
