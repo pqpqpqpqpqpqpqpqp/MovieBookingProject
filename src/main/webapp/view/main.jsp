@@ -9,12 +9,23 @@
 body{
 min-height: 100vh;
 height: 100%;
-
 }
+
+.body_container{
+	display:flex;
+	width: 980px;
+	justify-content: center;
+	flex-direction: column;
+}
+<jsp:include page="common/header.jsp"/>
 </style>
 </head>
 <body>
-<jsp:include page="common/header.jsp"/>
+<div class ="body_container"> 
+<!--  여기에 넣어주세요! -->
+<jsp:include page="common/body.jsp"/>
+
+</div>
 
 </body>
 <footer>
