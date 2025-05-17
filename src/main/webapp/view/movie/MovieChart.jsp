@@ -1,29 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>무비차트제목</title>
+<link rel ="preconnect " href ="https: //fonts.googleapis.com "> 
+<link rel ="preconnect " href ="https: //fonts.gstatic.com " crossorigin>
+<link href ="https: //fonts.googleapis.com /css2 ?family =Noto+Sans+KR:wght @100 ..900&display =swap " rel ="stylesheet ">
+</head>
+<body>
 
-<h2> 무비차트 페이지</h2>
-<div id="movieList"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h1> 작업 내용 넣기</h1>
 
 
 
@@ -95,6 +82,6 @@
 			
 		})
 	});
-	
-	
 </script>
+</body>
+</html>
