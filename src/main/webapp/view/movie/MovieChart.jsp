@@ -2,6 +2,18 @@
 
 
 <h2> 무비차트 페이지</h2>
+
+<!--  예매순 / 평점순 -->
+<select id="chartOption">
+	<option value="1" selected> 예매순 </option>
+	<option value="2"> 평점순 </option>
+</select>
+
+<!--  리스트 변경 버튼 -->
+<button id="listChangeBtn" type="button"> 
+	<span>GO</span>
+</button>
+
 <div id="movieList"></div>
 
 <script src="../../asset/js/jquery-3.7.1.min.js"></script>

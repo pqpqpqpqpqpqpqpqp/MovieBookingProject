@@ -33,7 +33,7 @@ public class MovieChartDAO {
     // 예매 건수 기준 무비차트 리스트 조회
     public List<MovieChartVO> movieChartTicketingList() {
         List<MovieChartVO> chartlist = new ArrayList<>();
-        String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE, COUNT(*) "
+        String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, COUNT(*), AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE "
         		+ "FROM TICKETING T "
         		+ "INNER JOIN SCREEN_INFO SI ON T.SCREEN_INFO_IDX = SI.SCREEN_INFO_IDX "
         		+ "INNER JOIN MOVIE M ON T.MOVIE_IDX = M.MOVIE_IDX "
@@ -53,9 +53,10 @@ public class MovieChartDAO {
             	moviechart.setMovieChartAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));
             	moviechart.setMovieChartName(rs.getString("MOVIE_NAME"));
+            	moviechart.setMovieChartCount(rs.getString("COUNT(*)"));
             	moviechart.setMovieChartReviewScore(rs.getDouble("AVG(R.REVIEW_SCORE)"));
             	moviechart.setMovieChartOpenDate(rs.getString("MOVIE_OPEN_DATE"));
-            	moviechart.setMovieChartCount(rs.getString("COUNT(*)"));
+            	
             	
             	chartlist.add(moviechart);
  
@@ -71,7 +72,7 @@ public class MovieChartDAO {
     // 평점순 예매 리스트 조회
     public List<MovieChartVO> movieChartScoreList() {
     	List<MovieChartVO> scorelist = new ArrayList<>();
-    	String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, M.MOVIE_OPEN_DATE, AVG(R.REVIEW_SCORE)"
+    	String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, COUNT(*), AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE "
         		+ "FROM TICKETING T"
         		+ "INNER JOIN SCREEN_INFO SI ON T.SCREEN_INFO_IDX = SI.SCREEN_INFO_IDX"
         		+ "INNER JOIN MOVIE M ON T.MOVIE_IDX = M.MOVIE_IDX"
@@ -91,6 +92,8 @@ public class MovieChartDAO {
             	moviechart.setMovieChartAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));
             	moviechart.setMovieChartName(rs.getString("MOVIE_NAME"));
+            	moviechart.setMovieChartCount(rs.getString("COUNT(*)"));
+            	moviechart.setMovieChartReviewScore(rs.getDouble("AVG(R.REVIEW_SCORE)"));
             	moviechart.setMovieChartOpenDate(rs.getString("MOVIE_OPEN_DATE"));
             	
             	scorelist.add(moviechart);

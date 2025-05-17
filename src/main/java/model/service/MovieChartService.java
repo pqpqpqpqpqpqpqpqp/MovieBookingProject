@@ -20,7 +20,7 @@ public class MovieChartService {
 		List<MovieChartVO> moviechartlist = moviechartDAO.movieChartTicketingList();
 
 		// 평점순 차트리스트
-		List<MovieChartVO> moviescorelist = moviechartDAO.movieChartScoreList();
+//		List<MovieChartVO> moviescorelist = moviechartDAO.movieChartScoreList();
 		
 		
 		ResponseData data = new ResponseData();
@@ -29,7 +29,7 @@ public class MovieChartService {
 		data.setData(moviechartlist);
 		
 		// 평점순 차트 설정
-		data.setData(moviescorelist);
+//		data.setData(moviescorelist);
 		
 		return data;
 	}
