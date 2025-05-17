@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 - 여행사진 공유</title>
+<title>로그인</title>
 
 <style>
 * {
@@ -119,7 +119,7 @@ input:focus {
 		<button type="button" class="btn" onclick="loginAction()">로그인</button>
 
 		<div class="register-link">
-			계정이 없으신가요? <a href="register.jsp">회원가입</a>
+			계정이 없으신가요? <a href="userRegister.jsp">회원가입</a>
 		</div>
 	</div>
 
@@ -144,7 +144,7 @@ input:focus {
 					console.log(res);
 					if (res.code == 200) {
 						alert('성공');
-						location.href = "main.jsp";
+						location.href = "${pageContext.request.contextPath}/view/main.jsp";
 					} else {
 						alert('실패');
 					}
