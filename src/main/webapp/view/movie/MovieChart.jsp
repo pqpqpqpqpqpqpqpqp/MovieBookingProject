@@ -9,6 +9,7 @@
 	<option value="2"> 평점순 </option>
 </select>
 
+
 <!--  리스트 변경 버튼 -->
 <button id="listChangeBtn" type="button"> 
 	<span>GO</span>
