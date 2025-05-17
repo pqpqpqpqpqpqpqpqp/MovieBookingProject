@@ -119,17 +119,34 @@
 				return false;
 			}
 
-			// 3. 이름 / 닉네임: 입력만 하면 통과
+			// 3-1. 이름: 입력 하면 통과
 			if (userName.value.trim() === "") {
 				alert("이름을 입력해주세요.");
 				userName.focus();
 				return false;
 			}
-
+			
+			// 3-2. 이름: 한글만 (2~10자 정도 제한 가능)
+			const nameRegex = /^[가-힣]{2,10}$/;
+			if (!nameRegex.test(userName.value.trim())) {
+			    alert("이름은 한글만 입력 가능합니다. (2~10자)");
+			    userName.focus();
+			    return false;
+			}
+			
+			// 3-3. 닉네임: 입력만 하면 통과
 			if (userNickname.value.trim() === "") {
 				alert("닉네임을 입력해주세요.");
 				userNickname.focus();
 				return false;
+			}
+			
+			// 3-4. 닉네임: 한글, 영어, 숫자만 (2~12자 제한 예시)
+			const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,12}$/;
+			if (!nicknameRegex.test(userNickname.value.trim())) {
+			    alert("닉네임은 한글, 영어, 숫자만 입력 가능합니다. (2~12자)");
+			    userNickname.focus();
+			    return false;
 			}
 
 			// 4. 주민등록번호: 6자리-7자리 형식, 총 14자
