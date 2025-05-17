@@ -14,23 +14,29 @@ public class MovieChartService {
 
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
 
-		MovieChartDAO moviechartDAO = new MovieChartDAO();
-
-		// 예매건수순 차트리스트
-		List<MovieChartVO> moviechartlist = moviechartDAO.movieChartTicketingList();
-
-		// 평점순 차트리스트
-//		List<MovieChartVO> moviescorelist = moviechartDAO.movieChartScoreList();
+		// chartOption 값
+		String chartOption = request.getParameter("chartOption");
+	
 		
+		MovieChartDAO moviechartDAO = new MovieChartDAO();
+		
+
+		List<MovieChartVO> moviechartlist = null;
+		
+		
+		if ("review".equals(chartOption)) {
+			moviechartlist = moviechartDAO.movieChartScoreList();
+		}
+		else {
+			moviechartlist = moviechartDAO.movieChartTicketingList();
+		}
+
 		
 		ResponseData data = new ResponseData();
 
-		// 예매건수순 차트 설정
+
 		data.setData(moviechartlist);
-		
-		// 평점순 차트 설정
-//		data.setData(moviescorelist);
-		
+
 		return data;
 	}
 
