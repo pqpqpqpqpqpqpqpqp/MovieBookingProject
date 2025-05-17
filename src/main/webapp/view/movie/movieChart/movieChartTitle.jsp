@@ -11,7 +11,7 @@
 <style>
 	
 
-.movie_chart_contaniner {
+.movie_chart_contaniner1 {
 	display: flex;
 	justify-content: space-between;
 	border-bottom: 3px solid black;
@@ -19,7 +19,7 @@
 	padding-bottom: 20px;
 }
 
-.movie_chart_contaniner h3 {
+.movie_chart_contaniner1 h3 {
 	display: inline-block; position : relative;
 	height: inherit;
 	margin: 0;
@@ -32,10 +32,10 @@
 	position: relative;
 }
 
-.movie_chart_contaniner h3 .action {
+.movie_chart_contaniner1 h3 .action {
 	color: red;
 }
-.movie_chart_contaniner a {
+.movie_chart_contaniner1 a {
 	text-decoration: none;
 	color: red;
 }
@@ -43,7 +43,7 @@
 
 </head>
 <body>
-	<div class="movie_chart_contaniner">
+	<div class="movie_chart_contaniner1">
 		<h3>무비차트</h3>
 
 		<a href=""> ▶ 무비차트 </a>
