@@ -11,8 +11,8 @@
 		<h2>회원가입</h2>
 		<div class="form-group">
 			<label for="userId">아이디</label> <input type="text" id="userId"
-				required>
-			<button type="button" class="submit-btn" onclick="idCheck()">중복체크</button>
+				onchange="idChange()" required>
+			<button type="button" class="submit-btn" onclick="inputIdCheck()">중복체크</button>
 		</div>
 		<div class="form-group">
 			<label for="userPw">비밀번호</label> <input type="password" id="userPw"
@@ -47,28 +47,42 @@
 	<script
 		src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 	<script>
-		let idCheck = '중복';
+		let idCheck = '0';
+		
+		
+		function idChange(){
+			idCheck = '0';
+		}
 
-		function idCheck() {
+		function inputIdCheck() {
 			const userId = document.getElementById('userId');
+			
+			const idPwRegex = /^[A-Za-z0-9]{4,12}$/;
+			if (!idPwRegex.test(userId.value)) {
+				alert("아이디는 영문과 숫자 조합 4~12자여야 합니다.");
+				userId.focus();
+				return false;
+			}
+			
+			let objCheck = new Object();
 
-			let obj = new Object();
-
-			obj.userId = userId.value;
+			objCheck.userId = userId.value;
+			
+			
 
 			$.ajax({
-				url : '${pageContext.request.contextPath}/register.api',
+				url : '${pageContext.request.contextPath}/idCheck.api',
 				type : 'post',
-				data : obj,
+				data : objCheck,
 				dataType : 'json', //성공 유무
 				success : function(res) { // 성공 했을 때
 					console.log(res);
 					if (res.code == 200) {
-						alert('성공');
 						idCheck = '성공';
+						alert(idCheck);
 					} else if(res.code == 300){
-						alert('중복');
 						idCheck = '중복';
+						alert(idCheck);
 					} else {
 						alert('서버에러');
 					}
@@ -80,7 +94,7 @@
 		function joinAction() {
 			const userId = document.getElementById('userId');
 			const userPw = document.getElementById('userPw');
-			const pwError = document.getElementById('pwError');
+			const userPwCheck = document.getElementById('userPwCheck');
 			const userName = document.getElementById('userName');
 			const userNickname = document.getElementById('userNickname');
 			const userNum = document.getElementById('userNum');
@@ -99,9 +113,9 @@
 			}
 
 			// 2. 비밀번호 일치 확인
-			if (userPw.value !== pwError.value) {
+			if (userPw.value !== userPwCheck.value) {
 				alert("비밀번호가 일치하지 않습니다.");
-				pwError.focus();
+				userPwCheck.focus();
 				return false;
 			}
 
@@ -133,7 +147,19 @@
 				userTel.focus();
 				return false;
 			}
-
+			
+			if (idCheck === '0') {
+				alert("아이디 중복체크를 해야 합니다.");
+				userId.focus();
+				return false;
+			}
+			
+			if (idCheck === '중복') {
+				alert("아이디가 중복 됩니다. 아이디를 변경해주세요.");
+				userId.focus();
+				return false;
+			}
+			
 			// 모두 통과
 
 			//Object 담기

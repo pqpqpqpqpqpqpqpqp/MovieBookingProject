@@ -71,22 +71,19 @@ public class MemberDAO {
 		
 		try {
 
-			String input = "SELECT COUNT(*) FROM USER WHERE USER_ID = ?";
+			String input = "SELECT COUNT(*) AS CNT FROM USER WHERE USER_ID = ?";
 			
 			pstmt = conn.prepareStatement(input);
 			pstmt.setString(1, inputId);
 			
 			
-			
-			int result = pstmt.executeUpdate();
-			
-			
 			rs = pstmt.executeQuery();
+			
 
 			// 결과값은 1개만 있으므로, if만 있어도 가능
 			if (rs.next()) {
 				
-				int idCheck = rs.getInt("COUNT");
+				int idCheck = rs.getInt("CNT");
 				
 				if(idCheck == 1) {
 					return 1;

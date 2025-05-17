@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import model.service.MemberIdCheckService;
 import model.service.MemberRegisterService;
 import util.ResponseData;
 
@@ -40,6 +41,9 @@ public class APIController extends HttpServlet {
 		
 		if(command.equals("/register.api")) {
 			MemberRegisterService action = new MemberRegisterService();
+			responseData = action.execute(request, response);
+		}else if(command.equals("/idCheck.api")) {
+			MemberIdCheckService action = new MemberIdCheckService();
 			responseData = action.execute(request, response);
 		}
 
