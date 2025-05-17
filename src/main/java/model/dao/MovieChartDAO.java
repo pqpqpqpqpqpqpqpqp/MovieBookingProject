@@ -92,8 +92,6 @@ public class MovieChartDAO {
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));
             	moviechart.setMovieChartName(rs.getString("MOVIE_NAME"));
             	moviechart.setMovieChartOpenDate(rs.getString("MOVIE_OPEN_DATE"));
-            	moviechart.setMovieChartReviewScore(rs.getDouble("AVG(R.REVIEW_SCORE)"));
-
             	
             	scorelist.add(moviechart);
  
