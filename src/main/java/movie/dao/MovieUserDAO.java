@@ -110,10 +110,12 @@ public class MovieUserDAO {
         return scorelist;
     }
     
-    public MovieDeatailRes MovieDetail(int movieIdx) throws Exception{
+    // movieIdx를 갖고 옴
+    public MovieDeatailRes movieDetail(int movieIdx) throws Exception{
     	
     	MovieDeatailRes detail = null;
-
+    	
+    	// movieIdx에 따라 내용이 바껴야 하니까
     	String sql = "select MOVIE_IMG, MOVIE_NAME, MOVIE_CREATOR, MOVIE_AGE_GRADE, MOVIE_PLAY_TIME, MOVIE_DSEC " + 
     				 "from MOVIE M " +
     				 "where M.MOVIE_IDX = ? ";

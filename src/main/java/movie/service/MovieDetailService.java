@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import movie.dao.MovieUserDAO;
+import movie.vo.MovieDeatailRes;
 import movie.vo.MovieUserListRes;
+
 import util.ResponseData;
 
 public class MovieDetailService {
@@ -16,28 +18,32 @@ public class MovieDetailService {
 		
 		
 		// chartOption 값
-		String chartOption = request.getParameter("chartType");
+		String movieIdx = request.getParameter("movieIdx");
 		MovieUserDAO movieUserDAO = new MovieUserDAO();
-		List<MovieUserListRes> movieUserLists = null;
+		
+		MovieDeatailRes detailRes = null;
+		ResponseData data = new ResponseData();
+		
 
 		try {
-
-			if ("review".equals(chartOption)) {
-				movieUserLists = movieUserDAO.movieChartScoreList();
-			} else {
-				movieUserLists = movieUserDAO.movieChartTicketingList();
+			
+			detailRes = movieUserDAO.movieDetail(Integer.parseInt(movieIdx));
+			if(detailRes == null) {
+				data.setCode(500);
 			}
-
+			
+			data.setData(detailRes);
+			
+			
 		} catch (Exception e) {
+			data.setCode(500);
 			e.printStackTrace();
 		} finally {
 			movieUserDAO.conClose();
 
 		}
 
-		ResponseData data = new ResponseData();
 
-		data.setData(movieUserLists);
 
 		return data;
 	}
