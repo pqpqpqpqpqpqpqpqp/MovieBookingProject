@@ -1,4 +1,4 @@
-package model.service;
+package movie.service;
 
 import java.util.List;
 
