@@ -1,51 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>무비차트제목</title>
+<link rel ="preconnect " href ="https: //fonts.googleapis.com "> 
+<link rel ="preconnect " href ="https: //fonts.gstatic.com " crossorigin>
+<link href ="https: //fonts.googleapis.com /css2 ?family =Noto+Sans+KR:wght @100 ..900&display =swap " rel ="stylesheet ">
+<jsp:include page="../common/header.jsp"></jsp:include>
+</head>
+<body>
 
 
-<h2> 무비차트 페이지</h2>
-<div id="movieList">
-
-
-
-
-
+<div id="movieList"> 
+<jsp:include page="movieChart/movieChartTitle.jsp"></jsp:include>
+<jsp:include page="movieChart/movieChartList.jsp"></jsp:include>
 </div>
 
-<script src="../../asset/js/jquery-3.7.1.min.js"></script>
-<script>
 
-	$(document).ready(function() {
-		// DOM이 준비되면 실행됨
-		console.log("DOM이 준비되었습니다.");
-		
-		$.ajax ({
-			url:'${pageContext.request.contextPath}/MovieChart.mo',
-			type: 'post',
-			dataType: 'json',
-			success: function(res) {
-				console.log(res)
-				console.log(res.data)
-				
-				
-				for(let i = 0; i < res.data.length; i++) {
-					
-					const html = `
-							<div class="movie">
-							<img src="${res.data[i].movieChartImg}" alt="${res.data[i].movieChartName}" width="200">
-							<h3>"${res.data[i].movieChartName}"</h3>
-							<p>등급: ${res.data[i].movieChartAgeGrade}</p>
-							<p>평점: ${res.data[i].movieChartReviewScore}</p>
-							<p>개봉일: ${res.data[i].movieChartOpenDate}</p>
-							<p>예매수: ${res.data[i].movieChartCount}</p>
-						</div>
-					`;
-					
-					$("#movieList").append(html);
-				}
-
-			}
-			
-		})
-	});
-	
-	
-</script>
+</body>
+<footer>
+<jsp:include page="../common/footer.jsp"/>
+</footer>
+</html>

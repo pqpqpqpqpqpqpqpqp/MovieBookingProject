@@ -9,9 +9,17 @@
 <link rel ="preconnect " href ="https: //fonts.gstatic.com " crossorigin>
 <link href ="https: //fonts.googleapis.com /css2 ?family =Noto+Sans+KR:wght @100 ..900&display =swap " rel ="stylesheet ">
 <style>
-	
+	.movie_chart_out_box{
+	margin-top: 25px;
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	}
 
 .movie_chart_contaniner1 {
+ margin: 0 auto;
+	width: 980px;
 	display: flex;
 	justify-content: space-between;
 	border-bottom: 3px solid black;
@@ -43,10 +51,12 @@
 
 </head>
 <body>
+<div class ="movie_chart_out_box">
 	<div class="movie_chart_contaniner1">
 		<h3>무비차트</h3>
 
 		<a href=""> ▶ 무비차트 </a>
+	</div>
 	</div>
 
 </body>
