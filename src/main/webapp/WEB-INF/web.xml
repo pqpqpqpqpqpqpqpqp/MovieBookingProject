@@ -24,7 +24,7 @@
 
 	<servlet>
 		<servlet-name>moController</servlet-name>
-		<servlet-class>controller.MovieController</servlet-class>
+		<servlet-class>controller_api.MovieController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>moController</servlet-name>
