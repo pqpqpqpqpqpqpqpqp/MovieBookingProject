@@ -1,6 +1,6 @@
 package movie.vo;
 
-public class MovieDeatailRes {
+public class MovieDetailRes {
 	
 	private String movieImg;
 	private String movieName;

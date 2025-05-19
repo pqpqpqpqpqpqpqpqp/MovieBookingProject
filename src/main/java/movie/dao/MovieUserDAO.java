@@ -10,7 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import movie.vo.MovieDeatailRes;
+import movie.vo.MovieDetailRes;
 import movie.vo.MovieUserListRes;
 import movie.vo.MovieVO;
 
@@ -110,12 +110,18 @@ public class MovieUserDAO {
         return scorelist;
     }
     
-    // movieIdx를 갖고 옴
-    public MovieDeatailRes movieDetail(int movieIdx) throws Exception{
+    /**
+     * 영화 상세 보기 기능 
+     * @param movieIdx: 영화 정보 pk
+     * @return MovieDeatailRes 영화 상세 정보 ResVO
+     * @throws Exception
+     */
+    public MovieDetailRes movieDetail(int movieIdx) throws Exception{
+
     	
-    	MovieDeatailRes detail = null;
+    	MovieDetailRes detail = null;
     	
-    	// movieIdx에 따라 내용이 바껴야 하니까
+    	// movieIdx에 따라 내용이 바껴야 하니까 영화 상세 정보 불러오기
     	String sql = "select MOVIE_IMG, MOVIE_NAME, MOVIE_CREATOR, MOVIE_AGE_GRADE, MOVIE_PLAY_TIME, MOVIE_DSEC " + 
     				 "from MOVIE M " +
     				 "where M.MOVIE_IDX = ? ";
@@ -123,10 +129,11 @@ public class MovieUserDAO {
     	pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, movieIdx); 	
     	rs = pstmt.executeQuery();
+
     	
     	if (rs.next()) {
     		
-    		detail = new MovieDeatailRes();
+    		detail = new MovieDetailRes();
     		detail.setMovieImg(rs.getString("MOVIE_IMG"));
     		detail.setMovieName(rs.getString("MOVIE_NAME"));
     		detail.setMovieCreator(rs.getString("MOVIE_CREATOR"));
@@ -135,6 +142,8 @@ public class MovieUserDAO {
     		detail.setMovieDsec(rs.getString("MOVIE_DSEC"));
     		
     	}
+    	
+    	// detail 값 반환
     	return detail;
     }
     

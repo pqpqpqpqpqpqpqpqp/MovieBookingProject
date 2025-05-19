@@ -6,7 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Detail</title>
+<style>
 
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+.movie_container {
+	display: flex;
+	justify-content: center;
+}
+
+
+</style>
 </head>
 <body>
 <h2>Detail Page</h2>
@@ -19,10 +32,28 @@
 %>
 <%=movieIdx %>
 
-<div id="title">
+
+<div class="movie_container" id="movie_container">
+	<div class="movie_poster" id="movie_poster">
+		<img id="poster" alt="" src="">
+	</div>
+	
+	<div class="movie_info" id="movie_info">
+		<h3 id="title"></h3>
+		<span id="ticketing"></span>
+		<span id="review"></span>
+		<hr />
+		<span id="creator"></span>
+		<span id="grade"></span>
+		<span id="playTime"></span>
+		<span id="openDate"></span>
+		<hr />
+		<span id="content"></span>
+	</div>
+
 </div>
 
-<span id="content"></span>
+
 
 
 
@@ -61,6 +92,7 @@ function detail() {
 			console.log(res);
 			if(res.code ==200) {
 				const data = res.data;
+				document.getElementById('')
 				document.getElementById('title').innerHTML = data.movieName; // 제목
 				document.getElementById('content').innerHTML = data.movieDsec;
 				
