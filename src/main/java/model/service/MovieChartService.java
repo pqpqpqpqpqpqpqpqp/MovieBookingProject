@@ -15,7 +15,7 @@ public class MovieChartService {
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
 
 		// chartOption 값
-		String chartOption = request.getParameter("chartOption");
+		String chartOption = request.getParameter("chartType");
 	
 		
 		MovieChartDAO moviechartDAO = new MovieChartDAO();

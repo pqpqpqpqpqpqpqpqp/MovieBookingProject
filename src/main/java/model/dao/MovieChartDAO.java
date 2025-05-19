@@ -73,17 +73,17 @@ public class MovieChartDAO {
     public List<MovieChartVO> movieChartScoreList() {
     	List<MovieChartVO> scorelist = new ArrayList<>();
     	String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, COUNT(*), AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE "
-        		+ "FROM TICKETING T"
-        		+ "INNER JOIN SCREEN_INFO SI ON T.SCREEN_INFO_IDX = SI.SCREEN_INFO_IDX"
-        		+ "INNER JOIN MOVIE M ON T.MOVIE_IDX = M.MOVIE_IDX"
-        	    + "LEFT JOIN REVIEW R ON R.TICKETING_IDX = T.TICKETING_IDX"
-        	    + "WHERE T.TICKETING_DEL = 'N' AND REPLACE(SI.SCREEN_DATE, '-', '') < REPLACE(CURDATE(), '-', '')"
-        	    + "GROUP BY T.MOVIE_IDX"
-        	    + "ORDER BY AVG(R.REVIEW_SCORE) DESC;";
+        		+ "FROM TICKETING T "
+        		+ "INNER JOIN SCREEN_INFO SI ON T.SCREEN_INFO_IDX = SI.SCREEN_INFO_IDX "
+        		+ "INNER JOIN MOVIE M ON T.MOVIE_IDX = M.MOVIE_IDX "
+        	    + "LEFT JOIN REVIEW R ON R.TICKETING_IDX = T.TICKETING_IDX "
+        	    + "WHERE T.TICKETING_DEL = 'N' AND REPLACE(SI.SCREEN_DATE, '-', '') < REPLACE(CURDATE(), '-', '') "
+        	    + "GROUP BY T.MOVIE_IDX "
+        	    + "ORDER BY AVG(R.REVIEW_SCORE) DESC; ";
     	
     	try {
         	pstmt = conn.prepareStatement(sql);
-            rs = pstmt.executeQuery();
+        	rs = pstmt.executeQuery();
             		
             while (rs.next()) {
             	
