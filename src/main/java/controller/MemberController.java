@@ -3,10 +3,12 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -35,19 +37,21 @@ public class MemberController extends HttpServlet {
 		Gson gson = new Gson();
 		
 		String result = null;
-		if(command.equals("/test.api")) {
-	
-		}else if(command.equals("/main.api")) {
-	
-			
+		String forward = null;
+		if (command.equals("/userLogin.me")) {
+			forward = "/view/member/userLogin.jsp";
+		} else if(command.equals("/userRegister.me")) {
+			forward = "/view/member/userRegister.jsp";
+		} else if(command.equals("/main.me")) {
+			forward = "/view/main.jsp";
+		} else if(command.equals("/logout.me")) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			forward = "/view/main.jsp";
 		}
 		
-
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json; charset=UTF-8");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
+		dispatcher.forward(request, response);
 		
-		PrintWriter out = response.getWriter();
-		out.print(result);
-		out.flush();
 	}
 }
