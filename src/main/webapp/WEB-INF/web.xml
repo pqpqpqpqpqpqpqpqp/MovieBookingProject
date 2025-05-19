@@ -22,6 +22,7 @@
 		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>
 
+	<!-- movie, api controller -->
 	<servlet>
 		<servlet-name>moController</servlet-name>
 		<servlet-class>controller_api.MovieController</servlet-class>
@@ -30,6 +31,17 @@
 		<servlet-name>moController</servlet-name>
 		<url-pattern>*.mo</url-pattern>
 	</servlet-mapping>
+
+	<!-- movie, web controller -->
+	<servlet>
+		<servlet-name>moWebController</servlet-name>
+		<servlet-class>controller.MovieController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>moWebController</servlet-name>
+		<url-pattern>*.mow</url-pattern>
+	</servlet-mapping>
+
 
 	<servlet>
 		<servlet-name>tiController</servlet-name>
@@ -74,7 +86,7 @@
 
 
 
-	<!--  DB 설정, 맨 아래 배치 할 것 -->
+	<!-- DB 설정, 맨 아래 배치 할 것 -->
 	<resource-ref>
 		<description>Connection</description>
 		<res-ref-name>jdbc/MysqlDB</res-ref-name>
