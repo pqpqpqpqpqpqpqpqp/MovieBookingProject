@@ -69,7 +69,7 @@
 <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->
                        		 /*  '<a href="/movies/detail-view/">'+*/
                              		'<span class="thumb-image">'+
-                           		  		'<img src=" ' +res.data[i].movieChartImg+ '" alt="영화 포스터" onclick="detailMove('+res.data[i].MOVIE_IDX+')">'+
+                           		  		'<img src=" ' +res.data[i].movieChartImg+ '" alt="영화 포스터" onclick="detailMove('+res.data[i].movieIdx+')">'+
 <!-- 영상물 등급 -->
                              			'<p class="movie_icon_age">등급: ' +res.data[i].movieChartAgeGrade+ '</p>'+
                                 
@@ -110,5 +110,9 @@
 		}
 	});
 	
+	function detailMove(movieIdx) {
+		
+		alert(movieIdx)
+	}
 	
 </script>
