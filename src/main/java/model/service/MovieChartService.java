@@ -14,15 +14,29 @@ public class MovieChartService {
 
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
 
+		// chartOption 값
+		String chartOption = request.getParameter("chartType");
+	
+		
 		MovieChartDAO moviechartDAO = new MovieChartDAO();
+		
 
-		// 예매율순 차트리스트
-		List<MovieChartVO> moviechartlist = moviechartDAO.movieChartTicketingList();
+		List<MovieChartVO> moviechartlist = null;
+		
+		
+		if ("review".equals(chartOption)) {
+			moviechartlist = moviechartDAO.movieChartScoreList();
+		}
+		else {
+			moviechartlist = moviechartDAO.movieChartTicketingList();
+		}
 
+		
 		ResponseData data = new ResponseData();
 
+
 		data.setData(moviechartlist);
-		
+
 		return data;
 	}
 
