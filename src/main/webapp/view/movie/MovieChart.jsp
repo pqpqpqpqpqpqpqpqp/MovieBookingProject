@@ -116,8 +116,10 @@
 	
 	function detailMove(movieIdx) {
 
-		location.href = "${pageContext.request.contextPath}/movieDetail.mow?detail="+movieIdx;
+		location.href = "${pageContext.request.contextPath}/view/movie/detail.jsp?detail="+movieIdx;
 		//location.href="movieDetail.mow?detail="+movieIdx;
+		
+
 	}
 	
 </script>
