@@ -109,12 +109,10 @@ input:focus {
 		<h1>로그인</h1>
 
 		<div class="form-group">
-			<label for="userId">아이디</label> <input type="text" id="userId"
-				name="userId" required>
+			<label for="userId">아이디</label> <input type="text" id="userId" required>
 		</div>
 		<div class="form-group">
-			<label for="password">비밀번호</label> <input type="password"
-				id="password" name="password" required>
+			<label for="password">비밀번호</label> <input type="password" id="userPw" required>
 		</div>
 		<button type="button" class="btn" onclick="loginAction()">로그인</button>
 
@@ -127,13 +125,13 @@ input:focus {
 	<script>
 		function loginAction() {
 			const userId = document.getElementById('userId');
-			const password = document.getElementById('password');
+			const userPw = document.getElementById('userPw');
 
 			//Object 담기
 			let obj = new Object();
 
 			obj.userId = userId.value;
-			obj['password'] = password.value;
+			obj.userPw = userPw.value;
 
 			$.ajax({
 				url : '${pageContext.request.contextPath}/login.api',
@@ -143,10 +141,12 @@ input:focus {
 				success : function(res) { // 성공 했을 때
 					console.log(res);
 					if (res.code == 200) {
-						alert('성공');
+						alert('로그인 성공');
 						location.href = "${pageContext.request.contextPath}/view/main.jsp";
-					} else {
-						alert('실패');
+					} else if((res.code == 300)){
+						alert('로그인 실패');
+					} else{
+						alert(res.msg);
 					}
 					// location.href = , 보내고 싶은 페이지 이동 
 				}

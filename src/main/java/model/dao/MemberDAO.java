@@ -100,5 +100,36 @@ public class MemberDAO {
 		return 0;
 	}
 	
+	
+	public MemberVO login(String userId) {
+		MemberVO memberVO = null;
+		try {
+			
+			String input = "SELECT USER_IDX, USER_PW FROM USER WHERE USER_ID = ?";
+			pstmt = conn.prepareStatement(input);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				memberVO = new MemberVO();
+				memberVO.setUserIdx(rs.getInt("USER_IDX"));
+				memberVO.setUserPw(rs.getString("USER_PW"));
+
+				return memberVO;
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			return memberVO;
+		} finally {
+			conClose();
+		}
+		memberVO = new MemberVO();
+		memberVO.setUserPw("아이디를 못찾음");
+		
+		return memberVO;
+	}
+	
 
 }
