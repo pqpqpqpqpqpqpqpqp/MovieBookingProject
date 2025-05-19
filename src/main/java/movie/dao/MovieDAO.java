@@ -1,4 +1,4 @@
-package model.dao;
+package movie.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
