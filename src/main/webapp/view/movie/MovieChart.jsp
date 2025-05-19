@@ -30,6 +30,7 @@
 		
 		// 버튼 클릭 이벤트
 		$("#listChangeBtn").click(function(){
+
 			
 			// 선택된 옵션에 대한 값 가져오기
 			const chartType = $("#chartOption").val();
@@ -45,6 +46,8 @@
 		
 		// 영화 차트 로드 함수
 	function loadMovieChart(chartType) {
+			
+			console.log('loadMovieChart 호출');
 
 		$.ajax ({
 			url:'${pageContext.request.contextPath}/MovieChart.mo',
@@ -70,7 +73,7 @@
 <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->
                        		 /*  '<a href="/movies/detail-view/">'+*/
                              		'<span class="thumb-image">'+
-                           		  		'<img src=" ' +res.data[i].movieChartImg+ '" alt="영화 포스터">'+
+                           		  		'<img src=" ' +res.data[i].movieChartImg+ '" alt="영화 포스터" onclick="detailMove('+res.data[i].movieIdx+')">'+
 <!-- 영상물 등급 -->
                              			'<p class="movie_icon_age">등급: ' +res.data[i].movieChartAgeGrade+ '</p>'+
                                 
@@ -111,6 +114,13 @@
 		}
 	});
 	
+	function detailMove(movieIdx) {
+
+		location.href = "${pageContext.request.contextPath}/view/movie/detail.jsp?detail="+movieIdx;
+		//location.href="movieDetail.mow?detail="+movieIdx;
+		
+
+	}
 	
 </script>
 
