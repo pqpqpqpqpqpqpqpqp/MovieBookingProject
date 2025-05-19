@@ -38,7 +38,7 @@ public class MovieController extends HttpServlet {
 		ResponseData responseData = null;
 		
 		if(command.equals("/MovieChart.mo")) {
-			MovieChartService service = new MovieChartService();
+			MovieUserListService service = new MovieUserListService();
 			responseData = service.execute(request, response);
 		}
 		response.setCharacterEncoding("UTF-8");

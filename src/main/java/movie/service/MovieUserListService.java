@@ -5,11 +5,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import movie.dao.MovieChartDAO;
-import movie.vo.MovieChartVO;
+import movie.dao.MovieUserDAO;
+import movie.vo.MovieUserListRes;
 import util.ResponseData;
 
-public class MovieChartService {
+public class MovieUserListService {
 
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
 
@@ -17,10 +17,10 @@ public class MovieChartService {
 		String chartOption = request.getParameter("chartType");
 	
 		
-		MovieChartDAO moviechartDAO = new MovieChartDAO();
+		MovieUserDAO moviechartDAO = new MovieUserDAO();
 		
 
-		List<MovieChartVO> moviechartlist = null;
+		List<MovieUserListRes> moviechartlist = null;
 		
 		
 		if ("review".equals(chartOption)) {

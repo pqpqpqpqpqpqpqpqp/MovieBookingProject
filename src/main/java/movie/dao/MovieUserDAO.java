@@ -10,16 +10,16 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import movie.vo.MovieChartVO;
+import movie.vo.MovieUserListRes;
 
 
-public class MovieChartDAO {
+public class MovieUserDAO {
 
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 
-	public MovieChartDAO() {
+	public MovieUserDAO() {
 	    try {
 	        Context init = new InitialContext();
 	        DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MysqlDB");
@@ -31,8 +31,8 @@ public class MovieChartDAO {
 
 	
     // 예매 건수 기준 무비차트 리스트 조회
-    public List<MovieChartVO> movieChartTicketingList() {
-        List<MovieChartVO> chartlist = new ArrayList<>();
+    public List<MovieUserListRes> movieChartTicketingList() {
+        List<MovieUserListRes> chartlist = new ArrayList<>();
         String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, COUNT(*), AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE "
         		+ "FROM TICKETING T "
         		+ "INNER JOIN SCREEN_INFO SI ON T.SCREEN_INFO_IDX = SI.SCREEN_INFO_IDX "
@@ -48,7 +48,7 @@ public class MovieChartDAO {
             		
             while (rs.next()) {
             	
-            	MovieChartVO moviechart = new MovieChartVO();
+            	MovieUserListRes moviechart = new MovieUserListRes();
             	
             	moviechart.setMovieChartAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));
@@ -70,8 +70,8 @@ public class MovieChartDAO {
     }
     
     // 평점순 예매 리스트 조회
-    public List<MovieChartVO> movieChartScoreList() {
-    	List<MovieChartVO> scorelist = new ArrayList<>();
+    public List<MovieUserListRes> movieChartScoreList() {
+    	List<MovieUserListRes> scorelist = new ArrayList<>();
     	String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, COUNT(*), AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE "
         		+ "FROM TICKETING T "
         		+ "INNER JOIN SCREEN_INFO SI ON T.SCREEN_INFO_IDX = SI.SCREEN_INFO_IDX "
@@ -87,7 +87,7 @@ public class MovieChartDAO {
             		
             while (rs.next()) {
             	
-            	MovieChartVO moviechart = new MovieChartVO();
+            	MovieUserListRes moviechart = new MovieUserListRes();
             	
             	moviechart.setMovieChartAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));

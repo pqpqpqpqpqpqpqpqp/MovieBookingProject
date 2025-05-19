@@ -1,6 +1,6 @@
 package movie.vo;
 
-public class MovieChartVO {
+public class MovieUserListRes {
 
 	private String movieChartAgeGrade;
 	private String movieChartImg;
