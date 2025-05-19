@@ -1,4 +1,4 @@
-package model.dao;
+package movie.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,16 +10,18 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import model.vo.MovieChartVO;
+import movie.vo.MovieDeatailRes;
+import movie.vo.MovieUserListRes;
+import movie.vo.MovieVO;
 
 
-public class MovieChartDAO {
+public class MovieUserDAO {
 
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 
-	public MovieChartDAO() {
+	public MovieUserDAO() {
 	    try {
 	        Context init = new InitialContext();
 	        DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MysqlDB");
@@ -31,8 +33,8 @@ public class MovieChartDAO {
 
 	
     // 예매 건수 기준 무비차트 리스트 조회
-    public List<MovieChartVO> movieChartTicketingList() {
-        List<MovieChartVO> chartlist = new ArrayList<>();
+    public List<MovieUserListRes> movieChartTicketingList() {
+        List<MovieUserListRes> chartlist = new ArrayList<>();
         String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, COUNT(*), AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE "
         		+ "FROM TICKETING T "
         		+ "INNER JOIN SCREEN_INFO SI ON T.SCREEN_INFO_IDX = SI.SCREEN_INFO_IDX "
@@ -48,8 +50,9 @@ public class MovieChartDAO {
             		
             while (rs.next()) {
             	
-            	MovieChartVO moviechart = new MovieChartVO();
+            	MovieUserListRes moviechart = new MovieUserListRes();
             	
+            	moviechart.setMovieIdx(rs.getLong("MOVIE_IDX"));
             	moviechart.setMovieChartAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));
             	moviechart.setMovieChartName(rs.getString("MOVIE_NAME"));
@@ -70,8 +73,8 @@ public class MovieChartDAO {
     }
     
     // 평점순 예매 리스트 조회
-    public List<MovieChartVO> movieChartScoreList() {
-    	List<MovieChartVO> scorelist = new ArrayList<>();
+    public List<MovieUserListRes> movieChartScoreList() {
+    	List<MovieUserListRes> scorelist = new ArrayList<>();
     	String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, COUNT(*), AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE "
         		+ "FROM TICKETING T "
         		+ "INNER JOIN SCREEN_INFO SI ON T.SCREEN_INFO_IDX = SI.SCREEN_INFO_IDX "
@@ -87,8 +90,9 @@ public class MovieChartDAO {
             		
             while (rs.next()) {
             	
-            	MovieChartVO moviechart = new MovieChartVO();
+            	MovieUserListRes moviechart = new MovieUserListRes();
             	
+            	moviechart.setMovieIdx(rs.getLong("MOVIE_IDX"));
             	moviechart.setMovieChartAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));
             	moviechart.setMovieChartName(rs.getString("MOVIE_NAME"));
@@ -105,4 +109,38 @@ public class MovieChartDAO {
         } 
         return scorelist;
     }
+    
+    // movieIdx를 갖고 옴
+    public MovieDeatailRes movieDetail(int movieIdx) throws Exception{
+    	
+    	MovieDeatailRes detail = null;
+    	
+    	// movieIdx에 따라 내용이 바껴야 하니까
+    	String sql = "select MOVIE_IMG, MOVIE_NAME, MOVIE_CREATOR, MOVIE_AGE_GRADE, MOVIE_PLAY_TIME, MOVIE_DSEC " + 
+    				 "from MOVIE M " +
+    				 "where M.MOVIE_IDX = ? ";
+    	
+    	pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, movieIdx);
+    	rs = pstmt.executeQuery();
+    	
+    	if (rs.next()) {
+    		
+    		detail = new MovieDeatailRes();
+    		detail.setMovieImg(rs.getString("MOVIE_IMG"));
+    		detail.setMovieName(rs.getString("MOVIE_NAME"));
+    		detail.setMovieCreator(rs.getString("MOVIE_CREATOR"));
+    		detail.setMovieAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
+    		detail.setMoviePlayTime(rs.getString("MOVIE_PLAY_TIME"));
+    		detail.setMovieDsec(rs.getString("MOVIE_DSEC"));
+    		
+    	}
+    	return detail;
+    }
+    
+	public void conClose() {
+		try {if(rs != null) rs.close(); }catch(Exception e) {}
+		try {if(pstmt != null) pstmt.close(); }catch(Exception e) {}
+		try {if(conn != null) conn.close(); }catch(Exception e) {}
+	}
 }

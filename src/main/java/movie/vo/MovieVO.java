@@ -1,4 +1,4 @@
-package model.vo;
+package movie.vo;
 
 public class MovieVO {
 	

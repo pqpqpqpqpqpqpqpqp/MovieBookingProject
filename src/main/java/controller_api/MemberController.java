@@ -1,4 +1,4 @@
-package controller;
+package controller_api;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import model.service.MemberIdCheckService;
+import model.service.MemberLoginService;
 import model.service.MemberRegisterService;
 import util.ResponseData;
 
-public class APIController extends HttpServlet {
+public class MemberController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -39,11 +40,14 @@ public class APIController extends HttpServlet {
 		Gson gson = new Gson();
 		ResponseData responseData = null; // response 값
 		
-		if(command.equals("/register.api")) {
+		if(command.equals("/register.mew")) {
 			MemberRegisterService action = new MemberRegisterService();
 			responseData = action.execute(request, response);
-		}else if(command.equals("/idCheck.api")) {
+		}else if(command.equals("/idCheck.mew")) {
 			MemberIdCheckService action = new MemberIdCheckService();
+			responseData = action.execute(request, response);
+		}else if(command.equals("/login.mew")) {
+			MemberLoginService action = new MemberLoginService();
 			responseData = action.execute(request, response);
 		}
 

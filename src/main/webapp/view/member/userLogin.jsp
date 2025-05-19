@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 - 여행사진 공유</title>
+<title>로그인</title>
 
 <style>
 * {
@@ -109,44 +109,43 @@ input:focus {
 		<h1>로그인</h1>
 
 		<div class="form-group">
-			<label for="userId">아이디</label> <input type="text" id="userId"
-				name="userId" required>
+			<label for="userId">아이디</label> <input type="text" id="userId" required>
 		</div>
 		<div class="form-group">
-			<label for="password">비밀번호</label> <input type="password"
-				id="password" name="password" required>
+			<label for="password">비밀번호</label> <input type="password" id="userPw" required>
 		</div>
 		<button type="button" class="btn" onclick="loginAction()">로그인</button>
 
 		<div class="register-link">
-			계정이 없으신가요? <a href="register.jsp">회원가입</a>
+			계정이 없으신가요? <a href="${pageContext.request.contextPath}/userRegister.me">회원가입</a>
 		</div>
 	</div>
-
 	<script src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 	<script>
 		function loginAction() {
 			const userId = document.getElementById('userId');
-			const password = document.getElementById('password');
+			const userPw = document.getElementById('userPw');
 
 			//Object 담기
 			let obj = new Object();
 
 			obj.userId = userId.value;
-			obj['password'] = password.value;
+			obj.userPw = userPw.value;
 
 			$.ajax({
-				url : '${pageContext.request.contextPath}/login.api',
+				url : '${pageContext.request.contextPath}/login.mew',
 				type : 'post',
 				data : obj,
 				dataType : 'json', //성공 유무
 				success : function(res) { // 성공 했을 때
 					console.log(res);
 					if (res.code == 200) {
-						alert('성공');
-						location.href = "main.jsp";
-					} else {
-						alert('실패');
+						alert('로그인 성공');
+						location.href = "${pageContext.request.contextPath}/main.me";
+					} else if((res.code == 300)){
+						alert('로그인 실패');
+					} else{
+						alert(res.msg);
 					}
 					// location.href = , 보내고 싶은 페이지 이동 
 				}

@@ -21,16 +21,37 @@
 		<servlet-name>meController</servlet-name>
 		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>meWebController</servlet-name>
+		<servlet-class>controller_api.MemberController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>meWebController</servlet-name>
+		<url-pattern>*.mew</url-pattern>
+	</servlet-mapping>
 
+	<!-- movie, api controller -->
 	<servlet>
 		<servlet-name>moController</servlet-name>
-		<servlet-class>controller.MovieController</servlet-class>
+		<servlet-class>controller_api.MovieController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>moController</servlet-name>
 		<url-pattern>*.mo</url-pattern>
 	</servlet-mapping>
-	
+
+	<!-- movie, web controller -->
+	<servlet>
+		<servlet-name>moWebController</servlet-name>
+		<servlet-class>controller.MovieController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>moWebController</servlet-name>
+		<url-pattern>*.mow</url-pattern>
+	</servlet-mapping>
+
+
 	<servlet>
 		<servlet-name>tiController</servlet-name>
 		<servlet-class>controller.TicketController</servlet-class>
@@ -39,7 +60,7 @@
 		<servlet-name>tiController</servlet-name>
 		<url-pattern>*.ti</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>reController</servlet-name>
 		<servlet-class>controller.ReviewController</servlet-class>
@@ -57,13 +78,7 @@
 		<url-pattern>*.vo</url-pattern>
 	</servlet-mapping>
 
-	<resource-ref>
-		<description>Connection</description>
-		<res-ref-name>jdbc/MysqlDB</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
-	</resource-ref>
-	
+
 	<servlet>
 		<servlet-name>apiController</servlet-name>
 		<servlet-class>controller.APIController</servlet-class>
@@ -72,5 +87,20 @@
 		<servlet-name>apiController</servlet-name>
 		<url-pattern>*.api</url-pattern>
 	</servlet-mapping>
+
+
+
+
+
+
+
+
+	<!-- DB 설정, 맨 아래 배치 할 것 -->
+	<resource-ref>
+		<description>Connection</description>
+		<res-ref-name>jdbc/MysqlDB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
 
 </web-app>

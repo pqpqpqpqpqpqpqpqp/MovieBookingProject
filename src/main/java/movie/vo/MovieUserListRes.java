@@ -1,7 +1,8 @@
-package model.vo;
+package movie.vo;
 
-public class MovieChartVO {
+public class MovieUserListRes {
 
+	private long movieIdx;					//movie 테이블 idx
 	private String movieChartAgeGrade;
 	private String movieChartImg;
 	private String movieChartName;
@@ -9,6 +10,14 @@ public class MovieChartVO {
 	private String movieChartOpenDate;
 	private String movieChartCount;
 	
+	
+	
+	public long getMovieIdx() {
+		return movieIdx;
+	}
+	public void setMovieIdx(long movieIdx) {
+		this.movieIdx = movieIdx;
+	}
 	
 	public String getMovieChartAgeGrade() {
 		return movieChartAgeGrade;

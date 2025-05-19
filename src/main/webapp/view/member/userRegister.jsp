@@ -41,7 +41,7 @@
 		</div>
 		<button type="button" class="submit-btn" onclick="joinAction()">가입하기</button>
 		<div class="form-footer">
-			이미 계정이 있으신가요? <a href="userLogin.jsp">로그인</a>
+			이미 계정이 있으신가요? <a href="${pageContext.request.contextPath}/userLogin.me">로그인</a>
 		</div>
 	</div>
 	<script
@@ -71,7 +71,7 @@
 			
 
 			$.ajax({
-				url : '${pageContext.request.contextPath}/idCheck.api',
+				url : '${pageContext.request.contextPath}/idCheck.mew',
 				type : 'post',
 				data : objCheck,
 				dataType : 'json', //성공 유무
@@ -190,7 +190,7 @@
 			obj.userTel = userTel.value;
 
 			$.ajax({
-				url : '${pageContext.request.contextPath}/register.api',
+				url : '${pageContext.request.contextPath}/register.mew',
 				type : 'post',
 				data : obj,
 				dataType : 'json', //성공 유무
@@ -198,7 +198,7 @@
 					console.log(res);
 					if (res.code == 200) {
 						alert('성공');
-						location.href = "userLogin.jsp";
+						location.href = "${pageContext.request.contextPath}/userLogin.me";
 					} else {
 						alert(res.msg);
 					}
