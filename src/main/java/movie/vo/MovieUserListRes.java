@@ -2,7 +2,7 @@ package movie.vo;
 
 public class MovieUserListRes {
 
-	private long movieIdx;					//movie 테이블 ㅑdx
+	private long movieIdx;					//movie 테이블 idx
 	private String movieChartAgeGrade;
 	private String movieChartImg;
 	private String movieChartName;

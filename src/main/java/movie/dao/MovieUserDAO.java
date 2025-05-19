@@ -10,7 +10,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import movie.vo.MovieDeatailRes;
 import movie.vo.MovieUserListRes;
+import movie.vo.MovieVO;
 
 
 public class MovieUserDAO {
@@ -107,4 +109,36 @@ public class MovieUserDAO {
         } 
         return scorelist;
     }
+    
+    public MovieDeatailRes MovieDetail(int movieIdx) throws Exception{
+    	
+    	MovieDeatailRes detail = null;
+
+    	String sql = "select MOVIE_IMG, MOVIE_NAME, MOVIE_CREATOR, MOVIE_AGE_GRADE, MOVIE_PLAY_TIME, MOVIE_DSEC " + 
+    				 "from MOVIE M " +
+    				 "where M.MOVIE_IDX = ? ";
+    	
+    	pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, movieIdx);
+    	rs = pstmt.executeQuery();
+    	
+    	if (rs.next()) {
+    		
+    		detail = new MovieDeatailRes();
+    		detail.setMovieImg(rs.getString("MOVIE_IMG"));
+    		detail.setMovieName(rs.getString("MOVIE_NAME"));
+    		detail.setMovieCreator(rs.getString("MOVIE_CREATOR"));
+    		detail.setMovieAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
+    		detail.setMoviePlayTime(rs.getString("MOVIE_PLAY_TIME"));
+    		detail.setMovieDsec(rs.getString("MOVIE_DSEC"));
+    		
+    	}
+    	return detail;
+    }
+    
+	public void conClose() {
+		try {if(rs != null) rs.close(); }catch(Exception e) {}
+		try {if(pstmt != null) pstmt.close(); }catch(Exception e) {}
+		try {if(conn != null) conn.close(); }catch(Exception e) {}
+	}
 }

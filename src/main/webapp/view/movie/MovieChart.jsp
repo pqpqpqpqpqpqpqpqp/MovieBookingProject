@@ -29,8 +29,7 @@
 		
 		// 버튼 클릭 이벤트
 		$("#listChangeBtn").click(function(){
-			
-			alert('어디갓어');
+
 			
 			// 선택된 옵션에 대한 값 가져오기
 			const chartType = $("#chartOption").val();

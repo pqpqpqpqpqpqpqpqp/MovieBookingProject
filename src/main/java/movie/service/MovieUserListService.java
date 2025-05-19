@@ -15,24 +15,25 @@ public class MovieUserListService {
 
 		// chartOption 값
 		String chartOption = request.getParameter("chartType");
-	
-		
 		MovieUserDAO movieUserDAO = new MovieUserDAO();
-		
-
 		List<MovieUserListRes> movieUserLists = null;
-		
-		
-		if ("review".equals(chartOption)) {
-			movieUserLists = movieUserDAO.movieChartScoreList();
-		}
-		else {
-			movieUserLists = movieUserDAO.movieChartTicketingList();
+
+		try {
+
+
+			if ("review".equals(chartOption)) {
+				movieUserLists = movieUserDAO.movieChartScoreList();
+			} else {
+				movieUserLists = movieUserDAO.movieChartTicketingList();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			movieUserDAO.conClose();
+
 		}
 
-		
 		ResponseData data = new ResponseData();
-
 
 		data.setData(movieUserLists);
 
