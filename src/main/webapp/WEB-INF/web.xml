@@ -21,6 +21,15 @@
 		<servlet-name>meController</servlet-name>
 		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>meWebController</servlet-name>
+		<servlet-class>controller_api.MemberController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>meWebController</servlet-name>
+		<url-pattern>*.mew</url-pattern>
+	</servlet-mapping>
 
 	<!-- movie, api controller -->
 	<servlet>

@@ -19,7 +19,6 @@
 	
 </script>
 <style>
-
 .top-bar {
 	display: flex;
 	justify-content: center;
@@ -81,12 +80,12 @@
 <meta charset="UTF-8">
 <title>헤더 아이콘 배너</title>
 </head>
-<body>
+<body onload="onloadHeader()">
 	<div class="top-bar">
 		<div class="top-container">
 			<div class="logo-area">
 				<!--  onclick 넣어주기 -->
-	
+
 				<h1>
 					<img
 						src="https://img.cgv.co.kr/R2014/images/common/logo/logoRed.png"
@@ -94,12 +93,12 @@
 						Team</span>
 				</h1>
 			</div>
-	
+
 			<!--  메뉴 영역 -->
 			<div class="menu-area">
-				<a href="#" class="menu-item"> <img
+				<a onclick="inOutAction()" class="menu-item"> <img
 					src="https://img.icons8.com/ios/50/lock--v1.png" alt="로그인 아이콘">
-					로그인
+					<span id="loginText">로그인</span>
 				</a> <a href="#" class="menu-item"> <img
 					src="https://img.icons8.com/ios/50/add-user-male--v1.png"
 					alt="회원가입 아이콘"> 회원가입
@@ -108,13 +107,41 @@
 					MY CGV
 				</a>
 			</div>
-		<!-- top-container -->
+			<!-- top-container -->
 		</div>
 	</div>
 
 	<script type="text/javascript">
 		document.getElementById("logo").addEventListener("click", function() {
-			location.href = "mainHome.vo"; // 컨트롤러 요청
+			location.href = "${pageContext.request.contextPath}/mainHome.vo"; // 컨트롤러 요청
+		});
+	</script>
+
+	<%
+	boolean isLoggedIn = session.getAttribute("userIdx") != null;
+	%>
+
+	<script>
+	function inOutAction() {
+		const isLoggedIn = <%=isLoggedIn%>;
+
+		if (isLoggedIn) {
+			// 로그아웃은 별도 로그아웃 서블릿 또는 페이지에서 처리하는 게 일반적입니다
+			location.href = "${pageContext.request.contextPath}/logout.me";
+		} else {
+			location.href = "${pageContext.request.contextPath}/userLogin.me";
+			}
+		}
+
+		function onloadHeader() {
+			const loginText = document.getElementById("loginText");
+			const isLoggedIn = <%=isLoggedIn%>;
+
+			loginText.textContent = isLoggedIn ? "로그아웃" : "로그인";
+		}
+
+		document.addEventListener("DOMContentLoaded", function() {
+			onloadHeader();
 		});
 	</script>
 </body>

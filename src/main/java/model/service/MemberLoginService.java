@@ -2,6 +2,7 @@ package model.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.MemberDAO;
 import model.vo.MemberVO;
@@ -22,7 +23,8 @@ public class MemberLoginService {
 		memberVO = memberDAO.login(inputId);
 		int result = 0;
 		if(memberVO != null && memberVO.getUserPw().equals(inputPw)) {
-			request.setAttribute("userIDX", memberVO.getUserIdx());
+			HttpSession session = request.getSession();
+			session.setAttribute("userIdx", memberVO.getUserIdx());
 			result = 1;
 		}else if(memberVO != null) {
 			result = 2;
