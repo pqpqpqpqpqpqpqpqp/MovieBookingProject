@@ -14,9 +14,9 @@ body, * {
 
 body {
 	font-family: "Noto Sans KR", sans-serif;
+	overflow-x: auto;
 	width: 100vw;
 	min-width: 1024px;
-	overflow-x: auto;
 }
 
 .cgv_ad_container {
