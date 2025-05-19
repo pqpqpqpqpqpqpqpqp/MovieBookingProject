@@ -53,8 +53,8 @@ background-color: black;
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 10%,
-		rgba(0, 0, 0, 0) 90%);
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 1%, rgba(0, 0, 0, 0.6) 2%, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0) 7%, 
+	rgba(0, 0, 0, 0) 93%, rgba(0, 0, 0, 0.8) 95%, rgba(0, 0, 0, 0.6) 97%, rgba(0, 0, 0, 1) 100%);
 	z-index: 1;
 }
 
