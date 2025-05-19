@@ -17,24 +17,24 @@ public class MovieUserListService {
 		String chartOption = request.getParameter("chartType");
 	
 		
-		MovieUserDAO moviechartDAO = new MovieUserDAO();
+		MovieUserDAO movieUserDAO = new MovieUserDAO();
 		
 
-		List<MovieUserListRes> moviechartlist = null;
+		List<MovieUserListRes> movieUserLists = null;
 		
 		
 		if ("review".equals(chartOption)) {
-			moviechartlist = moviechartDAO.movieChartScoreList();
+			movieUserLists = movieUserDAO.movieChartScoreList();
 		}
 		else {
-			moviechartlist = moviechartDAO.movieChartTicketingList();
+			movieUserLists = movieUserDAO.movieChartTicketingList();
 		}
 
 		
 		ResponseData data = new ResponseData();
 
 
-		data.setData(moviechartlist);
+		data.setData(movieUserLists);
 
 		return data;
 	}

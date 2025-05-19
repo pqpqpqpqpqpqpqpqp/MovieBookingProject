@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import model.service.MovieChartService;
+import movie.service.MovieUserListService;
 import util.ResponseData;
 
 public class MovieController extends HttpServlet {
