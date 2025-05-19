@@ -50,6 +50,7 @@ public class MovieUserDAO {
             	
             	MovieUserListRes moviechart = new MovieUserListRes();
             	
+            	moviechart.setMovieIdx(rs.getLong("MOVIE_IDX"));
             	moviechart.setMovieChartAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));
             	moviechart.setMovieChartName(rs.getString("MOVIE_NAME"));
@@ -89,6 +90,7 @@ public class MovieUserDAO {
             	
             	MovieUserListRes moviechart = new MovieUserListRes();
             	
+            	moviechart.setMovieIdx(rs.getLong("MOVIE_IDX"));
             	moviechart.setMovieChartAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));
             	moviechart.setMovieChartName(rs.getString("MOVIE_NAME"));

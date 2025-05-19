@@ -2,6 +2,7 @@ package movie.vo;
 
 public class MovieUserListRes {
 
+	private long movieIdx;					//movie 테이블 ㅑdx
 	private String movieChartAgeGrade;
 	private String movieChartImg;
 	private String movieChartName;
@@ -9,6 +10,14 @@ public class MovieUserListRes {
 	private String movieChartOpenDate;
 	private String movieChartCount;
 	
+	
+	
+	public long getMovieIdx() {
+		return movieIdx;
+	}
+	public void setMovieIdx(long movieIdx) {
+		this.movieIdx = movieIdx;
+	}
 	
 	public String getMovieChartAgeGrade() {
 		return movieChartAgeGrade;
