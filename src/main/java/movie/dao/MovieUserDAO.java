@@ -121,7 +121,7 @@ public class MovieUserDAO {
     				 "where M.MOVIE_IDX = ? ";
     	
     	pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, movieIdx);
+		pstmt.setInt(1, movieIdx); 	
     	rs = pstmt.executeQuery();
     	
     	if (rs.next()) {
