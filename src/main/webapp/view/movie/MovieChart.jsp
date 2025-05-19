@@ -30,6 +30,8 @@
 		// 버튼 클릭 이벤트
 		$("#listChangeBtn").click(function(){
 			
+			alert('어디갓어');
+			
 			// 선택된 옵션에 대한 값 가져오기
 			const chartType = $("#chartOption").val();
 			
@@ -44,6 +46,8 @@
 		
 		// 영화 차트 로드 함수
 	function loadMovieChart(chartType) {
+			
+			console.log('loadMovieChart 호출');
 
 		$.ajax ({
 			url:'${pageContext.request.contextPath}/MovieChart.mo',
@@ -111,8 +115,9 @@
 	});
 	
 	function detailMove(movieIdx) {
-		
-		alert(movieIdx)
+
+		location.href = "${pageContext.request.contextPath}/movieDetail.mow?detail="+movieIdx;
+		//location.href="movieDetail.mow?detail="+movieIdx;
 	}
 	
 </script>

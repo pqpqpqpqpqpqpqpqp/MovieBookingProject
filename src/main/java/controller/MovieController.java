@@ -43,7 +43,7 @@ public class MovieController extends HttpServlet {
 
 		System.out.println("MovieController: "+command);
 
-		if (url.endsWith("mainHome.mow")) {
+		if (url.endsWith("/movieDetail.mow")) {
 			//forward = new ActionForward();
 			//forward.setPath("mainHome.jsp");
 			//forward.setRedirect(false);
