@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import movie.service.MovieDetailService;
 import movie.service.MovieUserListService;
 import util.ResponseData;
 
@@ -40,6 +41,10 @@ public class MovieController extends HttpServlet {
 		if(command.equals("/MovieChart.mo")) {
 			MovieUserListService service = new MovieUserListService();
 			responseData = service.execute(request, response);
+		}
+		else if(command.equals("/MovieDetail.mo")) {
+			MovieDetailService detservice = new MovieDetailService();
+			responseData = detservice.execute(request, response);
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
