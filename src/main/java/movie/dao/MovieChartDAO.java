@@ -10,7 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import model.vo.MovieChartVO;
+import movie.vo.MovieChartVO;
 
 
 public class MovieChartDAO {

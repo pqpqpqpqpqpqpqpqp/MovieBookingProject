@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 
 import javax.sql.DataSource;
 
-import model.vo.MovieVO;
-import model.vo.MovieChartVO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,7 +17,5 @@ public class MovieDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 
-
-    
 
 }

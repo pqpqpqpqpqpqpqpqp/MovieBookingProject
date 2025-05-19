@@ -5,9 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import model.dao.MovieChartDAO;
-import model.vo.MovieChartVO;
+import movie.dao.MovieChartDAO;
+import movie.vo.MovieChartVO;
 import util.ResponseData;
 
 public class MovieChartService {
