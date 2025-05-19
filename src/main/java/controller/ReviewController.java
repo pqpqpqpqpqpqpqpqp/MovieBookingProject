@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import model.service.WriteReviewService;
+import model.service.ReviewWriteService;
 import util.ResponseData;
-
 
 public class ReviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +35,7 @@ public class ReviewController extends HttpServlet {
 		ResponseData responseData = null; // response 값
 		
 		if(command.equals("/review.re")) {
-			WriteReviewService service = new WriteReviewService();
+			ReviewWriteService service = new ReviewWriteService();
 			responseData = service.execute(request, response);
 		}
 		

@@ -3,6 +3,7 @@ package model.vo;
 public class ReviewVO {
 	private int userIdx;
 	private int movieIdx;
+	private int bookingIdx;
 	private String movieName;
 	private String reviewRating;
 	private String reviewText;
@@ -21,6 +22,14 @@ public class ReviewVO {
 
 	public void setMovieIdx(int movieIdx) {
 		this.movieIdx = movieIdx;
+	}
+
+	public int getBookingIdx() {
+		return bookingIdx;
+	}
+
+	public void setBookingIdx(int bookingIdx) {
+		this.bookingIdx = bookingIdx;
 	}
 
 	public String getMovieName() {
