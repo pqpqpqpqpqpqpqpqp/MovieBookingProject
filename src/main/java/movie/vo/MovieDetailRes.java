@@ -10,8 +10,23 @@ public class MovieDetailRes {
 	private String movieOpenDate;
 	private String movieDsec;
 	
+	private String  peviewAvg;			//영화 평점
+	private String  ticketingCnt;		//티케팅 예매 건수
 	
 	
+	
+	public String getPeviewAvg() {
+		return peviewAvg;
+	}
+	public void setPeviewAvg(String peviewAvg) {
+		this.peviewAvg = peviewAvg;
+	}
+	public String getTicketingCnt() {
+		return ticketingCnt;
+	}
+	public void setTicketingCnt(String ticketingCnt) {
+		this.ticketingCnt = ticketingCnt;
+	}
 	public String getMovieImg() {
 		return movieImg;
 	}

@@ -49,8 +49,8 @@ body {
 	
 	<div class="movie_info" id="movie_info">
 		<h3 id="title"></h3>
-		<span id="ticketing">예매율: </span>
-		<span id="review">평점: </span>
+		<span id="ticketing">예매율: </span><span id="ticketing_result"></span>
+		<span id="review">평점: </span><sapn id="review_result"></sapn>
 		<hr />
 		<span id="creator"></span>
 		<span id="grade"></span>
@@ -110,6 +110,9 @@ function detail() {
 				document.getElementById('playTime').innerHTML = data.moviePlayTime; // 러닝타임 
 				document.getElementById('openDate').innerHTML = data.movieOpenDate;	 // 개봉일 													 
 				document.getElementById('content').innerHTML = data.movieDsec;// 소개글
+				document.getElementById('ticketing_result').innerHTML = Number(data.peviewAvg);// 평점
+				document.getElementById('review_result').innerHTML = data.ticketingCnt;// 건수
+				
 				
 				
 			} else {

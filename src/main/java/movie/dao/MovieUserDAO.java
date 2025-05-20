@@ -122,9 +122,17 @@ public class MovieUserDAO {
     	MovieDetailRes detail = null;
     	
     	// movieIdx에 따라 내용이 바껴야 하니까 영화 상세 정보 불러오기
-    	String sql = "select MOVIE_IMG, MOVIE_NAME, MOVIE_CREATOR, MOVIE_AGE_GRADE, MOVIE_PLAY_TIME, MOVIE_OPEN_DATE, MOVIE_DSEC " + 
-    				 "from MOVIE M " +
-    				 "where M.MOVIE_IDX = ? ";
+    	String sql = "select M.MOVIE_IMG"
+    			+ ", M.MOVIE_NAME"
+    			+ ", M.MOVIE_CREATOR"
+    			+ ", M.MOVIE_AGE_GRADE"
+    			+ ", M.MOVIE_OPEN_DATE"
+    			+ ", MOVIE_PLAY_TIME"
+    			+ ", M.MOVIE_DSEC"
+    			+ ",(select AVG(REVIEW_SCORE) from REVIEW R where R.MOVIE_IDX = M.MOVIE_IDX) as REVIEW_AVG"
+    			+ ",(select COUNT(*) from TICKETING T where T.MOVIE_IDX = M.MOVIE_IDX) as TICKETING_CNT "
+    			+ "from MOVIE M "
+    			+ "where M.MOVIE_IDX = ?";
     	
     	pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, movieIdx); 	
@@ -141,6 +149,8 @@ public class MovieUserDAO {
     		detail.setMoviePlayTime(rs.getString("MOVIE_PLAY_TIME"));
     		detail.setMovieOpenDate(rs.getString("MOVIE_OPEN_DATE"));
     		detail.setMovieDsec(rs.getString("MOVIE_DSEC"));
+    		detail.setPeviewAvg(rs.getString("REVIEW_AVG"));
+    		detail.setTicketingCnt(rs.getString("TICKETING_CNT"));
     		
     	}
     	
