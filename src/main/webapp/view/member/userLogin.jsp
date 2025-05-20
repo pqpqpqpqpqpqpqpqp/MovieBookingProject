@@ -117,10 +117,9 @@ input:focus {
 		<button type="button" class="btn" onclick="loginAction()">로그인</button>
 
 		<div class="register-link">
-			계정이 없으신가요? <a href="userRegister.jsp">회원가입</a>
+			계정이 없으신가요? <a href="${pageContext.request.contextPath}/userRegister.me">회원가입</a>
 		</div>
 	</div>
-
 	<script src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 	<script>
 		function loginAction() {
@@ -134,7 +133,7 @@ input:focus {
 			obj.userPw = userPw.value;
 
 			$.ajax({
-				url : '${pageContext.request.contextPath}/login.api',
+				url : '${pageContext.request.contextPath}/login.mew',
 				type : 'post',
 				data : obj,
 				dataType : 'json', //성공 유무
@@ -142,7 +141,7 @@ input:focus {
 					console.log(res);
 					if (res.code == 200) {
 						alert('로그인 성공');
-						location.href = "${pageContext.request.contextPath}/view/main.jsp";
+						location.href = "${pageContext.request.contextPath}/main.me";
 					} else if((res.code == 300)){
 						alert('로그인 실패');
 					} else{
