@@ -21,7 +21,7 @@
 <script src="../../asset/js/jquery-3.7.1.min.js"></script>
 <script>
 
-	$(document).ready(function() {
+	/* $(document).ready(function() {
 		// DOM이 준비되면 실행됨
 		console.log("DOM이 준비되었습니다.");
 		
@@ -72,14 +72,14 @@
                         /*  '<strong class="rank">No.' +(i+1)+ '</strong> '+ */
 <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->
                        		 /*  '<a href="/movies/detail-view/">'+*/
-                             		'<span class="thumb-image">'+
+/*                             		'<span class="thumb-image">'+
                            		  		'<img src=" ' +res.data[i].movieChartImg+ '" alt="영화 포스터" onclick="detailMove('+res.data[i].movieIdx+')">'+
 <!-- 영상물 등급 -->
                              			'<p class="movie_icon_age">등급: ' +res.data[i].movieChartAgeGrade+ '</p>'+
                                 
                              		'</span>'+
                              /* '</a>'+*/
-                    		'</div>'+            
+                    		/*  '</div>'+            
                     <!--  영화 정보 칸 -->        
                     		'<div class="box-contents">'+
 <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->                    
@@ -120,7 +120,7 @@
 		//location.href="movieDetail.mow?detail="+movieIdx;
 		
 
-	}
+	} */
 	
 </script>
 

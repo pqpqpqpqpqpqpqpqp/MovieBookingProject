@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -202,119 +201,128 @@ font-weight: 570;
 <body>
 <div class="movie_chart_container">
 <div class="movie_chart_inBox">
+	
 	<div class="movie_chart_idx">
-		<select>
-			<option selected value= "1">예매율순</option>
+		<select id="chartOption">
+			<option value= "1"  selected>예매율순</option>
 			<option value= "2">평점순</option>
 		</select>
-		<div class="show_movie_chart_btn" onclick="showMovieChart()">GO</div>
+		<div class="show_movie_chart_btn" id="listChangeBtn" onclick="showMovieChart()">GO</div>
 	</div>
+	
 	<div class="sect_movie_chart">
-<!--   -->    <ol>
-                <li>
-                   <div class="box_image">
-                        <strong class="rank">No.1</strong>	
-                        <a href="/movies/detail-view/?midx=89629">
-                            <span class="thumb_image">
-                                <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000089/89629/89629_320.jpg" alt="미션 임파서블: 파이널 레코닝 포스터" onerror="errorImage(this)">
- <!-- 추후 수정 요망 -->			<span class="movie_icon_age">
- 								<img src="${pageContext.request.contextPath}/asset/icon/movieAge/age15.svg" alt="15세" onerror="errorImage(this)">
- 								</span>
-                           	</span>
-                         </a>
-                        
-                    </div>
-                    <!--  영화 정보 칸 -->        
-                    <ul class="box_contents">
-<!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->                    
-                        <a href="${pageContext.request.contextPath}/view/movie/movieChart.jsp">
-<!-- 영화이름 변수 입력 -->     <strong>미션임파셔블</strong>
-                        </a>
-<!--  예매율 넣어주세요 -->	<div class="score">
-                            <strong class="percent">예매율<span>70.4%</span> |  </strong>
-                            <!-- 2020.05.07 개봉전 프리에그 노출, 개봉후 골든에그지수 노출변경 (적용 범위1~ 3위)-->
-                            <div class="egg_gage_small">
-                                            <div class="egg_great"></div>
-                                            <div class="percent"> 97%</div>
-                                        </div>
-                        </div>
-<!-- 개봉일 넣어줘 -->                        
-                        <span class="movie_open_info">2025.05.17
-                            <strong><span>개봉</span>                                
-                            </strong>
-                        </span>                        
-                    </ul>   
-                    </li>
-                    </ol>
-            </div>
+       <ol id="movieList"> </ol>
+ 	</div>
 </div>
 </div>
 <script src="../../asset/js/jquery-3.7.1.min.js"></script>
 <script>
 	$(document).ready(function() {
+		let sum = 0;
+		
 		// DOM이 준비되면 실행됨
 		console.log("DOM이 준비되었습니다.");		
+		
+		// 에매순 차트 로드
+		loadMovieChart("ticketing");
+		
+		// 버튼 클릭 이벤트
+		$("#listChangeBtn").click(function(){
+
+			
+			// 선택된 옵션에 대한 값 가져오기
+			const chartType = $("#chartOption").val();
+			
+			// 예매순 / 평점순으로 로드되게끔
+			if(chartType === "1") {
+				loadMovieChart("ticketing");
+			}
+			else if(chartType === "2") {
+				loadMovieChart("review");
+			}
+		});
+		
+		// 영화 차트 로드 함수
+	function loadMovieChart(chartType) {
+			
+			console.log('loadMovieChart 호출');
+
+		
 		$.ajax ({
 			url:'${pageContext.request.contextPath}/MovieChart.mo',
 			type: 'post', 
-			data: {}, // 버튼 눌렀을 때 사용할 거
-
+			data: {chartType : chartType}, // 버튼 눌렀을 때 사용할 거
 			dataType: 'json',
 			success: function(res) {
 				console.log(res)
 				console.log(res.data)
 				
+				// 기존 리스트 삭제
+				$("#movieList").empty();
+				
 				for(let i = 0; i < res.data.length; i++) {
-					console.log(res.data[i])
-					console.log(res.data[i].movieChartImg)
-					console.log(res.data[i].movieChartName)
-					console.log(res.data[i].movieChartAgeGrade)
+					sum += parseInt(res.data[i].movieChartCount);
+				}
+				console.log(sum);
+				for(let i = 0; i < res.data.length; i++) {
 					
 					
 					
 					const html =
 						
-						 '<li>'+
-                    '<div class="box-image">'+
-                        '<div class="rank">No.' +(i+1)+ '</div> '+  
+						 '<li>' +
+                    		'<div class="box_image">' +
+                        	'<div class="rank">No.' +(i+1)+ '</div>' +  
                         /*  '<strong class="rank">No.' +(i+1)+ '</strong> '+ */
 <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->
-                        '<a href="/movies/detail-view/">'+
-                            '<span class="thumb-image">'+
-                                '<img src=" ' +res.data[i].movieChartImg+ '" alt="영화 포스터" onerror="errorImage(this)">'+
-<!-- 영상물 등급 -->
-                                '<p class="movie_icon_age">등급: ' +res.data[i].movieChartAgeGrade+ '</p>'+
-                                
-                            '</span>'+
-                         '</a>'+
-                    '</div>'+            
+                        	'<a href="/movies/detail-view/">' +
+    
+                            	'<span class="thumb_image">' +
+                                	'<img src=' +res.data[i].movieChartImg+ '/>' +
+<!-- 영상물 등급 -->					
+									'<span class="movie_icon_age">' +
+                                		'<p class="movie_icon_age">등급: ' +res.data[i].movieChartAgeGrade+ '</p>' +
+                                		'<img src="${pageContext.request.contextPath}/asset/icon/movieAge/age15.svg" alt="15세">' +
+    								'</span>' +
+                            	'</span>' +
+                         	'</a>' +
+                    	'</div>' +            
                     <!--  영화 정보 칸 -->        
-                    '<div class="box-contents">'+
-<!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->                    
-                        '<a href="/movies/detail-view/?midx=89629">'+
-<!-- 영화이름 변수 입력 -->
-                            '<strong class="title">영화: ' +res.data[i].movieChartName+ '</strong>'+
-                        '</a>'+
-                        '<div class="score">'+
-<!--  예매율 넣어주세요 -->                        
-                            '<strong class="percent"><span>예매수: ' +res.data[i].movieChartCount+ '  </span></strong>'+                     
-                        '</div>'+
-<!-- 개봉일 넣어줘 -->                        
-                        '<span class="txt-info">'+
-                            '<strong><span>개봉일: ' +res.data[i].movieChartOpenDate+ '</span>'+                               
-                            '</strong>'+
-                        '</span>'+
-                        
-                    '</div>'+    
-                '</li>'
+                    '<ul class="box_contents">' +
+                    
+                    <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->                    
+                       '<a href="/movies/detail-view/?midx=89629">' +
+
+                    <!-- 영화이름 변수 입력 --> 
+ 							'<strong>영화: ' +res.data[i].movieChartName+ '</strong>' +
+                 		'</a>' +
+                    <!--  예매율 넣어주세요 -->	
+                 		'<div class="score">' +
+                        	'<strong class="percent">예매율<span>' +res.data[i].movieChartCount+ '</span> |  </strong>' +                 	
+                        '</div>' +
+                    <!-- 개봉일 넣어줘 -->                        
+                        '<span class="movie_open_info">' +res.data[i].movieChartOpenDate+
+                        	'<strong><span>개봉</span></strong>' +
+                        '</span>' +                       
+                     '</ul>' +   
+                    '</li>';
+
 					
 					$("#movieList").append(html);	
 				}
-				
 			}
 			
-		})
+		 });
+		}
 	});
+	
+	function detailMove(movieIdx) {
+
+		location.href = "${pageContext.request.contextPath}/view/movie/detail.jsp?detail="+movieIdx;
+		//location.href="movieDetail.mow?detail="+movieIdx;
+		
+
+	}
 </script>
 </body>
 </html>

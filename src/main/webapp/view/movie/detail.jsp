@@ -49,8 +49,8 @@ body {
 	
 	<div class="movie_info" id="movie_info">
 		<h3 id="title"></h3>
-		<span id="ticketing">예매율: </span><span id="ticketing_result"></span>
-		<span id="review">평점: </span><sapn id="review_result"></sapn>
+		<span id="ticketing"></span>
+		<span id="review"></span>
 		<hr />
 		<span id="creator"></span>
 		<span id="grade"></span>
@@ -101,17 +101,16 @@ function detail() {
 			console.log(res);
 			if(res.code ==200) {
 				const data = res.data;
-				document.getElementById('poster').src = data.movieImg; 		// 포스터	
+				document.getElementById('poster').src = data.movieImg; 				// 포스터	
 				document.getElementById('title').innerHTML = data.movieName; 		// 제목
-				//예매율순 
-				// 평점순 
+				document.getElementById('ticketing').innerHTML = data.ticketingCnt;	//예매율순 
+				document.getElementById('review').innerHTML = Number(data.previewAvg);// 평점순 
 				document.getElementById('creator').innerHTML = data.movieCreator;	// 감독 
 				document.getElementById('grade').innerHTML = data.movieAgeGrade; 	// 등급 
 				document.getElementById('playTime').innerHTML = data.moviePlayTime; // 러닝타임 
-				document.getElementById('openDate').innerHTML = data.movieOpenDate;	 // 개봉일 													 
-				document.getElementById('content').innerHTML = data.movieDsec;// 소개글
-				document.getElementById('ticketing_result').innerHTML = Number(data.peviewAvg);// 평점
-				document.getElementById('review_result').innerHTML = data.ticketingCnt;// 건수
+				document.getElementById('openDate').innerHTML = data.movieOpenDate;	// 개봉일 													 
+				document.getElementById('content').innerHTML = data.movieDsec;		// 소개글
+
 				
 				
 				

@@ -30,7 +30,6 @@ public class MovieUserDAO {
 	        e.printStackTrace();
 	    }
 	}
-
 	
     // 예매 건수 기준 무비차트 리스트 조회
     public List<MovieUserListRes> movieChartTicketingList() {
