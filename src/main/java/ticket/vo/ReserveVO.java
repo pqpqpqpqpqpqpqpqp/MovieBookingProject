@@ -3,7 +3,7 @@ package ticket.vo;
 public class ReserveVO {
 	// SELECT M.MOVIE_NAME, T.THEATER_NAME, SI.SCREEN_DATE,
 	// C.CINEMA_NAME ,C.CINEMA_SPECIAL_NAME, SI.SCREEN_START_TIME, C.CINEMA_SEAT
-	
+	  
 	private String movieName;
 	private String theaterName;
 	private String screenDate;
@@ -11,6 +11,8 @@ public class ReserveVO {
 	private String cinemaSpecialName;
 	private String screenStartTime;
 	private String cinemaSeat;
+	private String movieAgeGrade;
+	
 	
 	
 	public String getMovieName() {
@@ -54,6 +56,12 @@ public class ReserveVO {
 	}
 	public void setCinemaSeat(String cinemaSeat) {
 		this.cinemaSeat = cinemaSeat;
+	}
+	public String getMovieAgeGrade() {
+		return movieAgeGrade;
+	}
+	public void setMovieAgeGrade(String movieAgeGrade) {
+		this.movieAgeGrade = movieAgeGrade;
 	}
 	
 	

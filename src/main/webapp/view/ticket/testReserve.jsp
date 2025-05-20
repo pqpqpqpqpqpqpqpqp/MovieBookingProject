@@ -83,23 +83,16 @@ body {
 }
 </style>
 </head>
-<body onload = "reservePageOnload()">
-	<div class="column movies" id = "movieColumn">
+<body onload="reservePageOnload()">
+	<div class="column movies" id="movieColumn">
 		<h3>영화</h3>
-		<div class="movie" onclick="movieSelct()">
-			<span class="label green">ALL</span>예시 영화1
-		</div>
-		<div class="movie">
-			<span class="label green">ALL</span>예시 영화2
-		</div>
 	</div>
 
-	<div class="column theaters" id = "theaterColumn">
+	<div class="column theaters" id="theaterColumn">
 		<h3>극장</h3>
-		<div class="region highlight">예시 극장</div>
 	</div>
 
-	<div class="column dates" id = "dateColumn">
+	<div class="column dates" id="dateColumn">
 		<h3>날짜</h3>
 		<div class="date">20 화</div>
 		<div class="date highlight">21 수</div>
@@ -109,7 +102,7 @@ body {
 		<div class="date">25 일</div>
 	</div>
 
-	<div class="column times" id = "timeColumn">
+	<div class="column times" id="timeColumn">
 		<h3>시간</h3>
 		<div class="time-slot">
 			<strong>2D(자막) 1관 [예시관] (Laser)</strong><br> <span>11:00
@@ -117,14 +110,88 @@ body {
 		</div>
 	</div>
 
+	<script
+		src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
+
 	<script>
-		function reservePageOnload(){
-			location.href = "${pageContext.request.contextPath}/testReserve.tiw";
-		}	
-	
-	
+		function reservePageOnload() {
+
+			$
+					.ajax({
+						url : '${pageContext.request.contextPath}/testReserve.tiw',
+						type : 'get',
+						dataType : 'json',
+						success : function(res) {
+
+							const movieColumn = document.getElementById("movieColumn");
+							const theaterColumn = document.getElementById("theaterColumn");
+							const dateColumn = document.getElementById("dateColumn");
+
+							const movieSet = new Set(); // 중복 제거용
+							const theaterSet = new Set(); // 중복 제거용
+							const dateSet = new Set(); // 중복 제거용
+							
+							
+							for (let i = 0; i < res.length; i++) {
+								const movieName = res[i].movieName;
+								const theaterName = res[i].theaterName;
+								const screenDate = res[i].screenDate;
+								
+								console.log(i+"번째: ");
+								console.log(res[i]);
+								console.log(res[i].movieName);
+
+								if (!movieSet.has(movieName)) {
+									movieSet.add(movieName);
+
+									const div = document.createElement("div");
+									div.className = "movie";
+									div.onclick = function() {
+										movieSelct(movieName);
+									};
+									const label = document.createElement("span");
+									label.className = "label green";
+									label.textContent = res[i].movieAgeGrade;
+
+									const name = document.createElement("span");
+									name.textContent = movieName;
+
+									div.appendChild(label);
+									div.appendChild(name);
+
+									movieColumn.appendChild(div);
+								}
+								
+								if (!theaterSet.has(theaterName)) {
+									theaterSet.add(theaterName);
+
+									const div = document.createElement("div");
+									div.className = "region highlight";
+									div.onclick = function() {
+										citySelct(theaterName);
+									};
+					
+									const name = document.createElement("span");
+									name.textContent = theaterName;
+
+									div.appendChild(name);
+
+									theaterColumn.appendChild(div);
+								}
+							}
+
+						}
+					})
+		}
+
 		function movieSelct() {
-			alert("hi");
+			alert("movie");
+		}
+		function citySelct() {
+			alert("city");
+		}
+		function dateSelct() {
+			alert("date");
 		}
 	</script>
 
