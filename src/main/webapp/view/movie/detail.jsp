@@ -15,7 +15,16 @@ body {
 
 .movie_container {
 	display: flex;
-	justify-content: center;
+
+
+	gap: 50px;
+	
+}
+#poster {
+	width: 300px;
+	height: 420px;
+	object-fit: contain
+	border: 1px solid #ccc; /* 선택사항: 테두리 */
 }
 
 
@@ -35,13 +44,13 @@ body {
 
 <div class="movie_container" id="movie_container">
 	<div class="movie_poster" id="movie_poster">
-		<img id="poster" alt="" src="">
+		<img id="poster" alt="poster" src="">
 	</div>
 	
 	<div class="movie_info" id="movie_info">
 		<h3 id="title"></h3>
-		<span id="ticketing"></span>
-		<span id="review"></span>
+		<span id="ticketing">예매율: </span>
+		<span id="review">평점: </span>
 		<hr />
 		<span id="creator"></span>
 		<span id="grade"></span>
@@ -92,9 +101,15 @@ function detail() {
 			console.log(res);
 			if(res.code ==200) {
 				const data = res.data;
-				document.getElementById('')
-				document.getElementById('title').innerHTML = data.movieName; // 제목
-				document.getElementById('content').innerHTML = data.movieDsec;
+				document.getElementById('poster').src = data.movieImg; 		// 포스터	
+				document.getElementById('title').innerHTML = data.movieName; 		// 제목
+				//예매율순 
+				// 평점순 
+				document.getElementById('creator').innerHTML = data.movieCreator;	// 감독 
+				document.getElementById('grade').innerHTML = data.movieAgeGrade; 	// 등급 
+				document.getElementById('playTime').innerHTML = data.moviePlayTime; // 러닝타임 
+				document.getElementById('openDate').innerHTML = data.movieOpenDate;	 // 개봉일 													 
+				document.getElementById('content').innerHTML = data.movieDsec;// 소개글
 				
 				
 			} else {
