@@ -3,8 +3,7 @@ package review;
 public class ReviewWriteVO {
 	private int userIdx;
 	private int movieIdx;
-	private String movieName;
-	private int reviewScore;
+	private String reviewScore;
 	private String reviewContent;
 
 	public int getUserIdx() {
@@ -23,19 +22,11 @@ public class ReviewWriteVO {
 		this.movieIdx = movieIdx;
 	}
 
-	public String getMovieName() {
-		return movieName;
-	}
-
-	public void setMovieName(String movieName) {
-		this.movieName = movieName;
-	}
-
-	public int getReviewScore() {
+	public String getReviewScore() {
 		return reviewScore;
 	}
 
-	public void setReviewScore(int reviewScore) {
+	public void setReviewScore(String reviewScore) {
 		this.reviewScore = reviewScore;
 	}
 

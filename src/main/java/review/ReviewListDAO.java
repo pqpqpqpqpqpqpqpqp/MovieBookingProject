@@ -18,7 +18,7 @@ public class ReviewListDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
-	public void MemberDAO() {
+	public ReviewListDAO() {
 		try {
 			Context init = new InitialContext();
 			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MysqlDB");
