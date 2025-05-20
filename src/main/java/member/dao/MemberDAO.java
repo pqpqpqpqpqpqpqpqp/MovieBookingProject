@@ -1,4 +1,4 @@
-package model.dao;
+package member.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 
 import javax.sql.DataSource;
 
-import model.vo.MemberVO;
+import member.vo.MemberVO;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

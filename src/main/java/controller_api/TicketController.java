@@ -15,9 +15,10 @@ import com.google.gson.Gson;
 import member.service.MemberIdCheckService;
 import member.service.MemberLoginService;
 import member.service.MemberRegisterService;
+import ticket.service.TicketReserveService;
 import util.ResponseData;
 
-public class MemberController extends HttpServlet {
+public class TicketController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -40,14 +41,8 @@ public class MemberController extends HttpServlet {
 		Gson gson = new Gson();
 		ResponseData responseData = null; // response 값
 		
-		if(command.equals("/register.mew")) {
-			MemberRegisterService action = new MemberRegisterService();
-			responseData = action.execute(request, response);
-		}else if(command.equals("/idCheck.mew")) {
-			MemberIdCheckService action = new MemberIdCheckService();
-			responseData = action.execute(request, response);
-		}else if(command.equals("/login.mew")) {
-			MemberLoginService action = new MemberLoginService();
+		if(command.equals("/testReserve.tiw")) {
+			TicketReserveService action = new TicketReserveService();
 			responseData = action.execute(request, response);
 		}
 
