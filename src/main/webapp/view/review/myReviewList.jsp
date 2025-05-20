@@ -7,11 +7,14 @@
 <h3>가져온 리뷰를 담을 div</h3>
 <div class="review-box"></div>
 
+<h4>리뷰 삭제 버튼</h4>
+<button class="review-del-btn"></button>
+
 <script
 	src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 <script>
 	$(document).ready(function() {
-		const USER_IDX = "<%= useridx %>"
+		const USER_IDX = <%= useridx %>;
 		$.ajax({
 			url : '${pageContext.request.contextPath}/myReviewList.re', // 서버의 엔드포인트
 			type : "GET",
@@ -19,7 +22,7 @@
 				userIdx : USER_IDX,
 			},
 			success : function(resp) {
-				console.log(resp);
+				console.log(resp.data);
 			},
 			error : function() {
 				alert("리뷰 불러오기에 실패했습니다. 다시 시도해주세요.");

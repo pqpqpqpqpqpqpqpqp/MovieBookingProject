@@ -38,19 +38,27 @@ public class ReviewController extends HttpServlet {
 		try {
 			if (command.equals("/reviewWrite.re")) {
 				ReviewWriteService service = new ReviewWriteService();
+				
 				responseData = service.execute(request, response);
 			} else if (command.equals("/myReviewList.re")) {
 				ReviewListService service = new ReviewListService();
+				
 				responseData = service.execute(request, response);
 			} else if (command.equals("/movieReviewList.re")) {
 				ReviewListService service = new ReviewListService();
+				
 				responseData = service.execute(request, response);
+			} else {
+				responseData = new ResponseData(404, "존재하지 않는 API 요청입니다.");
 			}
+		} catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
+			responseData = new ResponseData(400, "잘못된 요청 파라미터입니다."); 
 		} catch (Exception e) {
 			e.printStackTrace();
 			responseData = new ResponseData(500, "서버 오류가 발생했습니다.");
 		}
-
+		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
 

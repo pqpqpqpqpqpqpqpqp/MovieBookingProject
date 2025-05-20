@@ -11,15 +11,15 @@
 	src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 <script>
 	$(document).ready(function() {
-		const MOVIE_IDX = "<%= movieidx %>";
+		const MOVIE_IDX = <%= movieidx %>;
 		$.ajax({
 			url : '${pageContext.request.contextPath}/movieReviewList.re', // 서버의 엔드포인트
 			type : "GET",
 			data : {
-				userIdx : MOVIE_IDX,
+				movieIdx : MOVIE_IDX,
 			},
 			success : function(resp) {
-				console.log(resp);
+				console.log(resp.data);
 			},
 			error : function() {
 				alert("리뷰 불러오기에 실패했습니다. 다시 시도해주세요.");

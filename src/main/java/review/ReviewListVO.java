@@ -1,68 +1,53 @@
 package review;
 
+import java.time.LocalDateTime;
+
 public class ReviewListVO {
-	private int reviewIdx;
-	private int userIdx;
-	private int movieIdx;
-	private String movieName;
-	private String reviewRating;
-	private String reviewText;
-	private String reviewDate;
 
-	public int getReviewIdx() {
-		return reviewIdx;
+	private String reviewContent;
+	private int reviewScore;
+	private LocalDateTime reviewDate;
+	private String userImg;
+	private String userNick;
+
+	public String getReviewContent() {
+		return reviewContent;
 	}
 
-	public void setReviewIdx(int reviewIdx) {
-		this.reviewIdx = reviewIdx;
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
 	}
 
-	public int getUserIdx() {
-		return userIdx;
+	public int getReviewScore() {
+		return reviewScore;
 	}
 
-	public void setUserIdx(int userIdx) {
-		this.userIdx = userIdx;
+	public void setReviewScore(int reviewScore) {
+		this.reviewScore = reviewScore;
 	}
 
-	public int getMovieIdx() {
-		return movieIdx;
-	}
-
-	public void setMovieIdx(int movieIdx) {
-		this.movieIdx = movieIdx;
-	}
-
-	public String getMovieName() {
-		return movieName;
-	}
-
-	public void setMovieName(String movieName) {
-		this.movieName = movieName;
-	}
-
-	public String getReviewRating() {
-		return reviewRating;
-	}
-
-	public void setReviewRating(String reviewRating) {
-		this.reviewRating = reviewRating;
-	}
-
-	public String getReviewText() {
-		return reviewText;
-	}
-
-	public void setReviewText(String reviewText) {
-		this.reviewText = reviewText;
-	}
-
-	public String getReviewDate() {
+	public LocalDateTime getReviewDate() {
 		return reviewDate;
 	}
 
-	public void setReviewDate(String reviewDate) {
+	public void setReviewDate(LocalDateTime reviewDate) {
 		this.reviewDate = reviewDate;
+	}
+
+	public String getUserImg() {
+		return userImg;
+	}
+
+	public void setUserImg(String userImg) {
+		this.userImg = userImg;
+	}
+
+	public String getUserNick() {
+		return userNick;
+	}
+
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
 	}
 
 }

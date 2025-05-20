@@ -5,7 +5,7 @@ public class ReviewWriteVO {
 	private int movieIdx;
 	private int bookingIdx;
 	private String movieName;
-	private String reviewRating;
+	private int reviewRating;
 	private String reviewText;
 
 	public int getUserIdx() {
@@ -40,11 +40,11 @@ public class ReviewWriteVO {
 		this.movieName = movieName;
 	}
 
-	public String getReviewRating() {
+	public int getReviewRating() {
 		return reviewRating;
 	}
 
-	public void setReviewRating(String reviewRating) {
+	public void setReviewRating(int reviewRating) {
 		this.reviewRating = reviewRating;
 	}
 

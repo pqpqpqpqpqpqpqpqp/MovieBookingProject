@@ -40,7 +40,7 @@ public class ReviewWriteDAO {
 			pstmt.setInt(2, reviewVO.getMovieIdx());
 			pstmt.setInt(3, reviewVO.getBookingIdx());
 			pstmt.setString(4, reviewVO.getMovieName());
-			pstmt.setString(5, reviewVO.getReviewRating());
+			pstmt.setInt(5, reviewVO.getReviewRating());
 			pstmt.setString(6, reviewVO.getReviewText());
 
 			int rows = pstmt.executeUpdate();

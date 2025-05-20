@@ -14,10 +14,10 @@ public class ReviewWriteService {
 			int movieIdx = Integer.parseInt(request.getParameter("movieIdx"));
 			int bookingIdx = Integer.parseInt(request.getParameter("bookingIdx"));
 			String movieTitle = request.getParameter("movieTitle");
-			String reviewRating = request.getParameter("Rating");
+			int reviewRating = Integer.parseInt(request.getParameter("Rating"));
 			String reviewText = request.getParameter("Text");
 			
-			if (movieTitle == null || reviewRating == null || reviewText == null) {
+			if (movieTitle == null || reviewText == null) {
 	            return new ResponseData(400, "필수 파라미터 누락");
 	        }
 			
