@@ -122,7 +122,7 @@ public class MovieUserDAO {
     	MovieDetailRes detail = null;
     	
     	// movieIdx에 따라 내용이 바껴야 하니까 영화 상세 정보 불러오기
-    	String sql = "select MOVIE_IMG, MOVIE_NAME, MOVIE_CREATOR, MOVIE_AGE_GRADE, MOVIE_PLAY_TIME, MOVIE_DSEC " + 
+    	String sql = "select MOVIE_IMG, MOVIE_NAME, MOVIE_CREATOR, MOVIE_AGE_GRADE, MOVIE_PLAY_TIME, MOVIE_OPEN_DATE, MOVIE_DSEC " + 
     				 "from MOVIE M " +
     				 "where M.MOVIE_IDX = ? ";
     	
@@ -139,6 +139,7 @@ public class MovieUserDAO {
     		detail.setMovieCreator(rs.getString("MOVIE_CREATOR"));
     		detail.setMovieAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
     		detail.setMoviePlayTime(rs.getString("MOVIE_PLAY_TIME"));
+    		detail.setMovieOpenDate(rs.getString("MOVIE_OPEN_DATE"));
     		detail.setMovieDsec(rs.getString("MOVIE_DSEC"));
     		
     	}

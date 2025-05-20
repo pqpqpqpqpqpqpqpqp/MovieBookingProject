@@ -7,6 +7,7 @@ public class MovieDetailRes {
 	private String movieCreator;
 	private String movieAgeGrade;
 	private String moviePlayTime;
+	private String movieOpenDate;
 	private String movieDsec;
 	
 	
@@ -40,6 +41,12 @@ public class MovieDetailRes {
 	}
 	public void setMoviePlayTime(String moviePlayTime) {
 		this.moviePlayTime = moviePlayTime;
+	}
+	public String getMovieOpenDate() {
+		return movieOpenDate;
+	}
+	public void setMovieOpenDate(String movieOpenDate) {
+		this.movieOpenDate = movieOpenDate;
 	}
 	public String getMovieDsec() {
 		return movieDsec;
