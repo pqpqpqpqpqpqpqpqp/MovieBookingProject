@@ -129,14 +129,17 @@ textarea#reviewText {
 }
 </style>
 <!-- 모달창으로 만들것 -->
-<!-- 넘어와야할 정보들 -->
 <%
+// 영화페이지에서 올때는 세션에 있을 userIdx로 db 검색 필요
+// 유저번호, 프로필, 닉네임
 int userIdx = (int) request.getAttribute("userIdx");
-int movieIdx = (int) request.getAttribute("movieIdx");
-int bookingIdx = (int) request.getAttribute("bookingIdx");
-String movieName = (String) request.getAttribute("movieName");
 String userImg = (String) request.getAttribute("userImg");
 String userNick = (String) request.getAttribute("userNick");
+// 영화번호, 이름
+int movieIdx = (int) request.getAttribute("movieIdx");
+String movieName = (String) request.getAttribute("movieName");
+// 예매번호
+int bookingIdx = (int) request.getAttribute("bookingIdx");
 %>
 <!-- 리뷰 폼 -->
 <div class="review">
@@ -151,7 +154,7 @@ String userNick = (String) request.getAttribute("userNick");
 
 		<!-- 프로필사진 + 닉네임 -->
 		<div class="profile-info">
-			<img src="<%=userImg %>>" alt="프로필"> <span class="nickname"><%= userNick %></span>
+			<img src="<%=userImg %>" alt="프로필"> <span class="nickname"><%= userNick %></span>
 		</div>
 
 		<button class="rating-button" data-rating="0" id="btn-bad">
@@ -185,6 +188,7 @@ String userNick = (String) request.getAttribute("userNick");
 		const USER_IDX = <%= userIdx %>;
 		const MOVIE_IDX = <%= movieIdx %>;
 		const BOOKING_IDX = <%= bookingIdx %>;
+		const movie_Name = <%= movieName %>;
 		
 		let selectedRating = "";
 
@@ -194,10 +198,11 @@ String userNick = (String) request.getAttribute("userNick");
 			let encoder = new TextEncoder();
 			let byteLength = encoder.encode(text).length;
 
-			while (byteLength > MAX_BYTES) {
-				text = text.slice(0, -1); // 맨 끝 문자 하나씩 제거
-				byteLength = TextEncoder().encode(text).length;
-			}
+			if (byteLength > MAX_BYTES) {
+		        $("#byteCount").css("color", "red");
+		    } else {
+		        $("#byteCount").css("color", "inherit");
+		    }
 
 			$(this).val(text);
 			$("#byteCount").text(byteLength);
@@ -211,26 +216,31 @@ String userNick = (String) request.getAttribute("userNick");
 			$(".rating-button").removeClass("selected");
 			$(this).addClass("selected");
 		});
-
+		
 		// 리뷰 작성 완료 버튼 클릭 시
 		$("#submitReview").on("click", function() {
+			$("#submitReview").prop("disabled", true);
 			const reviewText = $("#reviewText").val();
 
 			if (!selectedRating) {
 				alert("평점을 선택해주세요.");
 				return;
+			} else if (!reviewText.trim()) {
+			    alert("리뷰 내용을 입력해주세요.");
+			    return;
 			}
 
 			// AJAX 비동기 통신
 			$.ajax({
-				url : '${pageContext.request.contextPath}/review.re', // 서버의 엔드포인트
+				url : '${pageContext.request.contextPath}/reviewWrite.re', // 서버의 엔드포인트
 				type : "POST",
 				data : {
-					userIdx : USER_IDX,//userIdx, 지금은 임의로 넣어둠
-					movieIdx : MOVIE_IDX,//movieIdx, 지금은 임의로 넣어둠
-					movieTitle : " ",//moviename, 지금은 임의로 넣어둠
-					Rating : selectedRating,
-					Text : reviewText,
+					userIdx : USER_IDX,
+					movieIdx : MOVIE_IDX,
+					bookingIdx : BOOKING_IDX,
+					movieName : movie_Name,
+					rating : selectedRating,
+					content : reviewText,
 				},
 				success : function(response) {
 					alert("리뷰가 성공적으로 등록되었습니다.");
@@ -243,6 +253,9 @@ String userNick = (String) request.getAttribute("userNick");
 				error : function() {
 					alert("리뷰 등록에 실패했습니다. 다시 시도해주세요.");
 				},
+				complete: function () {
+				    $("#submitReview").prop("disabled", false);
+				 }
 			});
 		});
 	});

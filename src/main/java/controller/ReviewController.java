@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import model.service.ReviewWriteService;
+import review.ReviewListService;
+import review.ReviewWriteService;
 import util.ResponseData;
 
 public class ReviewController extends HttpServlet {
@@ -18,30 +19,41 @@ public class ReviewController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPocess(request, response);
+		doProcess(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPocess(request, response);
+		doProcess(request, response);
 	}
 
-	protected void doPocess(HttpServletRequest request, HttpServletResponse response)
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String command = request.getServletPath();
 		System.out.println("api호출: " + command);
-		
+
 		Gson gson = new Gson();
 		ResponseData responseData = null; // response 값
-		
-		if(command.equals("/review.re")) {
-			ReviewWriteService service = new ReviewWriteService();
-			responseData = service.execute(request, response);
+
+		try {
+			if (command.equals("/reviewWrite.re")) {
+				ReviewWriteService service = new ReviewWriteService();
+				responseData = service.execute(request, response);
+			} else if (command.equals("/myReviewList.re")) {
+				ReviewListService service = new ReviewListService();
+				responseData = service.execute(request, response);
+			} else if (command.equals("/movieReviewList.re")) {
+				ReviewListService service = new ReviewListService();
+				responseData = service.execute(request, response);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			responseData = new ResponseData(500, "서버 오류가 발생했습니다.");
 		}
-		
+
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
-		
+
 		PrintWriter out = response.getWriter();
 		out.print(gson.toJson(responseData));
 		out.flush();

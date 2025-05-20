@@ -1,12 +1,21 @@
-package model.vo;
+package review;
 
-public class ReviewVO {
+public class ReviewListVO {
+	private int reviewIdx;
 	private int userIdx;
 	private int movieIdx;
-	private int bookingIdx;
 	private String movieName;
 	private String reviewRating;
 	private String reviewText;
+	private String reviewDate;
+
+	public int getReviewIdx() {
+		return reviewIdx;
+	}
+
+	public void setReviewIdx(int reviewIdx) {
+		this.reviewIdx = reviewIdx;
+	}
 
 	public int getUserIdx() {
 		return userIdx;
@@ -22,14 +31,6 @@ public class ReviewVO {
 
 	public void setMovieIdx(int movieIdx) {
 		this.movieIdx = movieIdx;
-	}
-
-	public int getBookingIdx() {
-		return bookingIdx;
-	}
-
-	public void setBookingIdx(int bookingIdx) {
-		this.bookingIdx = bookingIdx;
 	}
 
 	public String getMovieName() {
@@ -54,6 +55,14 @@ public class ReviewVO {
 
 	public void setReviewText(String reviewText) {
 		this.reviewText = reviewText;
+	}
+
+	public String getReviewDate() {
+		return reviewDate;
+	}
+
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
 	}
 
 }
