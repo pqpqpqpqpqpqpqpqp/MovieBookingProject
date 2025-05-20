@@ -1,10 +1,10 @@
-package model.service;
+package member.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.MemberDAO;
-import model.vo.MemberVO;
+import member.dao.MemberDAO;
+import member.vo.MemberVO;
 import util.ResponseData;
 
 public class MemberRegisterService {

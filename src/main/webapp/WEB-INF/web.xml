@@ -62,6 +62,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>tiWebController</servlet-name>
+		<servlet-class>controller_api.TicketController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tiWebController</servlet-name>
+		<url-pattern>*.tiw</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>reController</servlet-name>
 		<servlet-class>controller.ReviewController</servlet-class>
 	</servlet>

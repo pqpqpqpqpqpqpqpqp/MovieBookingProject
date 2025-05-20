@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import model.vo.MemberVO;
+import member.vo.MemberVO;
 
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
