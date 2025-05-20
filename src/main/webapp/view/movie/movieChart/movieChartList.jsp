@@ -213,6 +213,8 @@ font-weight: 570;
 	<div class="sect_movie_chart">
        <ol id="movieList"> </ol>
  	</div>
+ 	
+ 	<button onclick="detailMove(4)">버튼</button>
 </div>
 </div>
 <script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
@@ -269,7 +271,8 @@ font-weight: 570;
 					const count = parseInt(res.data[i].movieChartCount);
 				    const rate = ((count / sum) * 100).toFixed(1);
 					
-					
+				    console.log(res.data[i].movieIdx);
+					console.log(res.data[i].movieChartImg);
 					const html =
 						
 						 '<li>' +
@@ -280,7 +283,7 @@ font-weight: 570;
                         	'<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?detail='+res.data[i].movieIdx+'">' +
     
                             	'<span class="thumb_image">' +
-                                	'<img src=' +res.data[i].movieChartImg+ '/>' +
+                                	'<img src="${pageContext.request.contextPath}'+res.data[i].movieChartImg+'"/>' +
 <!-- 영상물 등급 -->					
 									'<span class="movie_icon_age">' +
                                 		'<p class="movie_icon_age">등급: ' +res.data[i].movieChartAgeGrade+ '</p>' +
@@ -321,7 +324,7 @@ font-weight: 570;
 	
 	function detailMove(movieIdx) {
 
-		location.href = "${pageContext.request.contextPath}/MovieDetailForward.mo?movieIdx=" + movieIdx;
+		location.href = "${pageContext.request.contextPath}/movieDetail.mow?movieIdx=" + movieIdx;
 		//location.href="movieDetail.mow?detail="+movieIdx;
 		
 

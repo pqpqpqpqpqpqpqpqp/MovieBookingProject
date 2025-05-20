@@ -37,12 +37,22 @@ public class MovieController extends HttpServlet {
 		System.out.println("api호출: " + command);
 
 		Gson gson = new Gson();
+		
 		ResponseData responseData = null; // response 값
 		
-		if(command.equals("/movieDetail.mow")) {
-			MovieDetailService action = new MovieDetailService();
-			responseData = action.execute(request, response);
+		if (command.equals("/movieDetail.mow")) {
+		    MovieDetailService action = new MovieDetailService();
+		    ResponseData result = action.execute(request, response);
+
+		    if (result.getCode() == 200) {
+		        request.setAttribute("movie", result.getData());
+		        request.getRequestDispatcher("/view/movie/detail.jsp").forward(request, response);
+		    } else {
+		        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "영화 정보 조회 실패");
+		    }
+		    return; // JSON 응답 안 보내도록 여기서 리턴
 		}
+
 
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
