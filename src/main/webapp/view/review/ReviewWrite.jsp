@@ -138,8 +138,6 @@ String userNick = (String) request.getAttribute("userNick");
 // 영화번호, 이름
 int movieIdx = (int) request.getAttribute("movieIdx");
 String movieName = (String) request.getAttribute("movieName");
-// 예매번호
-int bookingIdx = (int) request.getAttribute("bookingIdx");
 %>
 <!-- 리뷰 폼 -->
 <div class="review">
@@ -148,7 +146,6 @@ int bookingIdx = (int) request.getAttribute("bookingIdx");
 	<!-- 평점 선택버튼 + 프로필 -->
 	<div class="rating-row">
 		<button class="rating-button" data-rating="1" id="btn-good">
-			<!-- <img src="egg-icon.png" alt="좋았어요"> -->
 			좋았어요~^^
 		</button>
 
@@ -158,7 +155,6 @@ int bookingIdx = (int) request.getAttribute("bookingIdx");
 		</div>
 
 		<button class="rating-button" data-rating="0" id="btn-bad">
-			<!-- <img src="rotten-icon.png" alt="별로였어요"> -->
 			흠~좀 별로였어요;;;
 		</button>
 	</div>
@@ -187,8 +183,7 @@ int bookingIdx = (int) request.getAttribute("bookingIdx");
 		const MAX_BYTES = 280;
 		const USER_IDX = <%= userIdx %>;
 		const MOVIE_IDX = <%= movieIdx %>;
-		const BOOKING_IDX = <%= bookingIdx %>;
-		const movie_Name = <%= movieName %>;
+		const movie_Name = "<%= movieName %>";
 		
 		let selectedRating = "";
 
@@ -237,7 +232,6 @@ int bookingIdx = (int) request.getAttribute("bookingIdx");
 				data : {
 					userIdx : USER_IDX,
 					movieIdx : MOVIE_IDX,
-					bookingIdx : BOOKING_IDX,
 					movieName : movie_Name,
 					rating : selectedRating,
 					content : reviewText,

@@ -3,10 +3,9 @@ package review;
 public class ReviewWriteVO {
 	private int userIdx;
 	private int movieIdx;
-	private int bookingIdx;
 	private String movieName;
-	private int reviewRating;
-	private String reviewText;
+	private int reviewScore;
+	private String reviewContent;
 
 	public int getUserIdx() {
 		return userIdx;
@@ -24,14 +23,6 @@ public class ReviewWriteVO {
 		this.movieIdx = movieIdx;
 	}
 
-	public int getBookingIdx() {
-		return bookingIdx;
-	}
-
-	public void setBookingIdx(int bookingIdx) {
-		this.bookingIdx = bookingIdx;
-	}
-
 	public String getMovieName() {
 		return movieName;
 	}
@@ -40,20 +31,20 @@ public class ReviewWriteVO {
 		this.movieName = movieName;
 	}
 
-	public int getReviewRating() {
-		return reviewRating;
+	public int getReviewScore() {
+		return reviewScore;
 	}
 
-	public void setReviewRating(int reviewRating) {
-		this.reviewRating = reviewRating;
+	public void setReviewScore(int reviewScore) {
+		this.reviewScore = reviewScore;
 	}
 
-	public String getReviewText() {
-		return reviewText;
+	public String getReviewContent() {
+		return reviewContent;
 	}
 
-	public void setReviewText(String reviewText) {
-		this.reviewText = reviewText;
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
 	}
 
 }

@@ -17,20 +17,11 @@ public class ReviewListService {
 		ReviewListDAO reviewDAO = new ReviewListDAO();
 		try {
 			if (command.equals("/myReviewList.re")) {
-				String userIdxstr = request.getParameter("userIdx");
-				if (userIdxstr == null) {
-                    return new ResponseData(400, "userIdx 파라미터가 필요합니다.");
-                }
-				int userIdx = Integer.parseInt(userIdxstr);
+				int userIdx = Integer.parseInt(request.getParameter("userIdx"));
 				listDAO = reviewDAO.myReviewList(userIdx);
 				data = new ResponseData();
-
 			} else if (command.equals("/movieReviewList.re")) {
-				String movieIdxstr = request.getParameter("movieIdx");
-				if (movieIdxstr == null) {
-                    return new ResponseData(400, "userIdx 파라미터가 필요합니다.");
-                }
-				int movieIdx = Integer.parseInt(movieIdxstr);
+				int movieIdx = Integer.parseInt(request.getParameter("movieIdx"));
 				listDAO = reviewDAO.movieReviewList(movieIdx);
 				data = new ResponseData();
 			}

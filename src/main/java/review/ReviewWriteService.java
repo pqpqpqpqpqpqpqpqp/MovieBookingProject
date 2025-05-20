@@ -10,9 +10,15 @@ public class ReviewWriteService {
 		ResponseData data = null;
 
 		try {
+			ReviewWriteDAO reviewDAO = new ReviewWriteDAO();
+			
 			int userIdx = Integer.parseInt(request.getParameter("userIdx"));
 			int movieIdx = Integer.parseInt(request.getParameter("movieIdx"));
-			int bookingIdx = Integer.parseInt(request.getParameter("bookingIdx"));
+			
+			if(!reviewDAO.CheckReviewed(userIdx, movieIdx)) {
+				
+			}
+			
 			String movieTitle = request.getParameter("movieTitle");
 			int reviewRating = Integer.parseInt(request.getParameter("Rating"));
 			String reviewText = request.getParameter("Text");
@@ -24,12 +30,10 @@ public class ReviewWriteService {
 			ReviewWriteVO reviewVO = new ReviewWriteVO();
 			reviewVO.setUserIdx(userIdx);
 			reviewVO.setMovieIdx(movieIdx);
-			reviewVO.setBookingIdx(bookingIdx);
 			reviewVO.setMovieName(movieTitle);
-			reviewVO.setReviewRating(reviewRating);
-			reviewVO.setReviewText(reviewText);
+			reviewVO.setReviewScore(reviewRating);
+			reviewVO.setReviewContent(reviewText);
 
-			ReviewWriteDAO reviewDAO = new ReviewWriteDAO();
 			if (reviewDAO.insertReview(reviewVO)) {
 				data = new ResponseData(200, "리뷰 등록 완료");
 			} else {
