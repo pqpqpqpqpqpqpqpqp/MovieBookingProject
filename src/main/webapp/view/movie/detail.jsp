@@ -69,7 +69,7 @@ body {
 <!--  movice Idx, List에서부터 연결 -->
 <input type="hidden" id="movieIdx" value="<%=movieIdx %>" />
 <!-- 리뷰 페이지 들어갈 때 링크에 영화idx, 영화 제목 같이 넘겨주세요 -->
-<script src="../../asset/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
 <script>
 
 /************************

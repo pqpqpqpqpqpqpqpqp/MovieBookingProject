@@ -215,7 +215,7 @@ font-weight: 570;
  	</div>
 </div>
 </div>
-<script src="../../asset/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
 <script>
 	$(document).ready(function() {
 		let sum = 0;
@@ -266,6 +266,8 @@ font-weight: 570;
 				console.log(sum);
 				for(let i = 0; i < res.data.length; i++) {
 					
+					const count = parseInt(res.data[i].movieChartCount);
+				    const rate = ((count / sum) * 100).toFixed(1);
 					
 					
 					const html =
@@ -273,9 +275,9 @@ font-weight: 570;
 						 '<li>' +
                     		'<div class="box_image">' +
                         	'<div class="rank">No.' +(i+1)+ '</div>' +  
-                        /*  '<strong class="rank">No.' +(i+1)+ '</strong> '+ */
+
 <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->
-                        	'<a href="/movies/detail-view/">' +
+                        	'<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?detail='+res.data[i].movieIdx+'">' +
     
                             	'<span class="thumb_image">' +
                                 	'<img src=' +res.data[i].movieChartImg+ '/>' +
@@ -291,14 +293,15 @@ font-weight: 570;
                     '<ul class="box_contents">' +
                     
                     <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->                    
-                       '<a href="/movies/detail-view/?midx=89629">' +
+                       '<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?detail='+res.data[i].movieIdx+'">' +
 
                     <!-- 영화이름 변수 입력 --> 
  							'<strong>영화: ' +res.data[i].movieChartName+ '</strong>' +
                  		'</a>' +
                     <!--  예매율 넣어주세요 -->	
                  		'<div class="score">' +
-                        	'<strong class="percent">예매율<span>' +res.data[i].movieChartCount+ '</span> |  </strong>' +                 	
+                        	'<strong class="percent">예매율 <span>' + rate + '%</span> | 평점<span>'+res.data[i].movieChartReviewScore+'</sapn>' +
+                        	'</strong>' +                 	
                         '</div>' +
                     <!-- 개봉일 넣어줘 -->                        
                         '<span class="movie_open_info">' +res.data[i].movieChartOpenDate+
@@ -318,11 +321,12 @@ font-weight: 570;
 	
 	function detailMove(movieIdx) {
 
-		location.href = "${pageContext.request.contextPath}/view/movie/detail.jsp?detail="+movieIdx;
+		location.href = "${pageContext.request.contextPath}/MovieDetailForward.mo?movieIdx=" + movieIdx;
 		//location.href="movieDetail.mow?detail="+movieIdx;
 		
 
 	}
+
 </script>
 </body>
 </html>
