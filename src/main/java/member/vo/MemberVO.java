@@ -1,4 +1,4 @@
-package model.vo;
+package member.vo;
 
 public class MemberVO {
 	
