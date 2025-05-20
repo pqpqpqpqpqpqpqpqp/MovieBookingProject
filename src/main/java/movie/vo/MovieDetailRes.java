@@ -10,16 +10,17 @@ public class MovieDetailRes {
 	private String movieOpenDate;
 	private String movieDsec;
 	
-	private String  peviewAvg;			//영화 평점
+	private String  previewAvg;			//영화 평점
 	private String  ticketingCnt;		//티케팅 예매 건수
 	
 	
 	
-	public String getPeviewAvg() {
-		return peviewAvg;
+	
+	public String getPreviewAvg() {
+		return previewAvg;
 	}
-	public void setPeviewAvg(String peviewAvg) {
-		this.peviewAvg = peviewAvg;
+	public void setPreviewAvg(String previewAvg) {
+		this.previewAvg = previewAvg;
 	}
 	public String getTicketingCnt() {
 		return ticketingCnt;

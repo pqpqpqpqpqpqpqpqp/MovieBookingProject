@@ -149,7 +149,7 @@ public class MovieUserDAO {
     		detail.setMoviePlayTime(rs.getString("MOVIE_PLAY_TIME"));
     		detail.setMovieOpenDate(rs.getString("MOVIE_OPEN_DATE"));
     		detail.setMovieDsec(rs.getString("MOVIE_DSEC"));
-    		detail.setPeviewAvg(rs.getString("REVIEW_AVG"));
+    		detail.setPreviewAvg(rs.getString("REVIEW_AVG"));
     		detail.setTicketingCnt(rs.getString("TICKETING_CNT"));
     		
     	}
