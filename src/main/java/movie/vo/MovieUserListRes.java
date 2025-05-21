@@ -6,7 +6,7 @@ public class MovieUserListRes {
 	private String movieChartAgeGrade;
 	private String movieChartImg;
 	private String movieChartName;
-	private Double movieChartReviewScore;
+	private String movieChartReviewScore;
 	private String movieChartOpenDate;
 	private String movieChartCount;
 	
@@ -37,10 +37,10 @@ public class MovieUserListRes {
 	public void setMovieChartName(String movieChartName) {
 		this.movieChartName = movieChartName;
 	}
-	public Double getMovieChartReviewScore() {
+	public String getMovieChartReviewScore() {
 		return movieChartReviewScore;
 	}
-	public void setMovieChartReviewScore(Double movieChartReviewScore) {
+	public void setMovieChartReviewScore(String movieChartReviewScore) {
 		this.movieChartReviewScore = movieChartReviewScore;
 	}
 	public String getMovieChartOpenDate() {
