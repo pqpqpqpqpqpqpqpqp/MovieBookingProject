@@ -9,22 +9,22 @@
 </head>
 <body>
 <div class="movie_chart_container">
-<div class="movie_chart_inBox">
+	<div class="movie_chart_inBox">
 	
-	<div class="movie_chart_idx">
-		<select id="chartOption">
-			<option value= "1"  selected>예매율순</option>
-			<option value= "2">평점순</option>
-		</select>
-		<div class="show_movie_chart_btn" id="listChangeBtn" onclick="showMovieChart()">GO</div>
+		<div class="movie_chart_idx">
+			<select id="chartOption">
+				<option value= "1"  selected>예매율순</option>
+				<option value= "2">평점순</option>
+			</select>
+			<div class="show_movie_chart_btn" id="listChangeBtn" onclick="showMovieChart()">GO</div>
+		</div>
+		
+		<div class="sect_movie_chart">
+	       <ol id="movieList"> </ol>
+	 	</div>
+	 	
+	 	<button onclick="detailMove(4)">버튼</button>
 	</div>
-	
-	<div class="sect_movie_chart">
-       <ol id="movieList"> </ol>
- 	</div>
- 	
- 	<button onclick="detailMove(4)">버튼</button>
-</div>
 </div>
 <script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
 <script>

@@ -9,14 +9,12 @@
 <link href ="https: //fonts.googleapis.com /css2 ?family =Noto+Sans+KR:wght @100 ..900&display =swap " rel ="stylesheet ">
 <link href ="${pageContext.request.contextPath}/asset/css/style.css" rel ="stylesheet ">
 <jsp:include page="../common/header.jsp"></jsp:include>
+
 </head>
 <body>
 
- 
-<div id="movieList"> 
 <jsp:include page="movieChart/movieChartTitle.jsp"></jsp:include>
 <jsp:include page="movieChart/movieChartList.jsp"></jsp:include>
-</div>
 
 
 
