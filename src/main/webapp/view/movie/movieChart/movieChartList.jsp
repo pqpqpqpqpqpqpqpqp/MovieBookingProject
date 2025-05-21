@@ -16,7 +16,8 @@
 				<option value= "1"  selected>예매율순</option>
 				<option value= "2">평점순</option>
 			</select>
-			<div class="show_movie_chart_btn" id="listChangeBtn" onclick="showMovieChart()">GO</div>
+			<div class="show_movie_chart_btn" id="listChangeBtn">GO</div>
+			
 		</div>
 		
 		<div class="sect_movie_chart">
@@ -29,7 +30,7 @@
 <script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
 <script>
 	$(document).ready(function() {
-		let sum = 0;
+
 		
 		// DOM이 준비되면 실행됨
 		console.log("DOM이 준비되었습니다.");		
@@ -65,39 +66,35 @@
 			data: {chartType : chartType}, // 버튼 눌렀을 때 사용할 거
 			dataType: 'json',
 			success: function(res) {
-				console.log(res)
-				console.log(res.data)
+
 				
 				// 기존 리스트 삭제
 				$("#movieList").empty();
 				
-				for(let i = 0; i < res.data.length; i++) {
-					sum += parseInt(res.data[i].movieChartCount);
-				}
-				console.log(sum);
+
 				for(let i = 0; i < res.data.length; i++) {
 					
 					const count = parseInt(res.data[i].movieChartCount);
-				    const rate = ((count / sum) * 100).toFixed(1);
-					
-				    console.log(res.data[i].movieIdx);
-					console.log(res.data[i].movieChartImg);
-					const html =
+				    const data = res.data[i];
+
+				    
+					let html =
 						
 						 '<li>' +
                     		'<div class="box_image">' +
                         	'<div class="rank">No.' +(i+1)+ '</div>' +  
 
 <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->
-                        	'<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?detail='+res.data[i].movieIdx+'">' +
+                        	'<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
     
                             	'<span class="thumb_image">' +
                                 	'<img src="${pageContext.request.contextPath}'+res.data[i].movieChartImg+'"/>' +
 <!-- 영상물 등급 -->					
-									'<span class="movie_icon_age">' +
-                                		'<p class="movie_icon_age">등급: ' +res.data[i].movieChartAgeGrade+ '</p>' +
-                                		'<img src="${pageContext.request.contextPath}/asset/icon/movieAge/age15.svg" alt="15세">' +
-    								'</span>' +
+									'<span class="movie_icon_age">';
+									
+                               		html +='<img src="${pageContext.request.contextPath}/asset/icon/movieAge/age'+data.movieChartAgeGrade+'.svg" alt="AgeGrade">';
+                                		
+    								html+= '</span>' +
                             	'</span>' +
                          	'</a>' +
                     	'</div>' +            
@@ -105,14 +102,14 @@
                     '<ul class="box_contents">' +
                     
                     <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->                    
-                       '<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?detail='+res.data[i].movieIdx+'">' +
+                       '<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
 
                     <!-- 영화이름 변수 입력 --> 
  							'<strong>영화: ' +res.data[i].movieChartName+ '</strong>' +
                  		'</a>' +
                     <!--  예매율 넣어주세요 -->	
                  		'<div class="score">' +
-                        	'<strong class="percent">예매율 <span>' + rate + '%</span> | 평점<span>'+res.data[i].movieChartReviewScore+'</sapn>' +
+                        	'<strong class="percent">예매율 <span>' +res.data[i].movieChartCount+ '%</span> | 평점<span>'+(data.movieChartReviewScore !=='0'? data.movieChartReviewScore:'통계 없음')+'</sapn>' +
                         	'</strong>' +                 	
                         '</div>' +
                     <!-- 개봉일 넣어줘 -->                        
