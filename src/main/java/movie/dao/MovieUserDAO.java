@@ -34,14 +34,20 @@ public class MovieUserDAO {
     // 예매 건수 기준 무비차트 리스트 조회
     public List<MovieUserListRes> movieChartTicketingList() {
         List<MovieUserListRes> chartlist = new ArrayList<>();
-        String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, COUNT(*), AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE "
-        		+ "FROM TICKETING T "
-        		+ "INNER JOIN SCREEN_INFO SI ON T.SCREEN_INFO_IDX = SI.SCREEN_INFO_IDX "
-        		+ "INNER JOIN MOVIE M ON T.MOVIE_IDX = M.MOVIE_IDX "
-        	    + "LEFT JOIN REVIEW R ON R.TICKETING_IDX = T.TICKETING_IDX "
-        	    + "WHERE T.TICKETING_DEL = 'N' AND REPLACE(SI.SCREEN_DATE, '-', '') < REPLACE(CURDATE(), '-', '') "
-        	    + "GROUP BY T.MOVIE_IDX "
-        	    + "ORDER BY COUNT(*) DESC;";
+        String sql = "WITH YES_TICKET as ("
+        		+ "select * from TICKETING "
+        		+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 11)) "
+        		+ "and TICKETING_DEL = 'N') "
+        		+ "SELECT M.MOVIE_IDX "
+        		+ ", M.MOVIE_AGE_GRADE "
+        		+ ", M.MOVIE_IMG "
+        		+ ", M.MOVIE_NAME "
+        		+ ", ROUND((select (COUNT(*)/(select COUNT(*) from YES_TICKET)*100) from YES_TICKET T where M.MOVIE_IDX = T.MOVIE_IDX), 2) as TICKETING_CNT "
+        		+ ", IFNULL((select AVG(REVIEW_SCORE) from REVIEW R where R.MOVIE_IDX = M.MOVIE_IDX), '통계 없음') as REVIEW_AVG "
+        		+ ", M.MOVIE_OPEN_DATE "
+        		+ "from MOVIE M "
+        		+ "order by TICKETING_CNT desc; ";
+        		
 
         try {
         	pstmt = conn.prepareStatement(sql);
@@ -55,8 +61,8 @@ public class MovieUserDAO {
             	moviechart.setMovieChartAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));
             	moviechart.setMovieChartName(rs.getString("MOVIE_NAME"));
-            	moviechart.setMovieChartCount(rs.getString("COUNT(*)"));
-            	moviechart.setMovieChartReviewScore(rs.getDouble("AVG(R.REVIEW_SCORE)"));
+            	moviechart.setMovieChartCount(rs.getString("TICKETING_CNT"));
+            	moviechart.setMovieChartReviewScore(rs.getString("REVIEW_AVG"));
             	moviechart.setMovieChartOpenDate(rs.getString("MOVIE_OPEN_DATE"));
             	
             	
@@ -74,14 +80,19 @@ public class MovieUserDAO {
     // 평점순 예매 리스트 조회
     public List<MovieUserListRes> movieChartScoreList() {
     	List<MovieUserListRes> scorelist = new ArrayList<>();
-    	String sql = "SELECT T.MOVIE_IDX, M.MOVIE_AGE_GRADE, M.MOVIE_IMG, M.MOVIE_NAME, COUNT(*), AVG(R.REVIEW_SCORE), M.MOVIE_OPEN_DATE "
-        		+ "FROM TICKETING T "
-        		+ "INNER JOIN SCREEN_INFO SI ON T.SCREEN_INFO_IDX = SI.SCREEN_INFO_IDX "
-        		+ "INNER JOIN MOVIE M ON T.MOVIE_IDX = M.MOVIE_IDX "
-        	    + "LEFT JOIN REVIEW R ON R.TICKETING_IDX = T.TICKETING_IDX "
-        	    + "WHERE T.TICKETING_DEL = 'N' AND REPLACE(SI.SCREEN_DATE, '-', '') < REPLACE(CURDATE(), '-', '') "
-        	    + "GROUP BY T.MOVIE_IDX "
-        	    + "ORDER BY AVG(R.REVIEW_SCORE) DESC; ";
+    	String sql = "WITH YES_TICKET as ("
+        		+ "select * from TICKETING "
+        		+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 11)) "
+        		+ "and TICKETING_DEL = 'N') "
+        		+ "SELECT M.MOVIE_IDX "
+        		+ ", M.MOVIE_AGE_GRADE "
+        		+ ", M.MOVIE_IMG "
+        		+ ", M.MOVIE_NAME "
+        		+ ", ROUND((select (COUNT(*)/(select COUNT(*) from YES_TICKET)*100) from YES_TICKET T where M.MOVIE_IDX = T.MOVIE_IDX), 2) as TICKETING_CNT "
+        		+ ", IFNULL(ROUND((select AVG(REVIEW_SCORE) from REVIEW R where R.MOVIE_IDX = M.MOVIE_IDX), 2), '0') as REVIEW_AVG "
+        		+ ", M.MOVIE_OPEN_DATE "
+        		+ "from MOVIE M "
+        		+ "ORDER BY REVIEW_AVG DESC; ";
     	
     	try {
         	pstmt = conn.prepareStatement(sql);
@@ -95,8 +106,8 @@ public class MovieUserDAO {
             	moviechart.setMovieChartAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
             	moviechart.setMovieChartImg(rs.getString("MOVIE_IMG"));
             	moviechart.setMovieChartName(rs.getString("MOVIE_NAME"));
-            	moviechart.setMovieChartCount(rs.getString("COUNT(*)"));
-            	moviechart.setMovieChartReviewScore(rs.getDouble("AVG(R.REVIEW_SCORE)"));
+            	moviechart.setMovieChartCount(rs.getString("TICKETING_CNT"));
+            	moviechart.setMovieChartReviewScore(rs.getString("REVIEW_AVG"));
             	moviechart.setMovieChartOpenDate(rs.getString("MOVIE_OPEN_DATE"));
             	
             	scorelist.add(moviechart);
@@ -121,17 +132,24 @@ public class MovieUserDAO {
     	MovieDetailRes detail = null;
     	
     	// movieIdx에 따라 내용이 바껴야 하니까 영화 상세 정보 불러오기
-    	String sql = "select M.MOVIE_IMG"
-    			+ ", M.MOVIE_NAME"
-    			+ ", M.MOVIE_CREATOR"
-    			+ ", M.MOVIE_AGE_GRADE"
-    			+ ", M.MOVIE_OPEN_DATE"
-    			+ ", MOVIE_PLAY_TIME"
-    			+ ", M.MOVIE_DSEC"
-    			+ ",(select AVG(REVIEW_SCORE) from REVIEW R where R.MOVIE_IDX = M.MOVIE_IDX) as REVIEW_AVG"
-    			+ ",(select COUNT(*) from TICKETING T where T.MOVIE_IDX = M.MOVIE_IDX) as TICKETING_CNT "
-    			+ "from MOVIE M "
-    			+ "where M.MOVIE_IDX = ?";
+    	String sql = "WITH YES_TICKET as ( " 
+    				+ "select * from TICKETING " 
+    				+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 11)) "
+    				+ "and TICKETING_DEL = 'N' ) "
+    				+ "select M.MOVIE_IMG "
+    				+ ", M.MOVIE_NAME "
+    				+ ", M.MOVIE_CREATOR "
+    				+ ", M.MOVIE_AGE_GRADE "
+    				+ ", M.MOVIE_OPEN_DATE "
+    				+ ", M.MOVIE_DSEC "
+    				+ ", M.MOVIE_PLAY_TIME"
+    				+ ",IFNULL((select AVG(REVIEW_SCORE) from REVIEW R where R.MOVIE_IDX = M.MOVIE_IDX), '통계 없음') as REVIEW_AVG "
+    				+ ",ROUND((select (COUNT(*)/(select COUNT(*) from YES_TICKET)*100) from YES_TICKET T where M.MOVIE_IDX = T.MOVIE_IDX), 2) as TICKETING_CNT "
+    				+ "from MOVIE M "
+    				+ "where M.MOVIE_IDX = ?";
+    			
+    	
+    	
     	
     	pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, movieIdx); 	
@@ -145,9 +163,9 @@ public class MovieUserDAO {
     		detail.setMovieName(rs.getString("MOVIE_NAME"));
     		detail.setMovieCreator(rs.getString("MOVIE_CREATOR"));
     		detail.setMovieAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
-    		detail.setMoviePlayTime(rs.getString("MOVIE_PLAY_TIME"));
     		detail.setMovieOpenDate(rs.getString("MOVIE_OPEN_DATE"));
     		detail.setMovieDsec(rs.getString("MOVIE_DSEC"));
+    		detail.setMoviePlayTime(rs.getString("MOVIE_PLAY_TIME"));
     		detail.setPreviewAvg(rs.getString("REVIEW_AVG"));
     		detail.setTicketingCnt(rs.getString("TICKETING_CNT"));
     		
