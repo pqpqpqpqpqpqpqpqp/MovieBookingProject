@@ -28,6 +28,21 @@ body {
 	border: 1px solid #ccc; /* 선택사항: 테두리 */
 }
 
+.movie_graph {
+
+	display: flex;
+}
+.graph_gender, .graph_age {
+	border: 2px solid pink;	
+	
+	width: 400px;
+	height: 400px;
+}
+
+.movie_review {
+	width: 800px;
+	height: 600px;
+}
 
 </style>
 </head>
@@ -35,9 +50,9 @@ body {
 <h2>Detail Page</h2>
 
 <% 
-	String movieIdx = request.getParameter("detail");
+	String movieIdx = request.getParameter("movieIdx");
 	if(movieIdx == null) {
-		movieIdx = "1";
+		movieIdx = "";
 	}
 %>
 <%=movieIdx %>
@@ -65,8 +80,21 @@ body {
 		<span id="playTime"></span>
 		<span id="openDate"></span>
 		<hr />
-		<span id="content"></span>
+		
 	</div>
+	
+</div>
+<hr />
+<div class="movie_content" id="content"></div>
+<hr />
+
+<div class="movie_graph">
+	<div class="graph_gender" id="graph_gender"> 성별 분포 </div>
+	<div class="graph_age" id="graph_age"> 연령별 분포 </div>
+</div>
+<hr />
+<div class="movie_review">
+	<div>리뷰 게시판</div>
 
 </div>
 
@@ -111,8 +139,10 @@ function detail() {
 				const data = res.data;
 				document.getElementById('poster').src = data.movieImg; 				// 포스터	
 				document.getElementById('title').innerHTML = data.movieName; 		// 제목
-				document.getElementById('ticketing').innerHTML = data.ticketingCnt;	//예매율순 
-				document.getElementById('review').innerHTML = Number(data.previewAvg);// 평점순 
+				
+				document.getElementById('ticketing').innerHTML = data.ticketingCnt;	// 예매율
+				document.getElementById('review').innerHTML = data.previewAvg; 		// 평점
+				
 				document.getElementById('creator').innerHTML = data.movieCreator;	// 감독 
 				document.getElementById('grade').innerHTML = data.movieAgeGrade; 	// 등급 
 				document.getElementById('playTime').innerHTML = data.moviePlayTime; // 러닝타임 
