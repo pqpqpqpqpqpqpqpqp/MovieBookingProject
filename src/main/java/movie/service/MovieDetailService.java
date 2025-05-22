@@ -1,27 +1,29 @@
 package movie.service;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import movie.dao.MovieUserDAO;
-import movie.vo.MovieDeatailRes;
-import movie.vo.MovieUserListRes;
+import movie.vo.MovieDetailRes;
+
 
 import util.ResponseData;
 
 public class MovieDetailService {
 
+	/**
+	 * @param request: 요청된 movieIdx 파라미터 값을 가져오기 위함
+	 * @param response
+	 * @return : 서버 상태를 알려줌
+	 */
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
 
 		
-		
-		// chartOption 값
 		String movieIdx = request.getParameter("movieIdx");
 		MovieUserDAO movieUserDAO = new MovieUserDAO();
 		
-		MovieDeatailRes detailRes = null;
+		MovieDetailRes detailRes = null;
 		ResponseData data = new ResponseData();
 		
 

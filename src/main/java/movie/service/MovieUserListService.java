@@ -19,8 +19,6 @@ public class MovieUserListService {
 		List<MovieUserListRes> movieUserLists = null;
 
 		try {
-
-
 			if ("review".equals(chartOption)) {
 				movieUserLists = movieUserDAO.movieChartScoreList();
 			} else {
@@ -36,6 +34,7 @@ public class MovieUserListService {
 		ResponseData data = new ResponseData();
 
 		data.setData(movieUserLists);
+		
 
 		return data;
 	}

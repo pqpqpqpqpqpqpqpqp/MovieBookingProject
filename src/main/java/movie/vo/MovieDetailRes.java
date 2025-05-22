@@ -1,16 +1,33 @@
 package movie.vo;
 
-public class MovieDeatailRes {
+public class MovieDetailRes {
 	
 	private String movieImg;
 	private String movieName;
 	private String movieCreator;
 	private String movieAgeGrade;
 	private String moviePlayTime;
+	private String movieOpenDate;
 	private String movieDsec;
 	
+	private String  previewAvg;			//영화 평점
+	private String  ticketingCnt;		//티케팅 예매 건수
 	
 	
+	
+	
+	public String getPreviewAvg() {
+		return previewAvg;
+	}
+	public void setPreviewAvg(String previewAvg) {
+		this.previewAvg = previewAvg;
+	}
+	public String getTicketingCnt() {
+		return ticketingCnt;
+	}
+	public void setTicketingCnt(String ticketingCnt) {
+		this.ticketingCnt = ticketingCnt;
+	}
 	public String getMovieImg() {
 		return movieImg;
 	}
@@ -40,6 +57,12 @@ public class MovieDeatailRes {
 	}
 	public void setMoviePlayTime(String moviePlayTime) {
 		this.moviePlayTime = moviePlayTime;
+	}
+	public String getMovieOpenDate() {
+		return movieOpenDate;
+	}
+	public void setMovieOpenDate(String movieOpenDate) {
+		this.movieOpenDate = movieOpenDate;
 	}
 	public String getMovieDsec() {
 		return movieDsec;
