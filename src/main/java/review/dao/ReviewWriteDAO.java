@@ -1,4 +1,4 @@
-package review;
+package review.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import review.vo.ReviewWriteVO;
 
 public class ReviewWriteDAO {
 
@@ -30,7 +32,7 @@ public class ReviewWriteDAO {
 		try { if (conn != null) conn.close(); } catch (Exception e) {}
 	}
 	
-	public int checkReviewed(int userIdx, int movieIdx) {
+	public Boolean checkReviewed(int userIdx, int movieIdx) {
 		String sql = "Select count(*) from review where user_idx = ? and movie_idx = ?";
 		
 		try {
@@ -40,15 +42,14 @@ public class ReviewWriteDAO {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-	            return rs.getInt(1);
+	            return true;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return -1;
 		} finally {
 			conClose();
 		}
-		return 0;
+		return false;
 	}
 
 	public boolean insertReview(ReviewWriteVO reviewVO) {
@@ -64,9 +65,9 @@ public class ReviewWriteDAO {
 			return rows > 0;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
 		} finally {
 			conClose();
 		}
+		return false;
 	}
 }

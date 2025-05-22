@@ -3,7 +3,8 @@
 	
 <h2>영화 상세에서 영화에 달린 리뷰를 확인하는 페이지 movieidx기반으로 검색</h2>
 <% 
-//int movieidx = (Integer) request.getAttribute("movieIdx"); 
+// int movieidx = (Integer) request.getAttribute("movieIdx"); 
+// 임시데이터
 int movieidx = 1;
 %>
 

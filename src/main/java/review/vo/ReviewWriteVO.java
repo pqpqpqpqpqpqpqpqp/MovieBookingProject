@@ -1,4 +1,4 @@
-package review;
+package review.vo;
 
 public class ReviewWriteVO {
 	private int userIdx;
