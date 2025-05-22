@@ -136,11 +136,13 @@ textarea#reviewText {
 String userImg = (String) request.getAttribute("userImg");
 String userNick = (String) request.getAttribute("userNick"); */
 // 영화번호, 이름
-//int movieIdx = (Integer) request.getAttribute("movieIdx");
-//String movieName = (String) request.getAttribute("movieName");
-int userIdx = 5;
+// int movieIdx = (Integer) request.getAttribute("movieIdx");
+// String movieName = (String) request.getAttribute("movieName");
+
+// 테스트용 임시 데이터 - 추후 삭제할것
+int userIdx = 6;
 String userImg = "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fplay-lh.googleusercontent.com%2F38AGKCqmbjZ9OuWx4YjssAz3Y0DTWbiM5HB0ove1pNBq_o9mtWfGszjZNxZdwt_vgHo&type=ff332_332";
-String userNick = "끼끼";
+String userNick = "뇨끼";
 int movieIdx = 1;
 String movieName = "겨울왕국";
 %>
