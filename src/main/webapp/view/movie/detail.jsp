@@ -55,7 +55,7 @@ body {
 		movieIdx = "";
 	}
 %>
-<%=movieIdx %>
+
 
 <%
     MovieDetailRes movie = (MovieDetailRes) request.getAttribute("movie");
@@ -137,7 +137,7 @@ function detail() {
 			console.log(res);
 			if(res.code ==200) {
 				const data = res.data;
-				document.getElementById('poster').src = data.movieImg; 				// 포스터	
+				document.getElementById('poster').src = '${pageContext.request.contextPath}' +data.movieImg; 				// 포스터	
 				document.getElementById('title').innerHTML = data.movieName; 		// 제목
 				
 				document.getElementById('ticketing').innerHTML = data.ticketingCnt;	// 예매율

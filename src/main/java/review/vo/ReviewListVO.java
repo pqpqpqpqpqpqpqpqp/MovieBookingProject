@@ -1,12 +1,10 @@
-package review;
-
-import java.time.LocalDateTime;
+package review.vo;
 
 public class ReviewListVO {
 
 	private String reviewContent;
 	private int reviewScore;
-	private LocalDateTime reviewDate;
+	private String reviewDate;
 	private String userImg;
 	private String userNick;
 
@@ -26,14 +24,6 @@ public class ReviewListVO {
 		this.reviewScore = reviewScore;
 	}
 
-	public LocalDateTime getReviewDate() {
-		return reviewDate;
-	}
-
-	public void setReviewDate(LocalDateTime reviewDate) {
-		this.reviewDate = reviewDate;
-	}
-
 	public String getUserImg() {
 		return userImg;
 	}
@@ -48,6 +38,14 @@ public class ReviewListVO {
 
 	public void setUserNick(String userNick) {
 		this.userNick = userNick;
+	}
+
+	public String getReviewDate() {
+		return reviewDate;
+	}
+
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
 	}
 
 }
