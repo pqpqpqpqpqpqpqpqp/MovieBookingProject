@@ -20,7 +20,7 @@
 			지금껏 경험했던 그 어떤 상대보다도 강력한 적에 맞서<br>
 			모두의 운명을 건 불가능한 미션에 뛰어든다!<br> <br> 
 			
-			<strong>모든 선택이 향하는 단 하나의 미션!<br> 
+			<strong>추후 수정 필요!!!!!<br> 
 			&lt;미션 임파서블: 파이널 레코닝&gt;
 			</strong>
 		</div>
@@ -35,8 +35,8 @@
 	                        <canvas width="380" height="159" class="jqplot-series-shadowCanvas" style="position: absolute; left: 10px; top: 10px;"></canvas>
 	                        <canvas width="380" height="159" class="jqplot-series-canvas" style="position: absolute; left: 10px; top: 10px;"></canvas>
 	                        <canvas width="380" height="159" class="jqplot-donutRenderer-highlight-canvas" style="position: absolute; left: 10px; top: 10px;"></canvas>
-	                        <span class="jqplot-donut-series jqplot-data-label" style="position: absolute; left: 99px; top: 128px;">남 57.3%</span>
-	                        <span class="jqplot-donut-series jqplot-data-label" style="position: absolute; left: 248px; top: 35px;">여 42.7%</span>
+	                        <span class="jqplot-donut-series jqplot-data-label" style="position: absolute; left: 99px; top: 128px;">남 <span id="man">90%</span></span>
+	                        <span class="jqplot-donut-series jqplot-data-label" style="position: absolute; left: 248px; top: 35px;">여 10%</span>
 	                        <canvas width="380" height="159" class="jqplot-event-canvas" style="position: absolute; left: 10px; top: 10px;"></canvas>
                         </div>
                     </li>
@@ -75,8 +75,8 @@ window.addEventListener("DOMContentLoaded", function () {
   const ctx = canvas.getContext("2d");
 
   const data = [
-    { label: "남", value: 57.3, color: "#3e82a4" },
-    { label: "여", value: 42.7, color: "#e74c3c" }
+    { label: "남", value: 90, color: "#3e82a4" },
+    { label: "여", value: 10, color: "#e74c3c" }
   ];
 
   const total = data.reduce((acc, item) => acc + item.value, 0);
