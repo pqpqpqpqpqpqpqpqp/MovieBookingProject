@@ -83,7 +83,7 @@ body {
 }
 </style>
 </head>
-<body onload="reservePageOnload()">
+<body>
 	<div class="column movies" id="movieColumn">
 		<h3>영화</h3>
 	</div>
@@ -114,83 +114,80 @@ body {
 		src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 
 	<script>
-		function reservePageOnload() {
+		$(document).ready(function() {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/testReserve.tiw',
+				type : 'get',
+				dataType : 'json',
+				success : function(res) {
 
-			$
-					.ajax({
-						url : '${pageContext.request.contextPath}/testReserve.tiw',
-						type : 'get',
-						dataType : 'json',
-						success : function(res) {
+					const movieColumn = document.getElementById("movieColumn");
+					const theaterColumn = document.getElementById("theaterColumn");
+					const dateColumn = document.getElementById("dateColumn");
 
-							const movieColumn = document.getElementById("movieColumn");
-							const theaterColumn = document.getElementById("theaterColumn");
-							const dateColumn = document.getElementById("dateColumn");
+					const movieSet = new Set(); // 중복 제거용
+					const theaterSet = new Set(); // 중복 제거용
+					const dateSet = new Set(); // 중복 제거용
 
-							const movieSet = new Set(); // 중복 제거용
-							const theaterSet = new Set(); // 중복 제거용
-							const dateSet = new Set(); // 중복 제거용
-							
-							
-							for (let i = 0; i < res.length; i++) {
-								const movieName = res[i].movieName;
-								const theaterName = res[i].theaterName;
-								const screenDate = res[i].screenDate;
-								
-								console.log(i+"번째: ");
-								console.log(res[i]);
-								console.log(res[i].movieName);
+					for (let i = 0; i < res.length; i++) {
+						const movieName = res[i].movieName;
+						const theaterName = res[i].theaterName;
+						const screenDate = res[i].screenDate;
 
-								if (!movieSet.has(movieName)) {
-									movieSet.add(movieName);
+						console.log(i + "번째: ");
+						console.log(res[i]);
+						console.log(res[i].movieName);
 
-									const div = document.createElement("div");
-									div.className = "movie";
-									div.onclick = function() {
-										movieSelct(movieName);
-									};
-									const label = document.createElement("span");
-									label.className = "label green";
-									label.textContent = res[i].movieAgeGrade;
+						if (!movieSet.has(movieName)) {
+							movieSet.add(movieName);
 
-									const name = document.createElement("span");
-									name.textContent = movieName;
+							const div = document.createElement("div");
+							div.className = "movie";
+							div.onclick = function() {
+								movieSelct(movieName);
+							};
+							const label = document.createElement("span");
+							label.className = "label green";
+							label.textContent = res[i].movieAgeGrade;
 
-									div.appendChild(label);
-									div.appendChild(name);
+							const name = document.createElement("span");
+							name.textContent = movieName;
 
-									movieColumn.appendChild(div);
-								}
-								
-								if (!theaterSet.has(theaterName)) {
-									theaterSet.add(theaterName);
+							div.appendChild(label);
+							div.appendChild(name);
 
-									const div = document.createElement("div");
-									div.className = "region highlight";
-									div.onclick = function() {
-										citySelct(theaterName);
-									};
-					
-									const name = document.createElement("span");
-									name.textContent = theaterName;
-
-									div.appendChild(name);
-
-									theaterColumn.appendChild(div);
-								}
-							}
-
+							movieColumn.appendChild(div);
 						}
-					})
-		}
 
-		function movieSelct() {
+						if (!theaterSet.has(theaterName)) {
+							theaterSet.add(theaterName);
+
+							const div = document.createElement("div");
+							div.className = "region highlight";
+							div.onclick = function() {
+								citySelct(theaterName);
+							};
+
+							const name = document.createElement("span");
+							name.textContent = theaterName;
+
+							div.appendChild(name);
+
+							theaterColumn.appendChild(div);
+						}
+					}
+
+				}
+			})
+		});
+
+		function movieSelect() {
 			alert("movie");
 		}
-		function citySelct() {
+		function citySelect() {
 			alert("city");
 		}
-		function dateSelct() {
+		function dateSelect() {
 			alert("date");
 		}
 	</script>
