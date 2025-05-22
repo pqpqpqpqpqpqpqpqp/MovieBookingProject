@@ -87,7 +87,7 @@
                         	'<div class="rank">No.' +(i+1)+ '</div>' +  
 
 <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->
-                        	'<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
+                        	'<a href="${pageContext.request.contextPath}/view/movie/movieDetail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
     
                             	'<span class="thumb_image">' +
                                 	'<img src="${pageContext.request.contextPath}'+res.data[i].movieChartImg+'"/>' +
@@ -104,7 +104,7 @@
                     '<ul class="box_contents">' +
                     
                     <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->                    
-                       '<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
+                       '<a href="${pageContext.request.contextPath}/view/movie/movieDetail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
 
                     <!-- 영화이름 변수 입력 --> 
  							'<strong>영화: ' +res.data[i].movieChartName+ '</strong>' +
