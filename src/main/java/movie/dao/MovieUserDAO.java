@@ -36,14 +36,14 @@ public class MovieUserDAO {
         List<MovieUserListRes> chartlist = new ArrayList<>();
         String sql = "WITH YES_TICKET as ("
         		+ "select * from TICKETING "
-        		+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 11)) "
+        		+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 12)) "
         		+ "and TICKETING_DEL = 'N') "
         		+ "SELECT M.MOVIE_IDX "
         		+ ", M.MOVIE_AGE_GRADE "
         		+ ", M.MOVIE_IMG "
         		+ ", M.MOVIE_NAME "
         		+ ", ROUND((select (COUNT(*)/(select COUNT(*) from YES_TICKET)*100) from YES_TICKET T where M.MOVIE_IDX = T.MOVIE_IDX), 2) as TICKETING_CNT "
-        		+ ", IFNULL((select AVG(REVIEW_SCORE) from REVIEW R where R.MOVIE_IDX = M.MOVIE_IDX), '통계 없음') as REVIEW_AVG "
+        		+ ", IFNULL(ROUND((select AVG(REVIEW_SCORE) from REVIEW R where R.MOVIE_IDX = M.MOVIE_IDX), 2), '0') as REVIEW_AVG "
         		+ ", M.MOVIE_OPEN_DATE "
         		+ "from MOVIE M "
         		+ "order by TICKETING_CNT desc; ";
@@ -82,7 +82,7 @@ public class MovieUserDAO {
     	List<MovieUserListRes> scorelist = new ArrayList<>();
     	String sql = "WITH YES_TICKET as ("
         		+ "select * from TICKETING "
-        		+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 11)) "
+        		+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 12)) "
         		+ "and TICKETING_DEL = 'N') "
         		+ "SELECT M.MOVIE_IDX "
         		+ ", M.MOVIE_AGE_GRADE "
@@ -134,7 +134,7 @@ public class MovieUserDAO {
     	// movieIdx에 따라 내용이 바껴야 하니까 영화 상세 정보 불러오기
     	String sql = "WITH YES_TICKET as ( " 
     				+ "select * from TICKETING " 
-    				+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 11)) "
+    				+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 12)) "
     				+ "and TICKETING_DEL = 'N' ) "
     				+ "select M.MOVIE_IMG "
     				+ ", M.MOVIE_NAME "
@@ -143,7 +143,7 @@ public class MovieUserDAO {
     				+ ", M.MOVIE_OPEN_DATE "
     				+ ", M.MOVIE_DSEC "
     				+ ", M.MOVIE_PLAY_TIME"
-    				+ ",IFNULL((select AVG(REVIEW_SCORE) from REVIEW R where R.MOVIE_IDX = M.MOVIE_IDX), '통계 없음') as REVIEW_AVG "
+    				+ ",IFNULL(ROUND((select AVG(REVIEW_SCORE) from REVIEW R where R.MOVIE_IDX = M.MOVIE_IDX), 2), '0') as REVIEW_AVG "
     				+ ",ROUND((select (COUNT(*)/(select COUNT(*) from YES_TICKET)*100) from YES_TICKET T where M.MOVIE_IDX = T.MOVIE_IDX), 2) as TICKETING_CNT "
     				+ "from MOVIE M "
     				+ "where M.MOVIE_IDX = ?";

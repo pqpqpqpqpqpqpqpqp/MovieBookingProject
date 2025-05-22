@@ -77,6 +77,8 @@
 					const count = parseInt(res.data[i].movieChartCount);
 				    const data = res.data[i];
 
+				    console.log(res);
+				    console.log(res.data);
 				    
 					let html =
 						
