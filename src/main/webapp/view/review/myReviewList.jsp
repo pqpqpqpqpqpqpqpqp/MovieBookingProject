@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 	
 <h2>내 정보에서 내가 쓴 리뷰를 확인하는 페이지 useridx(세션에 있음)기반으로 검색</h2>
-<% int useridx = (Integer) session.getAttribute("userIdx"); %>
+<% 
+// int useridx = (Integer) session.getAttribute("userIdx"); 
+// 임시데이터
+int useridx = 2;
+%>
 
 <h3>가져온 리뷰를 담을 div</h3>
 <div class="review-box"></div>

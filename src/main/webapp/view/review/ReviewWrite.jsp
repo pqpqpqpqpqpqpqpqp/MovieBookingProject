@@ -132,35 +132,36 @@ textarea#reviewText {
 <%
 // 영화페이지에서 올때는 세션에 있을 userIdx로 db 검색 필요
 // 유저번호, 프로필, 닉네임
-int userIdx = (int) request.getAttribute("userIdx");
+/* int userIdx = (Integer) request.getAttribute("userIdx");
 String userImg = (String) request.getAttribute("userImg");
-String userNick = (String) request.getAttribute("userNick");
+String userNick = (String) request.getAttribute("userNick"); */
 // 영화번호, 이름
-int movieIdx = (int) request.getAttribute("movieIdx");
-String movieName = (String) request.getAttribute("movieName");
-// 예매번호
-int bookingIdx = (int) request.getAttribute("bookingIdx");
+// int movieIdx = (Integer) request.getAttribute("movieIdx");
+// String movieName = (String) request.getAttribute("movieName");
+
+// 테스트용 임시 데이터 - 추후 삭제할것
+int userIdx = 6;
+String userImg = "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fplay-lh.googleusercontent.com%2F38AGKCqmbjZ9OuWx4YjssAz3Y0DTWbiM5HB0ove1pNBq_o9mtWfGszjZNxZdwt_vgHo&type=ff332_332";
+String userNick = "뇨끼";
+int movieIdx = 1;
+String movieName = "겨울왕국";
 %>
 <!-- 리뷰 폼 -->
 <div class="review">
-	<h2 class="movieName"><%= movieName %></h2>
+	<h2 class="movieName"><%=movieName%></h2>
 
 	<!-- 평점 선택버튼 + 프로필 -->
 	<div class="rating-row">
 		<button class="rating-button" data-rating="1" id="btn-good">
-			<!-- <img src="egg-icon.png" alt="좋았어요"> -->
-			좋았어요~^^
-		</button>
+			좋았어요~^^</button>
 
 		<!-- 프로필사진 + 닉네임 -->
 		<div class="profile-info">
-			<img src="<%=userImg %>" alt="프로필"> <span class="nickname"><%= userNick %></span>
+			<img src="<%=userImg%>" alt="프로필"> <span class="nickname"><%=userNick%></span>
 		</div>
 
 		<button class="rating-button" data-rating="0" id="btn-bad">
-			<!-- <img src="rotten-icon.png" alt="별로였어요"> -->
-			흠~좀 별로였어요;;;
-		</button>
+			흠~좀 별로였어요;;;</button>
 	</div>
 
 	<!-- 텍스트 입력 -->
@@ -177,7 +178,7 @@ int bookingIdx = (int) request.getAttribute("bookingIdx");
 	</div>
 
 	<!-- 제출 버튼 -->
-	<button id="submitReview" onclick="submitReview()">작성완료!</button>
+	<button id="submitReview">작성완료!</button>
 </div>
 <script
 	src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
@@ -185,10 +186,8 @@ int bookingIdx = (int) request.getAttribute("bookingIdx");
 	$(document).ready(function() {
 		// 대소문자, _ 확인 필요
 		const MAX_BYTES = 280;
-		const USER_IDX = <%= userIdx %>;
-		const MOVIE_IDX = <%= movieIdx %>;
-		const BOOKING_IDX = <%= bookingIdx %>;
-		const movie_Name = <%= movieName %>;
+		const USER_IDX = <%=userIdx%>;
+		const MOVIE_IDX = <%=movieIdx%>;
 		
 		let selectedRating = "";
 
@@ -199,10 +198,10 @@ int bookingIdx = (int) request.getAttribute("bookingIdx");
 			let byteLength = encoder.encode(text).length;
 
 			if (byteLength > MAX_BYTES) {
-		        $("#byteCount").css("color", "red");
-		    } else {
-		        $("#byteCount").css("color", "inherit");
-		    }
+				$("#byteCount").css("color", "red");
+			} else {
+				$("#byteCount").css("color", "inherit");
+			}
 
 			$(this).val(text);
 			$("#byteCount").text(byteLength);
@@ -216,18 +215,18 @@ int bookingIdx = (int) request.getAttribute("bookingIdx");
 			$(".rating-button").removeClass("selected");
 			$(this).addClass("selected");
 		});
-		
+
 		// 리뷰 작성 완료 버튼 클릭 시
 		$("#submitReview").on("click", function() {
 			$("#submitReview").prop("disabled", true);
 			const reviewText = $("#reviewText").val();
 
-			if (!selectedRating) {
+			if (selectedRating === "") {
 				alert("평점을 선택해주세요.");
 				return;
 			} else if (!reviewText.trim()) {
-			    alert("리뷰 내용을 입력해주세요.");
-			    return;
+				alert("리뷰 내용을 입력해주세요.");
+				return;
 			}
 
 			// AJAX 비동기 통신
@@ -237,25 +236,23 @@ int bookingIdx = (int) request.getAttribute("bookingIdx");
 				data : {
 					userIdx : USER_IDX,
 					movieIdx : MOVIE_IDX,
-					bookingIdx : BOOKING_IDX,
-					movieName : movie_Name,
-					rating : selectedRating,
+					score : selectedRating,
 					content : reviewText,
 				},
 				success : function(response) {
 					alert("리뷰가 성공적으로 등록되었습니다.");
-					// 모달 닫기 또는 초기화
-					$("#reviewModal").hide();
+					// 초기화
 					$("#reviewText").val("");
 					$(".rating-button").removeClass("selected");
 					selectedRating = "";
+					console.log(response);
 				},
 				error : function() {
 					alert("리뷰 등록에 실패했습니다. 다시 시도해주세요.");
 				},
-				complete: function () {
-				    $("#submitReview").prop("disabled", false);
-				 }
+				complete : function() {
+					$("#submitReview").prop("disabled", false);
+				}
 			});
 		});
 	});
