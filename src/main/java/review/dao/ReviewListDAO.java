@@ -1,10 +1,10 @@
-package review;
+package review.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +12,15 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import review.vo.ReviewListVO;
+
 public class ReviewListDAO {
 
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
-	public void MemberDAO() {
+	public ReviewListDAO() {
 		try {
 			Context init = new InitialContext();
 			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MysqlDB");
@@ -48,8 +50,9 @@ public class ReviewListDAO {
 
 	public List<ReviewListVO> myReviewList(int useridx) {
 		List<ReviewListVO> reviewList = new ArrayList<>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
-		String sql = "SELECT r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME FROM review r"
+		String sql = "SELECT r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME FROM review r "
 				+ "JOIN user u ON r.USER_IDX = u.USER_IDX WHERE r.USER_IDX = ? AND r.REVIEW_USER_DEL = 'N' ORDER BY r.REVIEW_DATE DESC";
 
 		try {
@@ -61,7 +64,8 @@ public class ReviewListDAO {
 				ReviewListVO reviewVO = new ReviewListVO();
 				reviewVO.setReviewContent(rs.getString("REVIEW_CONTENT"));
 				reviewVO.setReviewScore(rs.getInt("REVIEW_SCORE"));
-				reviewVO.setReviewDate(rs.getObject("REVIEW_DATE", LocalDateTime.class));
+				LocalDateTime reviewdatetime = rs.getObject("REVIEW_DATE", LocalDateTime.class);
+				reviewVO.setReviewDate(reviewdatetime.format(formatter));
 				reviewVO.setUserImg(rs.getString("USER_IMG"));
 				reviewVO.setUserNick(rs.getString("USER_NICKNAME"));
 				
@@ -76,9 +80,10 @@ public class ReviewListDAO {
 
 	public List<ReviewListVO> movieReviewList(int movieidx) {
 		List<ReviewListVO> reviewList = new ArrayList<>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
-		String sql = "SELECT r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME FROM review r"
-				+ " JOIN user u ON r.USER_IDX = u.USER_IDX WHERE r.MOVIE_IDX = ? AND r.REVIEW_USER_DEL = 'N' ORDER BY r.REVIEW_DATE DESC;";
+		String sql = "SELECT r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME FROM review r "
+				+ "JOIN user u ON r.USER_IDX = u.USER_IDX WHERE r.MOVIE_IDX = ? AND r.REVIEW_USER_DEL = 'N' ORDER BY r.REVIEW_DATE DESC;";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -89,7 +94,8 @@ public class ReviewListDAO {
 				ReviewListVO reviewVO = new ReviewListVO();
 				reviewVO.setReviewContent(rs.getString("REVIEW_CONTENT"));
 				reviewVO.setReviewScore(rs.getInt("REVIEW_SCORE"));
-				reviewVO.setReviewDate(rs.getObject("REVIEW_DATE", LocalDateTime.class));
+				LocalDateTime reviewdatetime = rs.getObject("REVIEW_DATE", LocalDateTime.class);
+				reviewVO.setReviewDate(reviewdatetime.format(formatter));
 				reviewVO.setUserImg(rs.getString("USER_IMG"));
 				reviewVO.setUserNick(rs.getString("USER_NICKNAME"));
 

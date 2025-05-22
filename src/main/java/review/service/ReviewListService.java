@@ -1,4 +1,4 @@
-package review;
+package review.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,40 +6,34 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import review.dao.ReviewListDAO;
+import review.vo.ReviewListVO;
 import util.ResponseData;
 
 public class ReviewListService {
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
-		ResponseData data = new ResponseData();
+		ResponseData data = null;
 		List<ReviewListVO> listDAO = new ArrayList<>();
 
 		String command = request.getServletPath();
 		ReviewListDAO reviewDAO = new ReviewListDAO();
 		try {
 			if (command.equals("/myReviewList.re")) {
-				String userIdxstr = request.getParameter("userIdx");
-				if (userIdxstr == null) {
-                    return new ResponseData(400, "userIdx 파라미터가 필요합니다.");
-                }
-				int userIdx = Integer.parseInt(userIdxstr);
+				int userIdx = Integer.parseInt(request.getParameter("userIdx"));
 				listDAO = reviewDAO.myReviewList(userIdx);
-				data = new ResponseData();
-
+				data = new ResponseData(200, "리뷰 조회 성공");
 			} else if (command.equals("/movieReviewList.re")) {
-				String movieIdxstr = request.getParameter("movieIdx");
-				if (movieIdxstr == null) {
-                    return new ResponseData(400, "userIdx 파라미터가 필요합니다.");
-                }
-				int movieIdx = Integer.parseInt(movieIdxstr);
+				int movieIdx = Integer.parseInt(request.getParameter("movieIdx"));
 				listDAO = reviewDAO.movieReviewList(movieIdx);
-				data = new ResponseData();
+				data = new ResponseData(200, "리뷰 조회 성공");
 			}
 			data.setData(listDAO);
 		} catch (NumberFormatException e) {
-			return new ResponseData(400, "파라미터가 올바른 숫자가 아닙니다.");
+			// parseInt서 에러 발생시 처리
+			return new ResponseData(400, "숫자 형식 파라미터 오류: " + e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseData(500, "서버 오류가 발생했습니다.");
+			return new ResponseData(500, "서버 오류: " + e.getMessage());
 		}
 
 		return data;
