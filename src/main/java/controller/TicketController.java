@@ -33,9 +33,6 @@ public class TicketController extends HttpServlet {
 		
 		System.out.println("web이동: "+command);
 		
-		Gson gson = new Gson();
-		
-		String result = null;
 		String forward = null;
 		if (command.equals("/testReserve.ti")) {
 			forward = "/view/ticket/testReserve.jsp";

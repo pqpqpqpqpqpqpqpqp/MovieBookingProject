@@ -101,9 +101,9 @@ body {
 	변경시 오늘 날짜로부터 2주정도 동적으로 생성하게 바꿀 것 -->
 	<div class="column dates" id="dateColumn">
 		<h3>날짜</h3>
-		<div class="date">10 토</div>
-		<div class="date">11 일</div>
-		<div class="date">12 월</div>
+		<div class="date">2025-05-10</div>
+		<div class="date">2025-05-11</div>
+		<div class="date">2025-05-12</div>
 	</div>
 
 	<div class="column times" id="timeColumn">
@@ -189,6 +189,12 @@ body {
 				}
 			});
 			
+			document.querySelectorAll(".date").forEach(dateDiv => {
+				dateDiv.onclick = function () {
+					dateSelect(this.textContent);
+				};
+			})
+			
 			function movieSelect(movieName) {
 				selectedMovie = movieName;
 				document.querySelectorAll(".movie").forEach(m => m.classList.remove("selected"));
@@ -206,7 +212,7 @@ body {
 
 				updateTimeSlots();
 			}
-
+			
 			function dateSelect(dateText) {
 				selectedDate = dateText;
 				document.querySelectorAll(".date").forEach(d => d.classList.remove("selected"));
@@ -216,18 +222,48 @@ body {
 				updateTimeSlots();
 			}
 
-			document.querySelectorAll(".date").forEach(dateDiv => {
-				dateDiv.onclick = function () {
-					dateSelect(this.textContent.trim());
-				};
-			})
-			
 			function updateTimeSlots() {
-				if (!selectedMovie || !selectedTheater || !selectedDate) {return;
-				} else {
-					
-				}
-			}
+				if (!selectedMovie || !selectedTheater || !selectedDate) return;
+				
+				// 선택된 조건에 맞는 데이터만 필터링
+			    const filtered = allData.filter(item => 
+			        item.movieName === selectedMovie &&
+			        item.theaterName === selectedTheater &&
+			        item.screenDate === selectedDate
+			    );
+				
+				console.log(filtered);
+				
+				const timeColumn = document.getElementById('timeColumn');
+				timeColumn.querySelectorAll('.time-slot').forEach(slot => slot.remove());
+				
+				// filtered배열을 cinemaName으로 그룹핑.
+				// 같은 cinemaName을 가지는 객체끼리 배열로 모임
+				const grouped = filtered.reduce((acc, cur) => {
+			        if (!acc[cur.cinemaName]) acc[cur.cinemaName] = [];
+			        acc[cur.cinemaName].push(cur);
+			        return acc;
+			    }, {});
+				
+				console.log(grouped);
+				
+				// grouped의 cinemaName(키)를 하나씩 순회
+				for (const cinemaName in grouped) {
+			        const slotDiv = document.createElement('div');
+			        slotDiv.classList.add('time-slot');
+			        
+			        const first = grouped[cinemaName][0];
+			        slotDiv.innerHTML = '<strong>' + first.cinemaName +' ' + first.cinemaSpecialName + '</strong><br>';
+			        
+			        grouped[cinemaName].forEach(item => {
+			            const span = document.createElement('span');
+			            span.textContent = item.screenStartTime;
+			            slotDiv.appendChild(span);
+			        });
+
+			        timeColumn.appendChild(slotDiv);
+				}		
+			}	    
 		});
 	</script>
 
