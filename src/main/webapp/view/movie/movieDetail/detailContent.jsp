@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <meta charset="UTF-8">
-	  
-  <link rel="stylesheet"
-		href="${pageContext.request.contextPath}/asset/css/movieDetail.css" />
-	
+<link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/movieDetail.css" />	
 	
 <div class="detail_content_container_outbox">
 	<div class="detail_content_container">
