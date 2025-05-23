@@ -24,9 +24,13 @@ public class getAgeTicketCountService {
 			List<MovieDetailAgeGraphDTO> list = movieDetailDAO.getAgeGroupTicketCount(movieIdx);
 			MovieDetailAgeGraphRes res = new MovieDetailAgeGraphRes();
 
+			int sum = 0;
+			
 			for (int i = 0; i < list.size(); i++) {
 				MovieDetailAgeGraphDTO dto = list.get(i);
 
+				sum += dto.getCount();
+				
 				switch (dto.getAgeGroup()) {
 
 				case 0:
@@ -42,19 +46,24 @@ public class getAgeTicketCountService {
 				case 40:
 					res.setAge40(dto.getCount());
 					break;
-				default:
+				case 50:
 					res.setAge50(res.getAge50() + dto.getCount());
+					break;
+				default:
 					break;
 
 				}
+				
 			}
+			res.setAgeAll(sum);
+			
 			data.setData(res);
 
 		} catch (Exception e) {
 			data.setCode(500);
 			e.printStackTrace();
 		} finally {
-
+			movieDetailDAO.conClose();
 		}
 
 		return data;
