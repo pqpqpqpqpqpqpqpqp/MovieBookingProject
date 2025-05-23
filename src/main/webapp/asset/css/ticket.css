@@ -370,10 +370,8 @@ body{
 	
 	    .ticketBox_container .select {      
 	    	outline: 1px solid #5c5c5c;
-	    	outline-offset: -2px;
-	    	text-align: center;
-	    	height: 29px;
-	    	line-height: 29px;
+	    	text-align: left;
+	    	height: auto;
 		    margin: 1px;
 	    	padding-left: 6px;
 		    padding-right: 5px;
@@ -397,7 +395,12 @@ body{
 			padding: 2.2px 5.5px;
 			border: 1px solid #aaa;
 			font-weight: 700;
+			cursor: pointer;
 	    }
+	    .time_slot .time_container .theater_time.selected{
+	    	
+	    }
+	    
 	    .time_slot .time_container{
 	    	margin-top: 10px;
 			display: flex;
