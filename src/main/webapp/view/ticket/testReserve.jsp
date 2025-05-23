@@ -81,6 +81,11 @@ body {
 .time-slot span {
 	margin-right: 10px;
 }
+
+.selected {
+	background-color: #eee;
+	border: 1px solid #000;
+}
 </style>
 </head>
 <body>
@@ -92,14 +97,13 @@ body {
 		<h3>극장</h3>
 	</div>
 
+	<!-- 날짜는 더미데이터상 정적으로 생성 
+	변경시 오늘 날짜로부터 2주정도 동적으로 생성하게 바꿀 것 -->
 	<div class="column dates" id="dateColumn">
 		<h3>날짜</h3>
-		<div class="date">20 화</div>
-		<div class="date highlight">21 수</div>
-		<div class="date">22 목</div>
-		<div class="date">23 금</div>
-		<div class="date">24 토</div>
-		<div class="date">25 일</div>
+		<div class="date">10 토</div>
+		<div class="date">11 일</div>
+		<div class="date">12 월</div>
 	</div>
 
 	<div class="column times" id="timeColumn">
@@ -115,12 +119,18 @@ body {
 
 	<script>
 		$(document).ready(function() {
+			let selectedMovie = null;
+			let selectedTheater = null;
+			let selectedDate = null;
+			let allData = [];
+			
 			$.ajax({
 				url : '${pageContext.request.contextPath}/testReserve.tiw',
 				type : 'get',
 				dataType : 'json',
 				success : function(res) {
-
+					allData = res;
+					
 					const movieColumn = document.getElementById("movieColumn");
 					const theaterColumn = document.getElementById("theaterColumn");
 					const dateColumn = document.getElementById("dateColumn");
@@ -144,7 +154,7 @@ body {
 							const div = document.createElement("div");
 							div.className = "movie";
 							div.onclick = function() {
-								movieSelct(movieName);
+								movieSelect(movieName);
 							};
 							const label = document.createElement("span");
 							label.className = "label green";
@@ -163,9 +173,9 @@ body {
 							theaterSet.add(theaterName);
 
 							const div = document.createElement("div");
-							div.className = "region highlight";
+							div.className = "region";
 							div.onclick = function() {
-								citySelct(theaterName);
+								citySelect(theaterName);
 							};
 
 							const name = document.createElement("span");
@@ -176,20 +186,49 @@ body {
 							theaterColumn.appendChild(div);
 						}
 					}
-
 				}
-			})
-		});
+			});
+			
+			function movieSelect(movieName) {
+				selectedMovie = movieName;
+				document.querySelectorAll(".movie").forEach(m => m.classList.remove("selected"));
+				const selected = Array.from(document.querySelectorAll(".movie")).find(m => m.textContent.includes(movieName));
+				if (selected) selected.classList.add("selected");
 
-		function movieSelect() {
-			alert("movie");
-		}
-		function citySelect() {
-			alert("city");
-		}
-		function dateSelect() {
-			alert("date");
-		}
+				updateTimeSlots();
+			}
+
+			function citySelect(theaterName) {
+				selectedTheater = theaterName;
+				document.querySelectorAll(".region").forEach(r => r.classList.remove("selected"));
+				const selected = Array.from(document.querySelectorAll(".region")).find(r => r.textContent.includes(theaterName));
+				if (selected) selected.classList.add("selected");
+
+				updateTimeSlots();
+			}
+
+			function dateSelect(dateText) {
+				selectedDate = dateText;
+				document.querySelectorAll(".date").forEach(d => d.classList.remove("selected"));
+				const selected = Array.from(document.querySelectorAll(".date")).find(d => d.textContent.includes(dateText));
+				if (selected) selected.classList.add("selected");
+
+				updateTimeSlots();
+			}
+
+			document.querySelectorAll(".date").forEach(dateDiv => {
+				dateDiv.onclick = function () {
+					dateSelect(this.textContent.trim());
+				};
+			})
+			
+			function updateTimeSlots() {
+				if (!selectedMovie || !selectedTheater || !selectedDate) {return;
+				} else {
+					
+				}
+			}
+		});
 	</script>
 
 </body>
