@@ -11,8 +11,16 @@ public class MovieDetailAgeGraphRes {
 	private int age40;
 	private int age50;
 	
+	private int ageAll;
 	
 	
+	
+	public int getAgeAll() {
+		return ageAll;
+	}
+	public void setAgeAll(int ageAll) {
+		this.ageAll = ageAll;
+	}
 	public int getAge10() {
 		return age10;
 	}
