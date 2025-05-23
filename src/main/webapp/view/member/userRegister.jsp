@@ -1,12 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-<html>
-<head>
-<title>회원가입</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/asset/css/userRegister.css" />
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<meta charset="UTF-8">    
+<link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/userRegister.css" />
 
-</head>
-<body>
 	<div class="register-container">
 		<h2>회원가입</h2>
 		<div class="form-group">
@@ -208,5 +204,3 @@
 		}
 	</script>
 
-</body>
-</html>

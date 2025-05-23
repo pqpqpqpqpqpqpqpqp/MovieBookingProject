@@ -24,10 +24,11 @@
 			<a class="seat"id="a3">3</a> 
 			<a class="seat"id="a4">4</a>
 			<a class="seat hidden"></a>
+			
 			<a class="seat"id="a5">5</a> 
 			<a class="seat"id="a6">6</a>
 		</div>
-		<div class="seatArray B">
+			<div class="seatArray B">
 			<a class="seat_num">B</a>
 			<a class="seat" id="b1">1</a>
 			<a class="seat" id="b2">2</a>
