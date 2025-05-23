@@ -17,6 +17,7 @@ public class MovieUserListService {
 		String chartOption = request.getParameter("chartType");
 		MovieUserDAO movieUserDAO = new MovieUserDAO();
 		List<MovieUserListRes> movieUserLists = null;
+		ResponseData data = new ResponseData();
 
 		try {
 			if ("review".equals(chartOption)) {
@@ -26,15 +27,13 @@ public class MovieUserListService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			data.setCode(500);
 		} finally {
 			movieUserDAO.conClose();
 
 		}
 
-		ResponseData data = new ResponseData();
-
 		data.setData(movieUserLists);
-		
 
 		return data;
 	}

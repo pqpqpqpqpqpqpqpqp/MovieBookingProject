@@ -75,10 +75,8 @@
 				for(let i = 0; i < res.data.length; i++) {
 					
 					const count = parseInt(res.data[i].movieChartCount);
-				    const data = res.data[i];
 
-				    console.log(res);
-				    console.log(res.data);
+				    console.log(res.data[i]);
 				    
 					let html =
 						
@@ -87,14 +85,14 @@
                         	'<div class="rank">No.' +(i+1)+ '</div>' +  
 
 <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->
-                        	'<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
+                        	'<a href="${pageContext.request.contextPath}/view/movie/movieDetail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
     
                             	'<span class="thumb_image">' +
                                 	'<img src="${pageContext.request.contextPath}'+res.data[i].movieChartImg+'"/>' +
 <!-- 영상물 등급 -->					
 									'<span class="movie_icon_age">';
 									
-                               		html +='<img src="${pageContext.request.contextPath}/asset/icon/movieAge/age'+data.movieChartAgeGrade+'.svg" alt="AgeGrade">';
+                               		html +='<img src="${pageContext.request.contextPath}/asset/icon/movieAge/age'+res.data[i].movieChartAgeGrade+'.svg" alt="AgeGrade">';
                                 		
     								html+= '</span>' +
                             	'</span>' +
@@ -104,14 +102,14 @@
                     '<ul class="box_contents">' +
                     
                     <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->                    
-                       '<a href="${pageContext.request.contextPath}/view/movie/detail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
+                       '<a href="${pageContext.request.contextPath}/view/movie/movieDetail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
 
                     <!-- 영화이름 변수 입력 --> 
  							'<strong>영화: ' +res.data[i].movieChartName+ '</strong>' +
                  		'</a>' +
                     <!--  예매율 넣어주세요 -->	
                  		'<div class="score">' +
-                        	'<strong class="percent">예매율 <span>' +res.data[i].movieChartCount+ '%</span> | 평점<span>'+(data.movieChartReviewScore !=='0'? data.movieChartReviewScore:'통계 없음')+'</sapn>' +
+                        	'<strong class="percent">예매율 <span>' +res.data[i].movieChartCount+ '%</span> | 평점<span>'+(res.data[i].movieChartReviewScore !=='0'? res.data[i].movieChartReviewScore:'통계 없음')+'</sapn>' +
                         	'</strong>' +                 	
                         '</div>' +
                     <!-- 개봉일 넣어줘 -->                        
