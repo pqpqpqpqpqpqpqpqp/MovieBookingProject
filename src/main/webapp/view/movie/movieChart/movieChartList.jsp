@@ -109,7 +109,7 @@
                  		'</a>' +
                     <!--  예매율 넣어주세요 -->	
                  		'<div class="score">' +
-                        	'<strong class="percent">예매율 <span>' +res.data[i].movieChartCount+ '%</span> | 평점<span>'+(res.data[i].movieChartReviewScore !=='0'? res.data[i].movieChartReviewScore:'통계 없음')+'</sapn>' +
+                        	'<strong class="percent">예매율 <span>' +res.data[i].movieChartCount+ '%</span> | 평점 <span>'+(res.data[i].movieChartReviewScore !=='0'? res.data[i].movieChartReviewScore + '%' : ' 통계 없음')+'</sapn>' +
                         	'</strong>' +                 	
                         '</div>' +
                     <!-- 개봉일 넣어줘 -->                        
