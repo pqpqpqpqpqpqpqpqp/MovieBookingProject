@@ -45,7 +45,7 @@
 			
 			<span class="head_info_movie_score" >평점</span>
 			<span class="head_info_movie_score" id="movie_review"></span>
-			<span class="head_info_movie_score" >점</span>
+			<span class="head_info_movie_score" >%</span>
 		</div>
 		
  		<div class="movie_spec">
