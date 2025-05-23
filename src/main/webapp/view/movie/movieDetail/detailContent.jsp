@@ -16,7 +16,7 @@
 			지금껏 경험했던 그 어떤 상대보다도 강력한 적에 맞서<br>
 			모두의 운명을 건 불가능한 미션에 뛰어든다!<br> <br> 
 			
-			<strong>모든 선택이 향하는 단 하나의 미션!<br> 
+			<strong>추후 수정 필요!!!!!<br> 
 			&lt;미션 임파서블: 파이널 레코닝&gt;
 			</strong>
 		</div>
@@ -31,8 +31,8 @@
 	                        <canvas width="380" height="159" class="jqplot-series-shadowCanvas" style="position: absolute; left: 10px; top: 10px;"></canvas>
 	                        <canvas width="380" height="159" class="jqplot-series-canvas" style="position: absolute; left: 10px; top: 10px;"></canvas>
 	                        <canvas width="380" height="159" class="jqplot-donutRenderer-highlight-canvas" style="position: absolute; left: 10px; top: 10px;"></canvas>
-	                        <span class="jqplot-donut-series jqplot-data-label" style="position: absolute; left: 99px; top: 128px;">남 57.3%</span>
-	                        <span class="jqplot-donut-series jqplot-data-label" style="position: absolute; left: 248px; top: 35px;">여 42.7%</span>
+	                        <span class="jqplot-donut-series jqplot-data-label" style="position: absolute; left: 99px; top: 128px;">남 <span id="man">90%</span></span>
+	                        <span class="jqplot-donut-series jqplot-data-label" style="position: absolute; left: 248px; top: 35px;">여 10%</span>
 	                        <canvas width="380" height="159" class="jqplot-event-canvas" style="position: absolute; left: 10px; top: 10px;"></canvas>
                         </div>
                     </li>
@@ -66,66 +66,152 @@
 	</div>
 </div>
 <script>
+
+
+/*********************
+ *  시작 event
+ **********************/
 window.addEventListener("DOMContentLoaded", function () {
-  const canvas = document.querySelector("#graph_sex .jqplot-base-canvas");
-  const ctx = canvas.getContext("2d");
-
-  const data = [
-    { label: "남", value: 57.3, color: "#3e82a4" },
-    { label: "여", value: 42.7, color: "#e74c3c" }
-  ];
-
-  const total = data.reduce((acc, item) => acc + item.value, 0);
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
-
-  const outerRadius = 80;
-  const innerRadius = 20;  // 도넛 중앙 공간 확보
-  let startAngle = -Math.PI / 2; // 시작 각도 (12시 방향)
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  data.forEach((item) => {
-    const sliceAngle = (item.value / total) * 2 * Math.PI;
-    const endAngle = startAngle + sliceAngle;
-
-    // 도넛 그리기
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, outerRadius, startAngle, endAngle);
-    ctx.arc(centerX, centerY, innerRadius, endAngle, startAngle, true);
-    ctx.closePath();
-    ctx.fillStyle = item.color;
-    ctx.fill();
-
-    // 텍스트 표시 (도넛 중간 지점에)
-    const midAngle = startAngle + sliceAngle / 2;
-    const textRadius = (outerRadius + innerRadius) / 2;
-    const textX = centerX + textRadius * Math.cos(midAngle);
-    const textY = centerY + textRadius * Math.sin(midAngle);
-
-    ctx.fillStyle = "#111";
-    ctx.font = "bold 14px Arial";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(`${item.label} ${item.value.toFixed(1)}%`, textX, textY);
-
-    startAngle = endAngle;
-  });
+	원형그래프();
+	막대그래프();
+  
+  
+  
+  
+  genderGraph();
+  ageGraph();
 });
-</script>
 
 
 
 
+//성별 그래프 보이기
+function genderGraph() {
+	console.log('genderGraph');
+	$.ajax({
+		url: '${pageContext.request.contextPath}/MovieDetailGenderGraph.mo',
+		data: {'movieIdx': movieDetailIdx},
+		type: 'get',
+		dataType: 'json',
+		success: function(res) {
+			if(res.code === 200) {
+				for(var i = 0; i< 연형그래프_데이터.length; i++) {
+					if(연형그래프_데이터[i].label === '남') {
+						연형그래프_데이터[i].value = res.data.manCount;
+					}
+					else if(연형그래프_데이터[i].label === '여') {
+						연형그래프_데이터[i].value = res.data.womanCount;
+					}
+				}
+				
+				원형그래프();
+			}
+		}
+			
+	});
+}
 
-<script> // 막대그래프
-window.addEventListener("DOMContentLoaded", function () {
+//연령별 불러오기
+function ageGraph() {
+	console.log('ageGraph');
+	$.ajax({
+		url: '${pageContext.request.contextPath}/MovieDetailAgeGraph.mo',
+		data: {'movieIdx': movieDetailIdx},
+		type: 'get',
+		dataType: 'json',
+		success: function(res) {
+			
+			if(res.code === 200) {
+				막대그래프_연령데이터[0] = (res.data.age10 / res.data.ageAll) *100;
+				막대그래프_연령데이터[1] = (res.data.age20 / res.data.ageAll) *100;
+				막대그래프_연령데이터[2] = (res.data.age30 / res.data.ageAll) *100;
+				막대그래프_연령데이터[3] = (res.data.age40 / res.data.ageAll) *100;
+				막대그래프_연령데이터[4] = (res.data.age50 / res.data.ageAll) *100;
+				
+				
+				막대그래프();
+				console.log(res.data);
+			}
+		}
+			
+	});
+}
+
+
+
+
+/*********************
+ *  그래프 당당 영역
+ **********************/
+ 
+ //성별 데이터
+ let 연형그래프_데이터 = [
+				    { label: "남", value: 10, color: "#3e82a4" },
+				    { label: "여", value: 20, color: "#e74c3c" }
+				  ];
+				  
+let 막대그래프_연령라벨 = ["10대", "20대", "30대", "40대", "50대"];
+let 막대그래프_연령데이터 = [1.4, 14.8, 26.4, 29.2, 28.2];
+let 막대그래프_최대값 = 100;
+
+ 
+ //원형 그래프
+function 원형그래프(){
+	const canvas = document.querySelector("#graph_sex .jqplot-base-canvas");
+	  const ctx = canvas.getContext("2d");
+
+	  let data = 연형그래프_데이터;
+
+	  const total = data.reduce((acc, item) => acc + item.value, 0);
+	  const centerX = canvas.width / 2;
+	  const centerY = canvas.height / 2;
+
+	  const outerRadius = 80;
+	  const innerRadius = 20;  // 도넛 중앙 공간 확보
+	  
+	  let startAngle = -Math.PI / 2; // 시작 각도 (12시 방향)
+
+	  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	  data.forEach((item) => {
+		    const sliceAngle = (item.value / total) * 2 * Math.PI;
+		    const endAngle = startAngle + sliceAngle;
+	
+		    // 도넛 그리기
+		    ctx.beginPath();
+		    ctx.arc(centerX, centerY, outerRadius, startAngle, endAngle);
+		    ctx.arc(centerX, centerY, innerRadius, endAngle, startAngle, true);
+		    ctx.closePath();
+		    ctx.fillStyle = item.color;
+		    ctx.fill();
+	
+		    // 텍스트 표시 (도넛 중간 지점에)
+		    const midAngle = startAngle + sliceAngle / 2;
+		    const textRadius = (outerRadius + innerRadius) / 2;
+		    const textX = centerX + textRadius * Math.cos(midAngle);
+		    const textY = centerY + textRadius * Math.sin(midAngle);
+	
+		    ctx.fillStyle = "#111";
+		    ctx.font = "bold 14px Arial";
+		    ctx.textAlign = "center";
+		    ctx.textBaseline = "middle";
+		    // ctx.fillText(`${item.label} ${item.value.toFixed(1)}%`, textX, textY);
+	
+		    startAngle = endAngle;
+	});
+};
+
+
+/**************
+ * 막대 그래프
+ **************/
+function 막대그래프() {
   const canvas = document.querySelector("#graph_age .jqplot-series-canvas");
   const ctx = canvas.getContext("2d");
 
-  const values = [1.4, 14.8, 26.4, 29.2, 28.2];
-  const labels = ["10대", "20대", "30대", "40대", "50대"];
-  const maxValue = 40;
+  const labels = 막대그래프_연령라벨;
+  const values = 막대그래프_연령데이터;
+  const maxValue = 막대그래프_최대값;
 
   const width = canvas.width;
   const height = canvas.height;
@@ -165,6 +251,5 @@ window.addEventListener("DOMContentLoaded", function () {
     ctx.fillText(labelText, x + (barWidth / 2) - (labelWidth / 2), baseY + 15);
 
   });
-});
+};
 </script>
-

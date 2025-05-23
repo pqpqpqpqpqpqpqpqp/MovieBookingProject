@@ -12,6 +12,8 @@ import com.google.gson.Gson;
 
 import movie.service.MovieDetailService;
 import movie.service.MovieUserListService;
+import movie.service.getAgeTicketCountService;
+import movie.service.getGenderTicketCountService;
 import util.ResponseData;
 
 public class MovieController extends HttpServlet {
@@ -45,6 +47,14 @@ public class MovieController extends HttpServlet {
 		else if(command.equals("/MovieDetail.mo")) {
 			MovieDetailService detservice = new MovieDetailService();
 			responseData = detservice.execute(request, response);
+		}
+		else if(command.equals("/MovieDetailGenderGraph.mo")) {
+			getGenderTicketCountService genderCountservice = new getGenderTicketCountService();
+			responseData = genderCountservice.execute(request, response);
+		}
+		else if(command.equals("/MovieDetailAgeGraph.mo")) {
+			getAgeTicketCountService ageCountservice = new getAgeTicketCountService();
+			responseData = ageCountservice.execute(request, response);
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
