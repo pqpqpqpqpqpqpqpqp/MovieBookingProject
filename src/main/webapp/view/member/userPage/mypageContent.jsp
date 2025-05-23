@@ -1,95 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-<style>
-	.mypage_body_container{
-		width: 980px;
-		height: auto;
-		margin: 0 auto;
-	}
-	.mypage_body_container .mypage_index{
-		width: 160px;
-		float: left;
-	}
-	
-	.mypage_body_container .mypage_index a{
-		 width: 155px;
-	    height: 34px;
-	    line-height: 34px;
-	    
-        color: inherit;
-   		text-decoration: none; 
-	}
-	ul, li {
-		 list-style: none;
-		 padding-left: 0;
-	}
-	
-	.mypage_index > ul > li > a{ 
-		display: block;
-	    width: 155px !important; 
-	    padding-left: 10px;
-	    color: #222;
-	    font-weight: 500;
-	    font-size: 14px;
-	    line-height: 34px;
-	    margin: 10px 0;
-	}
-	.mypage_index ul li ul li > a {
-		display: flex;
-		align-items: center;
-		width: 125px ;
-	    height: 20px !important;
-	    padding-left: 35px;
-	    font-size: 12px;
-	    line-height: 14px ;
-	    white-space: nowrap;
-	    letter-spacing: -0.02em;
-	    font-weight: 400 ;
-	    box-sizing: border-box;
-	    color: #333 ;
-  
-	}
-	 .mypage_index ul li ul li:hover > a{
-	 	display: flex;
-	 	align-items: center;
-	 	height: 100%;
-        background: url('/MovieBookingProject/asset/icon/menuHand.png') no-repeat 0 0;
-    	background-position: 0px 5px;
-    	color: #fb4357;
-	}
-	dl:after, ul:after, ol:after {
-	    content: '';
-	    clear: both;
-	    display: block;
-	}
-	 .mypage_index > ul > li:hover > a{
-    background-color: #fb4357;
-    color: #fdfcf0;
-}
-</style>
-</head>
-<body>
 	<div class="mypage_body_container">
 		<div class="mypage_index">
 			<ul>
 				<li>
-					<a>MY CGV HOME</a>		
+					<a href="#" class="menu-link" data-url="myTabPage/myCgvHome.jsp">MY CGV HOME</a>		
 					<i></i>		
 				</li>
 				<li>
 					<a>나의 예매내역</a>	
 					<ul>
 						<li>
-							<a href="#">신용카드 영수증 출력</a>
-						</li>
-						<li>
-							<a href="#">CGV 영화관람권</a>
+							<a href="#" class="menu-link" data-url="myTabPage/myTicket.jsp">CGV 영화관람권</a>
 						</li>
 					</ul>
 				</li>
@@ -97,18 +20,93 @@
 					<a>회원정보</a>	
 						<ul>
 							<li>
-								<a href="#">개인정보 설정</a>
+								<a href="#" class="menu-link" data-url="myTabPage/userInfo.jsp">회원정보 설정</a>
 							</li>
 							<li>
-								<a href="#">선택정보 설정</a>
+								<a href="#" class="menu-link" data-url="myTabPage/userSelectInfo.jsp">선택정보 설정</a>
 							</li>
 							<li>
-								<a href="#">회원탈퇴</a>
+								<a href="#" class="menu-link" data-url="myTabPage/userDelete.jsp">회원탈퇴</a>
 							</li>
 						</ul>			
 				</li>
 			</ul>				
 		</div>
+		<div class="mypage_body_content_box"id="contentBox">
+		
+			<!-- 
+				jsp 이름
+					MY CGV HOME :
+					나의 예매내역 
+					 > 클릭 시 신용카드 영수증 출력으로 이동
+					신용카드 영수증 출력 :
+					CGV 영화 관람권 :
+					
+					회원정보 
+					 > 클릭 시 개인정보 설정으로 이동
+					회원정보 설정 : <jsp:include page="myTabPage/userInfo.jsp"></jsp:include>
+					선택정보 설정 : <jsp:include page="myTabPage/userSelectInfo.jsp"></jsp:include>
+					회원탈퇴 :
+			 -->
+		</div>
 	</div>
-</body>
-</html>
+	<script>
+	
+	
+
+	
+      
+ /*******
+  * 페이지 시작 Event Handler
+ *******/
+document.addEventListener("DOMContentLoaded", function () {
+  const links = document.querySelectorAll(".menu-link");
+
+    
+    
+  /*******
+  * a링크, onClick Event Handler 만들기
+  *******/
+  links.forEach(link => {
+    link.addEventListener("click", aDataUrl);
+  });
+  
+  
+  aDataUrl(links[0]);
+}); // 페이지 시작 Event Handler - 종료
+  
+  
+    
+    
+function aDataUrl(e) {
+	
+	try {
+  		e.preventDefault();
+  	
+	} catch( err ) {}
+	
+	
+  let targetUrl = new Object;
+  if(e.target == '') {
+	  targetUrl= 'myTabPage/myCgvHome.jsp';
+  } else {
+	  targetUrl = e.target.getAttribute("data-url");
+  }
+  
+  
+
+  fetch(targetUrl)
+    .then(response => {
+      if (!response.ok) throw new Error("Network error");
+      return response.text();
+    })
+    .then(data => {
+    	console.log('오긴 했냐');
+      document.getElementById("contentBox").innerHTML = data;
+    })
+    .catch(error => {
+      document.getElementById("contentBox").innerHTML = "<p>페이지 로딩에 실패했습니다.</p>";
+    });
+};
+	
+</script>

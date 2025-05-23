@@ -1,0 +1,677 @@
+@charset "UTF-8";
+
+
+/* myCgvHome*/
+	.myCGV_home_container{
+		display:flex;
+		width: 100%;
+		flex-direction: column;
+	}
+
+    .myCGV_home_menu_box {
+	    display: flex;
+	    justify-content: space-around;
+	    overflow: hidden;
+	    
+	    width: 100%;
+	    height: 130px;
+	    background-color: #f8f8f8;
+	    border: 1px solid #333;
+	    border: 1px solid #ccc;
+	    padding: 30px 0;
+	    text-align: center;
+    }
+    .myCGV_home_menu_box .menu_item {
+      flex: 1;
+      padding: 10px;
+      border-right: 1px solid #ccc;
+    }
+
+    .menu_item:last-child {
+      border-right: none;
+    }
+
+    .menu_item h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .menu_item p {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .myhome_section {
+      max-width: 800px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .section_title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .section_title span {
+      font-weight: normal;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .section_content {
+      font-size: 13px;
+      color: #666;
+      padding: 10px 0;
+      border-top: 1px solid #eee;
+    }
+
+    .plus_icon {
+    display: inline-block;
+    width: 20px;
+    height: 19px;
+    margin-left: 5px;
+    background: url("/MovieBookingProject/asset/icon/spriteBtn.png") no-repeat -50px -62px;
+    font: 0 / 0 a;
+    vertical-align: middle;
+    zoom: 1;
+    }
+    
+    /* userDelete*/
+    
+    	.delete_id_container{
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+	.delete_id_container .delete_title{
+		display: flex;
+		flex-direction: column;
+		font-size: 15px;	
+		gap: 15px;
+		padding-bottom: 10px;
+	}
+	.delete_id_container .delete_title strong{
+		font-size: 20px;
+	}
+	.delete_context{
+		border-top: 2px solid #fb4357;
+		border-bottom: 2px solid #fb4357;
+		padding: 30px;
+		text-align: center;		
+	}
+	.delete_context span{
+		font-weight: 600;
+	}
+	.delete_id_container .del_btn{
+		display: flex;
+		justify-content: center;
+	}
+	.delete_id_container .del_btn span{
+		margin: 20px;
+	    background: #fb4357;
+   		border: 2px solid #fb4357;
+   		padding: 0px 15px;
+   		font-size: 12px;
+   		color: #fff;
+   		cursor: pointer;
+	}
+	/* userInfo*/
+	
+	  body {
+      margin: 0;
+      padding: 0;
+    }
+     
+    .member_info_change_container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      
+      font-family: Arial, nbgr, '나눔바른고딕', '돋음';
+	  line-height: 15px;
+	  color: #555;
+	  font-weight: 400;
+    }
+     .member_info_change_container .member_info_title_txt{
+     	width: 100%;
+    	font-size: 30px;
+    	font-weight: 500;
+    	margin-bottom: 20px;
+   	    color: #212121;
+	    font-family: Arial, nbgr, '나눔바른고딕', '돋음';
+	    line-height: 40px;
+    	
+    }
+
+    .description {
+      margin: 10px 0 30px;
+      font-size: 12px;
+    }
+    .member_info_change_container .member_spec_menu{
+    	width: 100%;
+    	display: flex;
+    	justify-content: space-between;
+    	align-items: center;
+    }
+     .member_spec_menu .h2_tit {
+      font-size: 22px;
+      color: #333;
+      padding-bottom: 10px;
+      font-weight: 400;
+	  }
+      button{
+    	  background-color: #fff;
+    	  border: 1px solid #ddd;
+    	  max-width: 160px;
+      }
+    
+    .member_info_change_container .member_spec_menu button{
+   	    min-width: 38px;   	   
+	    height: 28px;
+	    padding: 0 15px;
+	    color: #555;
+	    line-height: 28px;
+    }
+    
+    
+    .member_spec_info_box {
+		width: 100%;
+		margin-top: 15px;
+      	margin-bottom: 40px;
+      	border-top: 2px solid red;
+      	display: flex;
+      	flex-direction: column;
+      	justify-content: flex-start;
+    }
+   
+    .member_spec_info_box .member_change_info_menu {
+	    display: flex;
+	    justify-content: flex-start;
+	    align-items: center;
+	    border-bottom: 1px solid #ccc;
+    }
+    .member_spec_info_box  .member_change_info_menu label {
+	    width: 150px;
+	    font-weight: 500;
+	    padding: 22px 20px 40px 40px;
+		padding-left: 30px;
+	    background-color: #f8f8f8;
+	    margin-right: 15px;
+	    color: #222;
+	    text-align: left;
+	    font-size: 15px;
+    }
+    .member_spec_info_box  .member_change_info_menu input,
+    .member_spec_info_box  .member_change_info_menu select,
+    .member_spec_info_box  .member_change_info_menu button {
+      flex: 1;
+      padding: 8px;
+      font-size: 14px;
+      
+    }
+    .member_change_info_menu button {
+   		width: 100%;
+      margin-left: 10px;
+      min-width: 38px;
+    }
+    button.btn_edit{
+    	width: 30px;
+    }
+    .spec_info_in_box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .spec_info_in_box .edit_box{
+    	display: flex;
+    	width: 100%;
+    }
+     .spec_info_in_box span{
+     	font-size: 12px;
+     	color: #aaa;
+     	}
+    .member_change_info_menu input{
+    	max-width: 200px;
+    	min-width: 39px;
+    	background-color: #fff;
+    	border-top: none;
+    	border-left: none;
+    	border-right: none;
+    	border-bottom: 1px solid #f5e3e3;
+    }
+    .toggle {
+      display: inline-block;
+      background: #fb4397;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    .checkbox-group {
+      display: flex;
+      gap: 15px;
+      font-size: 13px;
+    }
+    .agree-section summary {
+      font-weight: bold;
+      padding: 10px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    .agree-section {
+      margin-top: 20px;
+    }
+    .edit_func_box {
+		padding-top: 30px;
+    	text-align: center;
+    }
+    .buttons button {
+     
+      padding: 10px;
+      font-size: 14px;
+      margin: 0 10px;
+    }
+    .footer {
+      margin-top: 50px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+      font-size: 12px;
+      color: #777;
+      display: flex;
+      justify-content: space-between;
+    }
+    button.btn {
+	    min-width: 160px;
+	    height: 40px;
+	    border-radius: 4px;
+	    border: 1px solid #333;
+	}	
+    .btn.cancel {
+    	
+	    background-color: #fff;
+	    color: #333;
+	}
+	.btn.edit{
+		color: #fefefe;
+		background-color: #333;
+	}
+	
+	/* mypageContent.jsp*/
+	
+	.mypage_body_container{
+		width: 980px;
+		height: 900px;
+		margin: 0 auto;
+	}
+	.mypage_body_container .mypage_index{
+		width: 20%;
+		height: 100%;
+		float: left;
+	}
+	
+	.mypage_body_container .mypage_index a{
+		 width: 155px;
+	    height: 34px;
+	    line-height: 34px;
+	    
+        color: inherit;
+   		text-decoration: none; 
+	}
+	ul, li {
+		 list-style: none;
+		 padding-left: 0;
+	}
+	
+	.mypage_index > ul > li > a{ 
+		display: block;
+	    width: 155px !important; 
+	    padding-left: 10px;
+	    color: #222;
+	    font-weight: 500;
+	    font-size: 14px;
+	    line-height: 34px;
+	    margin: 10px 0;
+	}
+	.mypage_index ul li ul li > a {
+		display: flex;
+		align-items: center;
+		width: 125px ;
+	    height: 20px !important;
+	    padding-left: 35px;
+	    font-size: 12px;
+	    line-height: 14px ;
+	    white-space: nowrap;
+	    letter-spacing: -0.02em;
+	    font-weight: 400 ;
+	    box-sizing: border-box;
+	    color: #333 ;
+  
+	}
+	 .mypage_index ul li ul li:hover > a{
+	 	display: flex;
+	 	align-items: center;
+	 	height: 100%;
+        background: url('/MovieBookingProject/asset/icon/menuHand.png') no-repeat 0 0;
+    	background-position: 0px 5px;
+    	color: #fb4357;
+	}
+	dl:after, ul:after, ol:after {
+	    content: '';
+	    clear: both;
+	    display: block;
+	}
+	 .mypage_index > ul > li:hover > a{
+    	background-color: #fb4357;
+    	color: #fdfcf0;
+	}
+
+
+	.mypage_body_content_box{
+		
+		display: flex;
+		width: 77%;
+		height: 100%;
+		padding-top: 20px;
+	}
+	
+	
+	
+	/*mypageHead*/
+	
+	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    font-family: 'Noto Sans KR', 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+    white-space: nowrap;     /* 줄바꿈 방지 */
+  overflow-x: none; 
+    
+    
+}
+	.user_mypage_head_info{
+		display: flex;
+		width: 980px;
+	    height: 273px;
+		margin: 0 auto;
+		padding: 60px 40px 0 58px;
+		background-color: #efefef;
+	}
+	.user_mypage_head_info .user_profile_img{
+        display: flex; /* 중앙 정렬용 */
+	    justify-content: center; /* 가로 중앙 */
+	    align-items: center;
+    	position: relative;
+	    left: 0;
+	    top: 0;
+	    width: 135px;
+   		height: 135px;
+ 		background: url(../images/common/bg/bg_photocircle03.png) 0 0 no-repeat;
+ 		border-radius: 50%;  		
+		overflow: hidden;
+		margin-right: 30px;
+	}
+	.user_mypage_head_info .user_profile_img img{		
+		transform: scale(0.9);
+	}
+	
+	.user_mypage_head_info .user_profile_info{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		border-right: 1.5px solid #ddd;
+		height: auto;
+	}
+	.user_mypage_head_info .user_profile_info .user_name_container{
+	    width: 482px;
+		border-bottom: 1.5px solid #ddd;
+		padding-bottom: 20px;
+		
+	}
+		.user_mypage_head_info .user_profile_info .user_name_container.member{
+		margin-top: 20px;
+		border-style: none;
+		}
+		
+	.user_mypage_head_info .user_profile_info .user_name_container strong{
+		font-size: 29px;
+	    line-height: 32px;
+		font-weight: 500;
+	}
+	.user_mypage_head_info .user_profile_info .user_name_container strong.user_name{
+		
+		margin-right: 10px;
+	}
+	strong.txt_purple{
+		color: #943588 !important;
+		text-decoration: underline;
+	}
+	.user_mypage_head_info .user_profile_info .user_name_container span.user_nickname{
+		font-size: 14px;
+		color: #342929;
+   		font-weight: 600;
+   		
+	}
+	.user_mypage_head_info .user_profile_info .user_name_container em{
+		display: inline-block;
+	    margin-right: 8px;
+	    color: #342929;
+	    font-weight: 500;
+	}
+		.user_mypage_head_info .user_profile_info .user_name_container button {
+		    width: 17px;
+		    height: 20px;
+		    margin: 5px 0 0 0;
+		    background: url('/MovieBookingProject/asset/icon/spriteBtn.png') no-repeat 0 -218px;
+		    font: 0 / 0 a;
+		    vertical-align: top;
+		    zoom: 1;
+	        margin-top: 10px;
+	        border-style: none;
+		}
+		
+	/****************
+	myTicket.jsp
+	*****************/
+	.my_ticket_page_container{
+		width: 100%;
+		
+	}
+	
+	
+	    .ticket_section {
+    display:flex;
+    flex-direction:column;
+    	width: 100%;
+      padding-top: 10px;
+      margin-top: 30px;
+    }
+     h2 {
+        display: flex;
+	    height: 34px;
+	    margin: 0;
+	    background-image: none;
+	    color: #222;
+	    font-weight: 600;
+	    font-size: 17px;
+	    line-height: 20px;
+   		text-align: left;
+    }
+   	.ticket_section .filter_box_container{ 
+   		display: flex;  
+     	margin: 0;
+   	    background-color: #f8f8f8;
+   	    border-top: 1px solid #656560;
+   	    border-bottom: 1px solid #656560;
+     } 
+     .filter_inbox{
+     	display: flex;
+     }
+     .filter_box_container strong.view_txt{
+   	   display: flex;
+   	   padding: 40px;
+   	   width: 70px;
+	   color: #222;
+	   margin: 0;
+     }
+
+    .ticket_section table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .ticket_section th, .ticket_section td {
+      border-top: 1.5px solid #aaa;
+      color: #555;
+      text-align: center;
+    }
+	h4{
+	    height: 34px;
+	    margin: 0;
+	    background-image: none;
+	    color: #222;
+	    font-weight: 500;
+	    font-size: 15px;
+	    line-height: 34px;
+	    text-align: left;
+	}
+    .ticket_section th {
+	    height: 20px;
+	    padding-left: 12px;
+	    background-color: #e2e2e0;
+	    font-size: 13px;
+	    line-height: 34px;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+    }
+
+    .register-btn {
+    display: block;
+      float: right;
+      margin-bottom: 10px;
+      padding: 6px 12px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .filter-box {
+      margin: 5px 0;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+    .filter_container{
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+    	
+    }
+
+    .filter-box input {
+      padding: 2px;
+    }
+
+    .filter-box button {
+      padding: 5px 12px;
+      background: #222;
+          border: 2px solid #7b7b7b;
+    color: #7b7b7b;
+      cursor: pointer;
+    }
+    .filter-box button.view_btn{
+    	color: #efeeee;
+    }
+
+    .date-range-buttons button {
+      margin-right: 5px;
+      padding: 5px 10px;
+      background: #eee;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+		
+	/* userSelectinfo*/
+	
+	
+
+
+    table.select_info {
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      border-collapse: collapse;
+    }
+
+    .select_info th,.select_info  td {
+      text-align: left;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: top;
+      padding-bottom: 30px;
+    }
+
+    .select_info th {
+      width: 150px;
+      white-space: nowrap;
+    }
+
+    .select_info input[type="text"], input[type="date"], select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .select_info .radio_container label, .checkbox-group label {
+      font-weight: normal;
+      margin-right: 15px;
+    }
+    .select_info .radio_container{
+    	display: flex;
+    	flex-wrap: wrap;
+    	gap: 10px;
+    	}
+
+   
+    .btn_group {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .btn_group button {
+      padding: 15px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn_agree {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 250px;
+      height: 60px;
+      font-weight: 500;
+      font-size: 1.692em;
+      color: #fff;
+      background-color: #fb4357;
+      border-radius: 7px;
+    }
