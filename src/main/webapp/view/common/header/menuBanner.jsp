@@ -231,7 +231,7 @@
 			<div class="dropdown-section">
 				<h4>예매</h4>
 				<ul>
-					<li>빠른예매</li>
+					<li id = "fastReserve" onclick="fastReserveClick()">빠른예매</li>
 					<li>상영스케줄</li>
 					<li>English Ticketing</li>
 					<li>English Schedule</li>
@@ -323,6 +323,13 @@
             }, 400); // slideUp duration과 동일하게
         }
     }
+</script>
+
+
+<script>
+	function fastReserveClick(){
+		location.href = "${pageContext.request.contextPath}/testReserve.ti";
+	}
 </script>
 
 

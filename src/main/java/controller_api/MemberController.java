@@ -41,14 +41,14 @@ public class MemberController extends HttpServlet {
 		ResponseData responseData = null; // response 값
 		
 		if(command.equals("/register.mew")) {
-			MemberRegisterService action = new MemberRegisterService();
-			responseData = action.execute(request, response);
+			MemberRegisterService registerService = new MemberRegisterService();
+			responseData = registerService.execute(request, response);
 		}else if(command.equals("/idCheck.mew")) {
-			MemberIdCheckService action = new MemberIdCheckService();
-			responseData = action.execute(request, response);
+			MemberIdCheckService idCheckService = new MemberIdCheckService();
+			responseData = idCheckService.execute(request, response);
 		}else if(command.equals("/login.mew")) {
-			MemberLoginService action = new MemberLoginService();
-			responseData = action.execute(request, response);
+			MemberLoginService loginService = new MemberLoginService();
+			responseData = loginService.execute(request, response);
 		}
 
 		response.setCharacterEncoding("UTF-8");

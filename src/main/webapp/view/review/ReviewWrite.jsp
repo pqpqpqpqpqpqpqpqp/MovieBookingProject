@@ -141,7 +141,7 @@ String userNick = (String) request.getAttribute("userNick"); */
 
 // 테스트용 임시 데이터 - 추후 삭제할것
 int userIdx = 6;
-String userImg = "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fplay-lh.googleusercontent.com%2F38AGKCqmbjZ9OuWx4YjssAz3Y0DTWbiM5HB0ove1pNBq_o9mtWfGszjZNxZdwt_vgHo&type=ff332_332";
+String userImg = "../../asset/img/user/default.jpeg";
 String userNick = "뇨끼";
 int movieIdx = 1;
 String movieName = "겨울왕국";

@@ -34,9 +34,6 @@ public class MemberController extends HttpServlet {
 		
 		System.out.println("web이동: "+command);
 		
-		Gson gson = new Gson();
-		
-		String result = null;
 		String forward = null;
 		if (command.equals("/userLogin.me")) {
 			forward = "/view/member/userLogin.jsp";
