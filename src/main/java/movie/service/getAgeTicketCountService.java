@@ -12,22 +12,23 @@ import util.ResponseData;
 
 public class getAgeTicketCountService {
 
-	
-public ResponseData execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int movieIdx = Integer.parseInt(request.getParameter("movieIdx"));		
+	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
+		int movieIdx = Integer.parseInt(request.getParameter("movieIdx"));
 
 		MovieDetailDAO movieDetailDAO = new MovieDetailDAO();
-		
-		List<MovieDetailAgeGraphDTO> list = movieDetailDAO.getAgeGroupTicketCount(movieIdx);
-		
-		MovieDetailAgeGraphRes res = new MovieDetailAgeGraphRes();
-		
-		for(int i = 0; i < list.size(); i++) {
-			MovieDetailAgeGraphDTO dto = list.get(i);
-			
-			
-			switch (dto.getAgeGroup()) {
-			
+
+		ResponseData data = new ResponseData();
+
+		try {
+
+			List<MovieDetailAgeGraphDTO> list = movieDetailDAO.getAgeGroupTicketCount(movieIdx);
+			MovieDetailAgeGraphRes res = new MovieDetailAgeGraphRes();
+
+			for (int i = 0; i < list.size(); i++) {
+				MovieDetailAgeGraphDTO dto = list.get(i);
+
+				switch (dto.getAgeGroup()) {
+
 				case 0:
 				case 10:
 					res.setAge10(dto.getCount());
@@ -38,18 +39,24 @@ public ResponseData execute(HttpServletRequest request, HttpServletResponse resp
 				case 30:
 					res.setAge30(dto.getCount());
 					break;
-				case  40:
+				case 40:
 					res.setAge40(dto.getCount());
 					break;
 				default:
 					res.setAge50(res.getAge50() + dto.getCount());
 					break;
-			
+
+				}
 			}
+			data.setData(res);
+
+		} catch (Exception e) {
+			data.setCode(500);
+			e.printStackTrace();
+		} finally {
+
 		}
 
-
-		ResponseData data = new ResponseData();
 		return data;
 	}
 

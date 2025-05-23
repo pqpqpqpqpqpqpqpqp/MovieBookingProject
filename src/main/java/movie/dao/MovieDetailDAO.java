@@ -75,9 +75,9 @@ public class MovieDetailDAO {
 				+ " inner join  (select * from ticketing  where MOVIE_IDX =? AND TICKETING_DEL = 'N' ) t "
 				+ "on t.USER_IDX = u.USER_IDX) AS sub " + "group by ageGroup;";
 
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, movieIdx);
-		rs = pstmt.executeQuery();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, movieIdx);
+			rs = pstmt.executeQuery();
 
 		
 		
@@ -110,5 +110,7 @@ public class MovieDetailDAO {
 		} catch (Exception e) {
 		}
 	}
+
+
 
 }

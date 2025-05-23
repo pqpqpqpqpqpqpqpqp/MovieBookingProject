@@ -75,8 +75,8 @@ window.addEventListener("DOMContentLoaded", function () {
   const ctx = canvas.getContext("2d");
 
   const data = [
-    { label: "남", value: 90, color: "#3e82a4" },
-    { label: "여", value: 10, color: "#e74c3c" }
+    { label: "남", value: 10, color: "#3e82a4" },
+    { label: "여", value: 20, color: "#e74c3c" }
   ];
 
   const total = data.reduce((acc, item) => acc + item.value, 0);
@@ -115,8 +115,44 @@ window.addEventListener("DOMContentLoaded", function () {
 
     startAngle = endAngle;
   });
+  
+  
+  
+  genderGraph();
+  ageGraph();
 });
+
+//원형 도넛
+function genderGraph() {
+	console.log('genderGraph');
+	$.ajax({
+		url: '${pageContext.request.contextPath}/MovieDetailGenderGraph.mo',
+		data: {'movieIdx': movieDetailIdx},
+		type: 'get',
+		dataType: 'json',
+		success: function(res) {
+			console.log(res);
+		}
+			
+	});
+}
+
+function ageGraph() {
+	console.log('ageGraph');
+	$.ajax({
+		url: '${pageContext.request.contextPath}/MovieDetailAgeGraph.mo',
+		data: {'movieIdx': movieDetailIdx},
+		type: 'get',
+		dataType: 'json',
+		success: function(res) {
+			console.log(res);
+		}
+			
+	});
+}
+
 </script>
+
 
 <script> // 막대그래프
 window.addEventListener("DOMContentLoaded", function () {
@@ -167,4 +203,8 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+// 막대
+<script>
 
+
+</script>
