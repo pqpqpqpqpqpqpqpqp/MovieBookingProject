@@ -124,7 +124,18 @@ function ageGraph() {
 		type: 'get',
 		dataType: 'json',
 		success: function(res) {
-			console.log(res);
+			
+			if(res.code === 200) {
+				막대그래프_연령데이터[0] = (res.data.age10 / res.data.ageAll) *100;
+				막대그래프_연령데이터[1] = (res.data.age20 / res.data.ageAll) *100;
+				막대그래프_연령데이터[2] = (res.data.age30 / res.data.ageAll) *100;
+				막대그래프_연령데이터[3] = (res.data.age40 / res.data.ageAll) *100;
+				막대그래프_연령데이터[4] = (res.data.age50 / res.data.ageAll) *100;
+				
+				
+				막대그래프();
+				console.log(res.data);
+			}
 		}
 			
 	});
@@ -145,7 +156,7 @@ function ageGraph() {
 				  
 let 막대그래프_연령라벨 = ["10대", "20대", "30대", "40대", "50대"];
 let 막대그래프_연령데이터 = [1.4, 14.8, 26.4, 29.2, 28.2];
-let 막대그래프_최대값 = 40;
+let 막대그래프_최대값 = 100;
 
  
  //원형 그래프
@@ -188,7 +199,7 @@ function 원형그래프(){
 		    ctx.font = "bold 14px Arial";
 		    ctx.textAlign = "center";
 		    ctx.textBaseline = "middle";
-		    ctx.fillText(`${item.label} ${item.value.toFixed(1)}%`, textX, textY);
+		    // ctx.fillText(`${item.label} ${item.value.toFixed(1)}%`, textX, textY);
 	
 		    startAngle = endAngle;
 	});
