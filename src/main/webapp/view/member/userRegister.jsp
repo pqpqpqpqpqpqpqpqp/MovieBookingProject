@@ -4,40 +4,61 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/userRegister.css" />
 
 	<div class="register-container">
-		<h2>회원가입</h2>
+		<h2>CGV 회원가입</h2>
+		<div class="register_form_container">
+			<div class="register_inform_box">		
+				<span class="register_inform_context">기존 회원가입 정보와 일치하는 정보를 입력하셔야 회원가입 여부를 정확하게 확인하실 수 있습니다. <br/><span class="orange">입력하신 정보는 회원가입 여부에만 사용되며 저장되지 않습니다.</span></span>
+			</div>
+		<div class="register_form_box">
 		<div class="form-group">
-			<label for="userId">아이디</label> <input type="text" id="userId"
-				onchange="idChange()" required>
-			<button type="button" class="submit-btn" onclick="inputIdCheck()">중복체크</button>
+			<label for="userId">아이디</label>
+			<div class="input_box">
+				<input type="text" id="userId" onchange="idChange()" placeholder="아이디를 입력해주세요." required>
+				<button type="button" id="idCheckBtn" onclick="inputIdCheck()">중복체크</button>
+			</div>
 		</div>
 		<div class="form-group">
-			<label for="userPw">비밀번호</label> <input type="password" id="userPw"
-				required>
+			<label for="userPw">비밀번호</label>
+			<div class="input_box">
+			 <input type="password" id="userPw" placeholder="비밀번호를 입력해주세요."	required>
+			 </div>
 		</div>
 		<div class="form-group">
-			<label for="userPwCheck">비밀번호 확인</label> <input type="password"
-				id="userPwCheck" required>
+			<label for="userPwCheck">비밀번호 확인</label>
+			<div class="input_box"> 
+			<input type="password"	id="userPwCheck" required>
 			<div class="error" id="pwError"></div>
+			</div>
 		</div>
 		<div class="form-group">
-			<label for="userName">이름</label> <input type="text" id="userName"
-				required>
+			<label for="userName">이름</label>
+			<div class="input_box"> 
+			 <input type="text" id="userName" required>
+			</div>
 		</div>
 		<div class="form-group">
-			<label for="userNickname">닉네임</label> <input type="text"
-				id="userNickname" required>
+			<label for="userNickname">닉네임</label>
+				<div class="input_box"> 
+			 <input type="text"	id="userNickname" required>
+			 </div>
 		</div>
 		<div class="form-group">
-			<label for="userNum">주민등록번호</label> <input type="text" id="userNum"
-				placeholder="예: 900101-1234567" required>
+			<label for="userNum">주민등록번호</label> 
+				<div class="input_box"> 
+			<input type="text" id="userNum"	placeholder="예: 900101-1234567" required>
+			</div>
 		</div>
 		<div class="form-group">
-			<label for="userTel">전화번호</label> <input type="text" id="userTel"
-				required>
+			<label for="userTel">전화번호</label> 
+			<div class="input_box"> 
+			<input type="text" id="userTel" placeholder="010-1234-1234" required>
+			</div>
 		</div>
-		<button type="button" class="submit-btn" onclick="joinAction()">가입하기</button>
+		<button type="button" class="submit_btn" onclick="joinAction()">가입하기</button>
 		<div class="form-footer">
 			이미 계정이 있으신가요? <a href="${pageContext.request.contextPath}/userLogin.me">로그인</a>
+		</div>
+		</div>
 		</div>
 	</div>
 	<script
@@ -48,10 +69,15 @@
 		
 		function idChange(){
 			idCheck = '0';
+			const idBtn = document.getElementById('idCheckBtn');
+			idBtn.classList.remove('success', 'fail');
+			idBtn.style.backgroundColor = '';
+			idBtn.style.color = '';
 		}
 
 		function inputIdCheck() {
 			const userId = document.getElementById('userId');
+			const idBtn = document.getElementById('idCheckBtn');
 			
 			const idPwRegex = /^[A-Za-z0-9]{4,12}$/;
 			if (!idPwRegex.test(userId.value)) {
@@ -73,10 +99,15 @@
 				dataType : 'json', //성공 유무
 				success : function(res) { // 성공 했을 때
 					console.log(res);
+				
+					idBtn.classList.remove('success', 'fail');
+					
 					if (res.code == 200) {
+						idBtn.classList.add('success');
 						idCheck = '성공';
 						alert(idCheck);
 					} else if(res.code == 300){
+						idBtn.classList.add('fail');
 						idCheck = '중복';
 						alert(idCheck);
 					} else {

@@ -60,11 +60,18 @@
 
     .login-right input[type="text"],
     .login-right input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      font-size: 14px;
-      border: 1px solid #ccc;
+	    width: 100%;
+	    padding: 10px;
+	    margin-bottom: 10px;
+	    font-size: 14px;
+	    border: 1px solid #ccc;
+      
+      	display: block;
+    	width: 135px;
+    	height: 35px;
+    	padding: 0 5px 0 40px;
+    	border: 2px solid #b5b5b5;
+    	line-height: 33px;
     }
 
     .captcha-box {
@@ -140,12 +147,7 @@
 
     <button class="login-btn">로그인</button>
 
-    <div class="options">
-      <label><input type="checkbox"> 아이디 저장</label>
-      <div>
-        <a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a>
-      </div>
-    </div>
+   
 
     <button class="naver-login">N 네이버 로그인</button>
   </div>
