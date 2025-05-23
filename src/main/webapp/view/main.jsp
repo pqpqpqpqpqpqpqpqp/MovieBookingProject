@@ -10,16 +10,16 @@ body{
 min-height: 100vh;
 height: 100%;
 }
-
-
 <jsp:include page="common/header.jsp"/>
 </style>
 </head>
+
 <body>
 <jsp:include page="common/body.jsp"/>
-
 </body>
+
 <footer>
 <jsp:include page="common/footer.jsp"/>
 </footer>
+
 </html>

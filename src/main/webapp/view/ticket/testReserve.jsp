@@ -107,11 +107,7 @@ body {
 	</div>
 
 	<div class="column times" id="timeColumn">
-		<h3>시간</h3>
-		<div class="time-slot">
-			<strong>2D(자막) 1관 [예시관] (Laser)</strong><br> <span>11:00
-				(100석)</span> <span>14:00 (80석)</span> <span>17:30 (60석)</span>
-		</div>
+		<div class="title">시간</div>
 	</div>
 
 	<script
@@ -142,11 +138,6 @@ body {
 					for (let i = 0; i < res.length; i++) {
 						const movieName = res[i].movieName;
 						const theaterName = res[i].theaterName;
-						const screenDate = res[i].screenDate;
-
-						console.log(i + "번째: ");
-						console.log(res[i]);
-						console.log(res[i].movieName);
 
 						if (!movieSet.has(movieName)) {
 							movieSet.add(movieName);
@@ -249,23 +240,33 @@ body {
 				
 				// grouped의 cinemaName(키)를 하나씩 순회
 				for (const cinemaName in grouped) {
-			        const slotDiv = document.createElement('div');
-			        slotDiv.classList.add('time-slot');
-			        
+			        const timeslot = document.createElement('div');
+			        timeslot.classList.add('time-slot');
 			        const first = grouped[cinemaName][0];
-			        slotDiv.innerHTML = '<strong>' + first.cinemaName +' ' + first.cinemaSpecialName + '</strong><br>';
+			        timeslot.innerHTML = '<strong><span class="theater_type">2D(자막)></span>' 
+			        					+ first.cinemaName + '(' + first.cinemaSpecialName + ')</strong><br>';
 			        
+			        const timeContainer = document.createElement('div');
+			        timeContainer.classList.add('time_container');
+
+			        // 상영 시간과 좌석 수 표시
 			        grouped[cinemaName].forEach(item => {
-			            const span = document.createElement('span');
-			            span.textContent = item.screenStartTime;
-			            slotDiv.appendChild(span);
+			            const timeBlock = document.createElement('div');
+			            timeBlock.classList.add('time_block');
+
+			            const timeDiv = document.createElement('div');
+			            timeDiv.classList.add('theater_time');
+			            timeDiv.textContent = item.screenStartTime;
+
+			            timeBlock.appendChild(timeDiv);
+			            timeContainer.appendChild(timeBlock);
 			        });
 
-			        timeColumn.appendChild(slotDiv);
-				}		
+			        timeslot.appendChild(timeContainer);
+			        timeColumn.appendChild(timeslot);
+			    }	
 			}	    
 		});
-	</script>
-
+</script>
 </body>
 </html>
