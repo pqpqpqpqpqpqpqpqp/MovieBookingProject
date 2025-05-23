@@ -118,10 +118,6 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-
-
-
-
 <script> // 막대그래프
 window.addEventListener("DOMContentLoaded", function () {
   const canvas = document.querySelector("#graph_age .jqplot-series-canvas");

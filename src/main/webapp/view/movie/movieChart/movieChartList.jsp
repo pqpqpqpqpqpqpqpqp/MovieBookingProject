@@ -75,10 +75,8 @@
 				for(let i = 0; i < res.data.length; i++) {
 					
 					const count = parseInt(res.data[i].movieChartCount);
-				    const data = res.data[i];
 
-				    console.log(res);
-				    console.log(res.data);
+				    console.log(res.data[i]);
 				    
 					let html =
 						
@@ -94,7 +92,7 @@
 <!-- 영상물 등급 -->					
 									'<span class="movie_icon_age">';
 									
-                               		html +='<img src="${pageContext.request.contextPath}/asset/icon/movieAge/age'+data.movieChartAgeGrade+'.svg" alt="AgeGrade">';
+                               		html +='<img src="${pageContext.request.contextPath}/asset/icon/movieAge/age'+res.data[i].movieChartAgeGrade+'.svg" alt="AgeGrade">';
                                 		
     								html+= '</span>' +
                             	'</span>' +
@@ -111,7 +109,7 @@
                  		'</a>' +
                     <!--  예매율 넣어주세요 -->	
                  		'<div class="score">' +
-                        	'<strong class="percent">예매율 <span>' +res.data[i].movieChartCount+ '%</span> | 평점<span>'+(data.movieChartReviewScore !=='0'? data.movieChartReviewScore:'통계 없음')+'</sapn>' +
+                        	'<strong class="percent">예매율 <span>' +res.data[i].movieChartCount+ '%</span> | 평점<span>'+(res.data[i].movieChartReviewScore !=='0'? res.data[i].movieChartReviewScore:'통계 없음')+'</sapn>' +
                         	'</strong>' +                 	
                         '</div>' +
                     <!-- 개봉일 넣어줘 -->                        
