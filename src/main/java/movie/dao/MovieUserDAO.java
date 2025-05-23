@@ -36,7 +36,7 @@ public class MovieUserDAO {
         List<MovieUserListRes> chartlist = new ArrayList<>();
         String sql = "WITH YES_TICKET as ("
         		+ "select * from TICKETING "
-        		+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 13)) "
+        		+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 11)) "
         		+ "and TICKETING_DEL = 'N') "
         		+ "SELECT M.MOVIE_IDX "
         		+ ", M.MOVIE_AGE_GRADE "
@@ -80,19 +80,22 @@ public class MovieUserDAO {
     // 평점순 예매 리스트 조회
     public List<MovieUserListRes> movieChartScoreList() {
     	List<MovieUserListRes> scorelist = new ArrayList<>();
-    	String sql = "WITH YES_TICKET as ("
-        		+ "select * from TICKETING "
-        		+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 13)) "
-        		+ "and TICKETING_DEL = 'N') "
-        		+ "SELECT M.MOVIE_IDX "
-        		+ ", M.MOVIE_AGE_GRADE "
-        		+ ", M.MOVIE_IMG "
-        		+ ", M.MOVIE_NAME "
-        		+ ", ROUND((select (COUNT(*)/(select COUNT(*) from YES_TICKET)*100) from YES_TICKET T where M.MOVIE_IDX = T.MOVIE_IDX), 2) as TICKETING_CNT "
-        		+ ", IFNULL(ROUND((select AVG(REVIEW_SCORE) from REVIEW R where R.MOVIE_IDX = M.MOVIE_IDX), 2), '0') as REVIEW_AVG "
-        		+ ", M.MOVIE_OPEN_DATE "
-        		+ "from MOVIE M "
-        		+ "ORDER BY REVIEW_AVG DESC; ";
+    	String sql = "WITH YES_TICKET AS ( "
+    			+ "SELECT * FROM TICKETING WHERE SCREEN_INFO_IDX IN (SELECT SCREEN_INFO_IDX FROM SCREEN_INFO WHERE SCREEN_DATE = SUBDATE(CURDATE(), 11)) "
+    			+ "AND TICKETING_DEL = 'N' "
+    			+ "), YES_REVIEW as (  "
+    			+ "SELECT FLOOR(REVIEW_SCORE/2) as SCORE "
+    			+ ",MOVIE_IDX "
+    			+ "FROM REVIEW) "
+    			+ "SELECT M.MOVIE_IDX "
+    			+ ", M.MOVIE_AGE_GRADE "
+    			+ ", M.MOVIE_IMG "
+    			+ ", M.MOVIE_NAME "
+    			+ ", M.MOVIE_OPEN_DATE "
+    			+ ", IFNULL(ROUND((SELECT SUM(SCORE) / COUNT(*)*100 FROM YES_REVIEW R WHERE R.MOVIE_IDX = M.MOVIE_IDX),2), '0') AS REVIEW_AVG "
+    			+ ", ROUND(( SELECT COUNT(*) / (SELECT COUNT(*) FROM YES_TICKET) * 100 FROM YES_TICKET T WHERE M.MOVIE_IDX = T.MOVIE_IDX), 2) AS TICKETING_CNT "
+    			+ "FROM MOVIE M "
+    			+ "ORDER BY REVIEW_AVG desc;";
     	
     	try {
         	pstmt = conn.prepareStatement(sql);
