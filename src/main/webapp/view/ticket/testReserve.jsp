@@ -218,8 +218,7 @@ body {
 			<div class="title">극장</div>
 		</div>
 
-		<!-- 날짜는 더미데이터상 정적으로 생성 
-	변경시 오늘 날짜로부터 2주정도 동적으로 생성하게 바꿀 것 -->
+		<!-- 날짜는 더미데이터상 정적으로 생성. 변경시 오늘 날짜로부터 2주정도 동적으로 생성하게 바꿀 것 -->
 		<div class="column dates" id="dateColumn">
 			<div class="title">날짜</div>
 			<div class="date_list nano has-scroll-y" id="date_list">
