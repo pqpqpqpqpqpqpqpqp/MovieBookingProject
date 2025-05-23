@@ -17,10 +17,12 @@ public class getGenderTicketCountService {
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int movieIdx = Integer.parseInt(request.getParameter("movieIdx"));
 		
-		MovieUserDAO dao = new MovieUserDAO();
+		MovieDetailDAO dao = new MovieDetailDAO();
 		
+		MovieDetailGenderVO genderVO = dao.getGenderTicketCount(movieIdx);
 		
-		
+		ResponseData data = new ResponseData();
+		data.setData(genderVO);
 		
 		
 		return data;
