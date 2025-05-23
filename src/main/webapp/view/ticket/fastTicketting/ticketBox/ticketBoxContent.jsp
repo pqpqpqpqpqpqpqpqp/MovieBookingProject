@@ -65,7 +65,7 @@
       <div class="left_seat">100석</div>
       </div>
          <div class="time_block">  
-      <div class="theater_time">14:00</div>
+      <div class="theater_time select" >14:00</div>
       <div class="left_seat">80석</div>
          </div>
          <div class="time_block">  
