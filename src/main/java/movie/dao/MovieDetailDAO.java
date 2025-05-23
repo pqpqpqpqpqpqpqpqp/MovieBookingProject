@@ -32,10 +32,10 @@ public class MovieDetailDAO {
 				+ "	when '3' then '남성' "
 				+ "	when '2' then '여성' "
 				+ "	when '4' then '여성' "
-				+ "	end as 성별 "
-				+ ", count(*) as 예매수 "
+				+ "	end as gender "
+				+ ", count(*) as count "
 				+ "from user u "
-				+ "inner join (select * from ticketing where MOVIE_IDX ='?' AND TICKETING_DEL = 'N' ) t "
+				+ "inner join (select * from ticketing where MOVIE_IDX =? AND TICKETING_DEL = 'N' ) t "
 				+ "on t.USER_IDX = u.USER_IDX "
 				+ "group by 성별;";
 		
@@ -63,6 +63,52 @@ public class MovieDetailDAO {
 		return result;
 		
 	}
+	
+	// 연령별 예매 분포 그래프
+		public Map<String, Integer> getAgeGroupTicketCount(int movieIdx){
+			Map<String, Integer> result = new HashMap<>();
+			String sql = "SELECT "
+					+ "  FLOOR( "
+					+ "    (YEAR(CURDATE()) - "
+					+ "      CASE "
+					+ "        WHEN birthYear > RIGHT(YEAR(CURDATE()), 2) "
+					+ "          THEN 1900 + birthYear "
+					+ "        ELSE 2000 + birthYear "
+					+ "      END "
+					+ "    ) / 10 ) * 10 AS ageGroup "
+					+ ", COUNT(*) as count "
+					+ " FROM ( SELECT USER_NUM"
+					+ ", CAST(SUBSTRING(USER_NUM, 1, 2) AS UNSIGNED) AS birthYear "
+					+ " FROM user u "
+					+ " inner join  (select * from ticketing  where MOVIE_IDX =? AND TICKETING_DEL = 'N' ) t "
+					+ "on t.USER_IDX = u.USER_IDX) AS sub "
+					+ "group by ageGroup;";
+					
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, movieIdx); 	
+		    	rs = pstmt.executeQuery();
+		    	
+		    	while(rs.next()) {
+		    		String ageGroup = rs.getString("ageGroup");
+		    		int count = rs.getInt("count");
+		    		
+		    		result.put(ageGroup,count);
+		    		
+		    		}
+			}
+			catch(Exception e)  {
+				e.printStackTrace();
+			}
+			finally {
+				conClose();
+			}
+			
+			
+			return result;
+			
+		}
 	
 	
 	public void conClose() {
