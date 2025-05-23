@@ -6,207 +6,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>영화 예매 페이지</title>
-<style type="text/css">
-body {
-	color: #333;
-	font-family: 'Tahoma', '돋움', dotum, Nanum Gothic, sans-serif;
-	font-size: 12px;
-	font-weight: normal;
-	overflow-x: hidden !important;
-}
-
-.main_ticket_container {
-	display: block;
-}
-/* ticketBox.jsp*/
-.ticket_main_box_container {
-	display: flex;
-	flex-direction: column;
-	height: 678px;
-	width: 100%;
-	align-items: center;
-}
-/* 영화예매페이지    */
-.ticketBox_container {
-	width: 996px;
-	height: 550px;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	overflow: hidden;
-}
-
-.ticketBox_container .column {
-	overflow-y: auto;
-	border-right: 2px solid #ddd;
-	background-color: #f2f0e5;
-	box-sizing: border-box;
-	min-width: 0;
-}
-
-.ticketBox_container .movie, .region, .date, .time-slot {
-	padding: 8px;
-	margin-bottom: 2px;
-	cursor: pointer;
-}
-
-.ticketBox_container .column .title {
-	border-bottom: 2px solid #ddd;
-	background-color: rgb(55, 55, 55);
-	width: 100%;
-	color: rgb(250, 250, 250);
-	text-align: center;
-	font-size: 15px;
-	font-weight: bolder;
-	padding: 6px 0px;
-}
-/*	영화 스타일	*/
-.ticketBox_container .movies {
-	width: 20%;
-}
-
-.ticketBox_container .label {
-	display: inline-block;
-	padding: 2px 6px;
-	font-size: 12px;
-	font-weight: bold;
-	margin-right: 5px;
-	border-radius: 3px;
-}
-
-.ticketBox_container .label.orange {
-	background-color: orange;
-	color: white;
-}
-
-.ticketBox_container .label.green {
-	background-color: green;
-	color: white;
-}
-
-.ticketBox_container .time-slot span {
-	margin-right: 10px;
-}
-/*	극장 스타일	*/
-.ticketBox_container .theaters {
-	width: 20%;
-}
-/*	날짜 스타일	*/
-.ticketBox_container .dates {
-	width: 10%;
-}
-
-.ticketBox_container .dates .date_month span.year {
-	display: block;
-	margin-top: 12px;
-	text-align: center;
-	color: #666;
-	font-size: 11px;
-	font-family: Verdana;
-	font-weight: bold;
-	line-height: 11px;
-}
-
-.ticketBox_container .dates .date_month span.month {
-	display: block;
-	margin-top: 3px;
-	text-align: center;
-	color: #666;
-	font-size: 30px;
-	font-family: Verdana;
-	font-weight: bold;
-	line-height: 30px;
-}
-
-.content .date {
-	display: flex;
-	justify-content: center;
-	font-weight: bold;
-}
-
-.content .date span.day {
-	margin-left: 15px;
-	font-weight: bold;
-}
-
-/*	시간 스타일	*/
-.ticketBox_container .times {
-	width: 50%;
-}
-
-.ticketBox_container .times .dates div span.day {
-	margin-left: 5px;
-}
-
-.ticketBox_container .selected {
-	outline: 1px solid #5c5c5c;
-	outline-offset: -2px;
-	text-align: center;
-	height: 29px;
-	line-height: 29px;
-	margin: 1px;
-	padding-left: 6px;
-	padding-right: 5px;
-	color: #fff;
-	background-color: #333;
-}
-
-.time_slot {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	margin-left: 10px;
-	height: auto;
-}
-
-.time_slot strong {
-	margin-top: 10px;
-}
-
-.time_slot .time_container .theater_time {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 2.2px 5.5px;
-	border: 1px solid #aaa;
-	font-weight: 700;
-}
-
-.time_slot .time_container {
-	margin-top: 10px;
-	display: flex;
-	flex-direction: row;
-	gap: 8px;
-	width: 100%;
-}
-
-.time_slot .time_container .time_block {
-	display: flex;
-	align-items: center; /* 세로 중앙 정렬 */
-	gap: 10px;
-}
-
-/* 스크롤바 */
-.ticketBox_container .column .date_list.nano {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
-
-.nano>.pane>.slider, .nano>.pane-y>.slider-y, .nano>.pane-x>.slider-x {
-	height: 50px;
-	top: 0px;
-	background: #444;
-	background: rgba(0, 0, 0, .5);
-	position: relative;
-	margin: 0px 2px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-}
-</style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/asset/css/ticket.css" />
 </head>
 <body>
 	<div class="ticketBox_container">
@@ -246,6 +47,60 @@ body {
 			<div class="title">시간</div>
 		</div>
 	</div>
+	<!-- 추후 페이지 2개로 분리할것 - 페이지가 넘어갈때 위쪽만 바뀌어야 함 -->
+	<div class="ticket_foot">
+		<a class="ticket_foot_btn_left previous_btn_movie" href="#"
+			onclick="OnTnbLeftClick(); return false;" title="영화선택"></a>
+		<div class="foot movie_container"></div>
+
+		<div class="foot theater_tab">
+			<!-- 극장 or 시간이 선택되었을때 삽입 -->
+			<div class="title">
+				<span>극장</span> <span>일시</span> <span>상영관</span> <span>인원</span>
+			</div>
+			<div class="context">
+				<span class="input_text"> <!-- 극장 선택시 극장이름 넣기 --></span> <span
+					class="input_text"> <!-- 상영시간 - 시간 선택시 날짜 + 시간 합쳐서 넣을것 --></span> <span
+					class="input_text"> <!-- 상영관 - 시간 선택시 거기서 가져올것 --></span> <span
+					class="input_text"> <!-- 인원수 - 좌석선택 페이지에서 인원선택시 삽입 --></span>
+			</div>
+		</div>
+
+		<div class="line"></div>
+		<div class="foot seat_tab">
+			<div class="title">
+				<span>좌석명</span> <span>좌석번호</span>
+			</div>
+			<div class="context">
+				<span class="input_text"> <!-- 좌석명 - 추후 결정 - 아마 좌석 div에 class나 id로 값을 주고 좌석선택시 받아올것 -->
+				</span> <span class="input_text"> <!-- 좌석번호 - A1,A2 -->
+				</span>
+			</div>
+
+		</div>
+		<div class="line"></div>
+		<div class="foot tax_tab">
+			<div class="title">
+				<span>일반</span> <span>총금액</span>
+			</div>
+			<div class="context tax">
+				<div class="tax_counting">
+					<span class="input_text"> <!-- 영화요금 - 상영정보에 있음 -->
+					</span><span>원</span><span>X</span><span> <!-- 를 인원수로 곱함 -->
+					</span>
+				</div>
+				<div class="tax_count_txt_container">
+					<span class="input_text tax_count_txt"> <!-- 총금액 - 위의 값을 계산하여 삽입-->
+					</span> <span class="tax_count_txt">원</span>
+					<!-- 왜 얘만 클래스? -->
+				</div>
+			</div>
+		</div>
+		<a class="ticket_foot_btn_right next_btn_topay" style="" href="#"
+			onclick="OnTnbLeftClick(); return false;" title="영화선택">다음단계로 이동</a>
+		<!-- 다음페이지로 넘어가는 버튼 - 페이지별로 변해야함 - 구조상 3단계 - 좌석선택, 결제선택, 결제하기 -->
+		<!-- 각 페이지별로 전부 선택된게 아니면 넘겨주지 말아야함 -->
+	</div>
 	<script
 		src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 
@@ -255,6 +110,49 @@ body {
 			let selectedTheater = null;
 			let selectedDate = null;
 			let allData = [];
+			
+			const movieData = {
+					  "겨울왕국": {
+					    poster: "Frozen.jpeg",
+					    ageGrade: "전체 관람가",
+					  },
+					  "모아나": {
+					    poster: "Moana.jpeg",
+					    ageGrade: "전체 관람가",
+					  },
+					  "몬스터 주식회사 3D": {
+					    poster: "MonstersInc.jpeg",
+					    ageGrade: "전체 관람가",
+					  },
+					  "바람": {
+					    poster: "TheWind.jpeg",
+					    ageGrade: "19세 관람가",
+					  },
+					  "스파이더맨: 뉴 유니버스": {
+					    poster: "SpiderMan.jpeg",
+					    ageGrade: "12세 관람가",
+					  },
+					  "아바타: 물의 길": {
+					    poster: "Avatar.jpeg",
+					    ageGrade: "12세 관람가",
+					  },
+					  "어벤져스: 인피니티 워": {
+					    poster: "Avengers.jpeg",
+					    ageGrade: "12세 관람가",
+					  },
+					  "타짜": {
+					    poster: "Tazza.jpeg",
+					    ageGrade: "청소년 관람불가",
+					  },
+					  "파과": {
+					    poster: "Pagwa.jpeg",
+					    ageGrade: "15세 관람가",
+					  },
+					  "해리포터와 마법사의 돌": {
+					    poster: "HarryPotter.jpeg",
+					    ageGrade: "전체 관람가",
+					  },
+					};
 			
 			$.ajax({
 				url : '${pageContext.request.contextPath}/testReserve.tiw',
@@ -318,17 +216,46 @@ body {
 			})
 			
 			function movieSelect(movieName) {
-				selectedMovie = movieName;
-				document.querySelectorAll(".movie").forEach(m => m.classList.remove("selected"));
-				const selected = Array.from(document.querySelectorAll(".movie")).find(m => m.textContent.includes(movieName));
-				if (selected) selected.classList.add("selected");
+			    selectedMovie = movieName;
 
-				updateTimeSlots();
+			    // 기존 선택 해제
+			    document.querySelectorAll(".movie").forEach(m => m.classList.remove("selected"));
+
+			    // 선택한 요소에 selected 클래스 추가
+			    const selected = Array.from(document.querySelectorAll(".movie")).find(m => m.textContent.includes(movieName));
+			    if (selected) selected.classList.add("selected");
+
+			    // 기존 삽입된 .foot.movie 요소 제거
+			    const existingFoot = document.querySelector(".foot.movie");
+			    if (existingFoot) existingFoot.remove();
+
+			    // 영화 선택된 경우만 새 삽입
+			    if (movieName) {
+			        const container = document.createElement("div");
+			        container.className = "foot movie";
+
+			        const posterURL = '${pageContext.request.contextPath}/asset/img/movie/movieposter/' + movieData[movieName].poster;
+
+			        container.innerHTML =
+			        	'<div class="movie_img">' +
+			            '<img src="' + posterURL + '" />' +
+			        '</div>' +
+			        '<div class="context">' +
+			            '<span class="title">' + movieName + '</span><br>' +
+			            '<span> 2D 자막 </span>' +
+			            '<span>' + movieData[movieName].ageGrade + '</span>' +
+			        '</div>' +
+			        '<div class="line"></div>';
+			        
+			        document.querySelector(".foot.movie_container").appendChild(container);
+			    }
+
+			    updateTimeSlots();
 			}
 
 			function citySelect(theaterName) {
 				selectedTheater = theaterName;
-				document.querySelectorAll(".region").forEach(r => r.classList.remove("selected"));
+				document.querySelectorAll(".region").forEach(r => r.classList.remove("select"));
 				const selected = Array.from(document.querySelectorAll(".region")).find(r => r.textContent.includes(theaterName));
 				if (selected) selected.classList.add("selected");
 
@@ -338,7 +265,7 @@ body {
 			function dateSelect(dateISO) {
 			    selectedDate = dateISO;
 
-			    document.querySelectorAll(".date").forEach(d => d.classList.remove("selected"));
+			    document.querySelectorAll(".date").forEach(d => d.classList.remove("select"));
 			    const selected = Array.from(document.querySelectorAll(".date")).find(d => d.dataset.date === dateISO);
 			    if (selected) selected.classList.add("selected");
 
@@ -385,11 +312,11 @@ body {
 			            timeBlock.onclick = () => {
 			                // 모든 time_block에서 'selected' 제거
 			                document.querySelectorAll('.time_block.selected').forEach(el => {
-			                    el.classList.remove('selected');
+			                    el.classList.remove('select');
 			                });
 
 			                // 현재 클릭한 요소에만 selected 추가
-			                timeBlock.classList.add('selected');
+			                timeBlock.classList.add('select');
 			            };
 
 			            const timeDiv = document.createElement('div');

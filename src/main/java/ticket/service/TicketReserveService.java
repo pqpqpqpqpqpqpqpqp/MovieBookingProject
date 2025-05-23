@@ -17,6 +17,7 @@ public class TicketReserveService {
 		ReserveDAO reserveDAO = new ReserveDAO();
 
 		reserveArr.addAll(reserveDAO.readScreenInfo());
+		reserveDAO.conClose();
 
 		return reserveArr;
 	}
