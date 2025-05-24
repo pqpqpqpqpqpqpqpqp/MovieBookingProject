@@ -1,6 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+
 .review {
 	width: 480px;
 	padding: 20px;
@@ -146,43 +184,61 @@ String userNick = "뇨끼";
 int movieIdx = 1;
 String movieName = "겨울왕국";
 %>
-<!-- 리뷰 폼 -->
-<div class="review">
-	<h2 class="movieName"><%=movieName%></h2>
+	<!-- 모달 트리거 버튼 -->
+	<button id="openReviewModal">리뷰 작성하기</button>
 
-	<!-- 평점 선택버튼 + 프로필 -->
-	<div class="rating-row">
-		<button class="rating-button" data-rating="1" id="btn-good">
-			좋았어요~^^</button>
-
-		<!-- 프로필사진 + 닉네임 -->
-		<div class="profile-info">
-			<img src="<%=userImg%>" alt="프로필"> <span class="nickname"><%=userNick%></span>
+	<!-- 모달 배경 및 컨테이너 -->
+	<div id="reviewModal" class="modal-overlay" style="display:none;">
+	  	<div class="modal-content">
+			<!-- 리뷰 폼 -->
+			<div class="review">
+				<h2 class="movieName"><%=movieName%></h2>
+				<!-- 평점 선택버튼 + 프로필 -->
+				<div class="rating-row">
+					<button class="rating-button" data-rating="1" id="btn-good">
+						좋았어요~^^</button>
+					<!-- 프로필사진 + 닉네임 -->
+					<div class="profile-info">
+						<img src="<%=userImg%>" alt="프로필"> <span class="nickname"><%=userNick%></span>
+					</div>
+					<button class="rating-button" data-rating="0" id="btn-bad">흠~좀 별로였어요;;;</button>
+				</div>
+				<!-- 텍스트 입력 -->
+				<textarea id="reviewText" maxlength="280" placeholder="운영원칙에 어긋나는 게시글은 제재 조치를 받을 수 있습니다."></textarea>
+				<div class="byte-count">
+					<span id="byteCount">0</span>/280(byte)
+				</div>
+				<!-- 제출 버튼 -->
+				<button id="submitReview">작성완료!</button>
+			</div>
+		<!-- 닫기 버튼 -->
+	    <button id="closeReviewModal" class="modal-close">×</button>
 		</div>
-
-		<button class="rating-button" data-rating="0" id="btn-bad">
-			흠~좀 별로였어요;;;</button>
 	</div>
-
-	<!-- 텍스트 입력 -->
-	<textarea id="reviewText" maxlength="280"
-		placeholder="운영원칙에 어긋나는 게시글은 제재 조치를 받을 수 있습니다."></textarea>
-
-	<div class="guideline-box">
-		<small> <a id="guidelineLink">운영원칙 ?</a>
-		</small>
-	</div>
-
-	<div class="byte-count">
-		<span id="byteCount">0</span>/280(byte)
-	</div>
-
-	<!-- 제출 버튼 -->
-	<button id="submitReview">작성완료!</button>
-</div>
 <script
 	src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 <script>
+//모달 열기 / 닫기 기능
+$("#openReviewModal").on("click", function() {
+  $("#reviewModal").fadeIn(200);
+});
+
+$("#closeReviewModal").on("click", function() {
+  $("#reviewModal").fadeOut(200);
+});
+
+// 바깥 영역 클릭 시 닫기
+$("#reviewModal").on("click", function(e) {
+  if (e.target === this) {
+    $(this).fadeOut(200);
+  }
+});
+
+</script>
+
+<script>
+
+
 	$(document).ready(function() {
 		// 대소문자, _ 확인 필요
 		const MAX_BYTES = 280;

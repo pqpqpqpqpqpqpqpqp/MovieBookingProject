@@ -12,6 +12,7 @@ body, input, textarea, select, button, table {
 		sans-serif;
 	font-weight: 400;
 }
+
 .movie_chart_container{
 	height: auto;
 	display: flex;
@@ -96,6 +97,9 @@ span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abb
     text-align: center;
     line-height: 28px;
 
+}
+.movie_chart_container .movie_chart_inBox .sect_movie_chart .rank.red{
+	    background: #fb4357;		
 }
 .movie_chart_container .movie_chart_inBox .sect_movie_chart .box_image{
  	position: relative;
