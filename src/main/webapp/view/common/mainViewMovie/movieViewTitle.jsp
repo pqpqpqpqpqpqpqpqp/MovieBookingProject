@@ -124,10 +124,13 @@ font-weight: 700;
 			<div class="movie_chart_btn">
 				<div class="chart_btn" id="btnMovie" >무비차트</div>
 				<!--  경로 추가해줘야됨 -->
-				<div class="view_all_btn" herf="" id="btn_allView_Movie" class="btn_allView">전체보기 ></div>
+				<a href="${pageContext.request.contextPath}/view/movie/MovieChart.jsp">
+					<div class="view_all_btn" id="btn_allView_Movie" class="btn_allView">전체보기 ></div>
+				</a>
 			</div>
 				</div>
 	</div>
 	
 </body>
+
 </html>
