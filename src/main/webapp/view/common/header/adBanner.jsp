@@ -7,29 +7,27 @@
 <title>광고배너</title>
 <style type="text/css">
 /* 전체와 body의 배경색을 검정으로 지정하고, 텍스트 중앙정렬, 테두리 제거 */
-body, * {
-	margin: 0;
-	padding: 0;
-}
-
-body {
-	font-family: "Noto Sans KR", sans-serif;
-	overflow-x: auto;
-	width: 100vw;
-	min-width: 1024px;
-}
 
 .cgv_ad_container {
-	width: 100%;
-}
+	width: 100vw;
 
+}
+.cgv_ad_container *{
+	overflow-y: hidden;
+	max-height: 100%;
+}
 .cgv_ad_container .cgv_ad_top {
 	width: 100%;
 	height: 80px;
 	position: relative;
 	overflow: hidden;
+	text-align: center;
 }
-
+.cgv_ad_container .cgv_ad_top img {
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
 /* 광고 배너 iframe */
 .ad_iframe {
 	width: 100%;
@@ -88,13 +86,10 @@ body {
 	<!-- 광고 배너 영역 시작 -->
 	<div class="cgv_ad_container">
 		<div class="cgv_ad_top">
+		
 			<!-- 광고 링크와 iframe은 분리 -->
-			<a
-				href="http://ad.cgv.co.kr/click/CGV/CGV_201401/main@TopBar_EX?ads_id=53380&creative_id=82108&click_id=103158"
-				target="_blank"> <iframe
-					src="http://www.cgv.co.kr/movies/detail-view/?midx=89630"
-					width="100%" height="80" title="광고 배너" name="topBanner"
-					id="topBanner"></iframe>
+			<a href="#" id="adLink" target="_blank"> 
+				<img src=""	id="adImage" width="100%" height="80" alt="" title="" name="topBanner" id="topBanner"></img>
 			</a>
 
 			<!-- 닫기 버튼: iframe 위에 겹쳐지도록 위치 -->
@@ -116,9 +111,36 @@ body {
 			</a>
 		</div>
 	</div>
+<script>
+  let ads = [];  // 광고 배열을 담을 변수
+  let current = 0; // 현재 몇 번째 광고를 보여줄지 선언하는 변수
 
-</body>
-<body>
+  function updateAd() {
+    if (ads.length === 0) return; // 광고가 없으면 아무것도 안 함
+
+    const ad = ads[current]; // 현재 광고 가져오기
+    document.getElementById("adImage").src = ad.img;
+    document.getElementById("adImage").alt = ad.name;
+    document.getElementById("adImage").title = ad.name;
+    document.getElementById("adLink").href = ad.link;
+
+    current = (current + 1) % ads.length; // 다음 광고로 넘기기
+  }
+
+  // 서버에서 광고 데이터를 불러오기 (fetch = 비동기 요청)
+  fetch('/asset/data/ads.json') // 이 주소에 있는 JSON을 가져옴
+    .then(response => response.json()) // 받아온 응답을 JSON으로 변환
+    .then(data => {
+      ads = data;      // 불러온 데이터를 ads 배열에 저장
+      updateAd();      // 첫 번째 광고 표시
+      setInterval(updateAd, 4000); // 4초마다 다음 광고로 바뀜
+    })
+    .catch(error => {
+      console.error('광고 데이터를 불러오는 중 오류 발생:', error);
+    });
+</script>
+
+
 
 </body>
 </html>
