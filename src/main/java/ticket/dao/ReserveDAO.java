@@ -22,32 +22,21 @@ public class ReserveDAO {
 	public ReserveDAO() {
 
 		try {
-
 			Context init = new InitialContext();
 			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MysqlDB");
 			conn = ds.getConnection();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void conClose() {
-		try {
-			if (rs != null)
-				rs.close();
-		} catch (Exception e) {
-		}
-		try {
-			if (pstmt != null)
-				pstmt.close();
-		} catch (Exception e) {
-		}
-		try {
-			if (conn != null)
-				conn.close();
-		} catch (Exception e) {
-		}
+		try { if (rs != null) rs.close();
+		} catch (Exception e) {}
+		try { if (pstmt != null) pstmt.close();
+		} catch (Exception e) {}
+		try { if (conn != null) conn.close();
+		} catch (Exception e) {}
 	}
 
 	public List<ReserveVO> readScreenInfo() {

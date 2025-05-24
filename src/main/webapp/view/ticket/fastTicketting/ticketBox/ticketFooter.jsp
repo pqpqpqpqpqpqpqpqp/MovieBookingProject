@@ -56,7 +56,6 @@
 			</div>
 		</div>			
 	</div>	
-		<a class="ticket_foot_btn_right next_btn_topay" 
-		style="	
+		<a class="ticket_foot_btn_right next_btn_topay" style=""	
 		    	 href="#" onclick="OnTnbLeftClick(); return false;" title="영화선택">다음단계로 이동</a>	
 	</div>

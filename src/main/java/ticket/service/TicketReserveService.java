@@ -19,6 +19,5 @@ public class TicketReserveService {
 		reserveArr.addAll(reserveDAO.readScreenInfo());
 
 		return reserveArr;
-
 	}
 }
