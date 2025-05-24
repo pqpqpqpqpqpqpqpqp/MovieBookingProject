@@ -34,7 +34,7 @@
 		height: 15px;
 		
 		display: inline-block;
-		background-image: url('/MovieBookingProject/asset/icon/movieAge/age12.svg');
+		background-image: url('/MovieBookingProject/asset/icon/movieAge/age12.svg') 12px -230px no-repeat;
 	    background-size: contain;
 	    background-repeat: no-repeat;
 	    background-position: center;

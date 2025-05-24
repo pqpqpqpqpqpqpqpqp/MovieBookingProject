@@ -400,11 +400,12 @@
 }
 	.user_mypage_head_info{
 		display: flex;
-		width: 980px;
+		width: 980px !important;
 	    height: 273px;
 		margin: 0 auto;
 		padding: 60px 40px 0 58px;
 		background-color: #efefef;
+		 box-sizing: border-box;
 	}
 	.user_mypage_head_info .user_profile_img{
         display: flex; /* 중앙 정렬용 */
@@ -531,7 +532,7 @@
       font-size: 13px;
     }
 
-    .ticket_section th, .ticket_section td {
+    .ticket_section th, .ticket_section th td {
       border-top: 1.5px solid #aaa;
       color: #555;
       text-align: center;

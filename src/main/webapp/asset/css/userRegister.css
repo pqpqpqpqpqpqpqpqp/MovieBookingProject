@@ -4,77 +4,129 @@
 	box-sizing: border-box;
 }
 
-body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background: #f0f2f5;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	margin: 0;
-}
-
 .register-container {
-	background: #fff;
-	padding: 40px;
-	border-radius: 12px;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	background: #f8f8f8;
+    margin-top: 60px;
+    padding: 50px;
+	width: 980px;
+	margin: 0 auto;
+	
+    color: #555;
+    font-size: 14px;
+    font-family: Arial, nbgr, '나눔바른고딕', '돋음';
+    line-height: 24px;
+}
+.register_form_container{
 	width: 100%;
-	max-width: 400px;
+	display: flex;
+}
+.register_form_box{
+	width: 538px;
+	display: flex;
+	flex-direction: column;
+	
+	
+}
+.register_inform_box{
+	flex: 0 0 330px;	
+	width: 330px;
+	margin-right: 15px;
+}
+.orange{
+	color: orange;
+	
 }
 
 .register-container h2 {
 	text-align: center;
-	margin-bottom: 24px;
+	font-size: 48px;
+	padding-bottom: 34px;
 	color: #333;
+	border-bottom: 2px solid #333;
 }
-
-.form-group {
+.register_form_container{
+	width: 540px;
+	height: 100%;
+	display: flex;
+	
+}
+.register-container .form-group {
 	margin-bottom: 18px;
+	display: flex;
+	flex-direction: column;
 }
 
-.form-group label {
+.register-container .form-group label {
 	display: block;
 	font-weight: bold;
 	margin-bottom: 6px;
 	color: #555;
 }
-
-.form-group input {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 6px;
-	font-size: 14px;
+.register-container .form-group .input_box{
+	display: flex;
 }
 
-.form-group input[type="file"] {
+.register-container .form-group .input_box input {
+	width: 418px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 1px;
+	font-size: 14px;
+}
+.register-container .form-group .input_box button{
+	width: 100px;
+	margin-left: 20px;
+	background-color: #444;
+	border: none;
+	color: #efefef;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 1px;
+	cursor: pointer;
+	transition: background 0.3s ease;
+	
+}
+.submit_btn{
+    width: 418px;
+    height: 46px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 46px;
+    background-color: #000;
+    color: #fefefe;
+	
+}
+
+.register-container .form-group input[type="file"] {
 	padding: 6px;
 }
 
-.submit-btn {
-	width: 100%;
-	padding: 12px;
-	background-color: #4CAF50;
-	border: none;
-	color: white;
-	font-size: 16px;
-	font-weight: bold;
-	border-radius: 6px;
-	cursor: pointer;
-	transition: background 0.3s ease;
-}
+
 
 .submit-btn:hover {
 	background-color: #45a049;
 }
 
 .form-footer {
-	text-align: center;
+	width: 418px;
+	text-align: right;
 	margin-top: 16px;
 	font-size: 13px;
-	color: #777;
+	color: #333;
+	
 }
+#idCheckBtn {
+  background-color: #333;
+  color: #eee;
+}
+#idCheckBtn.success {
+  background-color: #358516; 
+  color: white;
+}
+#idCheckBtn.fail {
+	  background-color: #dc3545; /* 빨간색 */
+  color: white;
+	}
 
 .error {
 	font-size: 12px;

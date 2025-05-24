@@ -95,13 +95,13 @@
 	transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .nav-bar .dropdown-wrapper .dropdown-wrapper-container{
-	position: relative;
 	display: flex;
 	width: 980px;
 	height: 100%;
-	justify-content: space-between;
-	align-items: top;
+	justify-content: flex-start;
+	align-items: flex-start;
 	
+
 }
 
 .nav-bar .dropdown-wrapper.active {
@@ -153,20 +153,19 @@
 
 }
 }
-.nav-bar .dropdown-wrapper .dropdown-section {
+.dropdown-section {
 	display: flex;
 	flex-direction: column;
-	width: 12%;
-	max-width: 160px;
-	flex: 0 0 160px;
+	width: 120px;
+	flex: none;
 }
 
-.nav-bar .dropdown-wrapper .dropdown-section h4 {
+.nav-bar .dropdown-wrapper .dropdown-wrapper-container .dropdown-section h4 {
 	margin: 0 0 10px;
 	font-size: 15px;
 	color: #000;
-	border-bottom: 1px solid #ccc;
-	padding-bottom: 5px;
+	padding-bottom: 5px; 
+	width: 120px;
 }
 
 .nav-bar .dropdown-wrapper .dropdown-section ul {
@@ -199,9 +198,9 @@
 				<li>영화</li>
 				<li>극장</li>
 				<li>예매</li>
-				<li>스토어</li>
-				<li>이벤트</li>
-				<li>혜택</li>
+<!-- 				<li>스토어</li> -->
+<!-- 				<li>이벤트</li> -->
+<!-- 				<li>혜택</li> -->
 			</ul>
 			<!-- 검색창 -->
 			<div class="search-box">
@@ -212,64 +211,57 @@
 
 		<!-- 통합 드롭다운 메뉴 -->
 		<div class="dropdown-wrapper" id="dropDown">
-		<div class="dropdown-wrapper-container">
-			<div class="dropdown-section">
-				<h4>영화</h4>
-				<ul>
-					<li>무비차트</li>
-					<li>아트하우스</li>
-					<li>ICECON</li>
-				</ul>
-			</div>
-			<div class="dropdown-section">
-				<h4>극장</h4>
-				<ul>
-					<li>CGV 극장</li>
-					<li>특별관</li>
-				</ul>
-			</div>
-			<div class="dropdown-section">
-				<h4>예매</h4>
-				<ul>
-					<li id = "fastReserve" onclick="fastReserveClick()">빠른예매</li>
-					<li>상영스케줄</li>
-					<li>English Ticketing</li>
-					<li>English Schedule</li>
-				</ul>
-			</div>
-			<div class="dropdown-section">
-				<h4>스토어</h4>
-				<ul>
-					<li>패키지</li>
-					<li>영화관람권</li>
-					<li>기프트카드</li>
-					<li>콤보</li>
-					<li>팝콘</li>
-					<li>음료</li>
-					<li>스낵</li>
-					<li>씨네샵</li>
-				</ul>
-			</div>
-			<div class="dropdown-section">
-				<h4>이벤트</h4>
-				<ul>
-					<li>SPECIAL</li>
-					<li>영화/예매</li>
-					<li>멤버십/CLUB</li>
-					<li>CGV 극장별</li>
-					<li>제휴할인</li>
-					<li>당첨자 발표</li>
-					<li>종료된 이벤트</li>
-				</ul>
-			</div>
-			<div class="dropdown-section">
-				<h4>혜택</h4>
-				<ul>
-					<li>CGV 할인정보</li>
-					<li>CLUB 서비스</li>
-					<li>VIP 라운지</li>
-				</ul>
-			</div>
+			<div class="dropdown-wrapper-container">
+				<div class="dropdown-section">
+					<h4>영화</h4>
+					<ul>
+						<li>무비차트</li>
+	<!-- 					<li>아트하우스</li> -->
+	<!-- 					<li>ICECON</li> -->
+					</ul>
+				</div>
+				<div class="dropdown-section">
+					<h4>극장</h4>
+					<ul>
+						<li>CGV 극장</li>
+						<li>특별관</li>
+					</ul>
+				</div>
+				<div class="dropdown-section">
+					<h4>예매</h4>
+					<ul>
+						<li>빠른예매</li>
+	<!-- 					<li>상영스케줄</li> -->
+	<!-- 					<li>English Ticketing</li> -->
+	<!-- 					<li>English Schedule</li> -->
+					</ul>
+				</div>
+	<!-- 			<div class="dropdown-section"> -->
+	<!-- 				<h4>스토어</h4> -->
+	<!-- 				<ul> -->
+	<!-- 					<li>패키지</li> -->
+	<!-- 					<li>영화관람권</li> -->
+	<!-- 					<li>기프트카드</li> -->
+	<!-- 					<li>콤보</li> -->
+	<!-- 					<li>팝콘</li> -->
+	<!-- 					<li>음료</li> -->
+	<!-- 					<li>스낵</li> -->
+	<!-- 					<li>씨네샵</li> -->
+	<!-- 				</ul> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="dropdown-section"> -->
+	<!-- 				<h4>이벤트</h4> -->
+	<!-- 				<ul> -->
+	<!-- 					<li>SPECIAL</li> -->
+	<!-- 					<li>영화/예매</li> -->
+	<!-- 					<li>멤버십/CLUB</li> -->
+	<!-- 					<li>CGV 극장별</li> -->
+	<!-- 					<li>제휴할인</li> -->
+	<!-- 					<li>당첨자 발표</li> -->
+	<!-- 					<li>종료된 이벤트</li> -->
+	<!-- 				</ul> -->
+	<!-- 			</div> -->
+>>>>>>> test
 			</div>
 		</div>
 	</div>
