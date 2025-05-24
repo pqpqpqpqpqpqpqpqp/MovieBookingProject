@@ -77,12 +77,15 @@
 					const count = parseInt(res.data[i].movieChartCount);
 
 				    console.log(res.data[i]);
-				    
+				    let rankClass = "rank";
+				    if(i === 0) rankClass += " red";
+				    else if(i === 1) rankClass += " red";
+				    else if(i === 2) rankClass += " red";
 					let html =
 						
 						 '<li>' +
                     		'<div class="box_image">' +
-                        	'<div class="rank">No.' +(i+1)+ '</div>' +  
+                    		'<div class="' + rankClass + '">No.' + (i+1) + '</div>' +  
 
 <!-- 영화 포스터 클릭 시 해당 상세페이지로 이동하는 기능 -->
                         	'<a href="${pageContext.request.contextPath}/view/movie/movieDetail.jsp?movieIdx='+res.data[i].movieIdx+'">' +
