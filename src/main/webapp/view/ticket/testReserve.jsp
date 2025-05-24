@@ -27,9 +27,11 @@
 					<div class="date_month">
 						<span class="year">2025</span> <span class="month">5</span>
 					</div>
-					<div class="date" data-date="2025-05-10">10 토</div>
-					<div class="date" data-date="2025-05-11">11 일</div>
-					<div class="date" data-date="2025-05-12">12 월</div>
+					<div class="date_container">
+						<div class="date" data-date="2025-05-10">10 토</div>
+						<div class="date" data-date="2025-05-11">11 일</div>
+						<div class="date" data-date="2025-05-12">12 월</div>
+					</div>
 					<div class="pane pane-y"
 						style="display: block; opacity: 1; visibility: visible;">
 						<div class="slider slider-y" style="height: 50px; top: 0px;">
@@ -51,20 +53,8 @@
 	<div class="ticket_foot">
 		<a class="ticket_foot_btn_left previous_btn_movie" href="#"
 			onclick="OnTnbLeftClick(); return false;" title="영화선택"></a>
-		<div class="foot movie_container"></div>
-
-		<div class="foot theater_tab">
-			<!-- 극장 or 시간이 선택되었을때 삽입 -->
-			<div class="title">
-				<span>극장</span> <span>일시</span> <span>상영관</span> <span>인원</span>
-			</div>
-			<div class="context">
-				<span class="input_text"> <!-- 극장 선택시 극장이름 넣기 --></span> <span
-					class="input_text"> <!-- 상영시간 - 시간 선택시 날짜 + 시간 합쳐서 넣을것 --></span> <span
-					class="input_text"> <!-- 상영관 - 시간 선택시 거기서 가져올것 --></span> <span
-					class="input_text"> <!-- 인원수 - 좌석선택 페이지에서 인원선택시 삽입 --></span>
-			</div>
-		</div>
+		<div class="foot first_container"></div>
+		<div class="foot second_container"></div>
 
 		<div class="line"></div>
 		<div class="foot seat_tab">
@@ -85,14 +75,12 @@
 			</div>
 			<div class="context tax">
 				<div class="tax_counting">
-					<span class="input_text"> <!-- 영화요금 - 상영정보에 있음 -->
-					</span><span>원</span><span>X</span><span> <!-- 를 인원수로 곱함 -->
-					</span>
+					<span class="input_text"> <!-- 영화요금 - 상영정보에 있음 --></span> <span>원</span><span>X</span>
+					<span> <!-- 를 인원수로 곱함 --></span>
 				</div>
 				<div class="tax_count_txt_container">
-					<span class="input_text tax_count_txt"> <!-- 총금액 - 위의 값을 계산하여 삽입-->
-					</span> <span class="tax_count_txt">원</span>
-					<!-- 왜 얘만 클래스? -->
+					<span class="input_text tax_count_txt"> <!-- 총금액 - 위의 값을 계산하여 삽입--></span>
+					<span class="tax_count_txt">원</span>
 				</div>
 			</div>
 		</div>
@@ -161,8 +149,8 @@
 				success : function(res) {
 					allData = res;
 					
-					const movieColumn = document.getElementById("movieColumn");
-					const theaterColumn = document.getElementById("theaterColumn");
+					const movieColumn = document.querySelector("#movieColumn");
+					const theaterColumn = document.querySelector("#theaterColumn");
 
 					const movieSet = new Set(); // 중복 제거용
 					const theaterSet = new Set(); // 중복 제거용
@@ -181,6 +169,7 @@
 							};
 							
 							const name = document.createElement("span");
+							name.className = "movie_name";
 							name.textContent = movieName;
 							
 							const label = document.createElement("span");
@@ -200,7 +189,7 @@
 							div.className = "region";
 							div.textContent = theaterName;
 							div.onclick = function() {
-								citySelect(theaterName);
+								theaterSelect(theaterName);
 							};
 
 							theaterColumn.appendChild(div);
@@ -209,27 +198,24 @@
 				}
 			});
 			
-			document.querySelectorAll(".date").forEach(dateDiv => {
-				dateDiv.onclick = function () {
-					dateSelect(this.dataset.date);
-				};
-			})
+			document.querySelector(".date_container").onclick = function(e) {
+		    	const target = e.target.closest(".date");
+				if (target) { dateSelect(target.dataset.date); }
+			};
 			
 			function movieSelect(movieName) {
 			    selectedMovie = movieName;
+			    
+			    const preSelected = document.querySelector(".movie.select");
+				if (preSelected) { preSelected.classList.remove("select"); }
 
-			    // 기존 선택 해제
-			    document.querySelectorAll(".movie").forEach(m => m.classList.remove("selected"));
+			    const selected = Array.from(document.querySelectorAll(".movie"))
+			    				.find(m => m.querySelector(".movie_name").textContent === movieName);
+			    if (selected) selected.classList.add("select");
 
-			    // 선택한 요소에 selected 클래스 추가
-			    const selected = Array.from(document.querySelectorAll(".movie")).find(m => m.textContent.includes(movieName));
-			    if (selected) selected.classList.add("selected");
+			    const FootMovie = document.querySelector(".foot.movie");
+			    if (FootMovie) FootMovie.remove();
 
-			    // 기존 삽입된 .foot.movie 요소 제거
-			    const existingFoot = document.querySelector(".foot.movie");
-			    if (existingFoot) existingFoot.remove();
-
-			    // 영화 선택된 경우만 새 삽입
 			    if (movieName) {
 			        const container = document.createElement("div");
 			        container.className = "foot movie";
@@ -247,43 +233,67 @@
 			        '</div>' +
 			        '<div class="line"></div>';
 			        
-			        document.querySelector(".foot.movie_container").appendChild(container);
+			        document.querySelector(".foot.first_container").appendChild(container);
 			    }
 
 			    updateTimeSlots();
 			}
 
-			function citySelect(theaterName) {
+			function theaterSelect(theaterName) {
 				selectedTheater = theaterName;
-				document.querySelectorAll(".region").forEach(r => r.classList.remove("select"));
-				const selected = Array.from(document.querySelectorAll(".region")).find(r => r.textContent.includes(theaterName));
-				if (selected) selected.classList.add("selected");
+				
+				const preSelected = document.querySelector(".region.select");
+				if (preSelected) { preSelected.classList.remove("select"); }
+				
+				const selected = Array.from(document.querySelectorAll(".region")).find(r => r.textContent === theaterName);
+				if (selected) selected.classList.add("select");
+				
+				const FootTheater = document.querySelector(".foot.theater_tab");
+			    if (FootTheater) FootTheater.remove();
+
+			    if (theaterName) {
+			        const container = document.createElement("div");
+			        container.className = "foot theater_tab";
+
+			        container.innerHTML =
+			        	'<div class="title">' +
+			            '<span>극장</span> <span>일시</span> <span>상영관</span> <span>인원</span>' +
+			        '</div>' +
+			        '<div class="context">' +
+			            '<span class="input_text">CGV ' + theaterName + '</span>' +
+			            '<span class="input_text"> </span>' +
+			        '</div>' +
+			        '<div class="line"></div>';
+			        
+			        document.querySelector(".foot.second_container").appendChild(container);
+			    }
 
 				updateTimeSlots();
 			}
 			
 			function dateSelect(dateISO) {
 			    selectedDate = dateISO;
-
-			    document.querySelectorAll(".date").forEach(d => d.classList.remove("select"));
+			    
+			    const preSelected = document.querySelector(".date.select");
+				if (preSelected) { preSelected.classList.remove("select"); }
+			    
 			    const selected = Array.from(document.querySelectorAll(".date")).find(d => d.dataset.date === dateISO);
-			    if (selected) selected.classList.add("selected");
-
+			    if (selected) selected.classList.add("select");
+			    
 			    updateTimeSlots();
 			}
 
 			function updateTimeSlots() {
 				if (!selectedMovie || !selectedTheater || !selectedDate) return;
 				
-				// 선택된 조건에 맞는 데이터만 필터링
 			    const filtered = allData.filter(item => 
 			        item.movieName === selectedMovie &&
 			        item.theaterName === selectedTheater &&
 			        item.screenDate === selectedDate
 			    );
 				
-				const timeColumn = document.getElementById('timeColumn');
-				timeColumn.querySelectorAll('.time_slot').forEach(slot => slot.remove());
+				const timeColumn = document.querySelector('#timeColumn');
+				timeColumn.querySelectorAll(".time_slot").forEach(slot => slot.remove());
 				
 				// filtered배열을 cinemaName으로 그룹핑.
 				// 같은 cinemaName을 가지는 객체끼리 배열로 모임
@@ -293,29 +303,24 @@
 			        return acc;
 			    }, {});
 				
-				// grouped의 cinemaName(키)를 하나씩 순회
 				for (const cinemaName in grouped) {
 			        const timeslot = document.createElement('div');
 			        timeslot.classList.add('time_slot');
 			        const first = grouped[cinemaName][0];
-			        timeslot.innerHTML = '<strong><span class="theater_type">2D(자막)></span>' 
+			        timeslot.innerHTML = '<strong><span class="theater_type">2D(자막) </span>' 
 			        					+ first.cinemaName + '(' + first.cinemaSpecialName + ')</strong><br>';
 			        
 			        const timeContainer = document.createElement('div');
 			        timeContainer.classList.add('time_container');
 
-			        // 상영 시간과 좌석 수 표시
 			        grouped[cinemaName].forEach(item => {
 			            const timeBlock = document.createElement('div');
 			            timeBlock.classList.add('time_block');
 			            
 			            timeBlock.onclick = () => {
-			                // 모든 time_block에서 'selected' 제거
-			                document.querySelectorAll('.time_block.selected').forEach(el => {
-			                    el.classList.remove('select');
-			                });
+			                const preSelected = document.querySelector(".time_block.select");
+							if (preSelected) { preSelected.classList.remove("select"); }
 
-			                // 현재 클릭한 요소에만 selected 추가
 			                timeBlock.classList.add('select');
 			            };
 
@@ -330,7 +335,11 @@
 			        timeslot.appendChild(timeContainer);
 			        timeColumn.appendChild(timeslot);
 			    }	
-			}	    
+			}
+			
+			function timeSelect(){
+				
+			}
 		});
 </script>
 </body>
