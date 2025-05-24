@@ -79,7 +79,7 @@
 
 				    console.log(res);
 				    console.log(res.data);
-				    
+				    console.log(res.data[i].movieChartImg);
 					let html =
 						
 						 '<li>' +
