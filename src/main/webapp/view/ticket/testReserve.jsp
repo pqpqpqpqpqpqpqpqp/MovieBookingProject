@@ -97,6 +97,7 @@
 			let selectedMovie = null;
 			let selectedTheater = null;
 			let selectedDate = null;
+			let selectedTime = null;
 			let allData = [];
 			
 			const movieData = {
@@ -261,7 +262,9 @@
 			        '</div>' +
 			        '<div class="context">' +
 			            '<span class="input_text">CGV ' + theaterName + '</span>' +
-			            '<span class="input_text"> </span>' +
+			            '<span class="input_text"></span>' +
+			            '<span class="input_text"></span>' +
+			            '<span class="input_text"></span>' +
 			        '</div>' +
 			        '<div class="line"></div>';
 			        
@@ -307,28 +310,25 @@
 			        const timeslot = document.createElement('div');
 			        timeslot.classList.add('time_slot');
 			        const first = grouped[cinemaName][0];
-			        timeslot.innerHTML = '<strong><span class="theater_type">2D(자막) </span>' 
-			        					+ first.cinemaName + '(' + first.cinemaSpecialName + ')</strong><br>';
+			        timeslot.innerHTML = '<strong><span class="theater_type">2D(자막) </span>' +
+			        					 '<span class="cinema_name">' + first.cinemaName + '</span>' +
+			        					 '<span class="cinema_spe">(' + first.cinemaSpecialName + ')</span></strong><br>';
 			        
 			        const timeContainer = document.createElement('div');
 			        timeContainer.classList.add('time_container');
 
 			        grouped[cinemaName].forEach(item => {
 			            const timeBlock = document.createElement('div');
-			            timeBlock.classList.add('time_block');
+			            const theaterTime = document.createElement('div');
 			            
-			            timeBlock.onclick = () => {
-			                const preSelected = document.querySelector(".time_block.select");
-							if (preSelected) { preSelected.classList.remove("select"); }
-
-			                timeBlock.classList.add('select');
-			            };
-
-			            const timeDiv = document.createElement('div');
-			            timeDiv.classList.add('theater_time');
-			            timeDiv.textContent = item.screenStartTime;
-
-			            timeBlock.appendChild(timeDiv);
+			            timeBlock.classList.add('time_block');
+			            theaterTime.classList.add('theater_time');
+			            
+			            theaterTime.addEventListener('click', () => timeSelect(theaterTime));
+			            
+			            theaterTime.textContent = item.screenStartTime;
+			            
+			            timeBlock.appendChild(theaterTime);
 			            timeContainer.appendChild(timeBlock);
 			        });
 
@@ -337,8 +337,19 @@
 			    }	
 			}
 			
-			function timeSelect(){
-				
+			function timeSelect(theaterTime) {			
+			    const preSelected = document.querySelector(".theater_time.select");
+			    if (preSelected) {
+			        preSelected.classList.remove("select");
+			    }
+
+			    theaterTime.classList.add("select");
+			    
+			    console.log(document.querySelector('.cinema_name').textContent);
+			    
+			    const spans = document.querySelectorAll('.input_text');
+			    spans[1].textContent = selectedDate + ' ' + theaterTime.textContent;
+			    //spans[2].textContent = document.querySelector('.timeslot').innerHTML;
 			}
 		});
 </script>
