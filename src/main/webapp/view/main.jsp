@@ -13,7 +13,6 @@ height: 100%;
 <jsp:include page="common/header.jsp"/>
 </style>
 </head>
-
 <body>
 <jsp:include page="common/body.jsp"/>
 </body>

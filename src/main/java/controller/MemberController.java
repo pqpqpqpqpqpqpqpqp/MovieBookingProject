@@ -45,7 +45,9 @@ public class MemberController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.invalidate();
 			forward = "/view/main.jsp";
-		}
+		} else if(command.equals("/myPagemain.me")) {
+			forward = "/view/member/myPagemain.jsp";
+		} 
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 		dispatcher.forward(request, response);
