@@ -323,6 +323,7 @@
 			            
 			            timeBlock.classList.add('time_block');
 			            theaterTime.classList.add('theater_time');
+			            theaterTime.setAttribute('theater_name',first.cinemaName);
 			            
 			            theaterTime.addEventListener('click', () => timeSelect(theaterTime));
 			            
@@ -345,11 +346,9 @@
 
 			    theaterTime.classList.add("select");
 			    
-			    console.log(document.querySelector('.cinema_name').textContent);
-			    
 			    const spans = document.querySelectorAll('.input_text');
 			    spans[1].textContent = selectedDate + ' ' + theaterTime.textContent;
-			    //spans[2].textContent = document.querySelector('.timeslot').innerHTML;
+			    spans[2].textContent = theaterTime.getAttribute('theater_name');
 			}
 		});
 </script>
