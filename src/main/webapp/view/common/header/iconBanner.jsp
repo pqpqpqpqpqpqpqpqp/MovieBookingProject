@@ -99,10 +99,12 @@
 				<a onclick="inOutAction()" class="menu-item"> <img
 					src="https://img.icons8.com/ios/50/lock--v1.png" alt="로그인 아이콘">
 					<span id="loginText">로그인</span>
-				</a> <a href="#" class="menu-item"> <img
+				</a> 
+				<a href="${pageContext.request.contextPath}/userRegister.me" class="menu-item"> <img
 					src="https://img.icons8.com/ios/50/add-user-male--v1.png"
 					alt="회원가입 아이콘"> 회원가입
-				</a> <a href="#" class="menu-item"> <img
+				</a> 
+				<a onclick="myPageAction()" class="menu-item"> <img
 					src="https://img.icons8.com/ios/50/user--v1.png" alt="MY CGV 아이콘">
 					MY CGV
 				</a>
@@ -110,39 +112,39 @@
 			<!-- top-container -->
 		</div>
 	</div>
+<script>
+	// 로그인 여부 확인: JSP에서 전달된 값 사용
+	const isLoggedIn = <%=session.getAttribute("userIdx") != null%>;
 
-	<script type="text/javascript">
-		document.getElementById("logo").addEventListener("click", function() {
-			location.href = "${pageContext.request.contextPath}/mainHome.vo"; // 컨트롤러 요청
+	// 페이지 로드 시 로그인/로그아웃 텍스트 설정
+	window.onload = function () {
+		const loginText = document.getElementById("loginText");
+		loginText.textContent = isLoggedIn ? "로그아웃" : "로그인";
+
+		// 로고 클릭 시 메인 페이지로 이동
+		document.getElementById("logo").addEventListener("click", function () {
+			location.href = "${pageContext.request.contextPath}/mainHome.vo";
 		});
-	</script>
+	};
 
-	<%
-	boolean isLoggedIn = session.getAttribute("userIdx") != null;
-	%>
-
-	<script>
+	// 로그인 또는 로그아웃 처리
 	function inOutAction() {
-		const isLoggedIn = <%=isLoggedIn%>;
-
 		if (isLoggedIn) {
-			// 로그아웃은 별도 로그아웃 서블릿 또는 페이지에서 처리하는 게 일반적입니다
 			location.href = "${pageContext.request.contextPath}/logout.me";
 		} else {
 			location.href = "${pageContext.request.contextPath}/userLogin.me";
-			}
 		}
+	}
 
-		function onloadHeader() {
-			const loginText = document.getElementById("loginText");
-			const isLoggedIn = <%=isLoggedIn%>;
-
-			loginText.textContent = isLoggedIn ? "로그아웃" : "로그인";
+	// 마이페이지 이동
+	function myPageAction() {
+		if (isLoggedIn) {
+			location.href = "${pageContext.request.contextPath}/myPagemain.me";
+		} else {
+			location.href = "${pageContext.request.contextPath}/userLogin.me";
 		}
+	}
+</script>
 
-		document.addEventListener("DOMContentLoaded", function() {
-			onloadHeader();
-		});
-	</script>
 </body>
 </html>

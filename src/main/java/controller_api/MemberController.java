@@ -9,11 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
 import member.service.MemberIdCheckService;
 import member.service.MemberLoginService;
+import member.service.MemberMyPageService;
 import member.service.MemberRegisterService;
 import util.ResponseData;
 
@@ -49,6 +51,9 @@ public class MemberController extends HttpServlet {
 		}else if(command.equals("/login.mew")) {
 			MemberLoginService loginService = new MemberLoginService();
 			responseData = loginService.execute(request, response);
+		}else if(command.equals("/myPagemain.mew")) {
+			MemberMyPageService myPageService = new MemberMyPageService();
+			responseData = myPageService.execute(request, response);
 		}
 
 		response.setCharacterEncoding("UTF-8");

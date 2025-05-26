@@ -72,10 +72,6 @@ public class ReserveDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return reserveArr;
-		} finally {
-			conClose();
 		}
-
 	}
-
 }

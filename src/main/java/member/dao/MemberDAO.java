@@ -131,5 +131,38 @@ public class MemberDAO {
 		return memberVO;
 	}
 	
+	public MemberVO myPageLoad(int userIdx) {
+		MemberVO memberVO = null;
+		try {
+			
+			String input = "SELECT USER_NAME, USER_ID, USER_NICKNAME, USER_IMG FROM USER WHERE USER_IDX = ?";
+			pstmt = conn.prepareStatement(input);
+			pstmt.setInt(1, userIdx);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				memberVO = new MemberVO();
+				
+				memberVO.setUserName(rs.getString("USER_NAME"));
+				memberVO.setUserId(rs.getString("USER_ID"));
+				memberVO.setUserNickname(rs.getString("USER_NICKNAME"));
+				memberVO.setUserImg(rs.getString("USER_IMG"));
+
+				return memberVO;
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			return memberVO;
+		} finally {
+			conClose();
+		}
+		memberVO = new MemberVO();
+		memberVO.setUserPw("아이디를 못찾음");
+		
+		return memberVO;
+	}
+	
 
 }
