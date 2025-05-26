@@ -16,42 +16,73 @@
 
 <!-- 미리보기용 div 250526 NHD -->
 <div>
-	<h1> MovieDetailReview Page</h1>
+
 	<input type="hidden" id="movieIdx" value="${movieIdx}" />
 	
 
 	<div class="review_writeBtn">
-		<div>평점 작성 버튼</br>
-		</div>
-		<div>내 평점 확인 버튼
-		</div>
+		<button class="review_btn" id="write_btn">평점 작성</button>
+		<button class="review_btn" id="my_btn">내 평점 확인</button>
 	</div>
+	
 	<div class="movie_detail_review" id="movie_detail_review">
 	<!-- script에서 html 추가  -->
-<!--  		<img id="user_img" src=""/> -->
+
 		<br/>
 		
 	</div>
 </div>
 
 <script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
-<!-- <script>
-/************************
- * 페이지 시작
- ************************/
-const MOVIE_IDX = document.getElementById('movieIdx').value;
-$(document).ready(function() {
 
-	detail(); // 영화 상세보기
-});
+<!-- 영화 리뷰 버튼(로그인 / 페이지 이동) 함수 -->
+<%
+    Object sessionUserIdx = session.getAttribute("userIdx");
+    String userIdxStr = sessionUserIdx != null ? sessionUserIdx.toString() : "";
+    /* null = "" (로그인 안된 상태)  */
+%>
 
-/************************
- * 영화 상세보기 불러오기 함수
- ************************/
+<input type="hidden" value="<%=userIdxStr%>" id="userIdxStr">
+<script>
+	
+	const userIdxStr = document.getElementById('userIdxStr');
+	
+	// 평점 작성 버튼
+	document.getElementById('write_btn').addEventListener("click", function() {
+		console.log("확인");
+		
+		// 로그인 된 상태
+		if (userIdxStr.value !== '') {
+			consoel.log("평점 작성 - 로그인 완");
+			// 리뷰 작성 페이지 연결
+		}
+		// 로그인 안된 상태
+		else {
+			alert("로그인이 필요합니다.");	
+			location.href = "${pageContext.request.contextPath}/userLogin.me";
+		}
+		
+	});
 
-</script> -->
+	// 내 평점 작성 버튼
+	document.getElementById('my_btn').addEventListener("click", function() {
+		
+		// 로그인 된 상태 - 내가 쓴 평점 페이지로 이동
+		if (userIdxStr.value !== '') {
+			consoel.log("내 평점 작성 - 로그인 완");
+			location.href = "";
+		}
+		// 로그인 안된 상태
+		else {
+			alert("로그인이 필요합니다.");	
+			location.href = "${pageContext.request.contextPath}/userLogin.me";
+		}
+		
+	});
 
+</script>
 
+<!-- 영화 리뷰 불러오기 함수  -->
 <script>
 	$(document).ready(function() {
 		const MOVIE_IDX = document.getElementById('movieIdx').value;
@@ -74,13 +105,15 @@ $(document).ready(function() {
 					console.log("i 데이터 확인: ",resp.data[i]);
 					
 					var html = 
-						'<div class="movie_review_img">' +
-                    		'<img src="'+resp.data[i].userImg+'"/>' +
-                    	'</div>' +
-                    	'<div class="movie_review_content">' +
-						'<span class="user_nickname">닉네임: '+resp.data[i].userNick+'</span>' +
-						'<span class="user_content">리뷰 내용: '+resp.data[i].reviewContent+'</span>' +
-						'<span class="user_date">리뷰 작성일: '+resp.data[i].reviewDate+'</span>' +
+						'<div class="review_item">' +
+							'<div class="movie_review_img">' +
+                    			'<img src="'+resp.data[i].userImg+'"/>' +
+                    		'</div>' +
+                    		'<div class="movie_review_content">' +
+								'<span class="user_nickname">닉네임: '+resp.data[i].userNick+'</span>' +
+								'<span class="user_content">리뷰 내용: '+resp.data[i].reviewContent+'</span>' +
+								'<span class="user_date">리뷰 작성일: '+resp.data[i].reviewDate+'</span>' +
+							'</div>' +
 						'</div>';
 					
 					$("#movie_detail_review").append(html);
