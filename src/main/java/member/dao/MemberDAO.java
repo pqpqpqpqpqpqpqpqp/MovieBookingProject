@@ -144,10 +144,10 @@ public class MemberDAO {
 				
 				memberVO = new MemberVO();
 				
-				memberVO.setUserPw(rs.getString("USER_NAME"));
-				memberVO.setUserPw(rs.getString("USER_ID"));
-				memberVO.setUserPw(rs.getString("USER_NICKNAME"));
-				memberVO.setUserPw(rs.getString("USER_IMG"));
+				memberVO.setUserName(rs.getString("USER_NAME"));
+				memberVO.setUserId(rs.getString("USER_ID"));
+				memberVO.setUserNickname(rs.getString("USER_NICKNAME"));
+				memberVO.setUserImg(rs.getString("USER_IMG"));
 
 				return memberVO;
 			}

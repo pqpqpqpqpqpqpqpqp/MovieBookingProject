@@ -52,7 +52,6 @@ public class MemberController extends HttpServlet {
 			MemberLoginService loginService = new MemberLoginService();
 			responseData = loginService.execute(request, response);
 		}else if(command.equals("/myPagemain.mew")) {
-			System.out.println(request.getParameter("userIdx"));
 			MemberMyPageService myPageService = new MemberMyPageService();
 			responseData = myPageService.execute(request, response);
 		}

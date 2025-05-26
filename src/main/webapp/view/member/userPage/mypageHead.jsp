@@ -6,8 +6,7 @@
 	href="${pageContext.request.contextPath}/asset/css/mypage.css" />
 <div class="user_mypage_head_info">
 	<div class="user_profile_img">
-		<img
-			src="<%=request.getContextPath()%>/asset/img/member/userDefault.gif">
+		<img src="<%=request.getContextPath()%>/asset/img/member/userDefault.gif" id = "userImg">
 	</div>
 	<div class="user_profile_info">
 		<div class="user_name_container">
@@ -43,15 +42,16 @@
 			data : obj,
 			dataType : 'json', //성공 유무
 			success : function(res) { // 성공 했을 때
-				console.log(res);
-				if (res.code == 200) {
-					alert('로그인 성공');
-					console.log(res.data);
-					
-				} else{
-					alert('로그인 실패');
-				}
-				// location.href = , 보내고 싶은 페이지 이동 
+				const userName = document.getElementById("userName");
+				const userId = document.getElementById("userId");
+				const userNickname = document.getElementById("userNickname");
+				const userImg = document.getElementById("userImg");
+				
+				userName.textContent = res.data.userName;
+				userId.textContent = res.data.userId;
+				userNickname.textContent = res.data.userNickName;
+				userImg.src = res.data.userImg;
+				
 			}
 		})
 	}

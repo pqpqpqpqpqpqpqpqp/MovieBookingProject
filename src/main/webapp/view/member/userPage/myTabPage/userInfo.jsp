@@ -7,7 +7,7 @@
   <link rel="stylesheet"
 		href="${pageContext.request.contextPath}/asset/css/mypage.css" />
 <div class="member_info_change_container">
-  <div ><strong class="member_info_title_txt">회원정보 수정</strong ></div>
+  <div ><strong class="member_info_title_txt">회원정보 수정</strong></div>
   <p class="description">회원님의 소중한 정보를 안전하게 관리하세요.</p>
   	<div class ="member_spec_menu">
     	<div class="h2_tit">기본정보</div>

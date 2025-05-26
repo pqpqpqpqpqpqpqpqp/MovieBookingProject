@@ -5,14 +5,14 @@
 		<div class="mypage_index">
 			<ul>
 				<li>
-					<a href="#" class="menu-link" data-url="myTabPage/myCgvHome.jsp">MY CGV HOME</a>		
+					<a href="#" class="menu-link" data-url="${pageContext.request.contextPath}/view/member/userPage/myTabPage/myCgvHome.jsp">MY CGV HOME</a>		
 					<i></i>		
 				</li>
 				<li>
 					<a>나의 예매내역</a>	
 					<ul>
 						<li>
-							<a href="#" class="menu-link" data-url="myTabPage/myTicket.jsp">CGV 영화관람권</a>
+							<a href="#" class="menu-link" data-url="${pageContext.request.contextPath}/view/member/userPage/myTabPage/myTicket.jsp">CGV 영화관람권</a>
 						</li>
 					</ul>
 				</li>
@@ -20,13 +20,13 @@
 					<a>회원정보</a>	
 						<ul>
 							<li>
-								<a href="#" class="menu-link" data-url="myTabPage/userInfo.jsp">회원정보 설정</a>
+								<a href="#" class="menu-link" data-url="${pageContext.request.contextPath}/view/member/userPage/myTabPage/userInfo.jsp">회원정보 설정</a>
 							</li>
 							<li>
-								<a href="#" class="menu-link" data-url="myTabPage/userSelectInfo.jsp">선택정보 설정</a>
+								<a href="#" class="menu-link" data-url="${pageContext.request.contextPath}/view/member/userPage/myTabPage/userSelectInfo.jsp">선택정보 설정</a>
 							</li>
 							<li>
-								<a href="#" class="menu-link" data-url="myTabPage/userDelete.jsp">회원탈퇴</a>
+								<a href="#" class="menu-link" data-url="${pageContext.request.contextPath}/view/member/userPage/myTabPage/userDelete.jsp">회원탈퇴</a>
 							</li>
 						</ul>			
 				</li>
@@ -88,7 +88,7 @@ function aDataUrl(e) {
 	
   let targetUrl = new Object;
   if(e.target == '') {
-	  targetUrl= 'myTabPage/myCgvHome.jsp';
+	  targetUrl= '${pageContext.request.contextPath}/view/member/userPage/myTabPage/myCgvHome.jsp';
   } else {
 	  targetUrl = e.target.getAttribute("data-url");
   }
