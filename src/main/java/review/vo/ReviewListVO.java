@@ -7,6 +7,25 @@ public class ReviewListVO {
 	private String reviewDate;
 	private String userImg;
 	private String userNick;
+	private String movieName;
+	private String movieImg;
+	
+	
+	public String getMovieImg() {
+		return movieImg;
+	}
+
+	public void setMovieImg(String movieImg) {
+		this.movieImg = movieImg;
+	}
+
+	public String getMovieName() {
+		return movieName;
+	}
+
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
 
 	public String getReviewContent() {
 		return reviewContent;
