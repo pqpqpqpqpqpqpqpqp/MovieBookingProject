@@ -195,9 +195,9 @@
 	<div class="nav-bar">
 		<div class="menu-container">
 			<ul class="menu" id="menuBar">
-				<li>영화</li>
+				<li class="movieChart">영화</li>
 				<li>극장</li>
-				<li>예매</li>
+				<li class="fastTicketing">예매</li>
 <!-- 				<li>스토어</li> -->
 <!-- 				<li>이벤트</li> -->
 <!-- 				<li>혜택</li> -->
@@ -213,9 +213,9 @@
 		<div class="dropdown-wrapper" id="dropDown">
 			<div class="dropdown-wrapper-container">
 				<div class="dropdown-section">
-					<h4>영화</h4>
+					<h4 class="movieChart">영화</h4>
 					<ul>
-						<li>무비차트</li>
+						<li class="movieChart">무비차트</li>
 	<!-- 					<li>아트하우스</li> -->
 	<!-- 					<li>ICECON</li> -->
 					</ul>
@@ -228,9 +228,9 @@
 					</ul>
 				</div>
 				<div class="dropdown-section">
-					<h4>예매</h4>
+					<h4 class="fastTicketing">예매</h4>
 					<ul>
-						<li>빠른예매</li>
+						<li class="fastTicketing">빠른예매</li>
 	<!-- 					<li>상영스케줄</li> -->
 	<!-- 					<li>English Ticketing</li> -->
 	<!-- 					<li>English Schedule</li> -->
@@ -265,7 +265,7 @@
 			</div>
 		</div>
 	</div>
-	<script>
+<script>
     const menuBar = document.getElementById("menuBar");
     const dropdown = document.getElementById("dropDown");
 
@@ -324,6 +324,28 @@
 	}
 </script>
 
+<script>
+	
+	// 상단 영화 / 드롭다운 속 영화, 무비차트 클릭 시 무비차트 페이지로 이동
+	var movieLinks = document.querySelectorAll(".movieChart");
+
+	for (var i = 0; i < movieLinks.length; i++) {
+		movieLinks[i].addEventListener("click", function () {
+			location.href = "${pageContext.request.contextPath}/view/movie/MovieChart.jsp";
+		});
+	}
+	
+	// 상단 예매 / 드롭다운 속 예매, 빠른예매 클릭 시 빠른예매 페이지로 이동
+	var ticketLinks = document.querySelectorAll(".fastTicketing");
+	
+	for (var i = 0; i < ticketLinks.length; i++) {
+		ticketLinks[i].addEventListener("click", function() {
+			location.href = "${pageContext.request.contextPath}/view/ticket/fastTicketMain.jsp";
+		});
+	}
+
+	
+</script>
 
 </body>
 </html>
