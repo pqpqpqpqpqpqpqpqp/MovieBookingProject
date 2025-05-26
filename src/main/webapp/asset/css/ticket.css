@@ -397,9 +397,6 @@ body{
 			font-weight: 700;
 			cursor: pointer;
 	    }
-	    .time_slot .time_container .theater_time.selected{
-	    	
-	    }
 	    
 	    .time_slot .time_container{
 	    	margin-top: 10px;

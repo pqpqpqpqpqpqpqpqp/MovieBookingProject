@@ -9,10 +9,10 @@
   <!-- 상단 메뉴 -->
   <div class="myCGV_home_container">
   <div class="myCGV_home_menu_box">
-    <div class="menu_item">
+    <!-- <div class="menu_item">
       <h3>기대되는 영화</h3>
       <p>보고 싶은 영화들을 미리<br>담아두고 싶다면?</p>
-    </div>
+    </div> -->
     <div class="menu_item">
       <h3>내가 본 영화</h3>
       <p>관람한 영화들을 한번에<br>모아 보고 싶다면?</p>
