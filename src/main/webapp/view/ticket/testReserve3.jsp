@@ -11,8 +11,6 @@
 </head>
 <body>
 	<div class="payBox_container">
-		
-		
 	</div>
 	<!-- 추후 페이지 2개로 분리할것 - 페이지가 넘어갈때 위쪽만 바뀌어야 함 -->
 	<div class="ticket_foot">

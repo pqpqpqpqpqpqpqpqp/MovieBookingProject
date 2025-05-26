@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="seatBox_container">
-		
+		<!-- 인원수 선택, 좌석 선택이 들어갈 부분 -->
 	</div>
 	<!-- 추후 페이지 2개로 분리할것 - 페이지가 넘어갈때 위쪽만 바뀌어야 함 -->
 	<div class="ticket_foot">
