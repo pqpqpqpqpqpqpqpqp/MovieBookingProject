@@ -5,52 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>영화 예매 페이지 - 영화, 극장, 날짜, 시간</title>
+<title>영화 예매 페이지 - 결제</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/asset/css/ticket.css" />
 </head>
 <body>
-	<div class="ticketBox_container">
-		<div class="column movies" id="movieColumn">
-			<div class="title">영화</div>
-		</div>
-
-		<div class="column theaters" id="theaterColumn">
-			<div class="title">극장</div>
-		</div>
-
-		<!-- 날짜는 더미데이터상 정적으로 생성. 오늘 날짜로부터 2주정도 동적으로 생성하게 바꿀 것 -->
-		<div class="column dates" id="dateColumn">
-			<div class="title">날짜</div>
-			<div class="date_list nano has-scroll-y" id="date_list">
-				<div class="content scroll-y" tabindex="-1">
-					<div class="date_month">
-						<span class="year">2025</span> <span class="month">5</span>
-					</div>
-					<div class="date_container">
-						<div class="date" data-date="2025-05-10">10 토</div>
-						<div class="date" data-date="2025-05-11">11 일</div>
-						<div class="date" data-date="2025-05-12">12 월</div>
-					</div>
-					<div class="pane pane-y"
-						style="display: block; opacity: 1; visibility: visible;">
-						<div class="slider slider-y" style="height: 50px; top: 0px;">
-						</div>
-					</div>
-					<div class="pane pane-x"
-						style="display: none; opacity: 1; visibility: invisible;">
-						<div class="slider slider-x"
-							style="width: 50px; overflow-x: hidden !important;"></div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="payBox_container">
 		
-		<div class="column times" id="timeColumn">
-			<div class="title">시간</div>
-		</div>
+		
 	</div>
+	<!-- 추후 페이지 2개로 분리할것 - 페이지가 넘어갈때 위쪽만 바뀌어야 함 -->
 	<div class="ticket_foot">
+		<a class="ticket_foot_btn_left previous_btn_seat" title="좌석선택"></a>
+			<!-- 이전 페이지로 돌아가는 버튼 -->
 		<div class="foot first_container"></div>
 		<div class="line"></div>
 		<div class="foot second_container"></div>
@@ -60,14 +27,30 @@
 			<div class="title">
 				<span>좌석명</span> <span>좌석번호</span>
 			</div>
+			<div class="context">
+				<span class="input_text"> <!-- 좌석명 - 추후 결정 - 아마 좌석 div에 setAttribute로 값을 주고 받아올것 -->
+				</span> <span class="input_text"> <!-- 좌석번호 - A1,A2 -->
+				</span>
+			</div>
+
 		</div>
 		<div class="line"></div>
 		<div class="foot tax_tab">
 			<div class="title">
 				<span>일반</span> <span>총금액</span>
 			</div>
+			<div class="context tax">
+				<div class="tax_counting">
+					<span class="input_text"> <!-- 영화요금 - 상영정보에 있음 --></span> <span>원</span><span>X</span>
+					<span> <!-- 를 인원수로 곱함 --></span>
+				</div>
+				<div class="tax_count_txt_container">
+					<span class="input_text tax_count_txt"> <!-- 총금액 - 위의 값을 계산하여 삽입--></span>
+					<span class="tax_count_txt">원</span>
+				</div>
+			</div>
 		</div>
-		<a class="ticket_foot_btn_right next_btn_seat_before" title="영화선택">다음단계로 이동</a>
+		<a class="ticket_foot_btn_right next_btn_seat_before" href="#"title="영화선택">다음단계로 이동</a>
 		<!-- 전부 선택된게 아니면 넘어가지 말아야함 -->
 	</div>
 	<script
