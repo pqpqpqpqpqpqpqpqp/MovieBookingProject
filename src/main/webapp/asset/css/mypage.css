@@ -2,10 +2,27 @@
 
 
 /* myCgvHome*/
+*, body{
+	
+	    font-family: 'Noto Sans KR', 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}
+
+
+
+
 	.myCGV_home_container{
 		display:flex;
 		width: 100%;
 		flex-direction: column;
+	}
+	a{
+		text-decoration: none;
 	}
 
     .myCGV_home_menu_box {
@@ -102,7 +119,6 @@
     }
 
     .aside_profile_container {
-    	border: 1px solid black;
       width: 160px;
       height: 100%;
     }
@@ -122,14 +138,18 @@
     .aside_profile_menu{
   	    padding: 12px 12px 20px 12px;
     	color: #222;
-    	border: 1px solid #bab8ae;
+
     	border-radius: 5px;
     	margin-top: 20px;
     }
+    .aside_profile_menu.imghead{
+        	border: 1px solid #bab8ae;
+    }
     .aside_profile_menu.tab{
-    	padding: 12px 0;
+    	padding: 20px 0;
     	display: flex;
     	flex-direction: column;
+        border: 1px solid #bab8ae;
     	color: #111;
     	
     }
@@ -186,6 +206,9 @@
       font-size: 14px;
     }
 
+    
+    
+
     .aside_profile_menu.tab.active {
       background-color: #fb4357;
       color: white;
@@ -193,7 +216,10 @@
       
     }
 
-    .movie-list-section {
+    .movie_list_catainer {
+    width: 100%;
+    height: auto;
+    padding: 10px;
       flex: 1;
     }
 
@@ -214,23 +240,27 @@
 
     .movie-list-header select,
     .movie-list-header button {
-      padding: 6px 10px;
+      padding: 4px 10px;
       font-size: 13px;
+      background-color: #fff;
+      cursor: pointer;
+      border: 2px solid #777;
     }
 
     .movie-item {
       display: flex;
       margin-top: 20px;
       padding-bottom: 20px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #ddd;
       position: relative;
     }
 
     .movie-item img.poster {
-      width: 100px;
-      height: 140px;
-      object-fit: cover;
-      margin-right: 16px;
+		float: left;
+		width: 110px;
+		height: 158px;
+		object-fit: cover;
+		margin-right: 16px;
     }
 
     .movie-info {
@@ -242,22 +272,27 @@
       margin-bottom: 4px;
     }
 
-    .movie-info small {
-      font-size: 12px;
-      color: #888;
-    }
 
-    .movie-info .meta {
-      margin-top: 8px;
-      font-size: 13px;
-      color: #555;
+	.movie-info .meta {
+		padding-left: 5px;
+    	margin-top: 8px;
+    	font-size: 10px;
+    	color: #555;
+    }
+    .movie-info .review_context{
+	    color: #222;
+		height: 51px;
+		font-size: 14px;
+	    margin-bottom: 25px;
+	    padding-left: 5px;
+	    line-height: 1.4;
     }
 
     .movie-info .highlight {
       margin-top: 6px;
-      font-size: 13px;
-      color: #ff4e00;
-      font-weight: bold;
+      font-size: 11px;
+      color: #fb4357;;
+      font-weight: 500;
     }
 
     .movie-remove-btn {
@@ -274,7 +309,32 @@
     .movie-remove-btn:hover {
       color: red;
     }
-  
+  	.edit_review_txt{
+		position: absolute;
+	    bottom: 16px;
+	    left: 130px;
+	    display: flex;
+	    flex-direction: row;
+  	}
+  	.edit_review_txt .btn_edit{
+ 		display: inline-block;
+	    line-height: 20px;
+	    vertical-align: top;
+	    margin-right: 10px;
+  	}
+  	  	.edit_review_txt .btn_edit a{
+  	    display: block;
+	    font-weight: 500;
+	    white-space: nowrap;
+        text-overflow: ellipsis;
+	    text-decoration: none;
+        color: inherit;
+        font-size:13px;
+    
+	    overflow: hidden;
+	    
+  	  	
+  	  	}
 	/*mypageHead*/
 	
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
@@ -314,7 +374,12 @@
 		margin-right: 30px;
 	}
 	.user_mypage_head_info .user_profile_img img{		
-		transform: scale(0.9);
+		background-size: cover;
+		width: 100%;
+		height: 100%;
+		
+		
+		/* 프로필 사진 오류*/
 	}
 	
 	.user_mypage_head_info .user_profile_info{
@@ -516,6 +581,7 @@
 	.delete_id_container .delete_title strong{
 		font-size: 20px;
 	}
+	
 	.delete_context{
 		border-top: 2px solid #fb4357;
 		border-bottom: 2px solid #fb4357;

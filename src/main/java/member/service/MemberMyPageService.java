@@ -13,9 +13,7 @@ public class MemberMyPageService {
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		
-		System.out.println(request.getParameter("userIdx"));
 		int userIdx = Integer.parseInt(request.getParameter("userIdx"));
-		System.out.println(userIdx);
 		MemberVO memberVO = new MemberVO();
 		MemberDAO memberDAO = new MemberDAO();
 		
@@ -37,3 +35,4 @@ public class MemberMyPageService {
 		
 	}
 }
+
