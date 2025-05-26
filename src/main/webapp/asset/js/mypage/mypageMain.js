@@ -1,19 +1,13 @@
-/**
- * 
- */
-
 // /asset/js/mypage/mypageMain.js
 
-
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 	const links = document.querySelectorAll(".menu-link");
 	links.forEach(link => {
 		link.addEventListener("click", aDataUrl);
 	});
 
-	// 최초 로딩 시 첫 번째 링크 선택
 	if (links[0]) {
-		aDataUrl({ target: links[0], preventDefault: () => { } });
+		aDataUrl({ target: links[0], preventDefault: () => {} });
 	}
 });
 
@@ -27,7 +21,11 @@ function aDataUrl(e) {
 		.then(res => res.text())
 		.then(data => {
 			document.getElementById("contentBox").innerHTML = data;
-			attachDynamicEvents(); // ✨ 동적 이벤트 재등록
+
+			// 동적으로 불러온 페이지에 userName이 있으면 fetchUserInfo 실행
+			if (document.getElementById("userName") && typeof fetchUserInfo === "function") {
+				fetchUserInfo();
+			}
 		})
 		.catch(err => {
 			document.getElementById("contentBox").innerHTML =

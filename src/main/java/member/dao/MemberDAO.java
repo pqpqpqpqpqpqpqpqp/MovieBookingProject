@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import javax.sql.DataSource;
 
 import member.vo.MemberVO;
+import member.vo.UserInfoVO;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -164,5 +165,49 @@ public class MemberDAO {
 		return memberVO;
 	}
 	
+	
+	public UserInfoVO userInfoLoad(int userIdx) {
+		UserInfoVO userInfoVO = null;
+		try {
+			
+			String input = "SELECT \r\n"
+			        + "  USER_NAME, \r\n"
+			        + "  USER_ID, \r\n"
+			        + "  CASE \r\n"
+			        + "    WHEN SUBSTR(USER_NUM, 8, 1) IN ('1', '2') THEN "
+			        + "      CONCAT('19', SUBSTR(USER_NUM, 1, 2), '-', SUBSTR(USER_NUM, 3, 2), '-', SUBSTR(USER_NUM, 5, 2))\r\n"
+			        + "    WHEN SUBSTR(USER_NUM, 8, 1) IN ('3', '4') THEN "
+			        + "      CONCAT('20', SUBSTR(USER_NUM, 1, 2), '-', SUBSTR(USER_NUM, 3, 2), '-', SUBSTR(USER_NUM, 5, 2))\r\n"
+			        + "    ELSE NULL \r\n"
+			        + "  END AS BIRTHDAY, \r\n"
+			        + "  USER_TEL \r\n"
+			        + "FROM USER \r\n"
+			        + "WHERE USER_IDX = ?";
+			
+			pstmt = conn.prepareStatement(input);
+			pstmt.setInt(1, userIdx);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				userInfoVO = new UserInfoVO();
+				
+				userInfoVO.setUserName(rs.getString("USER_NAME"));
+				userInfoVO.setUserId(rs.getString("USER_ID"));
+				userInfoVO.setBirthday(rs.getString("BIRTHDAY"));
+				userInfoVO.setUserTel(rs.getString("USER_TEL"));
+
+				return userInfoVO;
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			return userInfoVO;
+		} finally {
+			conClose();
+		}
+		
+		return userInfoVO;
+	}
 
 }

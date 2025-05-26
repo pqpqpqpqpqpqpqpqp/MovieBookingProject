@@ -23,20 +23,20 @@
 			<label>이름</label>
 			<div class="spec_info_in_box">
 				<div class="edit_box">
-					<input type="text" value="홍*동" disabled>
+					<input type="text" id="userName" value="" disabled>
 					<button id="editId">변경하기</button>
 				</div>
 				<span>이름은 "개명"한 경우에만 변경 가능합니다.</span>
 			</div>
 		</div>
 		<div class="member_change_info_menu">
-			<label>아이디</label> <input type="text" value="ho*******" disabled>
+			<label>아이디</label> <input type="text" id="userId" value="" disabled>
 		</div>
 		<div class="member_change_info_menu">
 			<label>생년월일</label>
 			<div class="spec_info_in_box">
 				<div class="edit_box">
-					<input type="text" value="**** - ** - **">
+					<input type="text" id="userBirthDay" value="">
 				</div>
 			</div>
 
@@ -45,7 +45,7 @@
 			<label>휴대폰번호</label>
 			<div class="spec_info_in_box">
 				<div class="edit_box">
-					<input type="text" value="010 - **** - 1234">
+					<input type="text" id="userPhoneNum" value="">
 					<button id="editPhone">변경하기</button>
 				</div>
 			</div>
@@ -62,4 +62,45 @@
 	</div>
 </div>
 
+<script
+	src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
+<%
+Object sessionUserIdx = session.getAttribute("userIdx");
+String userIdxStr = sessionUserIdx != null ? sessionUserIdx.toString() : "";
+%>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		fetchUserInfo(); // 페이지 로딩 후 바로 실행
+	});
+
+	function fetchUserInfo() {
+		alert("hi");
+		
+		let obj = new Object();
+		obj.userIdx = "<%=userIdxStr%>";
+
+		$.ajax({
+			url : '${pageContext.request.contextPath}/userInfo.mew',
+			type : 'post',
+			data : obj,
+			dataType : 'json', //성공 유무
+			success : function(res) { // 성공 했을 때
+				console.log(res.data);
+
+				const userName = document.getElementById("userName");
+				const userId = document.getElementById("userId");
+				const userBirthDay = document.getElementById("userBirthDay");
+				const userPhoneNum = document.getElementById("userPhoneNum");
+
+				/* userName.value = res.data.userName;
+				userId.value = res.data.userId;
+				userBirthDay.value = res.data.userNickname;
+				userPhoneNum.value = res.data.userImg; */
+
+			}
+		})
+
+	}
+</script>
 

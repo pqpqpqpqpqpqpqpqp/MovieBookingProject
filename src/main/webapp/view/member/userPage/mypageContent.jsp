@@ -47,6 +47,18 @@
 			 -->
 	</div>
 </div>
+
+<script>
+	const contextPath = "${pageContext.request.contextPath}";
+	const sessionUserIdx = "<%= session.getAttribute("userIdx") %>";
+</script>
+
+<script src="${contextPath}/asset/js/jquery-3.7.1.min.js"></script>
+<script src="${contextPath}/asset/js/mypage/mypageMain.js"></script>
+<script src="${contextPath}/asset/js/mypage/userInfoPage.js"></script>
+<script src="${contextPath}/asset/js/mypage/userInfoPopup.js"></script>
+
+
 <script>
 	const contextPath = "${pageContext.request.contextPath}";
 </script>
@@ -56,13 +68,6 @@
 <script
 	src="${pageContext.request.contextPath}/asset/js/mypage/userInfoPopup.js"></script>
 
-<script>
-	document.addEventListener("DOMContentLoaded", function() {
-		fetchUserInfo(); // 페이지 로딩 후 바로 실행
-	});
 
-	function fetchUserInfo() {
-		l
-	}
-</script>
+<script src="${pageContext.request.contextPath}/asset/js/mypage/userInfoPage.js"></script>
 
