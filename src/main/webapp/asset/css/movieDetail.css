@@ -43,7 +43,7 @@
 		margin-right: 30px;
 	    width: 185px;
 	    height: 260px;
-	    background-image: url('/MovieBookingProject/asset/img/movie/movieposter/Avatar.jpeg');
+	    /*  background-image: url('/MovieBookingProject/asset/img/movie/movieposter/Avatar.jpeg'); */
 		background-size: cover;         /* 요소를 꽉 채우게 */
 	    background-position: center;    /* 중앙 정렬 */
 	    background-repeat: no-repeat;
