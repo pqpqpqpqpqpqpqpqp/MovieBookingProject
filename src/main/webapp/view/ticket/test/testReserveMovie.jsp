@@ -215,13 +215,15 @@ function updateTimeSlots() {
 
 	// filtered배열을 cinemaName으로 그룹핑.
 	// 같은 cinemaName을 가지는 객체끼리 배열로 모임
-	// 근데 애초에 다 눌렀을때 검색으로 적당히 가져왔으면?? 전체를 보여줄일도 없는데? 왜? 
+	// 이 코드 결과는 알겠는데 아직도 과정을 이해못하겠음, 너무 어지럽다
+	// 근데 애초에 다 눌렀을때 검색으로 적당히 가져왔으면?? 전체를 보여줄일도 없는데?? 
+	// 내가 바꿨어야 했는데 안바꿈. 이제는 시간이 없어서 바꾸기도 어려움
 	const grouped = filtered.reduce((acc, cur) => {
 		if (!acc[cur.cinemaName]) acc[cur.cinemaName] = [];
 		acc[cur.cinemaName].push(cur);
 		return acc;
 	}, {});
-
+	
 	for (const cinemaName in grouped) {
 		const timeslot = document.createElement('div');
 		timeslot.classList.add('time_slot');
@@ -259,9 +261,9 @@ function timeSelect(theaterTime) {
 	if (preSelected) {
 		preSelected.classList.remove("select");
 	}
-
+	
 	theaterTime.classList.add("select");
-
+	
 	const spans = document.querySelectorAll('.input_text');
 	spans[1].textContent = window.selectedDate + ' ' + theaterTime.textContent;
 	spans[2].textContent = theaterTime.getAttribute('theater_name');
@@ -269,29 +271,19 @@ function timeSelect(theaterTime) {
 	document.querySelector(".next_btn_seat_before").classList.add("btn_hidden");
 	document.querySelector(".next_btn_seat_end").classList.remove("btn_hidden");
 	
+	// 원래 이벤트를 삭제하고 추가하기 위한 jquery 구문
 	$('.next_btn_seat_end').off('click').on('click', function(e) {
-		const spe = document.querySelector('.cinema_spe').textContent.trim();
-		console.log(spe)
+		const timeSlot = theaterTime.closest('.time_slot');
+		const spe = timeSlot.querySelector('.cinema_spe').textContent.trim();
 		
-		if(spe === '(PRIVATE_BOX)'){
-			targetJsp = 'testReserveSeat121.jsp';
-		} else if(spe === '(SUITE_SINEMA)'){
-			targetJsp = 'testReserveSeat232.jsp';
-		} else if(spe === '(NOMAL)'){
-			targetJsp = 'testReserveSeat222.jsp';
-		}
-
-		if (targetJsp) {	
-			document.querySelector(".next_btn_seat_end").classList.add("btn_hidden");
-			document.querySelector(".previous_btn_movie").classList.remove("btn_hidden");
-			document.querySelector(".next_btn_pay_before").classList.remove("btn_hidden");
-			
-	        $('.bodyContainer').load(targetJsp, function (response, status, xhr) {
-	            if (status === 'error') {
-	                console.error('Error loading JSP:', xhr.status, xhr.statusText);
-	            }
-	        });
-	    }
+		document.querySelector(".next_btn_seat_end").classList.add("btn_hidden");
+		document.querySelector(".next_btn_pay_before").classList.remove("btn_hidden");
+		
+	    $('.bodyContainer').load('testReserveSeat.jsp', {spe: spe}, function (response, status, xhr) {
+	        if (status === 'error') {
+	        	console.error('Error loading JSP:', xhr.status, xhr.statusText);
+	        }
+	    });  
 	});
 }
 

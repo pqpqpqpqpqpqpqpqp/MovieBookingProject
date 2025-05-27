@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 
 <div class="ticket_foot">
-	<a class="ticket_foot_btn_left previous_btn_movie btn_hidden" title="영화선택"
-		style=""></a>
-	<!-- 영화선택 페이지로 돌아가는 버튼 -->
+	<!-- <a class="ticket_foot_btn_left previous_btn_movie btn_hidden" title="영화선택" style=""></a>
+	영화선택 페이지로 돌아가는 버튼
 	<a class="ticket_foot_btn_left previous_btn_seat btn_hidden" title="좌석선택"></a>
-	<!-- 좌석선택 페이지로 돌아가는 버튼 -->
+	좌석선택 페이지로 돌아가는 버튼 --><!-- 뒤로가기 버튼이 있던 흔적, 아직 온기가 남아있다 -->
+	<!-- 뒤로 가봐야 버그만 나는거 그냥 없애버리기로 했음 -->
 	<div class="foot first_container">영화선택</div>
 	<div class="line"></div>
 	<div class="foot second_container">극장선택</div>
@@ -41,19 +41,19 @@
 			</div>
 		</div>
 	</div>
-	<a class="ticket_foot_btn_right next_btn_seat_before" title="좌석선택"></a>
+	<a class="ticket_foot_btn_right next_btn_seat_before" title="영화선택이전"></a>
 	<!-- 영화선택 페이지서 전부 선택되지 않았을때 보일 버튼 -->
 
-	<a class="ticket_foot_btn_right next_btn_pay_before btn_hidden" title="결제선택"></a>
+	<a class="ticket_foot_btn_right next_btn_pay_before btn_hidden" title="좌석선택이전"></a>
 	<!-- 좌석선택 페이지서 전부 선택되지 않았을때 보일 버튼 -->
 
-	<a class="ticket_foot_btn_right next_btn_seat_end btn_hidden" title="좌석선택"></a>
+	<a class="ticket_foot_btn_right next_btn_seat_end btn_hidden" title="영화선택완료"></a>
 	<!-- 영화선택 페이지서 전부 선택되었을때 보일 버튼 -->
 	
-	<a class="ticket_foot_btn_right next_btn_pay_end btn_hidden" title="결제선택"></a>
+	<a class="ticket_foot_btn_right next_btn_pay_end btn_hidden" title="좌석선택완료"></a>
 	<!-- 좌석선택 페이지서 전부 선택되었을때 보일 버튼 -->
 
-	<a class="ticket_foot_btn_right next_btn_topay btn_hidden" title="결제완료"></a>
+	<a class="ticket_foot_btn_right next_btn_topay btn_hidden" title="결제하기"></a>
 	<!-- 얘는 결제페이지에서 그냥 보임 -->
 
 	<!-- 버튼이 눌리면 testReserve가 다른 페이지로 변경 -->

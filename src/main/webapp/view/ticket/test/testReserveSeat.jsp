@@ -4,24 +4,8 @@
 <jsp:include page='testReserveSeatMenu.jsp' />
 <div class="seat_container">
 	<div class="seat_content">
-	<div class="scrren_seat" style="background:url('${pageContext.request.contextPath}/asset/icon/ticketting/screenBoard.png');"><span>SCREEN</span></div>
-		<div class="seatArray A">
-			<a class="seat_num">A</a>
-			<a class="seat" id="a1">1</a>
-			<a class="seat hidden"></a>
-			<a class="seat" id="a2">2</a>
-			<a class="seat" id="a3">3</a> 
-			<a class="seat hidden"></a>
-			<a class="seat" id="a4">4</a>
-		</div>
-		<div class="seatArray B">
-			<a class="seat_num ">B</a>
-			<a class="seat" id="b1">1</a>
-			<a class="seat hidden"></a>
-			<a class="seat" id="b2">2</a>
-			<a class="seat" id="b3">3</a>
-			<a class="seat hidden"></a>
-			<a class="seat" id="b4">4</a>
+		<div class="scrren_seat" style="background:url('${pageContext.request.contextPath}/asset/icon/ticketting/screenBoard.png');">
+			<span>SCREEN</span>
 		</div>
 	</div>
 	<div class="seat_index">
@@ -42,9 +26,9 @@
 	</div>
 	</div>
 </div>
-
+<% String spe = request.getParameter("spe"); %>
 <script>
-$('.previous_btn_movie').off('click').on('click', function () {
+/* $('.previous_btn_movie').off('click').on('click', function () {
     const previousJsp = 'testReserveMovie.jsp';
 
     $('.bodyContainer').load(previousJsp, function (response, status, xhr) {
@@ -63,7 +47,90 @@ $('.previous_btn_movie').off('click').on('click', function () {
             document.querySelector(".next_btn_seat_before").classList.remove("btn_hidden");	
         }
     });
-});
+}); */ //뒤로가기 이벤트의 흔적, 아직 온기가 남아있다
+const spe = "<%=spe %>";
+
+if(spe === '(PRIVATE_BOX)'){
+	const seatcon = document.createElement('div');
+	seatcon.innerHTML = 
+		`<div class="seatArray A">
+		<a class="seat_num">A</a>
+		<a class="seat" id="a1">1</a>
+		<a class="seat hidden"></a>
+		<a class="seat" id="a2">2</a>
+		<a class="seat" id="a3">3</a> 
+		<a class="seat hidden"></a>
+		<a class="seat" id="a4">4</a>
+	</div>
+	<div class="seatArray B">
+		<a class="seat_num ">B</a>
+		<a class="seat" id="b1">1</a>
+		<a class="seat hidden"></a>
+		<a class="seat" id="b2">2</a>
+		<a class="seat" id="b3">3</a>
+		<a class="seat hidden"></a>
+		<a class="seat" id="b4">4</a>
+	</div>`;
+	
+	document.querySelector(".seat_content").appendChild(seatcon);
+	
+} else if(spe === '(SUITE_SINEMA)'){
+	const seatcon = document.createElement('div');
+	seatcon.innerHTML = 
+		`<div class="seatArray A">
+			<a class="seat_num">A</a>
+			<a class="seat" id="a1">1</a>
+			<a class="seat" id="a2">2</a>
+			<a class="seat hidden"></a>
+			<a class="seat"id="a3">3</a> 
+			<a class="seat"id="a4">4</a>
+			<a class="seat"id="a5">5</a> 
+			<a class="seat hidden"></a>
+			<a class="seat"id="a6">6</a>
+			<a class="seat"id="a7">7</a>
+		</div>
+		<div class="seatArray B">
+			<a class="seat_num">B</a>
+			<a class="seat" id="b1">1</a>
+			<a class="seat" id="b2">2</a>
+			<a class="seat hidden" ></a>
+			<a class="seat"id="b3">3</a> 
+			<a class="seat"id="b4">4</a>
+			<a class="seat"id="b5">5</a> 
+			<a class="seat hidden"></a>
+			<a class="seat"id="b6">6</a>
+			<a class="seat"id="b7">7</a>
+		</div>`;
+	
+	document.querySelector(".seat_content").appendChild(seatcon);
+} else if(spe === '(NOMAL)'){
+	const seatcon = document.createElement('div');
+	seatcon.innerHTML = 
+		`<div class="seatArray A">
+			<a class="seat_num">A</a>
+			<a class="seat" id="a1">1</a>
+			<a class="seat" id="a2">2</a>
+			<a class="seat hidden" ></a>
+			<a class="seat"id="a3">3</a> 
+			<a class="seat"id="a4">4</a>
+			<a class="seat hidden"></a>
+			<a class="seat"id="a5">5</a> 
+			<a class="seat"id="a6">6</a>
+		</div>
+			<div class="seatArray B">
+			<a class="seat_num">B</a>
+			<a class="seat" id="b1">1</a>
+			<a class="seat" id="b2">2</a>
+			<a class="seat hidden" ></a>
+			<a class="seat"id="b3">3</a> 
+			<a class="seat"id="b4">4</a>
+			<a class="seat hidden"></a>
+			<a class="seat"id="b5">5</a> 
+			<a class="seat"id="b6">6</a>
+		</div>`;
+	
+	document.querySelector(".seat_content").appendChild(seatcon);
+}
 
 const inputs = document.querySelectorAll('.input_text');
 
@@ -71,7 +138,7 @@ const datetime = inputs[1].textContent.split(" ");
 
 const date = new Date(datetime[0]);
 const day = date.getDay();
-const weekdays = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
 
 const time = datetime[1].split(":");
 const h = parseInt(time[0]) + 2;
@@ -84,7 +151,7 @@ document.querySelector(".theater_time_info").innerHTML =
 
 document.querySelector('.theater_seat_info').innerHTML = 
 	"<span>" + inputs[0].textContent + " </span>" +
-	"<span>" + inputs[2].textContent + "</span>";
+	"<span>" + inputs[2].textContent + " " + spe + "</span>";
 
 // 지금은 페이지가 3개인데 이거 1개로 줄이고 좌석수에 따라 동적으로 만들어야하는데...
 // 원래는 3개의 다른 페이지로 넘어왔으나 그렇게 하면 하나의 페이지로 가게됨
