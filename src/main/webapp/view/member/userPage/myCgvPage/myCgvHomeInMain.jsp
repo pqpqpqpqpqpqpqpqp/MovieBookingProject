@@ -4,7 +4,7 @@
 <title>내가 본 영화</title>
 <link href="${pageContext.request.contextPath}/asset/css/mypage.css" rel="stylesheet">
 
-<div class="my_cgv_home_main_container">
+<div class="my_cgvgit _home_main_container">
   <!-- 왼쪽 프로필 영역 -->
   <div class="aside_profile_container">
     <div class="aside_profile_menu imghead">
