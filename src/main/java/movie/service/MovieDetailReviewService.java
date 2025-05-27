@@ -30,6 +30,7 @@ public class MovieDetailReviewService {
 		try {
 			
 			reviewVO = reviewDAO.getReviewModal(Integer.parseInt(userIdx));
+			
 			if(reviewVO == null) {
 				data.setCode(500);
 			}
