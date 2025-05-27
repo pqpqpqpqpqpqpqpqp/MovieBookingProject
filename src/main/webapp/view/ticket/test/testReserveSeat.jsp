@@ -4,29 +4,34 @@
 <jsp:include page='testReserveSeatMenu.jsp' />
 <div class="seat_container">
 	<div class="seat_content">
-		<div class="scrren_seat" style="background:url('${pageContext.request.contextPath}/asset/icon/ticketting/screenBoard.png');">
+		<div class="scrren_seat"
+			style="background:url('${pageContext.request.contextPath}/asset/icon/ticketting/screenBoard.png');">
 			<span>SCREEN</span>
 		</div>
 	</div>
 	<div class="seat_index">
-		<a class="wideBtn" style="background:url('${pageContext.request.contextPath}/asset/icon/ticketting/btnZoom.png');"></a>
+		<a class="wideBtn"
+			style="background:url('${pageContext.request.contextPath}/asset/icon/ticketting/btnZoom.png');"></a>
 		<div class="seat_icon_list">
-		<div class="icon_line">
-		<div class="icon selected" style="background:url('${pageContext.request.contextPath}/asset/icon/ticketting/seatIcon.png');"></div>
-		<div class="icon_content">선택</div>
-		</div>	
-		<div class="icon_line">
-		<div class="icon reserved"></div>
-		<div class="icon_content">예매완료</div>
-		</div>	
-		<div class="icon_line">
-		<div class="icon notavail" ></div>
-		<div class="icon_content">선택불가</div>
+			<div class="icon_line">
+				<div class="icon selected"
+					style="background:url('${pageContext.request.contextPath}/asset/icon/ticketting/seatIcon.png');"></div>
+				<div class="icon_content">선택</div>
+			</div>
+			<div class="icon_line">
+				<div class="icon reserved"></div>
+				<div class="icon_content">예매완료</div>
+			</div>
+			<div class="icon_line">
+				<div class="icon notavail"></div>
+				<div class="icon_content">선택불가</div>
+			</div>
 		</div>
 	</div>
-	</div>
 </div>
-<% String spe = request.getParameter("spe"); %>
+<%
+String spe = request.getParameter("spe");
+%>
 <script>
 /* $('.previous_btn_movie').off('click').on('click', function () {
     const previousJsp = 'testReserveMovie.jsp';
@@ -48,119 +53,181 @@
         }
     });
 }); */ //뒤로가기 이벤트의 흔적, 아직 온기가 남아있다
-const spe = "<%=spe %>";
 
-if(spe === '(PRIVATE_BOX)'){
+// ================================
+// 좌석 렌더링
+// ================================
+function renderSeats(spe) {
 	const seatcon = document.createElement('div');
-	seatcon.innerHTML = 
-		`<div class="seatArray A">
-		<a class="seat_num">A</a>
-		<a class="seat" id="a1">1</a>
-		<a class="seat hidden"></a>
-		<a class="seat" id="a2">2</a>
-		<a class="seat" id="a3">3</a> 
-		<a class="seat hidden"></a>
-		<a class="seat" id="a4">4</a>
-	</div>
-	<div class="seatArray B">
-		<a class="seat_num ">B</a>
-		<a class="seat" id="b1">1</a>
-		<a class="seat hidden"></a>
-		<a class="seat" id="b2">2</a>
-		<a class="seat" id="b3">3</a>
-		<a class="seat hidden"></a>
-		<a class="seat" id="b4">4</a>
-	</div>`;
-	
-	document.querySelector(".seat_content").appendChild(seatcon);
-	
-} else if(spe === '(SUITE_SINEMA)'){
-	const seatcon = document.createElement('div');
-	seatcon.innerHTML = 
-		`<div class="seatArray A">
-			<a class="seat_num">A</a>
-			<a class="seat" id="a1">1</a>
-			<a class="seat" id="a2">2</a>
-			<a class="seat hidden"></a>
-			<a class="seat"id="a3">3</a> 
-			<a class="seat"id="a4">4</a>
-			<a class="seat"id="a5">5</a> 
-			<a class="seat hidden"></a>
-			<a class="seat"id="a6">6</a>
-			<a class="seat"id="a7">7</a>
-		</div>
-		<div class="seatArray B">
-			<a class="seat_num">B</a>
-			<a class="seat" id="b1">1</a>
-			<a class="seat" id="b2">2</a>
-			<a class="seat hidden" ></a>
-			<a class="seat"id="b3">3</a> 
-			<a class="seat"id="b4">4</a>
-			<a class="seat"id="b5">5</a> 
-			<a class="seat hidden"></a>
-			<a class="seat"id="b6">6</a>
-			<a class="seat"id="b7">7</a>
-		</div>`;
-	
-	document.querySelector(".seat_content").appendChild(seatcon);
-} else if(spe === '(NOMAL)'){
-	const seatcon = document.createElement('div');
-	seatcon.innerHTML = 
-		`<div class="seatArray A">
-			<a class="seat_num">A</a>
-			<a class="seat" id="a1">1</a>
-			<a class="seat" id="a2">2</a>
-			<a class="seat hidden" ></a>
-			<a class="seat"id="a3">3</a> 
-			<a class="seat"id="a4">4</a>
-			<a class="seat hidden"></a>
-			<a class="seat"id="a5">5</a> 
-			<a class="seat"id="a6">6</a>
-		</div>
+	let html = "";
+
+	if (spe === '(PRIVATE_BOX)') {
+		html = `
+			<div class="seatArray A">
+				<a class="seat_num">A</a>
+				<a class="seat" id="a1">1</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="a2">2</a>
+				<a class="seat" id="a3">3</a> 
+				<a class="seat hidden"></a>
+				<a class="seat" id="a4">4</a>
+			</div>
 			<div class="seatArray B">
-			<a class="seat_num">B</a>
-			<a class="seat" id="b1">1</a>
-			<a class="seat" id="b2">2</a>
-			<a class="seat hidden" ></a>
-			<a class="seat"id="b3">3</a> 
-			<a class="seat"id="b4">4</a>
-			<a class="seat hidden"></a>
-			<a class="seat"id="b5">5</a> 
-			<a class="seat"id="b6">6</a>
-		</div>`;
-	
+				<a class="seat_num">B</a>
+				<a class="seat" id="b1">1</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="b2">2</a>
+				<a class="seat" id="b3">3</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="b4">4</a>
+			</div>`;
+	} else if (spe === '(SUITE_SINEMA)') {
+		html = `
+			<div class="seatArray A">
+				<a class="seat_num">A</a>
+				<a class="seat" id="a1">1</a>
+				<a class="seat" id="a2">2</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="a3">3</a> 
+				<a class="seat" id="a4">4</a>
+				<a class="seat" id="a5">5</a> 
+				<a class="seat hidden"></a>
+				<a class="seat" id="a6">6</a>
+				<a class="seat" id="a7">7</a>
+			</div>
+			<div class="seatArray B">
+				<a class="seat_num">B</a>
+				<a class="seat" id="b1">1</a>
+				<a class="seat" id="b2">2</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="b3">3</a> 
+				<a class="seat" id="b4">4</a>
+				<a class="seat" id="b5">5</a> 
+				<a class="seat hidden"></a>
+				<a class="seat" id="b6">6</a>
+				<a class="seat" id="b7">7</a>
+			</div>`;
+	} else if (spe === '(NOMAL)') {
+		html = `
+			<div class="seatArray A">
+				<a class="seat_num">A</a>
+				<a class="seat" id="a1">1</a>
+				<a class="seat" id="a2">2</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="a3">3</a> 
+				<a class="seat" id="a4">4</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="a5">5</a> 
+				<a class="seat" id="a6">6</a>
+			</div>
+			<div class="seatArray B">
+				<a class="seat_num">B</a>
+				<a class="seat" id="b1">1</a>
+				<a class="seat" id="b2">2</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="b3">3</a> 
+				<a class="seat" id="b4">4</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="b5">5</a> 
+				<a class="seat" id="b6">6</a>
+			</div>`;
+	}
+
+	seatcon.innerHTML = html;
 	document.querySelector(".seat_content").appendChild(seatcon);
 }
 
-const inputs = document.querySelectorAll('.input_text');
+function checkReservedSeats(theaterId, date, startTime) {
+	$.ajax({
+		url: '${pageContext.request.contextPath}/testReserve.tiw',
+		type: 'POST',
+		data: {
+			'theaterId': theaterId,
+			'date': date,
+			'startTime': startTime
+		},
+		dataType: 'json',
+		success: function(response) {
+			const reservedList = response.reservedSeats; // ['a1', 'b3', ...]
+			markReservedSeats(reservedList);
+			showAvailableSeatCount(reservedList);
+		},
+		error: function(xhr, status, error) {
+			console.error("좌석 정보 불러오기 실패:", error);
+		}
+	});
+}
 
-const datetime = inputs[1].textContent.split(" ");
+// ================================
+// 상영 시간 표시
+// ================================
+function setTimeInfo() {
+	const inputs = document.querySelectorAll('.input_text');
+	const datetime = inputs[1].textContent.split(" ");
 
-const date = new Date(datetime[0]);
-const day = date.getDay();
-const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
+	const date = new Date(datetime[0]);
+	const day = date.getDay();
+	const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
 
-const time = datetime[1].split(":");
-const h = parseInt(time[0]) + 2;
-const endtime = h + ':00'; 
+	const time = datetime[1].split(":");
+	const h = parseInt(time[0]) + 2;
+	const endtime = h + ':00';
 
-document.querySelector(".theater_time_info").innerHTML = 
-	'<strong style="font-size: 20px;"><span id="date">' + datetime[0] + '</span>' +
-	'(<span id="weedday" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">' + weekdays[day] + '</span>) ' +
-	'<span id="movieStartTime">' + datetime[1] +'</span> ~ <span id="movieEndTime">' + endtime + '</span></strong>';
+	document.querySelector(".theater_time_info").innerHTML = 
+		'<strong style="font-size: 20px;"><span id="date">' + datetime[0] + '</span>' +
+		'(<span id="weedday" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">' + weekdays[day] + '</span>) ' +
+		'<span id="movieStartTime">' + datetime[1] +'</span> ~ <span id="movieEndTime">' + endtime + '</span></strong>';
+}
 
-document.querySelector('.theater_seat_info').innerHTML = 
-	"<span>" + inputs[0].textContent + " </span>" +
-	"<span>" + inputs[2].textContent + " " + spe + "</span>";
+// ================================
+// 영화관 정보 표시
+// ================================
+function setTheaterInfo(spe) {
+	const inputs = document.querySelectorAll('.input_text');
 
-// 지금은 페이지가 3개인데 이거 1개로 줄이고 좌석수에 따라 동적으로 만들어야하는데...
-// 원래는 3개의 다른 페이지로 넘어왔으나 그렇게 하면 하나의 페이지로 가게됨
-// parameter넘겨서 대충 하면 됨 - 난이도 낮음 - 난이도는 쉬운데 너무 귀찮다
+	document.querySelector('.theater_seat_info').innerHTML = 
+		"<span>" + inputs[0].textContent + " </span>" +
+		"<span>" + inputs[2].textContent + " " + spe + "</span>";
+}
+
+// ================================
+// 인원 수 선택 토글
+// ================================
+function setupToggle(groupSelector, resetSelector) {
+  	const container = document.querySelector(groupSelector);
+  	const resetContainer = document.querySelector(resetSelector);
+
+  	container.addEventListener("click", function (e) {
+    	const target = e.target.closest(".person_box");
+    	if (!target) return;
+
+		const current = container.querySelector(".person_box.selected");
+    	if (current !== target) {
+      		if (current) current.classList.remove("selected");
+      		target.classList.add("selected");
+      		
+      		const inputTexts = document.querySelectorAll(".input_text");
+      		inputTexts[3].textContent = target.querySelector("a").textContent;
+
+     		if (resetContainer) {
+        		const resetSelected = resetContainer.querySelector(".person_box.selected");
+        		if (resetSelected) resetSelected.classList.remove("selected");
+        		resetContainer.querySelector(".person_box").classList.add("selected")
+      		}
+    	}
+  	});
+}
+
+const spe = "<%=spe%>";
+
+renderSeats(spe);
+setTimeInfo();
+setTheaterInfo(spe);
+setupToggle(".age_category_box.nomal", ".age_category_box.teen");
+setupToggle(".age_category_box.teen", ".age_category_box.nomal");
 
 // 대충 예매정보 테이블을 확인해서 seat에 reserved 클래스를 추가할 ajax.get - 쉽지만 귀찮음
 // 이거 확인할때 남은 좌석도 확인해야할듯? 극장에 정해진 좌석 - 예매된 좌석 - 극장 idx가 있나? 아무튼 있는 값들로 검색 ㄱㄱ
-
-// 대충 인원수 선택할 이벤트 - footer에 값도 넣어야함 - 쉬움
 
 // 대충 인원수만큼 좌석 선택(클릭해서 선택) - 개어려움
 // 인원수만큼 클릭하면 다 비활성화? ride on eva, shinji
