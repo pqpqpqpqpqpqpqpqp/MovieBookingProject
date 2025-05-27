@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,21 +40,25 @@ public class MovieController extends HttpServlet {
 		Gson gson = new Gson();
 		
 		ResponseData responseData = null; // response 값
-		
-		if (command.equals("/movieDetail.mow")) {
+		String forward = null;
+		if(command.equals("/myPagemain.me")) {
+			forward = "/view/member/userPage/myCgvPage/mywatchedMovie.jsp";
+		} else if (command.equals("/movieDetail.mow")) {
 		    MovieDetailService action = new MovieDetailService();
 		    ResponseData result = action.execute(request, response);
 
 		    if (result.getCode() == 200) {
-		        request.setAttribute("movie", result.getData());
-		        request.getRequestDispatcher("/view/movie/detail.jsp").forward(request, response);
+		    	request.setAttribute("movie", result.getData());
+		    	request.getRequestDispatcher("/view/movie/detail.jsp").forward(request, response);
 		    } else {
-		        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "영화 정보 조회 실패");
+		    	response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "영화 정보 조회 실패");
 		    }
 		    return; // JSON 응답 안 보내도록 여기서 리턴
 		}
 
-
+		RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
+		dispatcher.forward(request, response);
+		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
 
