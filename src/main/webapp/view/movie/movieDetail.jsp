@@ -15,6 +15,7 @@
 <body>
 <jsp:include page="movieDetail/movieTitle.jsp"></jsp:include>
 <jsp:include page="movieDetail/detailContent.jsp"></jsp:include>
+<jsp:include page="movieDetail/detailReview.jsp"></jsp:include>
 </body>
 <footer>
 <jsp:include page="/view/common/footer.jsp"/>
