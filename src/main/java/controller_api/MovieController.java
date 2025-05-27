@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import movie.service.MovieDetailReviewService;
 import movie.service.MovieDetailService;
 import movie.service.MovieUserListService;
 import movie.service.getAgeTicketCountService;
@@ -55,6 +56,10 @@ public class MovieController extends HttpServlet {
 		else if(command.equals("/MovieDetailAgeGraph.mo")) {
 			getAgeTicketCountService ageCountservice = new getAgeTicketCountService();
 			responseData = ageCountservice.execute(request, response);
+		}
+		else if(command.equals("/MovieDetailReview.mo")) {
+			MovieDetailReviewService detailReview = new MovieDetailReviewService();
+			responseData = detailReview.execute(request, response);
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
