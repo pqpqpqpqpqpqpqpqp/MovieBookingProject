@@ -77,9 +77,8 @@
 			</div>
 		</div>
 		<div class="menu movie_info">
-			<div class="theater_seat_info">
-			</div>
-			<p></p>
+			<div class="theater_seat_info"></div>
+			<p class="theater_time_info"></p>
 		</div>
 	</div>
 </div>

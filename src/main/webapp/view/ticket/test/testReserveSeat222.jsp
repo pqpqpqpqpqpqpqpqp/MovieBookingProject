@@ -48,6 +48,7 @@
 </div>
 
 <script>
+<script>
 $('.previous_btn_movie').off('click').on('click', function () {
     const previousJsp = 'testReserveMovie.jsp';
 
@@ -59,37 +60,35 @@ $('.previous_btn_movie').off('click').on('click', function () {
             
             document.querySelector(".foot.first_container").innerHTML = "영화선택";
             document.querySelector(".foot.second_container").innerHTML = "극장선택";
+            document.querySelector(".theater_time_info").innerHTML = " ";
+            document.querySelector('.theater_seat_info').innerHTML = " ";
             
-            document.querySelector(".previous_btn_movie").classList.add("btn_hidden");
             document.querySelector(".next_btn_pay_before").classList.add("btn_hidden");
-            document.querySelector(".next_btn_seat_before").classList.remove("btn_hidden");      	
+            document.querySelector(".previous_btn_movie").classList.add("btn_hidden");
+            document.querySelector(".next_btn_seat_before").classList.remove("btn_hidden");	
         }
     });
 });
 
-const theaterInfo = document.createElement("p");
 const inputs = document.querySelectorAll('.input_text');
 
 const datetime = inputs[1].textContent.split(" ");
-console.log(datetime);
 
 const date = new Date(datetime[0]);
 const day = date.getDay();
 const weekdays = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
-console.log(weekdays[day]);
 
 const time = datetime[1].split(":");
 const h = parseInt(time[0]) + 2;
 const endtime = h + ':00'; 
 
-document.querySelector(".menu.movie_info p").innerHTML = 
+document.querySelector(".theater_time_info").innerHTML = 
 	'<strong style="font-size: 20px;"><span id="date">' + datetime[0] + '</span>' +
 	'(<span id="weedday" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">' + weekdays[day] + '</span>) ' +
 	'<span id="movieStartTime">' + datetime[1] +'</span> ~ <span id="movieEndTime">' + endtime + '</span></strong>';
 
-theaterInfo.innerHTML = "<span>" + inputs[0].textContent + " </span>" +
-"<span>" + inputs[2].textContent + "</span>";
-
-document.querySelector('.theater_seat_info').appendChild(theaterInfo);
+document.querySelector('.theater_seat_info').innerHTML = 
+	"<span>" + inputs[0].textContent + " </span>" +
+	"<span>" + inputs[2].textContent + "</span>";
 
 </script>
