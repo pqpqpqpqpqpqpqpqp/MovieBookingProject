@@ -8,8 +8,8 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import movie.vo.MovieDetailAgeGraphDTO;
-import movie.vo.MovieDetailAgeGraphRes;
 import movie.vo.MovieDetailGenderVO;
+
 
 public class MovieDetailDAO {
 	private Connection conn;
@@ -88,11 +88,14 @@ public class MovieDetailDAO {
 			result.add(new MovieDetailAgeGraphDTO(ageGroup, count));
 
 		}
-
+		
+		conClose();
 		return result;
 
 	}
 
+	
+	
 	public void conClose() {
 		try {
 			if (rs != null)

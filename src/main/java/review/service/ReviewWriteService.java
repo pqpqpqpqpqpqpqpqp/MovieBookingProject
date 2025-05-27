@@ -16,6 +16,7 @@ public class ReviewWriteService {
 
 			int userIdx = Integer.parseInt(request.getParameter("userIdx"));
 			int movieIdx = Integer.parseInt(request.getParameter("movieIdx"));
+
 			
 			try {
 			    if (reviewDAO.checkReviewed(userIdx, movieIdx)) {
