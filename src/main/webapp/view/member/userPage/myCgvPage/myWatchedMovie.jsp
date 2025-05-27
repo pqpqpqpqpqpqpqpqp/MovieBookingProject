@@ -6,48 +6,86 @@
   <!-- 오른쪽 영화 리스트 -->
   <div class="movie_list_catainer">
     <div class="movie-list-header">
-      <h3>내가 본 영화 <span>10건</span></h3>
+      <h3>내가 본 영화 <span id="countMovie"></span></h3>
       <div class="controls">
         <select>
           <option>전체</option>
-          <option>2025년</option>
+          <option id="year">2025년</option>
         </select>
         <button>GO</button>
-        <button style="background-color: #fb4357; border:none; color:white;">실관람객 등록</button>
+        
       </div>
     </div>
-
+<%
+	String userIdxStr = request.getParameter("userIdx"); 
+	int userIdx = (userIdxStr != null) ? Integer.parseInt(userIdxStr) : 0;
+	// int userIdx =(Integer) session.getAttribute("userIdx"); 
+%>
     <!-- 영화 항목 -->
-    
-
-  <div class="movie-item">
-      <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000087/87578/87578_320.jpg" alt="파과" class="poster">
-      <div class="movie-info">
-        <h4>파과 <small>THE OLD WOMAN WITH THE KNIFE</small></h4>
-        <div class="meta"><span>영화본 날짜(년/월/일)</span> <span>(요일)</span> <span>본시간18:30 ~ 20:42</span><br><span>어디서?? CGV강남 6관 10층 (Laser)</span> / <span>몇명예약했어? 3명</span></div>
-        <div class="highlight">🎬 별로예요</div>
-      </div>
-      <button class="movie-remove-btn">×</button>
+    <div class="movie_list_catainer movie">
+   <!--  영화 들어감 -->
+   
     </div>
-
-    <div class="movie-item">
-      <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82513/82513_320.jpg" alt="듄" class="poster">
-      <div class="movie-info">
-        <h4>듄 (IMAX 체험전, IMAX LASER 2D) <small>DUNE</small></h4>
-        <div class="meta">2022.02.15 (화) 21:00 ~ 23:45<br>CGV용산아이파크몰 IMAX관 / 2명</div>
-        <div class="highlight">이 영화를 평가해주세요</div>
-      </div>
-      <button class="movie-remove-btn">×</button>
     </div>
+ 
+   <input type="hidden" id="sessionUserIdx" value="<%=userIdx %>" />
 
-    <div class="movie-item">
-      <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000074/74189/74189_320.jpg" alt="덩케르크" class="poster">
-      <div class="movie-info">
-        <h4>덩케르크 (IMAX 체험전, IMAX LASER 2D) <small>Dunkirk</small></h4>
-        <div class="meta">2022.02.15 (화) 18:40 ~ 20:36<br>CGV용산아이파크몰 IMAX관 / 2명</div>
-        <div class="highlight">이 영화를 평가해주세요</div>
-      </div>
-      <button class="movie-remove-btn">×</button>
-    </div>
-</div>
+<script	src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
+<script>
 
+$(document).ready(function() {
+	
+	//값이 잘못들어와서 방지목적
+	const USER_IDX = document.getElementById('sessionUserIdx').value;
+	
+	$.ajax({
+		url : '${pageContext.request.contextPath}/myWatchedMovie.re',
+		type : "GET",
+		data : {
+			userIdx : USER_IDX,
+		},
+		success : function(resp) {
+			console.log("응답 확인:", resp); 
+			let movieList = resp.data || [];
+			$(".movie_list_catainer.movie").empty(); // 리스트 초기화
+			
+			// 부모 aside 안에 영화 수 넣기
+			$('#countMovie').text(movieList.length + '건');
+			
+			if (window.parent && window.parent.document) {
+				$(window.parent.document).find('#movie_count').text(movieList.length);
+			} else {
+				$('#movie_count').text(movieList.length);
+			}
+			
+			let contextPath = "${pageContext.request.contextPath}";
+			let reviewTxt = "";
+			for (let i = 0; i < resp.data.length; i++) {
+				reviewTxt = resp.data[i].reviewScore > 6 ? "좋았어요" : "별로예요";
+
+				let html = 
+					'<div class="movie-item">' +
+				    	'<img class="poster" src="' + contextPath + resp.data[i].movieImg + '" alt="' + resp.data[i].movieName + '">' +
+				    	'<div class="movie-info">' +
+				        	'<h4>' + resp.data[i].movieName + '</h4>' +
+				        	'<div class="meta">' +
+					        	'<span>' + resp.data[i].watchDate + '</span> ' +
+					        	'<span>' + resp.data[i].weekday + '</span> ' +
+					        	'<span>' + resp.data[i].screenTime + '</span><br>' +
+					        	'<span>CGV ' + resp.data[i].thciName + ' / </span>' +
+					        	'<span>' + resp.data[i].screenNum + '</span>' +
+				        	'</div>' +
+				        	'<div class="highlight">🎬 ' + reviewTxt + '</div>' +
+				     	'</div>' +
+				    	'<button class="movie-remove-btn">×</button>' +
+				    '</div>';
+
+				$(".movie_list_catainer.movie").append(html);
+			}
+		},
+		error : function() {
+			alert("리뷰 불러오기에 실패했습니다. 다시 시도해주세요.");
+		}
+	});
+});
+</script>

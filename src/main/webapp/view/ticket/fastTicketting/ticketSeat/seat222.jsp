@@ -19,7 +19,7 @@
 		<div class="seatArray A">
 			<a class="seat_num">A</a>
 			<a class="seat reserved" id="a1">1</a>
-			<a class="seat" id="a2">2</a>
+			<a class="seat " id="a2">2</a>
 			<a class="seat hidden" ></a>
 			<a class="seat"id="a3">3</a> 
 			<a class="seat"id="a4">4</a>
