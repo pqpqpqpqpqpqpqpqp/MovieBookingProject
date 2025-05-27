@@ -35,13 +35,14 @@
 	    background-color: #f8f8f8;
 	    border: 1px solid #333;
 	    border: 1px solid #ccc;
-	    padding: 30px 0;
 	    text-align: center;
     }
     .myCGV_home_menu_box .menu_item {
       flex: 1;
-      padding: 10px;
+      padding: 40px 10px;
       border-right: 1px solid #ccc;
+      cursor: pointer;
+      height: 100%;
     }
 
     .menu_item:last-child {

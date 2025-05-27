@@ -1,8 +1,6 @@
-/**
- * 
- */
-
-// /asset/js/mypage/userInfoPopup.js
+function openPopup(page) {
+  window.open(contextPath + page, "popup", "width=400,height=300,scrollbars=no");
+}
 
 function attachDynamicEvents() {
   const nameBtn = document.getElementById("editId");
@@ -10,19 +8,12 @@ function attachDynamicEvents() {
   const pwdBtn = document.getElementById("editPw");
 
   if (nameBtn) {
-    nameBtn.onclick = () =>
-      openPopup(`${contextPath}/editName.me`);
+    nameBtn.onclick = () => openPopup("/editName.me");
   }
   if (phoneBtn) {
-    phoneBtn.onclick = () =>
-      openPopup(`${contextPath}/editPhone.me`);
+    phoneBtn.onclick = () => openPopup("       /editPhone.me");
   }
   if (pwdBtn) {
-    pwdBtn.onclick = () =>
-      openPopup(`${contextPath}/editPassword.me`);
+    pwdBtn.onclick = () => openPopup("/editPassword.me");
   }
-}
-
-function openPopup(page) {
-  window.open(page, "popup", "width=400,height=300,scrollbars=no");
 }

@@ -3,6 +3,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/asset/css/mypage.css" />
+	<span id=hi></span>
 <div class="mypage_body_container">
 	<div class="mypage_index">
 		<ul>
@@ -50,24 +51,13 @@
 
 <script>
 	const contextPath = "${pageContext.request.contextPath}";
-	const sessionUserIdx = "<%= session.getAttribute("userIdx") %>";
+	const sessionUserIdx = <%= session.getAttribute("userIdx") %>;
+
 </script>
 
-<script src="${contextPath}/asset/js/jquery-3.7.1.min.js"></script>
-<script src="${contextPath}/asset/js/mypage/mypageMain.js"></script>
-<script src="${contextPath}/asset/js/mypage/userInfoPage.js"></script>
-<script src="${contextPath}/asset/js/mypage/userInfoPopup.js"></script>
-
-
-<script>
-	const contextPath = "${pageContext.request.contextPath}";
-</script>
-
-<script
-	src="${pageContext.request.contextPath}/asset/js/mypage/mypageMain.js"></script>
-<script
-	src="${pageContext.request.contextPath}/asset/js/mypage/userInfoPopup.js"></script>
-
-
+<script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/asset/js/mypage/userInfoPage.js"></script>
+<script src="${pageContext.request.contextPath}/asset/js/mypage/mypageMain.js"></script>
+<script src="${pageContext.request.contextPath}/asset/js/mypage/userInfoPopup.js"></script>
+
 

@@ -11,13 +11,20 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 });
 
-function aDataUrl(e) {
-	e.preventDefault?.();
-	const targetUrl =
-		e.target.getAttribute("data-url") ||
-		`${contextPath}/myCgvHome.me`;
 
-	fetch(targetUrl)
+/***
+ * 페이지 기능
+ */
+async function aDataUrl(e) {
+	e.preventDefault?.();
+	const targetUrl = e.target.getAttribute("data-url");
+	
+
+
+	
+	
+	//페이지 불러오기 기능
+	await fetch(targetUrl)
 		.then(res => res.text())
 		.then(data => {
 			document.getElementById("contentBox").innerHTML = data;
@@ -31,4 +38,20 @@ function aDataUrl(e) {
 			document.getElementById("contentBox").innerHTML =
 				"<p>페이지 로딩에 실패했습니다.</p>";
 		});
+		
+		
+
+		
+		const splitURL = targetUrl.split("/");
+		const command = splitURL[splitURL.length-1];
+		
+		console.log('command: ',command);
+		
+		//page 경로 function 실행
+		switch(command) {
+			case "userInfo.me":
+				myPageUserInfo();
+			break;
+			
+		}
 }

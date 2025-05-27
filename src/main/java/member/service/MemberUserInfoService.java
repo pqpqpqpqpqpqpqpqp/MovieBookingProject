@@ -11,8 +11,7 @@ import util.ResponseData;
 public class MemberUserInfoService {
 
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
-		
-		
+
 		int userIdx = Integer.parseInt(request.getParameter("userIdx"));
 		UserInfoVO userInfoVO = new UserInfoVO();
 		MemberDAO memberDAO = new MemberDAO();
