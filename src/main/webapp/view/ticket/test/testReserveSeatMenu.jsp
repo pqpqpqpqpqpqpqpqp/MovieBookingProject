@@ -13,7 +13,7 @@
 			<div class="person_count">
 				<div id="maximum_people"
 					style="margin-top: 10px; padding-bottom: 5px; text-align: right; padding-right: 10px; font-size: 11px !important; color: red;">*
-					최대 2명 선택 가능</div>
+					최대 8명 선택 가능</div>
 				<div class="age_category_box nomal">
 					<span class="title">일반</span>
 					<div class="person_box selected" id="nomal0">
@@ -78,17 +78,8 @@
 		</div>
 		<div class="menu movie_info">
 			<div class="theater_seat_info">
-				<p>
-					CGV <span>강변</span> | <span>7관</span> <span>(Laser)</span> | <span
-						class="left_seat">남은좌석 <span class="nomal">134</span></span>/<span>141</span>
-				</p>
 			</div>
-			<p>
-				<strong style="font-size: 20px;"><span id="date">2025.05.21</span>
-					(<span id="weedday"
-					style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">수</span>)
-					<span id="movieStartTime">16:40</span> ~ <span id="movieEndTime">18:38</span></strong>
-			</p>
+			<p></p>
 		</div>
 	</div>
 </div>

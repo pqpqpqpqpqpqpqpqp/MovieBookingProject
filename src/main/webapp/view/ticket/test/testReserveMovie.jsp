@@ -10,7 +10,6 @@
 		<div class="title">극장</div>
 	</div>
 
-	<!-- 날짜는 더미데이터상 정적으로 생성. 오늘 날짜로부터 2주정도 동적으로 생성하게 바꿀 것 -->
 	<div class="column dates" id="dateColumn">
 		<div class="title">날짜</div>
 		<div class="date_list nano has-scroll-y" id="date_list">
@@ -51,46 +50,16 @@ window.selectedDate = null;
 window.allData = [];
 
 window.movieData = {
-	"겨울왕국": {
-		poster: "Frozen.jpeg",
-		ageGrade: "전체 관람가",
-	},
-	"모아나": {
-		poster: "Moana.jpeg",
-		ageGrade: "전체 관람가",
-	},
-	"몬스터 주식회사 3D": {
-		poster: "MonstersInc.jpeg",
-		ageGrade: "전체 관람가",
-	},
-	"바람": {
-		poster: "TheWind.jpeg",
-		ageGrade: "19세 관람가",
-	},
-	"스파이더맨: 뉴 유니버스": {
-		poster: "SpiderMan.jpeg",
-		ageGrade: "12세 관람가",
-	},
-	"아바타: 물의 길": {
-		poster: "Avatar.jpeg",
-		ageGrade: "12세 관람가",
-	},
-	"어벤져스: 인피니티 워": {
-		poster: "Avengers.jpeg",
-		ageGrade: "12세 관람가",
-	},
-	"타짜": {
-		poster: "Tazza.jpeg",
-		ageGrade: "청소년 관람불가",
-	},
-	"파과": {
-		poster: "Pagwa.jpeg",
-		ageGrade: "15세 관람가",
-	},
-	"해리포터와 마법사의 돌": {
-		poster: "HarryPotter.jpeg",
-		ageGrade: "전체 관람가",
-	},
+	"겨울왕국": { poster: "Frozen.jpeg", ageGrade: "전체 관람가" },
+	"모아나": { poster: "Moana.jpeg", ageGrade: "전체 관람가" },
+	"몬스터 주식회사 3D": { poster: "MonstersInc.jpeg", ageGrade: "전체 관람가" },
+	"바람": { poster: "TheWind.jpeg", ageGrade: "19세 관람가" },
+	"스파이더맨: 뉴 유니버스": { poster: "SpiderMan.jpeg", ageGrade: "12세 관람가" },
+	"아바타: 물의 길": { poster: "Avatar.jpeg", ageGrade: "12세 관람가" },
+	"어벤져스: 인피니티 워": { poster: "Avengers.jpeg", ageGrade: "12세 관람가" },
+	"타짜": { poster: "Tazza.jpeg", ageGrade: "청소년 관람불가" },
+	"파과": { poster: "Pagwa.jpeg", ageGrade: "15세 관람가" },
+	"해리포터와 마법사의 돌": { poster: "HarryPotter.jpeg", ageGrade: "전체 관람가" },
 };
 
 $.ajax({
@@ -99,9 +68,6 @@ $.ajax({
 	dataType: 'json',
 	success: function(res) {
 		window.allData = res;
-
-		const movieColumn = document.querySelector("#movieColumn");
-		const theaterColumn = document.querySelector("#theaterColumn");
 
 		const movieSet = new Set(); // 중복 제거용
 		const theaterSet = new Set(); // 중복 제거용
@@ -115,9 +81,7 @@ $.ajax({
 
 				const div = document.createElement("div");
 				div.className = "movie";
-				div.onclick = function() {
-					movieSelect(movieName);
-				};
+				div.addEventListener("click", () => movieSelect(movieName));
 
 				const name = document.createElement("span");
 				name.className = "movie_name";
@@ -127,10 +91,10 @@ $.ajax({
 				label.className = "label green";
 				label.textContent = res[i].movieAgeGrade;
 
-				div.appendChild(label);
-				div.appendChild(name);
+				div.append(label);
+				div.append(name);
 
-				movieColumn.appendChild(div);
+				document.querySelector(".column.movies").appendChild(div);
 			}
 
 			if (!theaterSet.has(theaterName)) {
@@ -139,20 +103,18 @@ $.ajax({
 				const div = document.createElement("div");
 				div.className = "region";
 				div.textContent = theaterName;
-				div.onclick = function() {
-					theaterSelect(theaterName);
-				};
+				div.addEventListener("click", () => theaterSelect(theaterName));
 
-				theaterColumn.appendChild(div);
+				document.querySelector(".column.theaters").appendChild(div);
 			}
 		}
 	}
 });
 
-document.querySelector(".date_container").onclick = function(e) {
+document.querySelector(".date_container").addEventListener("click", function(e) {
 	const target = e.target.closest(".date");
 	if (target) { dateSelect(target.dataset.date); }
-};
+});
 
 function movieSelect(movieName) {
 	window.selectedMovie = movieName;
@@ -164,8 +126,8 @@ function movieSelect(movieName) {
 		.find(m => m.querySelector(".movie_name").textContent === movieName);
 	if (selected) selected.classList.add("select");
 
-	const FootMovie = document.querySelector(".foot.movie");
-	if (FootMovie) FootMovie.remove();
+	const movieFoot = document.querySelector(".foot.movie");
+	if (movieFoot) movieFoot.remove();
 
 	if (movieName) {
 		const container = document.createElement("div");
@@ -183,8 +145,8 @@ function movieSelect(movieName) {
 			'<span>' + window.movieData[movieName].ageGrade + '</span>' +
 			'</div>';
 
-		document.querySelector(".foot.first_container").textContent = ' ';
-		document.querySelector(".foot.first_container").appendChild(container);
+			document.querySelector(".foot.first_container").textContent = ' ';
+			document.querySelector(".foot.first_container").appendChild(container);
 	}
 
 	resetSecondFooter();
@@ -200,8 +162,8 @@ function theaterSelect(theaterName) {
 	const selected = Array.from(document.querySelectorAll(".region")).find(r => r.textContent === theaterName);
 	if (selected) selected.classList.add("select");
 
-	const FootTheater = document.querySelector(".foot.theater_tab");
-	if (FootTheater) FootTheater.remove();
+	const theaterFoot = document.querySelector(".foot.theater_tab");
+	if (theaterFoot) theaterFoot.remove();
 
 	if (theaterName) {
 		const container = document.createElement("div");
@@ -218,8 +180,8 @@ function theaterSelect(theaterName) {
 			'<span class="input_text"></span>' +
 			'</div>';
 
-		document.querySelector(".foot.second_container").textContent = ' ';
-		document.querySelector(".foot.second_container").appendChild(container);
+			document.querySelector(".foot.second_container").textContent = ' ';
+			document.querySelector(".foot.second_container").appendChild(container);
 	}
 
 	resetSecondFooter();
@@ -253,6 +215,7 @@ function updateTimeSlots() {
 
 	// filtered배열을 cinemaName으로 그룹핑.
 	// 같은 cinemaName을 가지는 객체끼리 배열로 모임
+	// 근데 애초에 다 눌렀을때 검색으로 적당히 가져왔으면?? 전체를 보여줄일도 없는데? 왜? 
 	const grouped = filtered.reduce((acc, cur) => {
 		if (!acc[cur.cinemaName]) acc[cur.cinemaName] = [];
 		acc[cur.cinemaName].push(cur);
@@ -311,9 +274,9 @@ function timeSelect(theaterTime) {
 		console.log(spe)
 		
 		if(spe === '(PRIVATE_BOX)'){
-			targetJsp = 'testReserveSeat232.jsp';
-		} else if(spe === '(SUITE_SINEMA)'){
 			targetJsp = 'testReserveSeat121.jsp';
+		} else if(spe === '(SUITE_SINEMA)'){
+			targetJsp = 'testReserveSeat232.jsp';
 		} else if(spe === '(NOMAL)'){
 			targetJsp = 'testReserveSeat222.jsp';
 		}
