@@ -1,6 +1,6 @@
 package movie.vo;
 
-public class MovieWatchedList {
+public class MovieWatchedVO {
 	
 	private String userName; //유저이름 >> 이건 안쓰는데 혹시몰라서만듬
 	private String userId;    //유저 아이디>> 이건 안쓰는데 혹시몰라서만듬
@@ -9,17 +9,31 @@ public class MovieWatchedList {
 	private String watchDate; // 상영날짜
 	private String weekday;   // 요일
 	private String screenTime;// 상영시간
+	private String movieImg;
 	private String screenStartTime;
 	private String screenEndTime;
+	private String thciName;
 	private String theatherName; //영화관지점
 	private String cinemaNum; //상영관(1관,2관)
 	private String cinemaSpecialName;  //특별관정보
-	private int 	screenNum; 	//좌석 수
+	private int 	screenNum; 	//예매 수
 	private String seatNum; //좌석 정보
 	private int reviewScore; //리뷰 점수
 	
 	
 	
+	public String getThciName() {
+		return thciName;
+	}
+	public void setThciName(String thciName) {
+		this.thciName = thciName;
+	}
+	public String getMovieImg() {
+		return movieImg;
+	}
+	public void setMovieImg(String movieImg) {
+		this.movieImg = movieImg;
+	}
 	public String getScreenStartTime() {
 		return screenStartTime;
 	}

@@ -4,9 +4,9 @@
 <link href ="${pageContext.request.contextPath}/asset/css/mypage.css" rel ="stylesheet ">
 <title>Insert title here</title>
 <!-- 오른쪽 리뷰 리스트 -->
-<% 
-	// int useridx = (Integer) session.getAttribute("userIdx"); 
-	int useridx = 5;
+<%
+	String userIdxStr = request.getParameter("userIdx");
+	int userIdx = (userIdxStr != null) ? Integer.parseInt(userIdxStr) : 0;
 %>
 
 <div class="movie_list_catainer review">
@@ -18,7 +18,7 @@
 	src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 <script>
 	$(document).ready(function() {
-		const USER_IDX = <%= useridx %>;
+		const USER_IDX = <%= userIdx %>;
 		
 		$.ajax({
 			url : '${pageContext.request.contextPath}/myReviewList.re', // 서버의 엔드포인트
@@ -28,8 +28,15 @@
 			},
 			success : function(resp) {
 				//기존 리스트 초기화
-				$("#movie_list_catainer").empty();
-	
+				$(".movie_list_catainer.review").empty();
+				const count = resp?.data?.length || 0;
+
+				if (window.parent && window.parent.document) {
+				  $(window.parent.document).find('#review_count').text(count);
+				} else {
+				  $('#review_count').text(count); // 같은 DOM 내부에 있을 때
+				}
+				
 				console.log(resp.data);
 				
 				for(let i = 0; i < resp.data.length; i++) {
