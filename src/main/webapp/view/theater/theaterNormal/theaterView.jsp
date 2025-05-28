@@ -3,6 +3,9 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>특별관 페이지</title>
+<title>극장 페이지</title>
+<body>
+	<h1> 극장 페이지 TEST</h1>
+</body>
 </head>
 </html>
