@@ -31,6 +31,10 @@
       <em id="review_count">1</em>
       <span>내가 쓴 평점</span>
     </a>
+     <a class="aside_profile_menu tab" href="#" data-target="writtenReviews">
+      <em id="review_count">2</em>
+      <span>My 예매 내역</span>
+    </a>
   </div>
 
   <!-- 콘텐츠 컨테이너 -->
@@ -54,6 +58,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const tabs = document.querySelectorAll(".aside_profile_menu.tab");
   const contents = document.querySelectorAll(".tab_content");
+  
 
   tabs.forEach(tab => {
     tab.addEventListener("click", function (e) {
@@ -70,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
+  
   const initialTab = document.querySelector(".aside_profile_menu.tab.active");
   if (initialTab) {
     const targetId = initialTab.getAttribute("data-target");
@@ -77,9 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
       content.style.display = (content.id === targetId) ? "block" : "none";
     });
   }
-  
-  
-  
 });
 
 </script>

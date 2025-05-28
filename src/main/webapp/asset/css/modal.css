@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+
+.review {
+	width: 480px;
+	padding: 20px;
+	background: white;
+	border-radius: 8px;
+	font-family: 'Noto Sans KR', sans-serif;
+	position: relative;
+}
+
+.movieName {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 16px;
+	text-align: center;
+}
+
+.rating-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	margin-bottom: 12px;
+}
+
+.rating-button {
+	display: inline-block;
+	width: 180px;
+	padding: 10px;
+	margin: 0;
+	flex-shrink: 0;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	background-color: white;
+	font-size: 13px;
+	cursor: pointer;
+	position: relative;
+	transition: all 0.2s;
+}
+
+.rating-button.selected {
+	border: 3px solid #ff4e00;
+	background-color: #fff5ee;
+	font-weight: bold;
+}
+
+.rating-button:first-child::before {
+	content: "🥚";
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	font-size: 20px;
+}
+
+.rating-button:last-child::before {
+	content: "💬";
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	font-size: 20px;
+}
+
+textarea#reviewText {
+	width: 100%;
+	height: 90px;
+	margin-top: 12px;
+	padding: 10px;
+	font-size: 14px;
+	resize: none;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+}
+
+.guideline-box {
+	text-align: left;
+	margin-top: 6px;
+	font-size: 12px;
+	color: #666;
+}
+
+.byte-count {
+	text-align: right;
+	margin-top: 4px;
+	font-size: 12px;
+	color: #999;
+}
+
+#submitReview {
+	width: 100%;
+	margin-top: 10px;
+	padding: 10px;
+	background-color: #ff4e00;
+	border: none;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+#submitReview:hover {
+	background-color: #e03d00;
+}
+
+/* 유저 정보 (프로필 + 닉네임) placeholder */
+.profile-info {
+	display: flex;
+	flex-direction: column; /* 세로 정렬 */
+	align-items: center; /* 가운데 정렬 */
+	justify-content: center;
+	margin: 0 10px; /* 좌우 간격 확보 */
+}
+
+.profile-info img {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	margin: 0 0 4px 0; /* 아래로 간격 */
+}
+
+.profile-info .nickname {
+	font-size: 14px;
+	color: #444;
+	font-weight: bold;
+	text-align: center;
+}

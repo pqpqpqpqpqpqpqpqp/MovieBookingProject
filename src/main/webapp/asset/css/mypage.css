@@ -232,6 +232,10 @@
     .movie-list-header h3 {
       font-size: 18px;
     }
+    .movieName{
+    	display: flex;
+    	
+    }
 
     .movie-list-header .controls {
       display: flex;
