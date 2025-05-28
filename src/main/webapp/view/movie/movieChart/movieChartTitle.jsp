@@ -43,6 +43,7 @@
 .movie_chart_contaniner1 h3 .action {
 	color: red;
 }
+
 .movie_chart_contaniner1 a {
 	text-decoration: none;
 	color: red;
