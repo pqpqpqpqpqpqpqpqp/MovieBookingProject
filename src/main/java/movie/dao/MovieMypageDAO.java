@@ -31,7 +31,6 @@ public class MovieMypageDAO {
 
 	// 내정보 페이지 내가본영화 조회
 	public List<MovieWatchedVO> movieMypageList(int userIdx) {
-		System.out.println("1");
 		List<MovieWatchedVO> mymovie = new ArrayList<>();
 		String sql =  
 			      "WITH RankedTickets AS ("
@@ -84,11 +83,9 @@ public class MovieMypageDAO {
 			    		    + "SELECT * FROM RankedTickets "
 			    		    + "WHERE rn = 1";
 		try {
-			System.out.println("2");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, userIdx); // 꼭 필요!
 			rs = pstmt.executeQuery();
-			System.out.println(rs);
 
 			while (rs.next()) {
 				String startTime = rs.getString("SCREEN_START_TIME");
@@ -110,7 +107,6 @@ public class MovieMypageDAO {
 				myMovieList.setReviewScore(rs.getInt("REVIEW_SCORE"));
 
 				mymovie.add(myMovieList);
-				System.out.println("3");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

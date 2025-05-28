@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+
 import javax.sql.DataSource;
 
 import member.vo.MemberVO;
@@ -164,5 +165,27 @@ public class MemberDAO {
 		return memberVO;
 	}
 	
-
+	public MemberVO getUserInfo(int userIdx) {
+		MemberVO memberVO = null;
+		String sql = "SELECT USER_NAME, USER_NICKNAME, USER_IMG FROM user WHERE USER_IDX = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userIdx);
+			rs = pstmt.executeQuery();
+			
+			
+			 if(rs.next()) {
+				 memberVO = new MemberVO();
+				 memberVO.setUserName(rs.getString("USER_NAME"));
+				 memberVO.setUserNickname(rs.getString("USER_NICKNAME"));
+				 memberVO.setUserImg(rs.getString("USER_IMG"));
+		        }
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				conClose();
+			}
+			return memberVO;
+		}
+		
 }

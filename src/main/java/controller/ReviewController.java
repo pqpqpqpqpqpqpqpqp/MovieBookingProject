@@ -37,7 +37,6 @@ public class ReviewController extends HttpServlet {
 		ResponseData responseData = null; // response 값
 
 		try {
-			System.out.println("컨트롤러하이");
 			if (command.equals("/reviewWrite.re")) {
 				ReviewWriteService service = new ReviewWriteService();			
 				responseData = service.execute(request, response);

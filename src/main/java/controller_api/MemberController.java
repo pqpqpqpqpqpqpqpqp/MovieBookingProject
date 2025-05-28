@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import member.service.MemberIdCheckService;
+import member.service.MemberInPageInfoService;
 import member.service.MemberLoginService;
 import member.service.MemberMyPageService;
 import member.service.MemberRegisterService;
@@ -54,7 +55,11 @@ public class MemberController extends HttpServlet {
 		}else if(command.equals("/myPagemain.mew")) {
 			MemberMyPageService myPageService = new MemberMyPageService();
 			responseData = myPageService.execute(request, response);
-		}
+		} else if (command.equals("/myInPageInfo.mew")) {
+			
+			MemberInPageInfoService service = new MemberInPageInfoService();
+			responseData = service.myInPageInfo(request, response);
+        }
 
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
