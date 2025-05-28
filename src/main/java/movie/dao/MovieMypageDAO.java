@@ -83,9 +83,6 @@ public class MovieMypageDAO {
 			    		    + ") "
 			    		    + "SELECT * FROM RankedTickets "
 			    		    + "WHERE rn = 1";
-
-				
-
 		try {
 			System.out.println("2");
 			pstmt = conn.prepareStatement(sql);
@@ -119,24 +116,26 @@ public class MovieMypageDAO {
 			e.printStackTrace();
 
 		} finally {
-			try {
-				System.out.println("4");
-				if (rs != null)
-					rs.close();
-			} catch (Exception e) {
-			}
-			try {
-				if (pstmt != null)
-					pstmt.close();
-			} catch (Exception e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
+			conClose();
 		}
 		return mymovie;
-
+	}
+	
+	public void conClose() {
+		try {
+			if (rs != null)
+				rs.close();
+		} catch (Exception e) {
+		}
+		try {
+			if (pstmt != null)
+				pstmt.close();
+		} catch (Exception e) {
+		}
+		try {
+			if (conn != null)
+				conn.close();
+		} catch (Exception e) {
+		}
 	}
 }
