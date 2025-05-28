@@ -120,6 +120,7 @@ public class MovieMypageDAO {
 		}
 		return mymovie;
 	}
+
 	
 	public void conClose() {
 		try {
