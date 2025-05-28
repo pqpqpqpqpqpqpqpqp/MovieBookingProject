@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import member.service.MemberDeleteService;
 import member.service.MemberIdCheckService;
 import member.service.MemberLoginService;
 import member.service.MemberMyPageService;
@@ -62,6 +63,11 @@ public class MemberController extends HttpServlet {
 		} else if (command.equals("/userUpdate.mew")) {
 			MemberUpdateService updateService = new MemberUpdateService();
 			responseData = updateService.execute(request, response);
+		} else if (command.equals("/userDelete.mew")) {
+			MemberDeleteService deleteService = new MemberDeleteService();
+			responseData = deleteService.execute(request, response);
+			HttpSession session = request.getSession();
+			session.invalidate();
 		}
 
 		response.setCharacterEncoding("UTF-8");

@@ -245,5 +245,32 @@ public class MemberDAO {
 
 		return 0;
 	}
+	
+	public int delete(int userIdx) {
+
+		try {
+
+			String input = "UPDATE USER SET USER_DEL = 'Y' WHERE USER_IDX = ?";
+			
+			pstmt = conn.prepareStatement(input);
+			pstmt.setInt(1, userIdx);
+			
+			
+			
+			int result = pstmt.executeUpdate();
+
+			if (result > 0) {
+				// 수정 성공
+				return 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			conClose();
+		}
+
+		return 0;
+	}
 
 }
