@@ -1,0 +1,6 @@
+/**
+ * 
+ */
+function userDeleteClick(){
+	alert("hi");
+}

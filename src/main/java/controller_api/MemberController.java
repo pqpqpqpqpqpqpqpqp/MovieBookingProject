@@ -17,6 +17,7 @@ import member.service.MemberIdCheckService;
 import member.service.MemberLoginService;
 import member.service.MemberMyPageService;
 import member.service.MemberRegisterService;
+import member.service.MemberUpdateService;
 import member.service.MemberUserInfoService;
 import util.ResponseData;
 
@@ -58,6 +59,9 @@ public class MemberController extends HttpServlet {
 		} else if (command.equals("/userInfo.mew")) {
 			MemberUserInfoService userInfoService = new MemberUserInfoService();
 			responseData = userInfoService.execute(request, response);
+		} else if (command.equals("/userUpdate.mew")) {
+			MemberUpdateService updateService = new MemberUpdateService();
+			responseData = updateService.execute(request, response);
 		}
 
 		response.setCharacterEncoding("UTF-8");

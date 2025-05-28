@@ -57,7 +57,8 @@
 
 <script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/asset/js/mypage/userInfoPage.js"></script>
-<script src="${pageContext.request.contextPath}/asset/js/mypage/mypageMain.js"></script>
 <script src="${pageContext.request.contextPath}/asset/js/mypage/userInfoPopup.js"></script>
+<script src="${pageContext.request.contextPath}/asset/js/mypage/userDelete.js"></script>
+<script src="${pageContext.request.contextPath}/asset/js/mypage/mypageMain.js"></script>
 
 

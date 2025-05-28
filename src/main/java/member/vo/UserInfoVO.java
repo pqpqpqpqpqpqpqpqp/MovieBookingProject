@@ -2,11 +2,25 @@ package member.vo;
 
 public class UserInfoVO {
 	private String userName;
+	private String userNickname;	
 	private String userId;
 	private String birthday;
 	private String userTel;
+	private String userPw;
 	
 	
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+	public String getUserPw() {
+		return userPw;
+	}
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
+	}
 	public String getUserName() {
 		return userName;
 	}
