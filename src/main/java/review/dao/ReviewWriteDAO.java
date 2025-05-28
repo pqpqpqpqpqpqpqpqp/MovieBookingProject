@@ -33,7 +33,7 @@ public class ReviewWriteDAO {
 	}
 	
 	public Boolean checkReviewed(int userIdx, int movieIdx) {
-		String sql = "Select count(*) from review where user_idx = ? and movie_idx = ?";
+		String sql = "Select * from review where user_idx = ? and movie_idx = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
