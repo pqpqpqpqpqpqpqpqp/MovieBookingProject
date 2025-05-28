@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 .movie_chart_color{
-background-color: #ccc;
+
 }
 </style>
 </head>
