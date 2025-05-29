@@ -100,7 +100,6 @@
 <script>
 	$(document).ready(function() {
 		
-		console.log("영화 차트 로드");
 		
 	$.ajax ({
 		url: '${pageContext.request.contextPath}/MovieChart.mo',
