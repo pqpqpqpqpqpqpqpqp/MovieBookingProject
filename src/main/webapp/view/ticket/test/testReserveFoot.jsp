@@ -2,11 +2,6 @@
 	pageEncoding="UTF-8"%>
 
 <div class="ticket_foot">
-	<!-- <a class="ticket_foot_btn_left previous_btn_movie btn_hidden" title="영화선택" style=""></a>
-	영화선택 페이지로 돌아가는 버튼
-	<a class="ticket_foot_btn_left previous_btn_seat btn_hidden" title="좌석선택"></a>
-	좌석선택 페이지로 돌아가는 버튼 --><!-- 뒤로가기 버튼이 있던 흔적, 아직 온기가 남아있다 -->
-	<!-- 뒤로 가봐야 버그만 나는거 그냥 없애버리기로 했음 -->
 	<div class="foot first_container">영화선택</div>
 	<div class="line"></div>
 	<div class="foot second_container">극장선택</div>

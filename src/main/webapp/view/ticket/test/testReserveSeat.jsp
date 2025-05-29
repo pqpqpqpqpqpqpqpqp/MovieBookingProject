@@ -33,27 +33,6 @@
 String spe = request.getParameter("spe");
 %>
 <script>
-/* $('.previous_btn_movie').off('click').on('click', function () {
-    const previousJsp = 'testReserveMovie.jsp';
-
-    $('.bodyContainer').load(previousJsp, function (response, status, xhr) {
-        if (status === 'error') {
-            console.error('이전 JSP 로딩 실패:', xhr.status, xhr.statusText);
-        } else {
-            console.log('이전 JSP 로딩 성공');
-            
-            document.querySelector(".foot.first_container").innerHTML = "영화선택";
-            document.querySelector(".foot.second_container").innerHTML = "극장선택";
-            document.querySelector(".theater_time_info").innerHTML = " ";
-            document.querySelector('.theater_seat_info').innerHTML = " ";
-            
-            document.querySelector(".next_btn_pay_before").classList.add("btn_hidden");
-            document.querySelector(".previous_btn_movie").classList.add("btn_hidden");
-            document.querySelector(".next_btn_seat_before").classList.remove("btn_hidden");	
-        }
-    });
-}); */ //뒤로가기 이벤트의 흔적, 아직 온기가 남아있다
-
 // ================================
 // 좌석 렌더링
 // ================================
@@ -148,12 +127,7 @@ function checkReservedSeats(theaterId, date, startTime) {
 		},
 		dataType: 'json',
 		success: function(response) {
-			const reservedList = response.reservedSeats; // ['a1', 'b3', ...]
-			markReservedSeats(reservedList);
-			showAvailableSeatCount(reservedList);
-		},
-		error: function(xhr, status, error) {
-			console.error("좌석 정보 불러오기 실패:", error);
+			const reservedList = response.reservedSeats;
 		}
 	});
 }
@@ -221,6 +195,7 @@ function setupToggle(groupSelector, resetSelector) {
 const spe = "<%=spe%>";
 
 renderSeats(spe);
+checkReservedSeats(theaterId, date, startTime);
 setTimeInfo();
 setTheaterInfo(spe);
 setupToggle(".age_category_box.nomal", ".age_category_box.teen");
