@@ -3,9 +3,8 @@ package controller_api;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,6 +58,23 @@ public class MemberController extends HttpServlet {
 			MemberMyPageService myPageService = new MemberMyPageService();
 			responseData = myPageService.execute(request, response);
 
+		} else if (command.equals("/myInPageInfo.mew")) {
+			MemberInPageInfoService service = new MemberInPageInfoService();
+			responseData = service.myInPageInfo(request, response);
+     		} else if (command.equals("/userInfo.mew")) {
+			MemberUserInfoService userInfoService = new MemberUserInfoService();
+			responseData = userInfoService.execute(request, response);
+		} else if (command.equals("/userUpdate.mew")) {
+			MemberUpdateService updateService = new MemberUpdateService();
+			responseData = updateService.execute(request, response);
+		} else if (command.equals("/userDelete.mew")) {
+			MemberDeleteService deleteService = new MemberDeleteService();
+			responseData = deleteService.execute(request, response);
+			HttpSession session = request.getSession();
+			session.invalidate();
+		}
+
+
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
 
@@ -68,5 +84,4 @@ public class MemberController extends HttpServlet {
 
 	}
 
-}
 }

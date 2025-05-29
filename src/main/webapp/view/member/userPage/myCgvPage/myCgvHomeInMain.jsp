@@ -1,9 +1,15 @@
+myCgvHom
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
 <title>내가 본 영화</title>
 <link href="${pageContext.request.contextPath}/asset/css/mypage.css" rel="stylesheet">
 
+<%
+	int userIdx = 19; // 또는 세션에서 가져온 값
+%>
+<div class="my_cgv_home_main_container_outBox">
 <div class="my_cgv_home_main_container">
   <!-- 왼쪽 프로필 영역 -->
   <div class="aside_profile_container">
@@ -50,6 +56,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const userIdx = <%= userIdx %>; // 서버에서 받은 유저 인덱스
 
 
+  $.ajax({
+    url: "${pageContext.request.contextPath}/myInPageInfo.mew",
+    type: "GET",
+    data: { userIdx: userIdx },
+    success: function (resp) {
+      if (resp.code === 200 && resp.data) {
+        const user = resp.data;
+        $(".profile_name").html(user.userName + '<a id="go_edit_page" href="#" class="edit" target="_blank" title="새창열림">나의 정보 변경</a>');
+        $(".profile_nickname").text("닉네임 - " + user.userNickname);
+        $(".aside_profile_img img").attr("src", user.userImg || "/MovieBookingProject/asset/img/default/profile.png");
+      } else {
+        alert("사용자 정보를 불러오지 못했습니다.");
+      }
+    },
+    error: function () {
+      alert("사용자 정보 요청 실패");
+    }
+  });
+});
+</script>
+<script>
+
+	<script>
+
+	
+
 document.addEventListener("DOMContentLoaded", function () {
   const tabs = document.querySelectorAll(".aside_profile_menu.tab");
   const contents = document.querySelectorAll(".tab_content");
@@ -70,8 +102,17 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
-
+  
+  const initialTab = document.querySelector(".aside_profile_menu.tab.active");
+  if (initialTab) {
+    const targetId = initialTab.getAttribute("data-target");
+    contents.forEach(content => {
+      content.style.display = (content.id === targetId) ? "block" : "none";
+    });
+  }
 });
+
+
 tabs.forEach(tab => {
 	  tab.addEventListener("click", function (e) {
 	    e.preventDefault();
