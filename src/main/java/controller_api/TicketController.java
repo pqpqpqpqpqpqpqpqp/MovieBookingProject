@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import ticket.service.ReserveMovieList;
-import ticket.vo.ReserveVO;
+import ticket.service.ReserveMovieListService;
+import ticket.vo.ReserveMovieListVO;
 public class TicketController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,19 +36,21 @@ public class TicketController extends HttpServlet {
 		System.out.println("api호출: " + command);
 
 		Gson gson = new Gson();
-		List<ReserveVO> reserveArr = null; // response 값
+		List<ReserveMovieListVO> reserveMovieList = new ArrayList<>(); // response 값
 		
 		if(command.equals("/ReserveMovieList.tiw")) {
-			reserveArr = new ArrayList<>();
-			ReserveMovieList ReserveService = new ReserveMovieList();
-			reserveArr = ReserveService.execute(request, response);
+			ReserveMovieListService ReserveMovieListService = new ReserveMovieListService();
+			reserveMovieList = ReserveMovieListService.execute(request, response);
+		} else if(command.equals("/ReserveSeatCheck.tiw")) {
+			ReserveMovieListService ReserveMovieListService = new ReserveMovieListService();
+			reserveMovieList = ReserveMovieListService.execute(request, response);
 		}
-
+		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
 
 		PrintWriter out = response.getWriter();
-		out.print(gson.toJson(reserveArr));
+		out.print(gson.toJson(reserveMovieList));
 		out.flush();
 
 	}

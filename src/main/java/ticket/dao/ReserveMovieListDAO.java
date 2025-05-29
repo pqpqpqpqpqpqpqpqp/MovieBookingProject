@@ -8,18 +8,18 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import ticket.vo.ReserveVO;
+import ticket.vo.ReserveMovieListVO;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-public class ReserveDAO {
+public class ReserveMovieListDAO {
 
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
-	public ReserveDAO() {
+	public ReserveMovieListDAO() {
 		try {
 			Context init = new InitialContext();
 			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MysqlDB");
@@ -38,9 +38,9 @@ public class ReserveDAO {
 		} catch (Exception e) {}
 	}
 
-	public List<ReserveVO> readScreenInfo() {
-		List<ReserveVO> reserveArr = new ArrayList<>();
-		ReserveVO reserveVO = null;
+	public List<ReserveMovieListVO> readReserveMovieList() {
+		List<ReserveMovieListVO> movieReserveList = new ArrayList<>();
+		ReserveMovieListVO movieReserveListVO = null;
 		try {
 
 			String input = "SELECT M.MOVIE_NAME, T.THEATER_NAME, SI.SCREEN_DATE, "
@@ -53,24 +53,24 @@ public class ReserveDAO {
 			pstmt = conn.prepareStatement(input);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				reserveVO = new ReserveVO();
-				reserveVO.setMovieName(rs.getString("MOVIE_NAME"));
-				reserveVO.setTheaterName(rs.getString("THEATER_NAME"));
-				reserveVO.setScreenDate(rs.getString("SCREEN_DATE"));
-				reserveVO.setCinemaName(rs.getString("CINEMA_NAME"));
-				reserveVO.setCinemaSpecialName(rs.getString("CINEMA_SPECIAL_NAME"));
-				reserveVO.setScreenStartTime(rs.getString("SCREEN_START_TIME"));
-				reserveVO.setCinemaSeat(rs.getString("CINEMA_SEAT"));
-				reserveVO.setMovieAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
+				movieReserveListVO = new ReserveMovieListVO();
+				movieReserveListVO.setMovieName(rs.getString("MOVIE_NAME"));
+				movieReserveListVO.setTheaterName(rs.getString("THEATER_NAME"));
+				movieReserveListVO.setScreenDate(rs.getString("SCREEN_DATE"));
+				movieReserveListVO.setCinemaName(rs.getString("CINEMA_NAME"));
+				movieReserveListVO.setCinemaSpecialName(rs.getString("CINEMA_SPECIAL_NAME"));
+				movieReserveListVO.setScreenStartTime(rs.getString("SCREEN_START_TIME"));
+				movieReserveListVO.setCinemaSeat(rs.getString("CINEMA_SEAT"));
+				movieReserveListVO.setMovieAgeGrade(rs.getString("MOVIE_AGE_GRADE"));
 
-				reserveArr.add(reserveVO);
+				movieReserveList.add(movieReserveListVO);
 
 			}
-			return reserveArr;
+			return movieReserveList;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return reserveArr;
+			return movieReserveList;
 		}
 	}
 }
