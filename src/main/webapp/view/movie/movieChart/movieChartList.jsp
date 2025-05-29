@@ -30,10 +30,6 @@
 <script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
 <script>
 	$(document).ready(function() {
-
-		
-		// DOM이 준비되면 실행됨
-		console.log("DOM이 준비되었습니다.");		
 		
 		// 에매순 차트 로드
 		loadMovieChart("ticketing");
@@ -57,8 +53,6 @@
 		// 영화 차트 로드 함수
 	function loadMovieChart(chartType) {
 			
-			console.log('loadMovieChart 호출');
-
 		
 		$.ajax ({
 			url:'${pageContext.request.contextPath}/MovieChart.mo',
@@ -76,7 +70,6 @@
 					
 					const count = parseInt(res.data[i].movieChartCount);
 
-				    console.log(res.data[i]);
 				    let rankClass = "rank";
 				    if(i === 0) rankClass += " red";
 				    else if(i === 1) rankClass += " red";
