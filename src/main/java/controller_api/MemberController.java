@@ -13,11 +13,14 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import member.service.MemberDeleteService;
 import member.service.MemberIdCheckService;
 import member.service.MemberInPageInfoService;
 import member.service.MemberLoginService;
 import member.service.MemberMyPageService;
 import member.service.MemberRegisterService;
+import member.service.MemberUpdateService;
+import member.service.MemberUserInfoService;
 import util.ResponseData;
 
 public class MemberController extends HttpServlet {
@@ -34,7 +37,7 @@ public class MemberController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String url = request.getRequestURI(); // /서버path/url(mapping)
 		String path = request.getContextPath();// /서버path
 		String command = url.substring(path.length()); // /url(mapping)
@@ -42,24 +45,19 @@ public class MemberController extends HttpServlet {
 
 		Gson gson = new Gson();
 		ResponseData responseData = null; // response 값
-		
-		if(command.equals("/register.mew")) {
+
+		if (command.equals("/register.mew")) {
 			MemberRegisterService registerService = new MemberRegisterService();
 			responseData = registerService.execute(request, response);
-		}else if(command.equals("/idCheck.mew")) {
+		} else if (command.equals("/idCheck.mew")) {
 			MemberIdCheckService idCheckService = new MemberIdCheckService();
 			responseData = idCheckService.execute(request, response);
-		}else if(command.equals("/login.mew")) {
+		} else if (command.equals("/login.mew")) {
 			MemberLoginService loginService = new MemberLoginService();
 			responseData = loginService.execute(request, response);
-		}else if(command.equals("/myPagemain.mew")) {
+		} else if (command.equals("/myPagemain.mew")) {
 			MemberMyPageService myPageService = new MemberMyPageService();
 			responseData = myPageService.execute(request, response);
-		} else if (command.equals("/myInPageInfo.mew")) {
-			
-			MemberInPageInfoService service = new MemberInPageInfoService();
-			responseData = service.myInPageInfo(request, response);
-        }
 
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
@@ -70,4 +68,5 @@ public class MemberController extends HttpServlet {
 
 	}
 
+}
 }

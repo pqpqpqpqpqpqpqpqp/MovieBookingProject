@@ -16,7 +16,7 @@
 			<span class="delete_context_txt">그동안 CGV를 이용해주셔서 감사합니다.</span>			
 		</div>
 		<div class="del_btn">
-			<span class="del_btn_txt">CGV 회원탈퇴</span>
+			<span class="del_btn_txt" onclick="userDeleteClick()">CGV 회원탈퇴</span>
 		</div>
 	
 	</div>

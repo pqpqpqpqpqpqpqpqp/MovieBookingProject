@@ -22,7 +22,7 @@ public class MemberLoginService {
 		
 		memberVO = memberDAO.login(inputId);
 		int result = 0;
-		if(memberVO != null && memberVO.getUserPw().equals(inputPw)) {
+		if(memberVO != null && memberVO.getUserPw().equals(inputPw) && memberVO.getUserDel().equals("N")) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userIdx", memberVO.getUserIdx());
 			result = 1;

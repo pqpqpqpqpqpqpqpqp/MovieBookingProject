@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import javax.sql.DataSource;
 
 import member.vo.MemberVO;
+import member.vo.UserInfoVO;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -106,7 +107,7 @@ public class MemberDAO {
 		MemberVO memberVO = null;
 		try {
 			
-			String input = "SELECT USER_IDX, USER_PW FROM USER WHERE USER_ID = ?";
+			String input = "SELECT USER_IDX, USER_PW, USER_DEL FROM USER WHERE USER_ID = ?";
 			pstmt = conn.prepareStatement(input);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
@@ -116,6 +117,7 @@ public class MemberDAO {
 				memberVO = new MemberVO();
 				memberVO.setUserIdx(rs.getInt("USER_IDX"));
 				memberVO.setUserPw(rs.getString("USER_PW"));
+				memberVO.setUserDel(rs.getString("USER_DEL"));
 
 				return memberVO;
 			}
@@ -165,27 +167,5 @@ public class MemberDAO {
 		return memberVO;
 	}
 	
-	public MemberVO getUserInfo(int userIdx) {
-		MemberVO memberVO = null;
-		String sql = "SELECT USER_NAME, USER_NICKNAME, USER_IMG FROM user WHERE USER_IDX = ?";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, userIdx);
-			rs = pstmt.executeQuery();
-			
-			
-			 if(rs.next()) {
-				 memberVO = new MemberVO();
-				 memberVO.setUserName(rs.getString("USER_NAME"));
-				 memberVO.setUserNickname(rs.getString("USER_NICKNAME"));
-				 memberVO.setUserImg(rs.getString("USER_IMG"));
-		        }
-			}catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				conClose();
-			}
-			return memberVO;
-		}
-		
+
 }
