@@ -116,6 +116,7 @@
   let current = 0; // 현재 몇 번째 광고를 보여줄지 선언하는 변수
 
   function updateAd() {
+	  console.log(abs);
     if (ads.length === 0) return; // 광고가 없으면 아무것도 안 함
 
     const ad = ads[current]; // 현재 광고 가져오기
@@ -128,15 +129,14 @@
   }
 
   // 서버에서 광고 데이터를 불러오기 (fetch = 비동기 요청)
-  fetch('/asset/data/ads.json') // 이 주소에 있는 JSON을 가져옴
-    .then(response => response.json()) // 받아온 응답을 JSON으로 변환
-    .then(data => {
+  fetch('${pageContext.request.contextPath}/asset/data/ads.json') // 이 주소에 있는 JSON을 가져옴
+    .then(function(response)  {
+    	response.json();
+    }) // 받아온 응답을 JSON으로 변환
+    .then(function(data) {
       ads = data;      // 불러온 데이터를 ads 배열에 저장
       updateAd();      // 첫 번째 광고 표시
       setInterval(updateAd, 4000); // 4초마다 다음 광고로 바뀜
-    })
-    .catch(error => {
-      console.error('광고 데이터를 불러오는 중 오류 발생:', error);
     });
 </script>
 

@@ -24,7 +24,7 @@
 	       <ol id="movieList"> </ol>
 	 	</div>
 	 	
-	 	<button onclick="detailMove(4)">버튼</button>
+	 	<!-- <button onclick="detailMove(4)">버튼</button>  -->
 	</div>
 </div>
 <script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>

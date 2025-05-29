@@ -87,10 +87,11 @@
 				<!--  onclick 넣어주기 -->
 
 				<h1>
-					<img
-						src="https://img.cgv.co.kr/R2014/images/common/logo/logoRed.png"
-						id="logo" style="cursor: pointer;" alt="C G V"><span>홍남제황
-						Team</span>
+					<a href="${pageContext.request.contextPath}/view/main.jsp" style="text-decoration: none;">
+						<img
+							src="https://img.cgv.co.kr/R2014/images/common/logo/logoRed.png"
+							id="logo" style="cursor: pointer;" alt="C G V">
+					</a><span>홍남제황 Team</span>
 				</h1>
 			</div>
 

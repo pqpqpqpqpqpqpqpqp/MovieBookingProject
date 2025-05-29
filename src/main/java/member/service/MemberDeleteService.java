@@ -2,37 +2,36 @@ package member.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import member.dao.MemberDAO;
 import member.vo.MemberVO;
 import util.ResponseData;
 
-public class MemberMyPageService {
+public class MemberDeleteService {
 
 	public ResponseData execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		
-		int userIdx = Integer.parseInt(request.getParameter("userIdx"));
-		MemberVO memberVO = new MemberVO();
-		MemberDAO memberDAO = new MemberDAO();
 		
-		int result = 0;
-		if(userIdx != 0) {
-			memberVO = memberDAO.myPageLoad(userIdx);
-			result = 1;
-		}
+		int userIdx  = Integer.parseInt(request.getParameter("userIdx"));
+		
+		
+		
+		
+		// DB 연결 구간
+		MemberDAO memberDAO = new MemberDAO();
+		int result = memberDAO.delete(userIdx);
+		
 		
 		
 		ResponseData data = null;
-
-		if(result == 1) {
-			data = new ResponseData(memberVO);
-		} else{
+		System.out.println(result);
+		if(result > 0) {
+			data = new ResponseData();
+		} else {
 			data = new ResponseData(500, "서버 에러");
 		}
 		return data;
 		
 	}
 }
-
