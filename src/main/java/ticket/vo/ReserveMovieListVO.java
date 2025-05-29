@@ -1,6 +1,6 @@
 package ticket.vo;
 
-public class ReserveVO {
+public class ReserveMovieListVO {
 	// SELECT M.MOVIE_NAME, T.THEATER_NAME, SI.SCREEN_DATE,
 	// C.CINEMA_NAME ,C.CINEMA_SPECIAL_NAME, SI.SCREEN_START_TIME, C.CINEMA_SEAT
 
