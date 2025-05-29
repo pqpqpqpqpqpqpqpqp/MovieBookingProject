@@ -20,7 +20,6 @@ public class ReserveDAO {
 	ResultSet rs = null;
 
 	public ReserveDAO() {
-
 		try {
 			Context init = new InitialContext();
 			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MysqlDB");

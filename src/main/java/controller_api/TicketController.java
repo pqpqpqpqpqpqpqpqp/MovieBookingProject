@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import ticket.service.TicketReserveService;
+import ticket.service.ReserveMovieList;
 import ticket.vo.ReserveVO;
 public class TicketController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,9 +38,9 @@ public class TicketController extends HttpServlet {
 		Gson gson = new Gson();
 		List<ReserveVO> reserveArr = null; // response 값
 		
-		if(command.equals("/testReserve.tiw")) {
+		if(command.equals("/ReserveMovieList.tiw")) {
 			reserveArr = new ArrayList<>();
-			TicketReserveService ReserveService = new TicketReserveService();
+			ReserveMovieList ReserveService = new ReserveMovieList();
 			reserveArr = ReserveService.execute(request, response);
 		}
 
