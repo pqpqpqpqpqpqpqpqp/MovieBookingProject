@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>무비차트 리스트</title>
-	<link href ="${pageContext.request.contextPath}/asset/css/style.css" rel ="stylesheet ">
+	<link href ="${pageContext.request.contextPath}/asset/css/style.css" rel ="stylesheet">
 	
 </head>
 <body>
