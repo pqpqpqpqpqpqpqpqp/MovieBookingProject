@@ -10,8 +10,6 @@ function fetchUserInfo() {
 		data: obj,
 		dataType: "json",
 		success: function(res) {
-			console.log(res.data);
-
 
 			const userName = document.getElementById("userName");
 			const userId = document.getElementById("userId");
@@ -38,7 +36,6 @@ function fetchUserInfo() {
 //회원정보 설정
 function myPageUserInfo() {
 	const obj = { userIdx: sessionUserIdx }; // 전역 변수
-	console.log(obj);
 
 	$.ajax({
 		url: contextPath + "/userInfo.mew", //해결 완  
