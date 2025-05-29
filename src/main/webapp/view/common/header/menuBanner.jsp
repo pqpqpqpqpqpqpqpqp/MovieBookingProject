@@ -221,10 +221,10 @@
 					</ul>
 				</div>
 				<div class="dropdown-section">
-					<h4>극장</h4>
+					<h4 class="theater">극장</h4>
 					<ul>
-						<li>CGV 극장</li>
-						<li>특별관</li>
+						<li class="theater">CGV 극장</li>
+						<li class="theaterSpecial">특별관</li>
 					</ul>
 				</div>
 				<div class="dropdown-section">
@@ -334,6 +334,25 @@
 			location.href = "${pageContext.request.contextPath}/view/movie/MovieChart.jsp";
 		});
 	}
+	
+	// 상단 예매 / 드롭다운 속 극장, CGV 극장 클릭 시 CGV 극장 페이지로 이동
+	var theaterLinks = document.querySelectorAll(".theater");
+	
+	for (var i = 0; i < theaterLinks.length; i++) {
+		theaterLinks[i].addEventListener("click", function() {
+			location.href = "${pageContext.request.contextPath}/view/theater/theaterMain.jsp";
+		});
+	}
+	
+	// 특별관 이동 처리
+	var specialLink = document.querySelector(".theaterSpecial");
+
+	if (specialLink) {
+		specialLink.addEventListener("click", function() {
+			location.href = "${pageContext.request.contextPath}/view/theater/theaterSpecial.jsp";
+		});
+	}
+	
 	
 	// 상단 예매 / 드롭다운 속 예매, 빠른예매 클릭 시 빠른예매 페이지로 이동
 	var ticketLinks = document.querySelectorAll(".fastTicketing");

@@ -35,7 +35,7 @@ public class MovieUserDAO {
     public List<MovieUserListRes> movieChartTicketingList() {
         List<MovieUserListRes> chartlist = new ArrayList<>();
         String sql = "WITH YES_TICKET AS ( "
-    			+ "SELECT * FROM TICKETING WHERE SCREEN_INFO_IDX IN (SELECT SCREEN_INFO_IDX FROM SCREEN_INFO WHERE SCREEN_DATE = SUBDATE(CURDATE(), 17)) "
+    			+ "SELECT * FROM TICKETING WHERE SCREEN_INFO_IDX IN (SELECT SCREEN_INFO_IDX FROM SCREEN_INFO WHERE SCREEN_DATE = SUBDATE(CURDATE(), 18)) "
     			+ "AND TICKETING_DEL = 'N' "
     			+ "), YES_REVIEW as (  "
     			+ "SELECT FLOOR(REVIEW_SCORE/2) as SCORE "
@@ -84,7 +84,7 @@ public class MovieUserDAO {
     public List<MovieUserListRes> movieChartScoreList() {
     	List<MovieUserListRes> scorelist = new ArrayList<>();
     	String sql = "WITH YES_TICKET AS ( "
-    			+ "SELECT * FROM TICKETING WHERE SCREEN_INFO_IDX IN (SELECT SCREEN_INFO_IDX FROM SCREEN_INFO WHERE SCREEN_DATE = SUBDATE(CURDATE(), 17)) "
+    			+ "SELECT * FROM TICKETING WHERE SCREEN_INFO_IDX IN (SELECT SCREEN_INFO_IDX FROM SCREEN_INFO WHERE SCREEN_DATE = SUBDATE(CURDATE(), 18)) "
     			+ "AND TICKETING_DEL = 'N' "
     			+ "), YES_REVIEW as (  "
     			+ "SELECT FLOOR(REVIEW_SCORE/2) as SCORE "
@@ -140,7 +140,7 @@ public class MovieUserDAO {
     	// movieIdx에 따라 내용이 바껴야 하니까 영화 상세 정보 불러오기
     	String sql = "WITH YES_TICKET as ( " 
     				+ "select * from TICKETING " 
-    				+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 17)) "
+    				+ "where SCREEN_INFO_IDX IN (select SCREEN_INFO_IDX from SCREEN_INFO where SCREEN_DATE = SUBDATE(CURDATE(), 18)) "
     				+ "and TICKETING_DEL = 'N' ) "
     				+ ", YES_REVIEW as ( "
     				+ "SELECT FLOOR(REVIEW_SCORE/2) as SCORE "
