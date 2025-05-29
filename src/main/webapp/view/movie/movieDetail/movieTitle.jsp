@@ -100,7 +100,6 @@ function detail() {
 		
 		dataType: 'json',
 		success: function(res) {
-			console.log(res);
 			if(res.code ==200) {
 				const data = res.data;
 				document.getElementById('movie_poster').src = '${pageContext.request.contextPath}' +data.movieImg; 				// 포스터	
