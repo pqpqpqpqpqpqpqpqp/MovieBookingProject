@@ -14,20 +14,11 @@ int useridx = 2;
 <h4>리뷰 삭제 버튼</h4>
 <button class="review-del-btn"></button>
 
-
-
-
-
-
-
-
-
-
-
-
 <script
 	src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 <script>
+
+//리뷰 
 	$(document).ready(function() {
 		const USER_IDX = <%= useridx %>;
 		$.ajax({

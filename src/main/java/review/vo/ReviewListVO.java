@@ -9,8 +9,19 @@ public class ReviewListVO {
 	private String userNick;
 	private String movieName;
 	private String movieImg;
+	private int reviewIdx;
 	
 	
+	
+	
+	public int getReviewIdx() {
+		return reviewIdx;
+	}
+
+	public void setReviewIdx(int reviewIdx) {
+		this.reviewIdx = reviewIdx;
+	}
+
 	public String getMovieImg() {
 		return movieImg;
 	}

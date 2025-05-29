@@ -3,9 +3,8 @@ package controller_api;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +14,7 @@ import com.google.gson.Gson;
 
 import member.service.MemberDeleteService;
 import member.service.MemberIdCheckService;
+import member.service.MemberInPageInfoService;
 import member.service.MemberLoginService;
 import member.service.MemberMyPageService;
 import member.service.MemberRegisterService;
@@ -57,7 +57,11 @@ public class MemberController extends HttpServlet {
 		} else if (command.equals("/myPagemain.mew")) {
 			MemberMyPageService myPageService = new MemberMyPageService();
 			responseData = myPageService.execute(request, response);
-		} else if (command.equals("/userInfo.mew")) {
+
+		} else if (command.equals("/myInPageInfo.mew")) {
+			MemberInPageInfoService service = new MemberInPageInfoService();
+			responseData = service.myInPageInfo(request, response);
+     		} else if (command.equals("/userInfo.mew")) {
 			MemberUserInfoService userInfoService = new MemberUserInfoService();
 			responseData = userInfoService.execute(request, response);
 		} else if (command.equals("/userUpdate.mew")) {
@@ -69,6 +73,7 @@ public class MemberController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.invalidate();
 		}
+
 
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
