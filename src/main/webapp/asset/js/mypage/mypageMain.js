@@ -14,30 +14,21 @@ document.addEventListener("DOMContentLoaded", function() {
 /***
  * 페이지 기능
  */
+
 async function aDataUrl(e) {
 	e.preventDefault?.();
 	const targetUrl = e.target.getAttribute("data-url");
-
-
-
-
-
+	
 //페이지 불러오기 기능
 	await fetch(targetUrl)
 		.then(res => res.text())
 		.then(data => {
 			document.getElementById("contentBox").innerHTML = data;
-
-
 		})
 		.catch(err => {
-			document.getElementById("contentBox").innerHTML =
-				"<p>페이지 로딩에 실패했습니다.</p>";
+			document.getElementById("contentBox").innerHTML ="<p>페이지 로딩에 실패했습니다.</p>";
 		});
-
-
-
-
+		
 	const splitURL = targetUrl.split("/");
 	const command = splitURL[splitURL.length - 1];
 

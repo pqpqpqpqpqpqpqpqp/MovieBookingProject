@@ -17,9 +17,8 @@
       </div>
     </div>
 <%
-	String userIdxStr = request.getParameter("userIdx"); 
-	int userIdx = (userIdxStr != null) ? Integer.parseInt(userIdxStr) : 0;
-	// int userIdx =(Integer) session.getAttribute("userIdx"); 
+	
+	 int userIdx =(Integer) session.getAttribute("userIdx"); 
 %>
     <!-- 영화 항목 -->
     <div class="movie_list_catainer movie">
@@ -48,13 +47,16 @@ $(document).ready(function() {
 			console.log("응답 확인:", resp); 
 			let movieList = resp.data || [];
 			$(".movie_list_catainer.movie").empty(); // 리스트 초기화
-			
-			// 부모 aside 안에 영화 수 넣기
-			$('#countMovie').text(movieList.length + '건');
-			
+
+			// 영화 개수 표시 (내가 본 영화)
+			const movieCount = movieList.length;
+			$('#countMovie').text(movieCount + '건');
+
+			// 🔥 부모 페이지 aside 탭에도 개수 갱신
 			if (window.parent && window.parent.document) {
-				$(window.parent.document).find('#movie_count').text(movieList.length);
-			} else {
+				const $parentWatchedEm = $(window.parent.document).find('a[data-target="watchedMovies"] em');
+				$parentWatchedEm.text(movieCount);
+			}else {
 				$('#movie_count').text(movieList.length);
 			}
 			

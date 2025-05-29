@@ -24,14 +24,14 @@
   </div>
 
   <!-- 예매내역 -->
-  <div class="myhome_section">
-    <div class="section_title">
-      <strong>MY 예매내역 0건 <span class="plus_icon"></span></strong>
-       <span style="color: #999;">예매번호로만 티켓을 찾을 수 있으니 반드시 확인 부탁드립니다.</span>
-    </div>
-    <div class="section_content">
-      고객님의 최근 예매내역이 존재하지 않습니다.<br>
+<!--   <div class="myhome_section"> -->
+<!--     <div class="section_title"> -->
+<!--       <strong>MY 예매내역 0건 <span class="plus_icon"></span></strong> -->
+<!--        <span style="color: #999;">예매번호로만 티켓을 찾을 수 있으니 반드시 확인 부탁드립니다.</span> -->
+<!--     </div> -->
+<!--     <div class="section_content"> -->
+<!--       고객님의 최근 예매내역이 존재하지 않습니다.<br> -->
      
-    </div>
-  </div>
+<!--     </div> -->
+<!--   </div> -->
   </div>
