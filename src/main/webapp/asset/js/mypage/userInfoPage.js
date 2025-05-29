@@ -1,34 +1,3 @@
-// asset/js/mypage/userInfoPage.js
-
-function fetchUserInfo() {
-
-	const obj = { userIdx: sessionUserIdx }; // 전역 변수
-
-	$.ajax({
-		url: contextPath + "/userInfo.mew", //해결 완  
-		type: "post",
-		data: obj,
-		dataType: "json",
-		success: function(res) {
-
-			const userName = document.getElementById("userName");
-			const userId = document.getElementById("userId");
-			const userBirthDay = document.getElementById("userBirthDay");
-			const userPhoneNum = document.getElementById("userPhoneNum");
-			const userPw = document.getElementById("userPhoneNum");
-
-			userName.value = res.data.userName;
-			userId.value = res.data.userId;
-			userBirthDay.value = res.data.birthday;
-			userPhoneNum.value = res.data.userTel;
-			userPw.value = res.data.userPw;
-
-
-		}
-	});
-}
-
-
 /******************
  *  회원 정보
  ******************/
@@ -49,12 +18,6 @@ function myPageUserInfo() {
 				alert('로그인 없음');
 				return;
 			}
-
-
-			//const userName = document.getElementById("userName");
-			//const userId = document.getElementById("userId");
-			//const userBirthDay = document.getElementById("userBirthDay");
-			//const userPhoneNum = document.getElementById("userPhoneNum");
 
 			document.getElementById("userInfo_userName").value = data.userName;
 			document.getElementById("userInfo_userNickname").value = data.userNickname;
