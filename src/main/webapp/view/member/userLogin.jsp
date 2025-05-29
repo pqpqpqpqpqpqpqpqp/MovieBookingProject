@@ -237,7 +237,6 @@
 				data : obj,
 				dataType : 'json', //성공 유무
 				success : function(res) { // 성공 했을 때
-					console.log(res);
 					if (res.code == 200) {
 						alert('로그인 성공');
 						location.href = "${pageContext.request.contextPath}/main.me";

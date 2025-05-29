@@ -9,7 +9,6 @@
 <!-- 전체보기 버튼 링크 미설정 -->
 <link rel ="preconnect " href ="https: //fonts.googleapis.com "> 
 <link rel ="preconnect " href ="https: //fonts.gstatic.com " crossorigin>
-<link href ="https: //fonts.googleapis.com /css2 ?family =Noto+Sans+KR:wght @100 ..900&display =swap " rel ="stylesheet ">
 <style>
 	
 	body {
@@ -68,7 +67,6 @@
     font-size: 14px;
     color: #222;
     line-height: 1.429em;
-    background: transparent url(./../images/common/ico/arrowR_8x13.png) calc(100% - 7px) center / 8px 13px scroll no-repeat;
     border-radius: 15px;
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.05);
     cursor: pointer;

@@ -41,7 +41,6 @@ async function aDataUrl(e) {
 	const splitURL = targetUrl.split("/");
 	const command = splitURL[splitURL.length - 1];
 
-	console.log('command: ', command);
 
 	//page 경로 function 실행
 	switch (command) {

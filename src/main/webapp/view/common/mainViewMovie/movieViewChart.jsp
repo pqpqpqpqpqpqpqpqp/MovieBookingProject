@@ -100,7 +100,6 @@
 <script>
 	$(document).ready(function() {
 		
-		console.log("영화 차트 로드");
 		
 	$.ajax ({
 		url: '${pageContext.request.contextPath}/MovieChart.mo',
@@ -116,7 +115,7 @@
 				
 				 let html = 
 					 '<div class="movie-item">' +
-				      		'<a href="' + '${pageContext.request.contextPath}/view/movie/movieDetail.jsp?movieIdx=' + res.data[i].movieIdx + '">' +
+				      		'<a href="' + '${pageContext.request.contextPath}/movieDetail.mow?movieIdx=' + res.data[i].movieIdx + '">' +
 				        		'<div class="poster-wrap">' +
 				        			'<img src="' + '${pageContext.request.contextPath}' + res.data[i].movieChartImg + '" alt="' + res.data[i].movieChartName + '">' +
 				        	 	'</div>' +

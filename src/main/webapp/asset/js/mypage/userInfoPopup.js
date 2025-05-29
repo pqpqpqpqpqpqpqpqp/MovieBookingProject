@@ -143,7 +143,6 @@ function btnEditClick() {
 		data: obj,
 		dataType: 'json', //성공 유무
 		success: function(res) { // 성공 했을 때
-			console.log(res);
 			if (res.code == 200) {
 				alert('수정완료');
 				location.href = contextPath + "/myPagemain.me";

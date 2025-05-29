@@ -39,7 +39,6 @@ public class MovieController extends HttpServlet {
 			forward = "/view/member/userPage/myCgvPage/mywatchedMovie.jsp";
 		} else if (command.equals("/movieDetail.mow")) {
 
-			System.out.println("mhs: 동작 체크 detail");
 			String movieIdx = request.getParameter("movieIdx");
 			request.setAttribute("movieIdx", movieIdx);
 

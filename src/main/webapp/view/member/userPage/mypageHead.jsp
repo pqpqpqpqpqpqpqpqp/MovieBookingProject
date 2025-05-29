@@ -39,7 +39,6 @@
 			data : obj,
 			dataType : 'json', //성공 유무
 			success : function(res) { // 성공 했을 때
-				console.log(res.data);
 				
 				const userName = document.getElementById("userName");
 				const userId = document.getElementById("userId");
