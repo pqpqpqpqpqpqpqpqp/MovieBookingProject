@@ -185,7 +185,6 @@ String movieIdx = request.getParameter("movieIdx");
 		const MOVIE_IDX = <%=movieIdx%>;
 		if(USER_IDX == '0' || MOVIE_IDX == '0') {
 
-			console.log(USER_IDX);
 		}
 		
 		let selectedRating = "";
@@ -244,7 +243,6 @@ String movieIdx = request.getParameter("movieIdx");
 					$("#reviewText").val("");
 					$(".rating-button").removeClass("selected");
 					selectedRating = "";
-					console.log(response);
 				},
 				error : function() {
 					alert("리뷰 등록에 실패했습니다. 다시 시도해주세요.");
@@ -263,9 +261,7 @@ String movieIdx = request.getParameter("movieIdx");
 <script>
 	$(document).ready(function() {
 		const MOVIE_IDX = document.getElementById('movieIdx').value;
-
-		console.log("영화 인덱스 확인: ",MOVIE_IDX);
-		
+	
 		$.ajax({
 			url : '${pageContext.request.contextPath}/movieReviewList.re', // 서버의 엔드포인트
 			type : "GET",
@@ -273,14 +269,9 @@ String movieIdx = request.getParameter("movieIdx");
 				movieIdx : MOVIE_IDX,
 			},
 			success : function(resp) {
-				console.log("데이터 확인",resp.data);
-				
-				
-				
+			
 				for(var i = 0; i < resp.data.length; i++) {
-					
-					console.log("i 데이터 확인: ",resp.data[i]);
-					
+									
 					var html = 
 						'<div class="review_item">' +
 							'<div class="movie_review_img">' +
