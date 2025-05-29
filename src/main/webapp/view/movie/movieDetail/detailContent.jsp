@@ -72,7 +72,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
 //성별 그래프 보이기
 function genderGraph() {
-	console.log('genderGraph');
 	$.ajax({
 		url: '${pageContext.request.contextPath}/MovieDetailGenderGraph.mo',
 		data: {'movieIdx': movieDetailIdx},
@@ -98,7 +97,6 @@ function genderGraph() {
 
 //연령별 불러오기
 function ageGraph() {
-	console.log('ageGraph');
 	$.ajax({
 		url: '${pageContext.request.contextPath}/MovieDetailAgeGraph.mo',
 		data: {'movieIdx': movieDetailIdx},
@@ -115,7 +113,6 @@ function ageGraph() {
 				
 				
 				막대그래프();
-				console.log(res.data);
 			}
 		}
 			
