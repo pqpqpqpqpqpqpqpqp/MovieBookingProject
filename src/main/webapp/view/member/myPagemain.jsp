@@ -8,10 +8,12 @@
 	<jsp:include page="/view/common/header.jsp"/>
 </head>
 <body>
-<jsp:include page="userPage/mypageHead.jsp"></jsp:include>
-<jsp:include page="userPage/mypageContent.jsp"></jsp:include>
+<jsp:include page="/view/member/userPage/mypageHead.jsp"></jsp:include>
+<jsp:include page="/view/member/userPage/mypageContent.jsp"></jsp:include>
 </body>
 <footer>
 <jsp:include page="/view/common/footer.jsp"/>
 </footer>
 </html>
+
+
