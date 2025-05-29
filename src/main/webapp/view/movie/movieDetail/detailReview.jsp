@@ -54,7 +54,6 @@ String movieIdx = request.getParameter("movieIdx");
 	<input type="hidden" id="movieIdx" value="" />
 
 	
-	<h1><%=movieIdx %></h1>
 	<div class="review_writeBtn">
 		<button class="review_btn" id="openReviewModal">평점 작성</button>
 		<button class="review_btn" id="my_btn">내 평점 확인</button>
