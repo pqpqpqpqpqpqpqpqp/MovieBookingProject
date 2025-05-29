@@ -37,7 +37,6 @@ public class ReviewController extends HttpServlet {
 		ResponseData responseData = null; // response 값
 
 		try {
-			System.out.println("컨트롤러하이");
 			if (command.equals("/reviewWrite.re")) {
 				ReviewWriteService service = new ReviewWriteService();			
 				responseData = service.execute(request, response);
@@ -50,7 +49,13 @@ public class ReviewController extends HttpServlet {
 			}else if(command.equals("/myWatchedMovie.re")) {
 			    MovieMyPageService service = new MovieMyPageService();				
 			    responseData = service.execute(request, response);
-			} else {
+			} else if (command.equals("/deleteReview.re")) {
+	            ReviewListService service = new ReviewListService();
+	            responseData = service.deleteReview(request, response);
+	        }else if (command.equals("/eidtReview.re")) {
+	        	ReviewListService service = new ReviewListService();
+	        	responseData  = service.editReview(request, response);
+	        }else {
 				responseData = new ResponseData(404, "존재하지 않는 API 요청입니다.");
 			}
 		} catch (Exception e) {

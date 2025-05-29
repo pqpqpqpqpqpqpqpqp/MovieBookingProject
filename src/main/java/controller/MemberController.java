@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,9 +28,6 @@ public class MemberController extends HttpServlet {
 		String url = request.getRequestURI();
 		String path = request.getContextPath();
 		String command = url.substring(path.length());
-
-		System.out.println("web이동: " + command);
-
 		String forward = null;
 		if (command.equals("/userLogin.me")) {
 			forward = "/view/member/userLogin.jsp";

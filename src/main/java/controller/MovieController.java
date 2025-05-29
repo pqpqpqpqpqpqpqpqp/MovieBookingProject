@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,10 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
-import movie.service.MovieDetailService;
-import util.ResponseData;
 
 public class MovieController extends HttpServlet {
 
@@ -30,41 +25,30 @@ public class MovieController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String url = request.getRequestURI(); // /서버path/url(mapping)
 		String path = request.getContextPath();// /서버path
 		String command = url.substring(path.length()); // /url(mapping)
-		
-		System.out.println("api호출: " + command);
 
-		Gson gson = new Gson();
+		System.out.println("web 이동: " + command);
+
 		
-		ResponseData responseData = null; // response 값
+
 		String forward = null;
-		if(command.equals("/myPagemain.me")) {
+		if (command.equals("/myPagemain.mow")) {
 			forward = "/view/member/userPage/myCgvPage/mywatchedMovie.jsp";
 		} else if (command.equals("/movieDetail.mow")) {
-		    MovieDetailService action = new MovieDetailService();
-		    ResponseData result = action.execute(request, response);
 
-		    if (result.getCode() == 200) {
-		    	request.setAttribute("movie", result.getData());
-		    	request.getRequestDispatcher("/view/movie/detail.jsp").forward(request, response);
-		    } else {
-		    	response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "영화 정보 조회 실패");
-		    }
-		    return; // JSON 응답 안 보내도록 여기서 리턴
+			System.out.println("mhs: 동작 체크 detail");
+			String movieIdx = request.getParameter("movieIdx");
+			request.setAttribute("movieIdx", movieIdx);
+
+			forward = "view/movie/movieDetail.jsp";
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 		dispatcher.forward(request, response);
-		
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json; charset=UTF-8");
 
-		PrintWriter out = response.getWriter();
-		out.print(gson.toJson(responseData));
-		out.flush();
 
 	}
 

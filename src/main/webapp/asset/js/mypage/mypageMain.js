@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
-
 /***
  * 페이지 기능
  */
@@ -23,7 +22,7 @@ async function aDataUrl(e) {
 
 
 
-	//페이지 불러오기 기능
+//페이지 불러오기 기능
 	await fetch(targetUrl)
 		.then(res => res.text())
 		.then(data => {
