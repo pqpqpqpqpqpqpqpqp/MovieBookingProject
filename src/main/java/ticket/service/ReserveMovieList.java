@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import ticket.dao.ReserveDAO;
 import ticket.vo.ReserveVO;
 
-public class TicketReserveService {
+public class ReserveMovieList {
 
 	public List<ReserveVO> execute(HttpServletRequest request, HttpServletResponse response) {
 

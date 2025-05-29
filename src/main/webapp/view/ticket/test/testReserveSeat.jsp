@@ -118,7 +118,7 @@ function renderSeats(spe) {
 
 function checkReservedSeats(theaterId, date, startTime) {
 	$.ajax({
-		url: '${pageContext.request.contextPath}/testReserve.tiw',
+		url: '${pageContext.request.contextPath}/ReserveSeatCheck.tiw',
 		type: 'POST',
 		data: {
 			'theaterId': theaterId,

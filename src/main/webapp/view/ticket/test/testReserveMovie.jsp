@@ -63,7 +63,7 @@ window.movieData = {
 };
 
 $.ajax({
-	url: '${pageContext.request.contextPath}/testReserve.tiw',
+	url: '${pageContext.request.contextPath}/ReserveMovieList.tiw',
 	type: 'get',
 	dataType: 'json',
 	success: function(res) {
