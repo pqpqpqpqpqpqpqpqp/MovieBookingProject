@@ -111,6 +111,7 @@ String movieIdx = request.getParameter("movieIdx");
 	// 평점 작성 버튼
 	document.getElementById('openReviewModal').addEventListener("click", function() {
 
+		alert('너 왜 실행 되니');
 
 		
 		// 로그인 된 상태
@@ -189,7 +190,7 @@ String movieIdx = request.getParameter("movieIdx");
 		const MOVIE_IDX = <%=movieIdx%>;
 		if(USER_IDX == '0' || MOVIE_IDX == '0') {
 
-			console.log(userIdx);
+			console.log(USER_IDX);
 		}
 		
 		let selectedRating = "";
