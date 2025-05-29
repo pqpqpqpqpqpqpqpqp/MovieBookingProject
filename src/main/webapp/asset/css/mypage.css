@@ -102,12 +102,7 @@
     myCgvHomeInMain.jsp
     
     */
-     .my_cgv_home_main_container_outBox{
-     width: 100%;
-     	display: flex;
-     	justify-content: center;
-     	
-     	}
+    
      .my_cgv_home_main_container {
       display: flex;
       width: 980px;
@@ -236,10 +231,6 @@
 
     .movie-list-header h3 {
       font-size: 18px;
-    }
-    .movieName{
-    	display: flex;
-    	
     }
 
     .movie-list-header .controls {

@@ -16,10 +16,10 @@
         <img src="/MovieBookingProject/asset/img/movie/movieposter/Avatar.jpeg" alt="프로필">
       </div>
       <div class="profile_name">
-        홍길동
+        
         <a id="go_edit_page" href="#" class="edit" target="_blank" title="새창열림">나의 정보 변경</a>
       </div>
-      <div class="profile_nickname">닉네임 - 2000</div>
+      <div class="profile_nickname"></div>
     </div>
 
     <!-- 탭 메뉴 -->
