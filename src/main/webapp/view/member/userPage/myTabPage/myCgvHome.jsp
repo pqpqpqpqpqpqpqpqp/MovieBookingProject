@@ -13,11 +13,11 @@
       <h3>기대되는 영화</h3>
       <p>보고 싶은 영화들을 미리<br>담아두고 싶다면?</p>
     </div> -->
-    <div class="menu_item">
+    <div class="menu_item" id="myCgvHome_movie" onclick="mypageDetailClick(event)">
       <h3>내가 본 영화</h3>
       <p>관람한 영화들을 한번에<br>모아 보고 싶다면?</p>
     </div>
-    <div class="menu_item">
+    <div class="menu_item" id="myCgvHome_review" onclick="mypageDetailClick(event)">
       <h3>내가 쓴 평점</h3>
       <p>관람 후 내 감상평을 적어<br>추억하고 싶다면?</p>
     </div>

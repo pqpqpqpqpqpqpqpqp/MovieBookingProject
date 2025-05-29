@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -57,6 +56,10 @@ public class MemberController extends HttpServlet {
 			forward = "/view/member/userPage/myTabPage/userInfoSubPage/editPhone.jsp";
 		} else if (command.equals("/editPassword.me")) {
 			forward = "/view/member/userPage/myTabPage/userInfoSubPage/editPassword.jsp";
+		} else if (command.equals("/myCgvHome_movie.me")) {
+			forward = "/view/member/userPage/myCgvPage/myCgvHomeInMain.jsp";
+		} else if (command.equals("/myCgvHome_review.me")) {
+			forward = "/view/member/userPage/myCgvPage/myCgvHomeInMain.jsp";
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
