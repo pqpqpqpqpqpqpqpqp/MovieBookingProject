@@ -32,32 +32,40 @@
 <%
 String spe = request.getParameter("spe");
 %>
+
 <script>
+let maxSeat = 0;
+let remainSeat = 0;
+let selNum = 0;
+let movieCost = 0;
+
 function renderSeats(spe) {
 	const seatcon = document.createElement('div');
 	let html = "";
 
 	if (spe === '(PRIVATE_BOX)') {
+		maxSeat = 8;
+		movieCost = 25000;
 		html = `
 			<div class="seatArray A">
 				<a class="seat_num">A</a>
 				<a class="seat" id="a1">1</a>
-				<a class="seat hidden"></a>
 				<a class="seat" id="a2">2</a>
-				<a class="seat" id="a3">3</a> 
 				<a class="seat hidden"></a>
+				<a class="seat" id="a3">3</a> 
 				<a class="seat" id="a4">4</a>
 			</div>
 			<div class="seatArray B">
 				<a class="seat_num">B</a>
 				<a class="seat" id="b1">1</a>
-				<a class="seat hidden"></a>
 				<a class="seat" id="b2">2</a>
-				<a class="seat" id="b3">3</a>
 				<a class="seat hidden"></a>
+				<a class="seat" id="b3">3</a>
 				<a class="seat" id="b4">4</a>
 			</div>`;
 	} else if (spe === '(SUITE_SINEMA)') {
+		maxSeat = 14;
+		movieCost = 20000;
 		html = `
 			<div class="seatArray A">
 				<a class="seat_num">A</a>
@@ -84,6 +92,8 @@ function renderSeats(spe) {
 				<a class="seat" id="b7">7</a>
 			</div>`;
 	} else if (spe === '(NOMAL)') {
+		maxSeat = 12;
+		movieCost = 12000;
 		html = `
 			<div class="seatArray A">
 				<a class="seat_num">A</a>
@@ -117,17 +127,13 @@ function parseInputText() {
 	const inputs = document.querySelectorAll('.input_text');
 	const cgvLoca = inputs[0].textContent.split(" ");
 	const datetime = inputs[1].textContent.split(" ");
-	
-	return {
-		inputs,
-		cgvLoca,
-		datetime
-	}
+
+	return { inputs, cgvLoca, datetime }
 }
 
 function checkReservedSeats() {
 	const { inputs, cgvLoca, datetime } = parseInputText();
-	
+
 	const movieName = document.querySelector(".foot.first_container .title").textContent;
 
 	$.ajax({
@@ -142,7 +148,12 @@ function checkReservedSeats() {
 		},
 		dataType: 'json',
 		success: function(res) {
-			console.log(res);
+			res.forEach(re => {
+				const el = document.querySelector('#' + re);
+				el.classList.add("reserved");
+			});
+			remainSeat = maxSeat - res.length;
+			setTheaterInfo(spe);
 		}
 	});
 }
@@ -158,7 +169,7 @@ function setTimeInfo() {
 	const h = parseInt(time[0]) + 2;
 	const endtime = h + ':00';
 
-	document.querySelector(".theater_time_info").innerHTML = 
+	document.querySelector(".theater_time_info").innerHTML =
 		'<strong style="font-size: 20px;"><span id="date">' + datetime[0] + '</span>' +
 		'(<span id="weedday" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">' + weekdays[day] + '</span>) ' +
 		'<span id="movieStartTime">' + datetime[1] +'</span> ~ <span id="movieEndTime">' + endtime + '</span></strong>';
@@ -167,50 +178,130 @@ function setTimeInfo() {
 function setTheaterInfo(spe) {
 	const { inputs } = parseInputText();
 
-	document.querySelector('.theater_seat_info').innerHTML = 
+	document.querySelector('.theater_seat_info').innerHTML =
 		"<span>" + inputs[0].textContent + "</span>" + "<span>  |  </span>" +
-		"<span>" + inputs[2].textContent + " " + spe + "</span>";
+		"<span>" + inputs[2].textContent + " " + spe + "</span>"  + "<span>  |  </span>" +
+		"<span>남은 좌석: " + remainSeat + "/" + maxSeat + "</span>";
+}
+
+function updateSeatList() {
+	const selectedSeats = document.querySelectorAll('.seat.selected');
+	const seatNames = Array.from(selectedSeats).map(seat => seat.id).join(', ');
+
+	document.querySelector(".foot.third_container").innerHTML =
+		'<div class="foot seat_tab">' +
+			'<div class="title">' +
+				'<span>좌석명</span> <span>좌석번호</span>' +
+			'</div>' +
+			'<div class="context">' +
+				'<span class="input_text">일반석</span>' +
+				'<span class="input_text">' + seatNames + '</span>' +
+			'</div>' +
+		'</div>';
+
+	if (selectedSeats.length >= selNum){
+		document.querySelector(".next_btn_pay_before").classList.add("btn_hidden");
+		document.querySelector(".next_btn_pay_end").classList.remove("btn_hidden");
+	} else {
+		document.querySelector(".next_btn_pay_end").classList.add("btn_hidden");
+		document.querySelector(".next_btn_pay_before").classList.remove("btn_hidden");
+	}
+}
+
+function updateTaxTab(movieCost, selNum) {
+	document.querySelector(".foot.forth_container").innerHTML =
+		'<div class="foot tax_tab">' +
+			'<div class="title">' +
+				'<span>일반</span> <span>총금액</span>' +
+			'</div>' +
+			'<div class="context tax">' +
+				'<div class="tax_counting">' +
+					'<span class="input_text">' + movieCost + '</span>' +
+					'<span>원</span>' +
+					'<span>X</span>' +
+					'<span>' + selNum + '</span>' +
+				'</div>' +
+				'<div class="tax_count_txt_container">' +
+					'<span class="input_text tax_count_txt">' + (movieCost * selNum) + '</span>' +
+					'<span class="tax_count_txt">원</span>' +
+				'</div>' +
+			'</div>' +
+		'</div>';
 }
 
 function setupToggle(groupSelector, resetSelector) {
-  	const container = document.querySelector(groupSelector);
-  	const resetContainer = document.querySelector(resetSelector);
+	const container = document.querySelector(groupSelector);
+	const resetContainer = document.querySelector(resetSelector);
 
-  	container.addEventListener("click", function (e) {
-    	const target = e.target.closest(".person_box");
-    	if (!target) return;
+	container.addEventListener("click", function (e) {
+		const target = e.target.closest(".person_box");
+		if (!target) return;
 
 		const current = container.querySelector(".person_box.selected");
-    	if (current !== target) {
-      		if (current) current.classList.remove("selected");
-      		target.classList.add("selected");
-      		
-      		const inputTexts = document.querySelectorAll(".input_text");
-      		inputTexts[3].textContent = target.querySelector("a").textContent;
+		if (current !== target) {
+			if (current) current.classList.remove("selected");
+			target.classList.add("selected");
 
-     		if (resetContainer) {
-        		const resetSelected = resetContainer.querySelector(".person_box.selected");
-        		if (resetSelected) resetSelected.classList.remove("selected");
-        		resetContainer.querySelector(".person_box").classList.add("selected")
-      		}
-    	}
-  	});
+			const inputTexts = document.querySelectorAll(".input_text");
+			inputTexts[3].textContent = target.querySelector("a").textContent;
+			selNum = target.querySelector("a").textContent;
+
+			if (resetContainer) {
+				const resetSelected = resetContainer.querySelector(".person_box.selected");
+				if (resetSelected) resetSelected.classList.remove("selected");
+				resetContainer.querySelector(".person_box").classList.add("selected")
+			}
+		}
+
+		document.querySelectorAll('.seat.selected').forEach(seat => {
+			seat.classList.remove('selected');
+		});
+
+		updateSeatList();
+		updateTaxTab(movieCost, selNum);
+	});
 }
+
+function selectSeat() {
+	const seats = document.querySelectorAll('.seat');
+
+	seats.forEach(seat => {
+		if (seat.classList.contains('hidden') || seat.classList.contains('reserved')) return;
+
+		seat.addEventListener('click', function () {
+			const seatId = seat.id;
+
+			if (seat.classList.contains('selected')) {
+				seat.classList.remove('selected');
+			} else {
+				const selectedSeats = document.querySelectorAll('.seat.selected');
+
+				if (selectedSeats.length >= selNum) {
+					return;
+				}
+
+				seat.classList.add('selected');
+			}
+			updateSeatList();
+		});
+	});
+}
+
+$('.next_btn_pay_end').on('click', function(e) {
+	$('.bodyContainer').load('testReservePay.jsp', function (response, status, xhr) {
+        if (status === 'error') {
+        	console.error('Error loading JSP:', xhr.status, xhr.statusText);
+        }
+    });
+});
 
 const spe = "<%=spe%>";
 
 renderSeats(spe);
 checkReservedSeats();
+// setTheaterInfo는 남는 좌석 표시 문제로 checkReservedSeats 내부에서 실행;
 setTimeInfo();
-setTheaterInfo(spe);
 setupToggle(".age_category_box.nomal", ".age_category_box.teen");
 setupToggle(".age_category_box.teen", ".age_category_box.nomal");
-
-// 대충 예매정보 테이블을 확인해서 seat에 reserved 클래스를 추가할 ajax.get - 쉽지만 귀찮음
-
-// 대충 인원수만큼 좌석 선택(클릭해서 선택)
-// 클릭 이벤트는 그대로 두고 딱 인원수만큼만 좌석 선택해야만 진행(아마 가장 간단한 방법)
-
-// db에 예매 등록은 여기말고 결제 페이지서.
-
+selectSeat();
 </script>

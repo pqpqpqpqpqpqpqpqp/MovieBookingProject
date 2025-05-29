@@ -6,12 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import ticket.vo.ReserveMovieListVO;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
+import ticket.vo.ReserveSeatCheckVO;
 
 public class ReserveSeatCheckDAO {
 
@@ -21,7 +19,7 @@ public class ReserveSeatCheckDAO {
 
 	public ReserveSeatCheckDAO() {
 		try {
-			Context init = new InitialContext();
+			InitialContext init = new InitialContext();
 			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MysqlDB");
 			conn = ds.getConnection();
 		} catch (Exception e) {
@@ -38,16 +36,42 @@ public class ReserveSeatCheckDAO {
 		} catch (Exception e) {}
 	}
 
-	public List<String> checkReserveSeat() {
+	public List<String> checkReserveSeat(ReserveSeatCheckVO reserveSeatCheckVO) {
+	    List<String> reservedSeats = new ArrayList<>();
 
-		try {
+	    String sql = "SELECT T.SEAT_NAME " +
+	                 "FROM TICKETING T " +
+	                 "JOIN SCREEN_INFO S ON T.SCREEN_INFO_IDX = S.SCREEN_INFO_IDX " +
+	                 "JOIN MOVIE M ON S.MOVIE_IDX = M.MOVIE_IDX " +
+	                 "JOIN CINEMA C ON S.CINEMA_IDX = C.CINEMA_IDX " +
+	                 "JOIN THEATER TH ON C.THEATER_IDX = TH.THEATER_IDX " +
+	                 "WHERE M.MOVIE_NAME = ? " +
+	                 "AND C.CINEMA_NAME = ? " +
+	                 "AND TH.THEATER_NAME = ? " +
+	                 "AND S.SCREEN_DATE = ? " +
+	                 "AND S.SCREEN_START_TIME = ? " +
+	                 "AND T.TICKETING_DEL = 'N'";
 
-			
-			return null;
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, reserveSeatCheckVO.getMovieName());
+	        pstmt.setString(2, reserveSeatCheckVO.getCinemaName());
+	        pstmt.setString(3, reserveSeatCheckVO.getTheaterName());
+	        pstmt.setString(4, reserveSeatCheckVO.getDate());
+	        pstmt.setString(5, reserveSeatCheckVO.getStartTime());
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	        rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            reservedSeats.add(rs.getString("SEAT_NAME"));
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        conClose();
+	    }
+
+	    return reservedSeats;
 	}
 }
