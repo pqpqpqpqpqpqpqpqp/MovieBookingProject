@@ -109,9 +109,6 @@ String movieIdx = request.getParameter("movieIdx");
 	
 	// 평점 작성 버튼
 	document.getElementById('openReviewModal').addEventListener("click", function() {
-
-		alert('너 왜 실행 되니');
-
 		
 		// 로그인 된 상태
 		if (userIdxStr.value !== '') {
@@ -161,9 +158,8 @@ String movieIdx = request.getParameter("movieIdx");
 	// 내 평점 작성 버튼
 	document.getElementById('my_btn').addEventListener("click", function() {
 		
-		// 로그인 된 상태 - 내가 쓴 평점 페이지로 이동
+		// 로그인 된 상태 - 내가 쓴 평점 페이지로 이동 - 추후 링크 연결 필요
 		if (userIdxStr.value !== '') {
-			console.log("내 평점 작성 - 로그인 완");
 			location.href = "";
 		}
 		// 로그인 안된 상태
