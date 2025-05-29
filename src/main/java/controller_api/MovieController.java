@@ -61,6 +61,12 @@ public class MovieController extends HttpServlet {
 			MovieDetailReviewService detailReview = new MovieDetailReviewService();
 			responseData = detailReview.execute(request, response);
 		}
+//		else if (command.equals("/movieDetail.mo")) {
+//			MovieDetailService action = new MovieDetailService();
+//			responseData = action.execute(request, response);
+//
+//		}
+		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
 		
