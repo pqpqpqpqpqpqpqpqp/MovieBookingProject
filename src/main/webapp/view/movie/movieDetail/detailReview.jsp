@@ -54,7 +54,6 @@ String movieIdx = request.getParameter("movieIdx");
 	<input type="hidden" id="movieIdx" value="" />
 
 	
-	<h1><%=movieIdx %></h1>
 	<div class="review_writeBtn">
 		<button class="review_btn" id="openReviewModal">평점 작성</button>
 		<button class="review_btn" id="my_btn">내 평점 확인</button>
@@ -110,8 +109,6 @@ String movieIdx = request.getParameter("movieIdx");
 	
 	// 평점 작성 버튼
 	document.getElementById('openReviewModal').addEventListener("click", function() {
-
-
 		
 		// 로그인 된 상태
 		if (userIdxStr.value !== '') {
@@ -161,9 +158,8 @@ String movieIdx = request.getParameter("movieIdx");
 	// 내 평점 작성 버튼
 	document.getElementById('my_btn').addEventListener("click", function() {
 		
-		// 로그인 된 상태 - 내가 쓴 평점 페이지로 이동
+		// 로그인 된 상태 - 내가 쓴 평점 페이지로 이동 - 추후 링크 연결 필요
 		if (userIdxStr.value !== '') {
-			console.log("내 평점 작성 - 로그인 완");
 			location.href = "";
 		}
 		// 로그인 안된 상태
@@ -189,7 +185,6 @@ String movieIdx = request.getParameter("movieIdx");
 		const MOVIE_IDX = <%=movieIdx%>;
 		if(USER_IDX == '0' || MOVIE_IDX == '0') {
 
-			console.log(userIdx);
 		}
 		
 		let selectedRating = "";
@@ -248,7 +243,6 @@ String movieIdx = request.getParameter("movieIdx");
 					$("#reviewText").val("");
 					$(".rating-button").removeClass("selected");
 					selectedRating = "";
-					console.log(response);
 				},
 				error : function() {
 					alert("리뷰 등록에 실패했습니다. 다시 시도해주세요.");
@@ -267,9 +261,7 @@ String movieIdx = request.getParameter("movieIdx");
 <script>
 	$(document).ready(function() {
 		const MOVIE_IDX = document.getElementById('movieIdx').value;
-
-		console.log("영화 인덱스 확인: ",MOVIE_IDX);
-		
+	
 		$.ajax({
 			url : '${pageContext.request.contextPath}/movieReviewList.re', // 서버의 엔드포인트
 			type : "GET",
@@ -277,14 +269,9 @@ String movieIdx = request.getParameter("movieIdx");
 				movieIdx : MOVIE_IDX,
 			},
 			success : function(resp) {
-				console.log("데이터 확인",resp.data);
-				
-				
-				
+			
 				for(var i = 0; i < resp.data.length; i++) {
-					
-					console.log("i 데이터 확인: ",resp.data[i]);
-					
+									
 					var html = 
 						'<div class="review_item">' +
 							'<div class="movie_review_img">' +

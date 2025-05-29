@@ -5,21 +5,6 @@
 	
 <div class="detail_content_container_outbox">
 	<div class="detail_content_container">
-		<div class="detail_movie_content_txt">
-			디지털상의 모든 정보를 통제할 수 있는 사상 초유의 무기로 인해<br> 
-			전 세계 국가와 조직의 기능이 마비되고, 인류전체가 위협받는 절체절명의 위기가 찾아온다.<br> 
-			이를 막을 수 있는 건 오직 존재 자체가 기밀인 ‘에단 헌트’와<br>
-			그가 소속된 IMF(Impossible Mission Force)뿐이다.<br> <br> 
-			
-			무기를 무력화하는데 반드시 필요한 키를 손에 쥔 ‘에단 헌트’.<br> 
-			오랜 동료 ‘루터’와 ‘벤지’, 그리고 새로운 팀원이 된	‘그레이스’, ‘파리’, ‘드가’와 함께<br> 
-			지금껏 경험했던 그 어떤 상대보다도 강력한 적에 맞서<br>
-			모두의 운명을 건 불가능한 미션에 뛰어든다!<br> <br> 
-			
-			<strong>추후 수정 필요!!!!!<br> 
-			&lt;미션 임파서블: 파이널 레코닝&gt;
-			</strong>
-		</div>
 		<div id="chart" class="graph detail_graph">
                 <ul class="graph">
                     <li>
@@ -87,7 +72,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
 //성별 그래프 보이기
 function genderGraph() {
-	console.log('genderGraph');
 	$.ajax({
 		url: '${pageContext.request.contextPath}/MovieDetailGenderGraph.mo',
 		data: {'movieIdx': movieDetailIdx},
@@ -113,7 +97,6 @@ function genderGraph() {
 
 //연령별 불러오기
 function ageGraph() {
-	console.log('ageGraph');
 	$.ajax({
 		url: '${pageContext.request.contextPath}/MovieDetailAgeGraph.mo',
 		data: {'movieIdx': movieDetailIdx},
@@ -130,7 +113,6 @@ function ageGraph() {
 				
 				
 				막대그래프();
-				console.log(res.data);
 			}
 		}
 			

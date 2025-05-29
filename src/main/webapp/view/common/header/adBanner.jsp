@@ -116,7 +116,6 @@
   let current = 0; // 현재 몇 번째 광고를 보여줄지 선언하는 변수
 
   function updateAd() {
-	  console.log(abs);
     if (ads.length === 0) return; // 광고가 없으면 아무것도 안 함
 
     const ad = ads[current]; // 현재 광고 가져오기

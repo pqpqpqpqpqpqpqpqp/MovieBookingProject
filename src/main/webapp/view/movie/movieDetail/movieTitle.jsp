@@ -65,8 +65,15 @@
         </div>
 	</div>
 </div>
-
-<script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
+	<div class="detail_content_container_outbox">
+		<div class="detail_content_container">
+			<div class="detail_movie_content_txt">
+			<h3>영화 소개글</h3>
+			<p id="movie_dsec"></p>
+			</div>
+		</div>
+	</div>
+	<script src="${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js"></script>
 <script>
 /************************
  * 페이지 시작
@@ -93,7 +100,6 @@ function detail() {
 		
 		dataType: 'json',
 		success: function(res) {
-			console.log(res);
 			if(res.code ==200) {
 				const data = res.data;
 				document.getElementById('movie_poster').src = '${pageContext.request.contextPath}' +data.movieImg; 				// 포스터	
@@ -107,6 +113,7 @@ function detail() {
 				document.getElementById('movie_playTime').innerHTML = data.moviePlayTime; // 러닝타임 
 				document.getElementById('movie_openDate').innerHTML = data.movieOpenDate;	// 개봉일 													 
 					
+				document.getElementById('movie_dsec').innerHTML = data.movieDsec;	// 소개글
 				
 				
 			} else {
