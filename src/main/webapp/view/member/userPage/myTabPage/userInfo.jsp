@@ -14,8 +14,6 @@
 	<div class="member_spec_menu">
 		<div class="h2_tit">기본정보</div>
 		<div class="member_spec_menu_btn">
-			<button>전체 정보 확인 및 수정</button>
-			<button>회원탈퇴</button>
 		</div>
 	</div>
 	<div class="member_spec_info_box">
