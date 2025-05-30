@@ -15,12 +15,10 @@
 		<div class="date_list nano has-scroll-y" id="date_list">
 			<div class="content scroll-y" tabindex="-1">
 				<div class="date_month">
-					<span class="year">2025</span> <span class="month">5</span>
+					<span class="year">2025</span> <span class="month">6</span>
 				</div>
 				<div class="date_container">
-					<div class="date" data-date="2025-05-10">10 토</div>
-					<div class="date" data-date="2025-05-11">11 일</div>
-					<div class="date" data-date="2025-05-12">12 월</div>
+					<div class="date" data-date="2025-06-01">01 일</div>
 				</div>
 				<div class="pane pane-y"
 					style="display: block; opacity: 1; visibility: visible;">
@@ -88,8 +86,18 @@ $.ajax({
 				name.textContent = movieName;
 
 				const label = document.createElement("span");
-				label.className = "label green";
-				label.textContent = res[i].movieAgeGrade;
+				label.textContent = res[i].movieAgeGrade ;
+				label.classList.add("label"); // 기본 label 클래스
+
+				// 🔽 관람등급에 따라 색상 클래스 추가
+				const grade = res[i].movieAgeGrade;
+				if (grade.includes("ALL") || grade.includes("12")) {
+					label.classList.add("green");
+				} else if (grade.includes("15")) {
+					label.classList.add("orange");
+				} else if (grade.includes("19") || grade.includes("청소년")) {
+					label.classList.add("red");
+				}
 
 				div.append(label);
 				div.append(name);
@@ -276,7 +284,7 @@ function timeSelect(theaterTime) {
 		document.querySelector(".next_btn_seat_end").classList.add("btn_hidden");
 		document.querySelector(".next_btn_pay_before").classList.remove("btn_hidden");
 		
-	    $('.bodyContainer').load('testReserveSeat.jsp', {spe: spe}, function (response, status, xhr) {
+	    $('.bodyContainer').load('${pageContext.request.contextPath}/view/ticket/test/testReserveSeat.jsp', {spe: spe}, function (response, status, xhr) {
 	        if (status === 'error') {
 	        	console.error('Error loading JSP:', xhr.status, xhr.statusText);
 	        }

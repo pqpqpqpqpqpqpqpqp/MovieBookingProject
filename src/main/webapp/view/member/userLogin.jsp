@@ -17,6 +17,7 @@
 		width: 540px;
 		margin: 0 auto;
 		border-bottom: 2px solid #777;
+		margin-bottom: 80px;
 		
 	}
 	.login_container .login_menu_container{
@@ -191,6 +192,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="/view/common/header.jsp"/>
 	<div class="login_container">
 		<div class="login_menu_container">
 			<div class="login_menu on"><span>로그인</span></div>
@@ -251,4 +253,7 @@
 		}
 	</script>
 </body>
+	<footer>
+<jsp:include page="/view/common/footer.jsp"/>
+</footer>
 </html>

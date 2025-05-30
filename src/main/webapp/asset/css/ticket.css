@@ -132,7 +132,11 @@ body {
 	margin-right: 10px;
 	gap: 2px;
 }
-
+.foot span.select_before_txt{
+	font-size: 30px;
+	color: #ccc;
+	padding: 0 30px;
+}
 .context {
 	width: 100%;
 	display: flex;
@@ -261,6 +265,10 @@ body {
 	height: 108px; /* 복사 대상 높이 */
 	background-position: -150px, -328px;
 }
+.ticket_bodyContainer{
+	margin-top: 40px;
+	
+}
 
 .ticket_foot_btn_right.next_btn_topay {
 	display: flex; /* 포지션 */
@@ -301,7 +309,7 @@ a:-webkit-any-link {
 .ticketBox_container {
 	width: 996px;
 	height: 550px;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 	display: flex;
 	justify-content: center;
@@ -339,12 +347,16 @@ a:-webkit-any-link {
 }
 
 .ticketBox_container .label {
-	display: inline-block;
-	padding: 2px 6px;
-	font-size: 12px;
-	font-weight: bold;
-	margin-right: 5px;
-	border-radius: 3px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    padding: 2px 2px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 5px;
+    border-radius: 3px;
+    line-height: 20px;
 }
 
 .ticketBox_container .label.orange {
@@ -354,6 +366,10 @@ a:-webkit-any-link {
 
 .ticketBox_container .label.green {
 	background-color: green;
+	color: white;
+}
+.ticketBox_container .label.red {
+	background-color: red;
 	color: white;
 }
 

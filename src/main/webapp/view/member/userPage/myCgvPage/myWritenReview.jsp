@@ -6,9 +6,9 @@
 <title>Insert title here</title>
 <!-- 오른쪽 리뷰 리스트 -->
 <%
-	String userIdxStr = request.getParameter("userIdx");
-	int userIdx = (userIdxStr != null) ? Integer.parseInt(userIdxStr) : 0;
-	
+	/* String userIdxStr = request.getParameter("userIdx");
+	int userIdx = (userIdxStr != null) ? Integer.parseInt(userIdxStr) : 0; */
+ 	Integer userIdx = (Integer) session.getAttribute("userIdx");
 %>
 
 <div class="movie_list_catainer review">
@@ -54,7 +54,7 @@ const CONTEXT_PATH = "${pageContext.request.contextPath}";
 
 	$(document).ready(function() {
 		const USER_IDX = <%= userIdx %>;
-	
+		console.log(USER_IDX);
 		let selectedRating = "";
 		
 		$.ajax({
@@ -65,9 +65,12 @@ const CONTEXT_PATH = "${pageContext.request.contextPath}";
 				//기존 리스트 초기화
 				$(".movie_list_catainer.review").empty();
 				const count = resp?.data?.length || 0;
+				
+				const reviewCount = review.length;
 
 				if (window.parent && window.parent.document) {
-				  $(window.parent.document).find('#review_count').text(count);
+					const $parentReviewEm =$(window.parent.document).find('a[data-target="writtenReviews"] em');
+					$parentReviewEm.text(reviewCount);
 				} else {
 				  $('#review_count').text(count); // 같은 DOM 내부에 있을 때
 				}

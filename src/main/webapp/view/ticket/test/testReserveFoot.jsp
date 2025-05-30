@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 
 <div class="ticket_foot">
-	<div class="foot first_container">영화선택</div>
+	<div class="foot first_container"><span class="select_before_txt">영화선택</span></div>
 	<div class="line"></div>
-	<div class="foot second_container">극장선택</div>
+	<div class="foot second_container"><span class="select_before_txt">극장선택</span></div>
 	<div class="line"></div>
-	<div class="foot third_container">좌석선택</div>
+	<div class="foot third_container"><span class="select_before_txt">좌석선택</span></div>
 	<div class="line"></div>
-	<div class="foot forth_container">결제선택</div>
+	<div class="foot forth_container"><span class="select_before_txt">결제선택</span></div>
 	
 	<a class="ticket_foot_btn_right next_btn_seat_before" title="영화선택이전"></a>
 	<!-- 영화선택 페이지서 전부 선택되지 않았을때 보일 버튼 -->

@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="main_ticket_container">
-<jsp:include page="fastTicketting/ticketBox.jsp"></jsp:include>
+<jsp:include page="/view/ticket/test/testTemplate.jsp"></jsp:include>
 </div>
 <footer>
 <jsp:include page="/view/common/footer.jsp"/>
