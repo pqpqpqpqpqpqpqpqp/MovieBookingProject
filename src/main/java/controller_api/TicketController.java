@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import ticket.service.ReserveMovieList;
-import ticket.vo.ReserveVO;
+import ticket.service.ReserveMovieListService;
+import ticket.service.ReserveSeatCheckService;
+import ticket.vo.ReserveMovieListVO;
+
 public class TicketController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,28 +31,31 @@ public class TicketController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String command = request.getServletPath();
 		
-		String url = request.getRequestURI(); // /서버path/url(mapping)
-		String path = request.getContextPath();// /서버path
-		String command = url.substring(path.length()); // /url(mapping)
-		System.out.println("api호출: " + command);
-
+		List<ReserveMovieListVO> reserveMovieList = new ArrayList<>();
+		List<String> reserveSeatList = new ArrayList<>();
+		
 		Gson gson = new Gson();
-		List<ReserveVO> reserveArr = null; // response 값
 		
-		if(command.equals("/ReserveMovieList.tiw")) {
-			reserveArr = new ArrayList<>();
-			ReserveMovieList ReserveService = new ReserveMovieList();
-			reserveArr = ReserveService.execute(request, response);
-		}
-
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
 
 		PrintWriter out = response.getWriter();
-		out.print(gson.toJson(reserveArr));
+
+		if (command.equals("/ReserveMovieList.tiw")) {
+		    ReserveMovieListService reserveMovieListService = new ReserveMovieListService();
+		    reserveMovieList = reserveMovieListService.execute(request, response);
+
+		    out.print(gson.toJson(reserveMovieList));
+
+		} else if (command.equals("/ReserveSeatCheck.tiw")) {
+		    ReserveSeatCheckService reserveSeatCheckService = new ReserveSeatCheckService();
+		    reserveSeatList = reserveSeatCheckService.execute(request, response);
+
+		    out.print(gson.toJson(reserveSeatList));
+		}
+
 		out.flush();
-
 	}
-
 }

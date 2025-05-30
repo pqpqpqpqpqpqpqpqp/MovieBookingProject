@@ -92,7 +92,7 @@ public class ReviewListDAO {
 		List<ReviewListVO> reviewList = new ArrayList<>();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
-		String sql = "SELECT r.REIVEW_IDX, r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME FROM review r "
+		String sql = "SELECT r.REVIEW_IDX, r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME FROM review r "
 				+ "JOIN user u ON r.USER_IDX = u.USER_IDX WHERE r.MOVIE_IDX = ? AND r.REVIEW_USER_DEL = 'N' ORDER BY r.REVIEW_DATE DESC;";
 
 		try {

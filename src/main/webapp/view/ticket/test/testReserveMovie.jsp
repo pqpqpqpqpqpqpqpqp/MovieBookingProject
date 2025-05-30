@@ -44,12 +44,12 @@
 <script
 	src='${pageContext.request.contextPath}/asset/js/jquery-3.7.1.min.js'></script>
 <script>
-window.selectedMovie = null;
-window.selectedTheater = null;
-window.selectedDate = null;
-window.allData = [];
+let selectedMovie = null;
+let selectedTheater = null;
+let selectedDate = null;
+let allData = [];
 
-window.movieData = {
+let movieData = {
 	"겨울왕국": { poster: "Frozen.jpeg", ageGrade: "전체 관람가" },
 	"모아나": { poster: "Moana.jpeg", ageGrade: "전체 관람가" },
 	"몬스터 주식회사 3D": { poster: "MonstersInc.jpeg", ageGrade: "전체 관람가" },
@@ -67,7 +67,7 @@ $.ajax({
 	type: 'get',
 	dataType: 'json',
 	success: function(res) {
-		window.allData = res;
+		allData = res;
 
 		const movieSet = new Set(); // 중복 제거용
 		const theaterSet = new Set(); // 중복 제거용
@@ -117,7 +117,7 @@ document.querySelector(".date_container").addEventListener("click", function(e) 
 });
 
 function movieSelect(movieName) {
-	window.selectedMovie = movieName;
+	selectedMovie = movieName;
 
 	const preSelected = document.querySelector(".movie.select");
 	if (preSelected) { preSelected.classList.remove("select"); }
@@ -133,7 +133,7 @@ function movieSelect(movieName) {
 		const container = document.createElement("div");
 		container.className = "foot movie";
 
-		const posterURL = '${pageContext.request.contextPath}/asset/img/movie/movieposter/' + window.movieData[movieName].poster;
+		const posterURL = '${pageContext.request.contextPath}/asset/img/movie/movieposter/' +  movieData[movieName].poster;
 
 		container.innerHTML =
 			'<div class="movie_img">' +
@@ -142,7 +142,7 @@ function movieSelect(movieName) {
 			'<div class="context">' +
 			'<span class="title">' + movieName + '</span><br>' +
 			'<span> 2D 자막 </span>' +
-			'<span>' + window.movieData[movieName].ageGrade + '</span>' +
+			'<span>' + movieData[movieName].ageGrade + '</span>' +
 			'</div>';
 
 			document.querySelector(".foot.first_container").textContent = ' ';
@@ -154,7 +154,7 @@ function movieSelect(movieName) {
 }
 
 function theaterSelect(theaterName) {
-	window.selectedTheater = theaterName;
+	selectedTheater = theaterName;
 
 	const preSelected = document.querySelector(".region.select");
 	if (preSelected) { preSelected.classList.remove("select"); }
@@ -189,7 +189,7 @@ function theaterSelect(theaterName) {
 }
 
 function dateSelect(dateISO) {
-	window.selectedDate = dateISO;
+	selectedDate = dateISO;
 
 	const preSelected = document.querySelector(".date.select");
 	if (preSelected) { preSelected.classList.remove("select"); }
@@ -202,22 +202,19 @@ function dateSelect(dateISO) {
 }
 
 function updateTimeSlots() {
-	if (!window.selectedMovie || !window.selectedTheater || !window.selectedDate) return;
+	if (!selectedMovie || !selectedTheater || !selectedDate) return;
 
-	const filtered = window.allData.filter(item =>
-		item.movieName === window.selectedMovie &&
-		item.theaterName === window.selectedTheater &&
-		item.screenDate === window.selectedDate
+	const filtered =  allData.filter(item =>
+		item.movieName === selectedMovie &&
+		item.theaterName === selectedTheater &&
+		item.screenDate === selectedDate
 	);
 
 	const timeColumn = document.querySelector('#timeColumn');
 	timeColumn.querySelectorAll(".time_slot").forEach(slot => slot.remove());
 
 	// filtered배열을 cinemaName으로 그룹핑.
-	// 같은 cinemaName을 가지는 객체끼리 배열로 모임
-	// 이 코드 결과는 알겠는데 아직도 과정을 이해못하겠음, 너무 어지럽다
-	// 근데 애초에 다 눌렀을때 검색으로 적당히 가져왔으면?? 전체를 보여줄일도 없는데?? 
-	// 내가 바꿨어야 했는데 안바꿈. 이제는 시간이 없어서 바꾸기도 어려움
+	// 같은 cinemaName을 가지는 행끼리 모음.
 	const grouped = filtered.reduce((acc, cur) => {
 		if (!acc[cur.cinemaName]) acc[cur.cinemaName] = [];
 		acc[cur.cinemaName].push(cur);
@@ -265,7 +262,7 @@ function timeSelect(theaterTime) {
 	theaterTime.classList.add("select");
 	
 	const spans = document.querySelectorAll('.input_text');
-	spans[1].textContent = window.selectedDate + ' ' + theaterTime.textContent;
+	spans[1].textContent = selectedDate + ' ' + theaterTime.textContent;
 	spans[2].textContent = theaterTime.getAttribute('theater_name');
 	
 	document.querySelector(".next_btn_seat_before").classList.add("btn_hidden");

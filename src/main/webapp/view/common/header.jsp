@@ -14,8 +14,6 @@
 </head>
 <body >
 
-    <!-- 광고 배너 영역 -->
-    <jsp:include page="header/adBanner.jsp" />
 
     <!-- 아이콘 배너 영역 (로그인/회원가입/MY CGV/고객센터) -->
     <jsp:include page="header/iconBanner.jsp" />
