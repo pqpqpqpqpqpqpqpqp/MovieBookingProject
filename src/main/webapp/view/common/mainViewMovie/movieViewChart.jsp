@@ -50,6 +50,10 @@
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.poster-wrap:hover {
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+	text-decoration: underline;
+}
 
 .poster-wrap img {
 	width: 100%;

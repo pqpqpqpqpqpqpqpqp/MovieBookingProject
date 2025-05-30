@@ -13,7 +13,9 @@
 	position: relative;
 	display: flex;
 	justify-content: center;
-	align-content: center;
+	align-content: center;	
+    font-family: "Noto Sans KR", sans-serif;
+
 }
 
 .nav-bar .menu-container {

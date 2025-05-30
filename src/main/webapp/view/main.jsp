@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><%= session.getAttribute("userIdx") %></title>
+<title>CGV HOME</title>
 <style>
 body{
 min-height: 100vh;
