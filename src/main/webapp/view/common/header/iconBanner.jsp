@@ -24,14 +24,28 @@
 	justify-content: center;
 	align-items: center;
 	padding: 10px 30px;
+	height: 70px;
 	background-color: white;
-	border-bottom: 1px solid #ddd;
+/* 	border-bottom: 1px solid #ddd; */
+	font-family: "Noto Sans KR", sans-serif;
+	margin: 20px 0;
+}
+.logo_container{
+	width: 260px;
+	height: 67px;
+}
+.logo_container span.logo_txt{
+    letter-spacing: 2px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-weight: 600;
 }
 
 .top-bar .top-container {
 	display: flex;
 	justify-content: space-between;
 	width: 980px;
+	height: 67px;
+	
 }
 
 .top-bar .logo-area {
@@ -46,7 +60,7 @@
 
 .top-bar .logo-area span {
 	font-size: 14px;
-	letter-spacing: 5px;
+	letter-spacing: 2px;
 	color: #111;
 }
 
@@ -86,13 +100,13 @@
 			<div class="logo-area">
 				<!--  onclick 넣어주기 -->
 
-				<h1>
+				<div class="logo_container">
 					<a href="${pageContext.request.contextPath}/view/main.jsp" style="text-decoration: none;">
 						<img
 							src="https://img.cgv.co.kr/R2014/images/common/logo/logoRed.png"
 							id="logo" style="cursor: pointer;" alt="C G V">
-					</a><span>홍남제황 Team</span>
-				</h1>
+					</a><span class="logo_txt">홍남제황 Team</span>
+				</div>
 			</div>
 
 			<!--  메뉴 영역 -->
