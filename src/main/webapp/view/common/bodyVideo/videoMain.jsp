@@ -166,9 +166,6 @@ background-color: black;
 				<p>찰스는 죽었어!</p>
 				<p>무대의 주인은 나야</p>
 				<div class="banner-buttons">
-					<button class="btn-detail">상세보기</button>
-					<button class="btn-play">▶</button>
-					<button class="btn-mute">🔈</button>
 				</div>
 			</div>
 		</div>
