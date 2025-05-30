@@ -46,10 +46,14 @@
 	                        	<canvas width="380" height="158" class="jqplot-event-canvas" style="position: absolute; left: 10px; top: 10px;"></canvas>
                         	</div>
                     </li>
+                    
                 </ul>
+                <span class ="graph_gender_txt woman"><div class="color_box_woman"></div>여자: <strong id="graph_woman"></strong></span>
+                <span class ="graph_gender_txt man"><div class="color_box_man"></div>남자: <strong id="graph_man"></strong></span>
             </div>
 	</div>
 </div>
+
 <script>
 
 
@@ -79,14 +83,25 @@ function genderGraph() {
 		dataType: 'json',
 		success: function(res) {
 			if(res.code === 200) {
-				for(var i = 0; i< 연형그래프_데이터.length; i++) {
-					if(연형그래프_데이터[i].label === '남') {
-						연형그래프_데이터[i].value = res.data.manCount;
-					}
-					else if(연형그래프_데이터[i].label === '여') {
-						연형그래프_데이터[i].value = res.data.womanCount;
-					}
-				}
+				
+				//총합 구하기 ( 백분율 구하기 위한 계산 )
+				const totalCount = Number(res.data.manCount) + Number(res.data.womanCount);
+				
+				//각 성별로 Count 추출
+				const manCount = res.data.manCount;
+				const womanCount = res.data.womanCount;
+				
+				//각 성별료 백분율
+				const manPercent = manCount/totalCount*100;
+				const womanPercent = womanCount/totalCount*100;
+				
+				// 그래프 값 넣기
+				원형그래프_데이터[0].value = manCount;
+				document.getElementById("graph_man").innerText = manPercent + "%";
+				원형그래프_데이터[1].value = womanCount;
+				document.getElementById("graph_woman").innerText = womanPercent + "%";
+
+				
 				
 				원형그래프();
 			}
@@ -127,7 +142,7 @@ function ageGraph() {
  **********************/
  
  //성별 데이터
- let 연형그래프_데이터 = [
+ let 원형그래프_데이터 = [
 				    { label: "남", value: 10, color: "#3e82a4" },
 				    { label: "여", value: 20, color: "#e74c3c" }
 				  ];
@@ -142,7 +157,7 @@ function 원형그래프(){
 	const canvas = document.querySelector("#graph_sex .jqplot-base-canvas");
 	  const ctx = canvas.getContext("2d");
 
-	  let data = 연형그래프_데이터;
+	  let data = 원형그래프_데이터;
 
 	  const total = data.reduce((acc, item) => acc + item.value, 0);
 	  const centerX = canvas.width / 2;
