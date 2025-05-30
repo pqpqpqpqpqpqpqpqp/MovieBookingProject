@@ -3,9 +3,10 @@ package ticket.vo;
 public class ReserveInsertVO {
 	private int userIdx;
 	private String seatName;
-	private String movieTitle;
-	private String theaterTitle;
-	private String dateTime;
+	private int movieIdx;
+	private int cinemaIdx;
+	private String screeningDate;
+	private String startTime;
 
 	public int getUserIdx() {
 		return userIdx;
@@ -23,27 +24,35 @@ public class ReserveInsertVO {
 		this.seatName = seatName;
 	}
 
-	public String getMovieTitle() {
-		return movieTitle;
+	public int getMovieIdx() {
+		return movieIdx;
 	}
 
-	public void setMovieTitle(String movieTitle) {
-		this.movieTitle = movieTitle;
+	public void setMovieIdx(int movieIdx) {
+		this.movieIdx = movieIdx;
 	}
 
-	public String getTheaterTitle() {
-		return theaterTitle;
+	public int getCinemaIdx() {
+		return cinemaIdx;
 	}
 
-	public void setTheaterTitle(String theaterTitle) {
-		this.theaterTitle = theaterTitle;
+	public void setCinemaIdx(int cinemaIdx) {
+		this.cinemaIdx = cinemaIdx;
 	}
 
-	public String getDateTime() {
-		return dateTime;
+	public String getScreeningDate() {
+		return screeningDate;
 	}
 
-	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
+	public void setScreeningDate(String screeningDate) {
+		this.screeningDate = screeningDate;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
 }
