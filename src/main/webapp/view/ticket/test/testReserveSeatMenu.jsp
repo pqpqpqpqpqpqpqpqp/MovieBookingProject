@@ -3,9 +3,7 @@
 
 <div class="seat_menu_container">
 	<div class="seat_menu_title">
-		<span class="title_txt">인원 / 좌석</span> <a class="refresh_wrap"
-			id="btnRefresh" href="#"><span class="refreshBtn">다시하기</span><span
-			class="icon_refresh"></span></a>
+		<span class="title_txt">인원 / 좌석</span>
 	</div>
 
 	<div class="seat_menu_header">

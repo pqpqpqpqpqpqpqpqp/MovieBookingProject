@@ -286,7 +286,7 @@ function timeSelect(theaterTime) {
 		document.querySelector(".next_btn_seat_end").classList.add("btn_hidden");
 		document.querySelector(".next_btn_pay_before").classList.remove("btn_hidden");
 		
-	    $('.bodyContainer').load('testReserveSeat.jsp', {spe: spe}, function (response, status, xhr) {
+	    $('.bodyContainer').load('${pageContext.request.contextPath}/view/ticket/test/testReserveSeat.jsp', {spe: spe}, function (response, status, xhr) {
 	        if (status === 'error') {
 	        	console.error('Error loading JSP:', xhr.status, xhr.statusText);
 	        }
