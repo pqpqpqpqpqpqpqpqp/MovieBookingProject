@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<meta charset="UTF-8">
-<title>내가 본 영화</title>
+	<html>
+	<head>
 <link href="${pageContext.request.contextPath}/asset/css/mypage.css"
 	rel="stylesheet">
+<meta charset="UTF-8">
+<title>내가 본 영화</title>
+<jsp:include page="/view/common/header.jsp"/>
+</head>
+<body>
 
-
-<%
-
- 	String activeTab = request.getParameter("tab");
+<% 	String activeTab = request.getParameter("tab");
  	if (activeTab == null) activeTab = "watchedMovies";	
 
  	Integer userIdx = (Integer) session.getAttribute("userIdx");
  	if (userIdx == null) {
- 		response.sendRedirect(request.getContextPath() + "/userLogin.jsp");
+ 		response.sendRedirect(request.getContextPath() + "/view/member/userLogin.jsp");
  		return;
  	}
 %>
@@ -130,3 +132,8 @@
   
 
 </script>
+<footer>
+<jsp:include page="/view/common/footer.jsp"/>
+</footer>
+</body>
+</html>
