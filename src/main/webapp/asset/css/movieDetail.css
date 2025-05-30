@@ -199,7 +199,7 @@
 	    margin-block-end: 1em;
 	    margin-inline-start: 0px;
 	    margin-inline-end: 0px;
-	    padding-inline-start: 40px;
+/* 	    padding-inline-start: 40px; */
 	    unicode-bidi: isolate;
 	}
 	.graph li{
@@ -261,40 +261,110 @@
 /****************** 
 * detailReview.jsp
 *******************/
+.review_row {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	margin-bottom: 20px;
+	flex-wrap: nowrap;  /* 줄바꿈 방지 */
+}
 
-.review_writeBtn {
+.review_item {
+	width: 48%;
+	min-width: 400px;
+	border: 1px solid #ccc;
+	padding: 40px 20px;
+	box-sizing: border-box;
+	background-color: #efefef;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+ul.graph {
 	display: flex;
 	justify-content: center;
-	gap: 20px;
-	margin: 30px 0;
+	width: 980px;
+	
+}
+.color_box_woman{
+	background-color: #e74c3c;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    margin-left: -20px;
+    margin-top: 2px;
+	display: flex;
+}
+.color_box_man{
+    background-color: #3e82a4;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    margin-left: -20px;
+    margin-top: 2px;
+    display: flex;
+  
+}
+.review_writeBtn {
+    width: 980px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto;
+}
+.graph_gender_txt{
+	font-size: 13px;
+	font-weight: 500;
+	
+}
+.graph_gender_txt.man {
+    position: absolute;
+    bottom: 30px;
+    left: 123px;
+    display: flex;
+    width: 80px;
+}
+
+.graph_gender_txt.woman {
+    position: absolute;
+    bottom: 50px;
+    left: 123px;
+    display: flex;
+    width: 80px;
 }
 
 /* 공통 버튼 스타일 */
 .review_btn {
-	padding: 10px 20px;
-	background-color: #ff3d00;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	font-size: 14px;
-	cursor: pointer;
-	transition: background-color 0.3s;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 120px;
+    padding: 10px 0;
+    background-color: #ff3d00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* 마우스 오버 효과 */
 .review_btn:hover {
 	background-color: #e63200;
 }
-
+.graph detail_graph{
+	
+	display: flex;
+	justify-content: center;
+}
   
 /* 리뷰 전체 리스트 컨테이너 */
 .movie_detail_review {
-	display: flex;
-	flex-direction: column;
-	align-items: center; /* 가운데 정렬 */
-	gap: 20px; /* 리뷰 간 간격 */
-	padding: 20px;
+   
+	width: 100%;
+	max-width: 1000px; /* 2열 유지 가능한 최대 폭 */
+	margin: 20 auto;
+	
+
 }
 
 /* 개별 리뷰 아이템을 감싸는 wrapper */
@@ -304,7 +374,7 @@
 	gap: 15px;
 	border-bottom: 1px solid #ddd;
 	padding-bottom: 15px;
-	width: 600px; /* 적절한 고정 너비로 정렬 안정화 */
+	width: 493px; /* 적절한 고정 너비로 정렬 안정화 */
 }
 
 /* 유저 이미지 영역 */
