@@ -52,7 +52,7 @@ public class ReviewListDAO {
 		List<ReviewListVO> reviewList = new ArrayList<>();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
-		String sql =  "SELECT r.REVIEW_IDX, m.MOVIE_IMG, m.MOVIE_NAME, r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME "
+		String sql =  "SELECT m. MOVIE_IDX, r.REVIEW_IDX, m.MOVIE_IMG, m.MOVIE_NAME, r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME "
 		           + "FROM review r "
 		           + "JOIN user u ON r.USER_IDX = u.USER_IDX "
 		           + "JOIN movie m ON m.MOVIE_IDX = r.MOVIE_IDX "
@@ -66,6 +66,7 @@ public class ReviewListDAO {
 
 			while (rs.next()) {
 				ReviewListVO reviewVO = new ReviewListVO();
+				reviewVO.setMovieIdx(rs.getInt("MOVIE_IDX"));
 				reviewVO.setMovieImg(rs.getString("MOVIE_IMG"));
 				reviewVO.setMovieName(rs.getString("MOVIE_NAME"));
 				reviewVO.setReviewContent(rs.getString("REVIEW_CONTENT"));
@@ -92,8 +93,10 @@ public class ReviewListDAO {
 		List<ReviewListVO> reviewList = new ArrayList<>();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
-		String sql = "SELECT r.REVIEW_IDX, r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME FROM review r "
-				+ "JOIN user u ON r.USER_IDX = u.USER_IDX WHERE r.MOVIE_IDX = ? AND r.REVIEW_USER_DEL = 'N' ORDER BY r.REVIEW_DATE DESC;";
+		String sql = "SELECT m.MOVIE_IDX, r.REVIEW_IDX, r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME FROM review r "
+				+ "JOIN user u ON r.USER_IDX = u.USER_IDX "
+				+ "JOIN movie m on r.movie_idx = m.movie_idx "
+				+ "WHERE r.MOVIE_IDX = ? AND r.REVIEW_USER_DEL = 'N' ORDER BY r.REVIEW_DATE DESC;";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -102,6 +105,7 @@ public class ReviewListDAO {
 
 			while (rs.next()) {
 				ReviewListVO reviewVO = new ReviewListVO();
+				reviewVO.setMovieIdx(rs.getInt("MOVIE_IDX"));
 				reviewVO.setReviewContent(rs.getString("REVIEW_CONTENT"));
 				reviewVO.setReviewScore(rs.getInt("REVIEW_SCORE"));
 				LocalDateTime reviewdatetime = rs.getObject("REVIEW_DATE", LocalDateTime.class);

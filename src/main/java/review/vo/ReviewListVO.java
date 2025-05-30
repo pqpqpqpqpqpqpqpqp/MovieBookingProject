@@ -10,10 +10,19 @@ public class ReviewListVO {
 	private String movieName;
 	private String movieImg;
 	private int reviewIdx;
+	private int movieIdx;
 	
 	
 	
 	
+	public int getMovieIdx() {
+		return movieIdx;
+	}
+
+	public void setMovieIdx(int movieIdx) {
+		this.movieIdx = movieIdx;
+	}
+
 	public int getReviewIdx() {
 		return reviewIdx;
 	}

@@ -4,6 +4,7 @@ public class MovieWatchedVO {
 	
 	private String userName; //유저이름 >> 이건 안쓰는데 혹시몰라서만듬
 	private String userId;    //유저 아이디>> 이건 안쓰는데 혹시몰라서만듬
+	private int movieIdx;
 	private String userNick;  //유저닉네임  >> 이건 안쓰는데 혹시몰라서만듬
 	private String movieName; // 영화제목
 	private String watchDate; // 상영날짜
@@ -22,6 +23,13 @@ public class MovieWatchedVO {
 	
 	
 	
+
+	public int getMovieIdx() {
+		return movieIdx;
+	}
+	public void setMovieIdx(int movieIdx) {
+		this.movieIdx = movieIdx;
+	}
 	public String getThciName() {
 		return thciName;
 	}

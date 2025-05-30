@@ -66,7 +66,7 @@ const CONTEXT_PATH = "${pageContext.request.contextPath}";
 				$(".movie_list_catainer.review").empty();
 				const count = resp?.data?.length || 0;
 				
-				const reviewCount = review.length;
+				const reviewCount = resp.data.length;
 
 				if (window.parent && window.parent.document) {
 					const $parentReviewEm =$(window.parent.document).find('a[data-target="writtenReviews"] em');
@@ -79,11 +79,14 @@ const CONTEXT_PATH = "${pageContext.request.contextPath}";
 				
 				for(let i = 0; i < resp.data.length; i++) {
 					const review = resp.data[i];
-					let scoreText = review.reviewScore > 5 ? "좋았어요~^^" : "흠~좀 별로였어요;;;";
-					
+					let scoreText = review.reviewScore > 0 ? "좋았어요" : "별로에요";
+					console.log("리뷰 영화idx",review.movieIdx);
 					let html = 
 					'<div class="movie-item" data-review-idx="' + review.reviewIdx + '">' +
-						'<img class="poster" src="' + CONTEXT_PATH + review.movieImg+'"/>' +
+					'<a href="' + CONTEXT_PATH + '/movieDetail.mow?movieIdx=' + review.movieIdx + '">' + 
+				      '<img class="poster" src="' + CONTEXT_PATH + review.movieImg + '" alt="' + review.movieName + '">' +
+				    '</a>' +
+						
 						'<div class="movie-info">' +
 							'<h4 class="movieName">' + review.movieName + '</h4>' +
 							'<div class="meta">' +
@@ -91,8 +94,8 @@ const CONTEXT_PATH = "${pageContext.request.contextPath}";
 								'<span>' + review.reviewDate + '</span>' +
 							'</div>' +
 							'<div class="review_context">'+ 
-							'<span>' + scoreText + '    |   </span>' +
-							'<span>    ' + review.reviewContent + '</span>' +
+							'<span class="highlight">' + scoreText + '</span>' +
+							'<span> |    ' + review.reviewContent + '</span>' +
 							'</div>' +
 							'<div class="edit_review_txt">' +
 								'<div class="btn_edit">' +
