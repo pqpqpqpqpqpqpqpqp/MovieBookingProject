@@ -44,24 +44,34 @@ function renderSeats(spe) {
 	let html = "";
 
 	if (spe === '(PRIVATE_BOX)') {
-		maxSeat = 8;
+		maxSeat = 16;
 		movieCost = 25000;
 		html = `
 			<div class="seatArray A">
 				<a class="seat_num">A</a>
-				<a class="seat" id="a1">1</a>
-				<a class="seat" id="a2">2</a>
+				<a class="seat" id="A1">1</a>
+				<a class="seat" id="A2">2</a>
 				<a class="seat hidden"></a>
-				<a class="seat" id="a3">3</a> 
-				<a class="seat" id="a4">4</a>
+				<a class="seat" id="A3">3</a> 
+				<a class="seat" id="A4">4</a>
+				<a class="seat" id="A5">5</a>
+				<a class="seat" id="A6">6</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="A7">7</a> 
+				<a class="seat" id="A8">8</a>
 			</div>
 			<div class="seatArray B">
 				<a class="seat_num">B</a>
-				<a class="seat" id="b1">1</a>
-				<a class="seat" id="b2">2</a>
+				<a class="seat" id="B1">1</a>
+				<a class="seat" id="B2">2</a>
 				<a class="seat hidden"></a>
-				<a class="seat" id="b3">3</a>
-				<a class="seat" id="b4">4</a>
+				<a class="seat" id="B3">3</a>
+				<a class="seat" id="B4">4</a>
+				<a class="seat" id="B5">5</a>
+				<a class="seat" id="B6">6</a>
+				<a class="seat hidden"></a>
+				<a class="seat" id="B7">7</a>
+				<a class="seat" id="B8">8</a>
 			</div>`;
 	} else if (spe === '(SUITE_SINEMA)') {
 		maxSeat = 14;
@@ -69,27 +79,27 @@ function renderSeats(spe) {
 		html = `
 			<div class="seatArray A">
 				<a class="seat_num">A</a>
-				<a class="seat" id="a1">1</a>
-				<a class="seat" id="a2">2</a>
+				<a class="seat" id="A1">1</a>
+				<a class="seat" id="A2">2</a>
 				<a class="seat hidden"></a>
-				<a class="seat" id="a3">3</a> 
-				<a class="seat" id="a4">4</a>
-				<a class="seat" id="a5">5</a> 
+				<a class="seat" id="A3">3</a> 
+				<a class="seat" id="A4">4</a>
+				<a class="seat" id="A5">5</a> 
 				<a class="seat hidden"></a>
-				<a class="seat" id="a6">6</a>
-				<a class="seat" id="a7">7</a>
+				<a class="seat" id="A6">6</a>
+				<a class="seat" id="A7">7</a>
 			</div>
 			<div class="seatArray B">
 				<a class="seat_num">B</a>
-				<a class="seat" id="b1">1</a>
-				<a class="seat" id="b2">2</a>
+				<a class="seat" id="B1">1</a>
+				<a class="seat" id="B2">2</a>
 				<a class="seat hidden"></a>
-				<a class="seat" id="b3">3</a> 
-				<a class="seat" id="b4">4</a>
-				<a class="seat" id="b5">5</a> 
+				<a class="seat" id="B3">3</a> 
+				<a class="seat" id="B4">4</a>
+				<a class="seat" id="B5">5</a> 
 				<a class="seat hidden"></a>
-				<a class="seat" id="b6">6</a>
-				<a class="seat" id="b7">7</a>
+				<a class="seat" id="B6">6</a>
+				<a class="seat" id="B7">7</a>
 			</div>`;
 	} else if (spe === '(NOMAL)') {
 		maxSeat = 12;
@@ -97,25 +107,25 @@ function renderSeats(spe) {
 		html = `
 			<div class="seatArray A">
 				<a class="seat_num">A</a>
-				<a class="seat" id="a1">1</a>
-				<a class="seat" id="a2">2</a>
+				<a class="seat" id="A1">1</a>
+				<a class="seat" id="A2">2</a>
 				<a class="seat hidden"></a>
-				<a class="seat" id="a3">3</a> 
-				<a class="seat" id="a4">4</a>
+				<a class="seat" id="A3">3</a> 
+				<a class="seat" id="A4">4</a>
 				<a class="seat hidden"></a>
-				<a class="seat" id="a5">5</a> 
-				<a class="seat" id="a6">6</a>
+				<a class="seat" id="A5">5</a> 
+				<a class="seat" id="A6">6</a>
 			</div>
 			<div class="seatArray B">
 				<a class="seat_num">B</a>
-				<a class="seat" id="b1">1</a>
-				<a class="seat" id="b2">2</a>
+				<a class="seat" id="B1">1</a>
+				<a class="seat" id="B2">2</a>
 				<a class="seat hidden"></a>
-				<a class="seat" id="b3">3</a> 
-				<a class="seat" id="b4">4</a>
+				<a class="seat" id="B3">3</a> 
+				<a class="seat" id="B4">4</a>
 				<a class="seat hidden"></a>
-				<a class="seat" id="b5">5</a> 
-				<a class="seat" id="b6">6</a>
+				<a class="seat" id="B5">5</a> 
+				<a class="seat" id="B6">6</a>
 			</div>`;
 	}
 
@@ -150,7 +160,8 @@ function checkReservedSeats() {
 		success: function(res) {
 			res.forEach(re => {
 				const el = document.querySelector('#' + re);
-				el.classList.add("reserved");
+				if(el) { el.classList.add("reserved"); }
+				
 			});
 			remainSeat = maxSeat - res.length;
 			setTheaterInfo(spe);
@@ -288,7 +299,7 @@ function selectSeat() {
 }
 
 $('.next_btn_pay_end').on('click', function(e) {
-	$('.bodyContainer').load('testReservePay.jsp', function (response, status, xhr) {
+	$('.bodyContainer').load('${pageContext.request.contextPath}/view/ticket/test/testReservePay.jsp', function (response, status, xhr) {
         if (status === 'error') {
         	console.error('Error loading JSP:', xhr.status, xhr.statusText);
         }
