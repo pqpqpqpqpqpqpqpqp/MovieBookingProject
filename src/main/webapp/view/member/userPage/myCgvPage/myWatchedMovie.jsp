@@ -63,11 +63,13 @@ $(document).ready(function() {
 			let contextPath = "${pageContext.request.contextPath}";
 			let reviewTxt = "";
 			for (let i = 0; i < resp.data.length; i++) {
-				reviewTxt = resp.data[i].reviewScore > 6 ? "좋았어요" : "별로예요";
-
-				let html += 
+				reviewTxt = resp.data[i].reviewScore > 0 ? "좋았어요" : "별로예요";
+							console.log("영화 idx",resp.data[i].movieIdx);
+				let html = 
 					'<div class="movie-item">' +
-				    	'<img class="poster" src="' + contextPath + resp.data[i].movieImg + '" alt="' + resp.data[i].movieName + '">' +
+					'<a href="' + contextPath + '/movieDetail.mow?movieIdx=' + resp.data[i].movieIdx + '">' + 
+				      '<img class="poster" src="' + contextPath + resp.data[i].movieImg + '" alt="' + resp.data[i].movieName + '">' +
+				    '</a>' +
 				    	'<div class="movie-info">' +
 				        	'<h4>' + resp.data[i].movieName + '</h4>' +
 				        	'<div class="meta">' +

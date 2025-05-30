@@ -36,6 +36,7 @@ public class MovieMypageDAO {
 			      "WITH RankedTickets AS ("
 			    		    + " SELECT "
 			    		    + "    u.USER_ID, "
+			    		    + "	   m.movie_idx, "
 			    		    + "    u.USER_NICKNAME, "
 			    		    + "    m.MOVIE_NAME, "
 			    		    + "    m.MOVIE_AGE_GRADE, "
@@ -95,6 +96,7 @@ public class MovieMypageDAO {
 				String thciName = thName +"["+ ciName +"]";
 
 				MovieWatchedVO myMovieList = new MovieWatchedVO();
+				myMovieList.setMovieIdx(rs.getInt("MOVIE_IDX"));
 				myMovieList.setMovieImg(rs.getString("MOVIE_IMG"));
 				myMovieList.setMovieName(rs.getString("MOVIE_NAME"));
 				myMovieList.setCinemaSpecialName(rs.getString("CINEMA_SPECIAL_NAME"));
