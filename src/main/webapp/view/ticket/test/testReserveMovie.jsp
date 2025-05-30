@@ -88,8 +88,18 @@ $.ajax({
 				name.textContent = movieName;
 
 				const label = document.createElement("span");
-				label.className = "label green";
-				label.textContent = res[i].movieAgeGrade;
+				label.textContent = res[i].movieAgeGrade ;
+				label.classList.add("label"); // 기본 label 클래스
+
+				// 🔽 관람등급에 따라 색상 클래스 추가
+				const grade = res[i].movieAgeGrade;
+				if (grade.includes("ALL") || grade.includes("12")) {
+					label.classList.add("green");
+				} else if (grade.includes("15")) {
+					label.classList.add("orange");
+				} else if (grade.includes("19") || grade.includes("청소년")) {
+					label.classList.add("red");
+				}
 
 				div.append(label);
 				div.append(name);

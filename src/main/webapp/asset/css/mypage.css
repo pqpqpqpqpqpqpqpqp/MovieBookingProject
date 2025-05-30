@@ -31,7 +31,7 @@
 	    overflow: hidden;
 	    
 	    width: 100%;
-	    height: 130px;
+	    height: 165px;
 	    background-color: #f8f8f8;
 	    border: 1px solid #333;
 	    border: 1px solid #ccc;
@@ -104,8 +104,14 @@
     
     */
     
+   	.my_cgv_home_main_container_outBox{
+   		display: flex;
+   		width: 100vw;
+   		justify-content: center;
+   		padding-top: 20px;
+   	}
      .my_cgv_home_main_container {
-      display: flex;
+      display: flex; 
       width: 980px;
       margin: 0 auto;
       height: 100%;
@@ -679,14 +685,17 @@
 
 
 	.mypage_body_content_box{
-		
 		display: flex;
-		width: 77%;
+		width: 782px;
 		height: 100%;
 		padding-top: 20px;
 	}
 	
-	
+	.myCGV_home_menu_box .menu_item :hover,
+	.myCGV_home_menu_box .menu_item:hover *{
+		text-decoration: underline;
+		text-decoration-thickness: 2px; 
+	}
 	
 		
 	/* userSelectinfo*/
