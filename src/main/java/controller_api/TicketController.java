@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import ticket.service.ReserveInsertService;
 import ticket.service.ReserveMovieListService;
 import ticket.service.ReserveSeatCheckService;
 import ticket.vo.ReserveMovieListVO;
@@ -48,14 +49,16 @@ public class TicketController extends HttpServlet {
 		    reserveMovieList = reserveMovieListService.execute(request, response);
 
 		    out.print(gson.toJson(reserveMovieList));
-
 		} else if (command.equals("/ReserveSeatCheck.tiw")) {
 		    ReserveSeatCheckService reserveSeatCheckService = new ReserveSeatCheckService();
 		    reserveSeatList = reserveSeatCheckService.execute(request, response);
 
 		    out.print(gson.toJson(reserveSeatList));
+		} else if (command.equals("/ReserveInsert.tiw")) {
+		    ReserveInsertService reserveInsertService = new ReserveInsertService();
+		    reserveInsertService.execute(request, response);
 		}
-
+		
 		out.flush();
 	}
 }

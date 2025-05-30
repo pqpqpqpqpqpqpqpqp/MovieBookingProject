@@ -148,7 +148,7 @@ function movieSelect(movieName) {
 			'<img src="' + posterURL + '" />' +
 			'</div>' +
 			'<div class="context">' +
-			'<span class="title">' + movieName + '</span><br>' +
+			'<span class="title movie_title">' + movieName + '</span><br>' +
 			'<span> 2D 자막 </span>' +
 			'<span>' + movieData[movieName].ageGrade + '</span>' +
 			'</div>';
@@ -182,8 +182,8 @@ function theaterSelect(theaterName) {
 			'<span>극장</span> <span>일시</span> <span>상영관</span> <span>인원</span>' +
 			'</div>' +
 			'<div class="context">' +
-			'<span class="input_text">CGV ' + theaterName + '</span>' +
-			'<span class="input_text"></span>' +
+			'<span class="input_text theater_title">CGV ' + theaterName + '</span>' +
+			'<span class="input_text date_time"></span>' +
 			'<span class="input_text"></span>' +
 			'<span class="input_text"></span>' +
 			'</div>';

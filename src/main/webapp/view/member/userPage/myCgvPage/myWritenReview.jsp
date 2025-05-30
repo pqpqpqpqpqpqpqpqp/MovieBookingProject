@@ -54,7 +54,6 @@ const CONTEXT_PATH = "${pageContext.request.contextPath}";
 
 	$(document).ready(function() {
 		const USER_IDX = <%= userIdx %>;
-		console.log(USER_IDX);
 		let selectedRating = "";
 		
 		$.ajax({
@@ -74,13 +73,10 @@ const CONTEXT_PATH = "${pageContext.request.contextPath}";
 				} else {
 				  $('#review_count').text(count); // 같은 DOM 내부에 있을 때
 				}
-				
-				console.log(resp.data);
-				
+
 				for(let i = 0; i < resp.data.length; i++) {
 					const review = resp.data[i];
 					let scoreText = review.reviewScore > 0 ? "좋았어요" : "별로에요";
-					console.log("리뷰 영화idx",review.movieIdx);
 					let html = 
 					'<div class="movie-item" data-review-idx="' + review.reviewIdx + '">' +
 					'<a href="' + CONTEXT_PATH + '/movieDetail.mow?movieIdx=' + review.movieIdx + '">' + 
@@ -126,8 +122,6 @@ const CONTEXT_PATH = "${pageContext.request.contextPath}";
 		const reviewIdx = reviewBox.data('review-idx');
 		const userIdx = <%= userIdx %>;
 		const countEl = window.parent?.document?.querySelector("#review_count");
-		console.log("경로 확인:", CONTEXT_PATH);
-
 		
 		if (confirm("정말 삭제하시겠습니까?")) {
 			$.ajax({
@@ -138,7 +132,6 @@ const CONTEXT_PATH = "${pageContext.request.contextPath}";
 					userIdx: userIdx
 				},
 				success: function(resp) {
-					console.log(resp);
 					if (resp.code === 200 ) {
 						reviewBox.remove(); // DOM에서 삭제
 						if (countEl) {
