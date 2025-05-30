@@ -16,6 +16,7 @@ import ticket.service.ReserveInsertService;
 import ticket.service.ReserveMovieListService;
 import ticket.service.ReserveSeatCheckService;
 import ticket.vo.ReserveMovieListVO;
+import util.ResponseData;
 
 public class TicketController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,30 +34,33 @@ public class TicketController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String command = request.getServletPath();
-		
+		System.out.println(command);
+
 		List<ReserveMovieListVO> reserveMovieList = new ArrayList<>();
 		List<String> reserveSeatList = new ArrayList<>();
 		
-		Gson gson = new Gson();
-		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
-
+		
+		Gson gson = new Gson();
 		PrintWriter out = response.getWriter();
 
 		if (command.equals("/ReserveMovieList.tiw")) {
-		    ReserveMovieListService reserveMovieListService = new ReserveMovieListService();
-		    reserveMovieList = reserveMovieListService.execute(request, response);
+			ReserveMovieListService reserveMovieListService = new ReserveMovieListService();
+			reserveMovieList = reserveMovieListService.execute(request, response);
 
-		    out.print(gson.toJson(reserveMovieList));
+			out.print(gson.toJson(reserveMovieList));
+			
 		} else if (command.equals("/ReserveSeatCheck.tiw")) {
-		    ReserveSeatCheckService reserveSeatCheckService = new ReserveSeatCheckService();
-		    reserveSeatList = reserveSeatCheckService.execute(request, response);
+			ReserveSeatCheckService reserveSeatCheckService = new ReserveSeatCheckService();
+			reserveSeatList = reserveSeatCheckService.execute(request, response);
 
-		    out.print(gson.toJson(reserveSeatList));
+			out.print(gson.toJson(reserveSeatList));
 		} else if (command.equals("/ReserveInsert.tiw")) {
-		    ReserveInsertService reserveInsertService = new ReserveInsertService();
-		    reserveInsertService.execute(request, response);
+			ReserveInsertService reserveInsertService = new ReserveInsertService();
+			ResponseData result = reserveInsertService.execute(request, response);
+			
+			out.print(gson.toJson(result));
 		}
 		
 		out.flush();

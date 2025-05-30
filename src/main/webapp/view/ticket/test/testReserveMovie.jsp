@@ -47,18 +47,18 @@ let selectedTheater = null;
 let selectedDate = null;
 let allData = [];
 
-let movieData = {
-	"겨울왕국": { poster: "Frozen.jpeg", ageGrade: "전체 관람가" },
-	"모아나": { poster: "Moana.jpeg", ageGrade: "전체 관람가" },
-	"몬스터 주식회사 3D": { poster: "MonstersInc.jpeg", ageGrade: "전체 관람가" },
-	"바람": { poster: "TheWind.jpeg", ageGrade: "19세 관람가" },
-	"스파이더맨: 뉴 유니버스": { poster: "SpiderMan.jpeg", ageGrade: "12세 관람가" },
-	"아바타: 물의 길": { poster: "Avatar.jpeg", ageGrade: "12세 관람가" },
-	"어벤져스: 인피니티 워": { poster: "Avengers.jpeg", ageGrade: "12세 관람가" },
-	"타짜": { poster: "Tazza.jpeg", ageGrade: "청소년 관람불가" },
-	"파과": { poster: "Pagwa.jpeg", ageGrade: "15세 관람가" },
-	"해리포터와 마법사의 돌": { poster: "HarryPotter.jpeg", ageGrade: "전체 관람가" },
-};
+const movieData = {
+		"겨울왕국": { idx: 1, poster: "Frozen.jpeg", ageGrade: "전체 관람가" },
+		"모아나": { idx: 2, poster: "Moana.jpeg", ageGrade: "전체 관람가" },
+		"몬스터 주식회사 3D": { idx: 3, poster: "MonstersInc.jpeg", ageGrade: "전체 관람가" },
+		"바람": { idx: 4, poster: "TheWind.jpeg", ageGrade: "19세 관람가" },
+		"스파이더맨: 뉴 유니버스": { idx: 5, poster: "SpiderMan.jpeg", ageGrade: "12세 관람가" },
+		"아바타: 물의 길": { idx: 6, poster: "Avatar.jpeg", ageGrade: "12세 관람가" },
+		"어벤져스: 인피니티 워": { idx: 7, poster: "Avengers.jpeg", ageGrade: "12세 관람가" },
+		"타짜": { idx: 8, poster: "Tazza.jpeg", ageGrade: "청소년 관람불가" },
+		"파과": { idx: 9, poster: "Pagwa.jpeg", ageGrade: "15세 관람가" },
+		"해리포터와 마법사의 돌": { idx: 10, poster: "HarryPotter.jpeg", ageGrade: "전체 관람가" },
+	};
 
 $.ajax({
 	url: '${pageContext.request.contextPath}/ReserveMovieList.tiw',
@@ -148,7 +148,7 @@ function movieSelect(movieName) {
 			'<img src="' + posterURL + '" />' +
 			'</div>' +
 			'<div class="context">' +
-			'<span class="title movie_title">' + movieName + '</span><br>' +
+			'<span class="title movie_title" data-movie-idx="' + movieData[movieName].idx + '">' + movieName + '</span><br>' +
 			'<span> 2D 자막 </span>' +
 			'<span>' + movieData[movieName].ageGrade + '</span>' +
 			'</div>';
@@ -184,7 +184,7 @@ function theaterSelect(theaterName) {
 			'<div class="context">' +
 			'<span class="input_text theater_title">CGV ' + theaterName + '</span>' +
 			'<span class="input_text date_time"></span>' +
-			'<span class="input_text"></span>' +
+			'<span class="input_text cinema_title"></span>' +
 			'<span class="input_text"></span>' +
 			'</div>';
 

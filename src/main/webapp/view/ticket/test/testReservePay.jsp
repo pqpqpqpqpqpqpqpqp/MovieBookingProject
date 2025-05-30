@@ -84,36 +84,47 @@ if (obj instanceof Integer) {
 	userIdx = (Integer) obj;
 }
 %>
-
 <script>
 	function toggleStep(stepNum) {
 		const content = document.getElementById("step-content-" + stepNum);
 		content.style.display = (content.style.display === "block") ? "none"
 				: "block";
 	}
-
+	
+	const cinemaNum = {
+			"용산점":{
+				"1관": 1,
+				"2관": 2
+				},
+			"강남점": {
+				"1관": 3,
+				"2관": 4
+				}
+			};
+	
 	const userIdx = <%= userIdx %>;
 	const seatName = document.querySelector(".seat_name").textContent;
-	const movieTitle = document.querySelector(".movie_title").textContent;
-	const theaterTitle = document.querySelector(".theater_title").textContent;
-	const dateTime = document.querySelector(".date_time").textContent;
-
-	$('.next_btn_seat_end').on('click', function(e) {
+	const movieIdx = document.querySelector(".movie_title").dataset.movieIdx;
+	const theaterTitle = document.querySelector(".theater_title").textContent.split(" ");
+	const cinemaTitle = document.querySelector(".cinema_title").textContent;
+	const dateTime = document.querySelector(".date_time").textContent.split(" ");
+	
+	$('.next_btn_topay').on('click', function(e) {
 		$.ajax({
 			url : '${pageContext.request.contextPath}/ReserveInsert.tiw',
 			type : 'POST',
 			data : {
 				'userIdx': userIdx,
 				'seatName': seatName,
-				'movieTitle': movieTitle,
-				'theaterTitle': theaterTitle,
-				'dateTime': dateTime
+				'movieIdx': movieIdx,
+				'cinemaIdx': cinemaNum[theaterTitle[1]][cinemaTitle],
+				'screeningDate': dateTime[0],
+				'startTime': dateTime[1]
 			},
 			dataType : 'json',
 			success : function(res) {
-				console.log(res);
 				alert("예매에 성공했습니다");
-				location.href = "${pageContext.request.contextPath}/main.jsp";
+				location.href = "${pageContext.request.contextPath}/view/main.jsp";
 			}
 		});
 	});
