@@ -300,6 +300,9 @@ function selectSeat() {
 
 $('.next_btn_pay_end').on('click', function(e) {
 	$('.bodyContainer').load('${pageContext.request.contextPath}/view/ticket/test/testReservePay.jsp', function (response, status, xhr) {
+		document.querySelector(".next_btn_pay_end").classList.add("btn_hidden");
+		document.querySelector(".next_btn_topay").classList.remove("btn_hidden");
+		
         if (status === 'error') {
         	console.error('Error loading JSP:', xhr.status, xhr.statusText);
         }
