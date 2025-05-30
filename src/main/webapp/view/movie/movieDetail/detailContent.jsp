@@ -48,8 +48,8 @@
                     </li>
                     
                 </ul>
-                <span class ="graph_gender_txt woman"><div class="color_box_woman"></div>여자: <strong id="graph_woman"></strong></span>
-                <span class ="graph_gender_txt man"><div class="color_box_man"></div>남자: <strong id="graph_man"></strong></span>
+                <span class ="graph_gender_txt graph_woman"><div class="color_box_woman"></div>여자: <strong id="graph_woman"></strong></span>
+                <span class ="graph_gender_txt graph_man"><div class="color_box_man"></div>남자 : <strong id="graph_man"></strong></span>
             </div>
 	</div>
 </div>

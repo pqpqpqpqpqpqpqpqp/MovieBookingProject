@@ -317,7 +317,7 @@ ul.graph {
 	font-weight: 500;
 	
 }
-.graph_gender_txt.man {
+.graph_gender_txt.graph_man {
     position: absolute;
     bottom: 30px;
     left: 123px;
@@ -325,7 +325,7 @@ ul.graph {
     width: 80px;
 }
 
-.graph_gender_txt.woman {
+.graph_gender_txt.graph_woman {
     position: absolute;
     bottom: 50px;
     left: 123px;
