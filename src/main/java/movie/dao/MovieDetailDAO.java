@@ -30,11 +30,16 @@ public class MovieDetailDAO {
 	public MovieDetailGenderVO getGenderTicketCount(int movieIdx) {
 
 		MovieDetailGenderVO detailGender = new MovieDetailGenderVO();
-		String sql = "select " + "case SUBSTRING(u.USER_NUM, 7, 1) " + "	when '1' then '남성' "
-				+ "	when '3' then '남성' " + "	when '2' then '여성' " + "	when '4' then '여성' " + "	end as gender "
-				+ ", count(*) as count " + "from user u "
-				+ "inner join (select * from ticketing where MOVIE_IDX =? AND TICKETING_DEL = 'N' ) t "
-				+ "on t.USER_IDX = u.USER_IDX " + "group by gender;";
+		String sql = "select " + 
+					 "case " +
+					 "WHEN SUBSTRING(REPLACE(u.USER_NUM, '-', ''), 7, 1) IN ('1', '3') THEN '남성' " + 
+					 "WHEN SUBSTRING(REPLACE(u.USER_NUM, '-', ''), 7, 1) IN ('2', '4') THEN '여성' " +
+					 "end as gender " +
+					 ", count(*) as count " +
+					 "from user u " + 
+					 "inner join (select * from ticketing where MOVIE_IDX =? AND TICKETING_DEL = 'N' ) t " +
+					 "on t.USER_IDX = u.USER_IDX " + "group by gender;";
+
 
 		try {
 			pstmt = conn.prepareStatement(sql);

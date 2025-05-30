@@ -43,7 +43,9 @@ String movieIdx = request.getParameter("movieIdx");
 	<meta charset="UTF-8">
 	<title>MovieDetailReview </title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/movieDetail.css" />
+<style>
 
+</style>
 
 </head>
 <body>
@@ -160,7 +162,7 @@ String movieIdx = request.getParameter("movieIdx");
 		
 		// 로그인 된 상태 - 내가 쓴 평점 페이지로 이동 - 추후 링크 연결 필요
 		if (userIdxStr.value !== '') {
-			location.href = "";
+			location.href = "${pageContext.request.contextPath}/myCgvHome_movie.me";
 		}
 		// 로그인 안된 상태
 		else {
@@ -270,21 +272,29 @@ String movieIdx = request.getParameter("movieIdx");
 			},
 			success : function(resp) {
 			
-				for(var i = 0; i < resp.data.length; i++) {
-									
-					var html = 
-						'<div class="review_item">' +
-							'<div class="movie_review_img">' +
-                    			'<img src="'+resp.data[i].userImg+'"/>' +
-                    		'</div>' +
-                    		'<div class="movie_review_content">' +
-								'<span class="user_nickname">닉네임: '+resp.data[i].userNick+'</span>' +
-								'<span class="user_content">'+resp.data[i].reviewContent+'</span>' +
-								'<span class="user_date">리뷰 작성일: '+resp.data[i].reviewDate+'</span>' +
-							'</div>' +
-						'</div>';
-					
-					$("#movie_detail_review").append(html);
+				let reviewContainer = $('#movie_detail_review');
+				let rowDiv = null;
+				
+				for (let i = 0; i < resp.data.length; i++) {
+				    // 매 2개마다 새 행 div 생성
+				    if (i % 2 === 0) {
+				        rowDiv = $('<div class="review_row"></div>'); // 새 row
+				        reviewContainer.append(rowDiv);
+				    }
+
+				    let html = 
+				        '<div class="review_item">' +
+				            '<div class="movie_review_img">' +
+				                '<img src="'+resp.data[i].userImg+'"/>' +
+				            '</div>' +
+				            '<div class="movie_review_content">' +
+				                '<span class="user_nickname">닉네임: '+resp.data[i].userNick+'</span>' +
+				                '<span class="user_content">'+resp.data[i].reviewContent+'</span>' +
+				                '<span class="user_date">리뷰 작성일: '+resp.data[i].reviewDate+'</span>' +
+				            '</div>' +
+				        '</div>';
+
+				    rowDiv.append(html); // 해당 행에 추가
 				}
 				
 				
