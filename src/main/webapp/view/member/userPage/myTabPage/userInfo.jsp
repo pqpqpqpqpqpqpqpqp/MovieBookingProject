@@ -11,13 +11,6 @@
 		<strong class="member_info_title_txt">회원정보 수정</strong>
 	</div>
 	<p class="description">회원님의 소중한 정보를 안전하게 관리하세요.</p>
-	<div class="member_spec_menu">
-		<div class="h2_tit">기본정보</div>
-		<div class="member_spec_menu_btn">
-			<button>전체 정보 확인 및 수정</button>
-			<button>회원탈퇴</button>
-		</div>
-	</div>
 	<div class="member_spec_info_box">
 		<div class="member_change_info_menu">
 			<label>이름</label>

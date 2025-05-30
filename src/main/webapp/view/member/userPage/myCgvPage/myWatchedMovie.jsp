@@ -44,7 +44,6 @@ $(document).ready(function() {
 			userIdx : USER_IDX,
 		},
 		success : function(resp) {
-			console.log("응답 확인:", resp); 
 			let movieList = resp.data || [];
 			$(".movie_list_catainer.movie").empty(); // 리스트 초기화
 
@@ -64,7 +63,6 @@ $(document).ready(function() {
 			let reviewTxt = "";
 			for (let i = 0; i < resp.data.length; i++) {
 				reviewTxt = resp.data[i].reviewScore > 0 ? "좋았어요" : "별로예요";
-							console.log("영화 idx",resp.data[i].movieIdx);
 				let html = 
 					'<div class="movie-item">' +
 					'<a href="' + contextPath + '/movieDetail.mow?movieIdx=' + resp.data[i].movieIdx + '">' + 

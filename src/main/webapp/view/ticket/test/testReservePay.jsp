@@ -40,18 +40,21 @@
 </div>
 
 <div class="step">
-	<div class="step-title" onclick="toggleStep(3)">STEP 3. 포인트 및 기타결제 수단</div>
-	<div class="step-content" id="step-content-3">포인트 입력 및 기타 결제 수단 선택 영역</div>
+	<div class="step-title" onclick="toggleStep(3)">STEP 3. 포인트 및
+		기타결제 수단</div>
+	<div class="step-content" id="step-content-3">포인트 입력 및 기타 결제 수단
+		선택 영역</div>
 </div>
 
 <div class="step">
 	<div class="step-title">STEP 4. 최종결제 수단</div>
 	<div class="step-content" style="display: block;">
-		<label><input type="radio" name="payMethod" value="card" checked> 신용카드</label>
-			<label><input type="radio" name="payMethod" value="phone"> 휴대폰 결제</label>
-			<label><input type="radio" name="payMethod" value="easy"> 간편결제</label>
-			<label><input type="radio" name="payMethod" value="bank"> 내통장결제</label>
-			<label><input type="radio" name="payMethod" value="tos"> 토스</label>
+		<label><input type="radio" name="payMethod" value="card"
+			checked> 신용카드</label> <label><input type="radio"
+			name="payMethod" value="phone"> 휴대폰 결제</label> <label><input
+			type="radio" name="payMethod" value="easy"> 간편결제</label> <label><input
+			type="radio" name="payMethod" value="bank"> 내통장결제</label> <label><input
+			type="radio" name="payMethod" value="tos"> 토스</label>
 
 		<div class="payment-option">
 			카드종류: <select name="cardType">
@@ -63,8 +66,9 @@
 		</div>
 
 		<div class="payment-option">
-			<label><input type="radio" name="cardOption" value="appCard">앱카드</label> 
-			<label><input type="radio" name="cardOption" value="normal" checked> 일반 신용카드(체크카드 포함)</label>
+			<label><input type="radio" name="cardOption" value="appCard">앱카드</label>
+			<label><input type="radio" name="cardOption" value="normal"
+				checked> 일반 신용카드(체크카드 포함)</label>
 		</div>
 
 		<p style="color: gray; font-size: 12px;">
@@ -73,6 +77,13 @@
 		</p>
 	</div>
 </div>
+<%
+Object obj = session.getAttribute("userIdx");
+int userIdx = 0;
+if (obj instanceof Integer) {
+	userIdx = (Integer) obj;
+}
+%>
 
 <script>
 	function toggleStep(stepNum) {
@@ -80,21 +91,29 @@
 		content.style.display = (content.style.display === "block") ? "none"
 				: "block";
 	}
-	// user idx, 세션에 있음
-	// 좌석 이름, foot에 있는 third_container의 '<span class="input_text">' + seatNames + '</span>' +에 존재
-	// 영화 idx, 영화 이름을 first_container의 '<span class="title">' + movieName + '</span><br>'에서 찾아 movie table에서 검색해서 가져오기
-	// 상영정보 idx, 관이름, 날짜, 시간으로 검색해서 가져오기
-	
+
+	const userIdx = <%= userIdx %>;
+	const seatName = document.querySelector(".seat_name").textContent;
+	const movieTitle = document.querySelector(".movie_title").textContent;
+	const theaterTitle = document.querySelector(".theater_title").textContent;
+	const dateTime = document.querySelector(".date_time").textContent;
+
 	$('.next_btn_seat_end').on('click', function(e) {
 		$.ajax({
-			url : '${pageContext.request.contextPath}/ReserveSeatCheck.tiw',
+			url : '${pageContext.request.contextPath}/ReserveInsert.tiw',
 			type : 'POST',
 			data : {
-
+				'userIdx': userIdx,
+				'seatName': seatName,
+				'movieTitle': movieTitle,
+				'theaterTitle': theaterTitle,
+				'dateTime': dateTime
 			},
 			dataType : 'json',
 			success : function(res) {
 				console.log(res);
+				alert("예매에 성공했습니다");
+				location.href = "${pageContext.request.contextPath}/main.jsp";
 			}
 		});
 	});
