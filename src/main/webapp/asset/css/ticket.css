@@ -255,8 +255,8 @@ body {
 .ticket_foot_btn_right.next_btn_seat_end {
 	display: flex; /* 포지션 */
 	width: 106px; /* 복사 대상 길이 */
-	height: 108px; /* 복사 대상 높이 */
-	background-position: -150px, -218px;
+	height: 108px; /* 복사 대상 높이 */ 
+	background-position: -150px -218px;
 }
 
 .ticket_foot_btn_right.next_btn_pay_end {
