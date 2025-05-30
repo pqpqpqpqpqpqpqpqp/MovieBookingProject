@@ -12,8 +12,8 @@
 </head>
 <body>
 	<div class="bodyContainer">
-		<jsp:include page="testReserveMovie.jsp" />
+		<jsp:include page="/view/ticket/test/testReserveMovie.jsp" />
 	</div>
-	<jsp:include page="testReserveFoot.jsp" />
+	<jsp:include page="/view/ticket/test/testReserveFoot.jsp" />
 </body>
 </html>
