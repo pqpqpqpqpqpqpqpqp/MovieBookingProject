@@ -11,42 +11,11 @@ $(document).ready(function() {
 	}
 });
 
-/***
- * 페이지 기능
- */
-
-async function aDataUrl(e) {
-	e.preventDefault?.();
-	const targetUrl = e.target.getAttribute("data-url");
-	
-//페이지 불러오기 기능
-	await fetch(targetUrl)
-		.then(res => res.text())
-		.then(data => {
-			document.getElementById("contentBox").innerHTML = data;
-		})
-		.catch(err => {
-			document.getElementById("contentBox").innerHTML ="<p>페이지 로딩에 실패했습니다.</p>";
-		});
-		
-	const splitURL = targetUrl.split("/");
-	const command = splitURL[splitURL.length - 1];
-
-	console.log('command: ', command);
-
-	//page 경로 function 실행
-	switch (command) {
-		case "userInfo.me":
-			myPageUserInfo();
-			break;
-
-
 // 클릭 시 Ajax로 콘텐츠를 로딩하는 함수
 function aDataUrl(e) {
 	// 기본 클릭 동작 막기
 	if (e && typeof e.preventDefault === "function") {
 		e.preventDefault();
-
 	}
 
 	// 클릭된 요소에서 data-url 속성 추출
@@ -80,4 +49,4 @@ function aDataUrl(e) {
 			$("#contentBox").html("<p>페이지 로딩에 실패했습니다.</p>");
 		}
 	});
-};
+}

@@ -17,6 +17,7 @@ height: 100%;
 <jsp:include page="common/body.jsp"/>
 </body>
 
+
 <footer>
 <jsp:include page="common/footer.jsp"/>
 </footer>

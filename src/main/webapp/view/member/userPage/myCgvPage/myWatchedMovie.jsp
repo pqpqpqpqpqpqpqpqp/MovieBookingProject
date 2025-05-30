@@ -65,7 +65,7 @@ $(document).ready(function() {
 			for (let i = 0; i < resp.data.length; i++) {
 				reviewTxt = resp.data[i].reviewScore > 6 ? "좋았어요" : "별로예요";
 
-				let html = 
+				let html += 
 					'<div class="movie-item">' +
 				    	'<img class="poster" src="' + contextPath + resp.data[i].movieImg + '" alt="' + resp.data[i].movieName + '">' +
 				    	'<div class="movie-info">' +
