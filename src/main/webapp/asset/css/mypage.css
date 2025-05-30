@@ -697,7 +697,9 @@
 		text-decoration-thickness: 2px; 
 	}
 	
-		
+		.egg_good{
+				background: url(../icon/egg.png) -22px -47px no-repeat;
+		}
 	/* userSelectinfo*/
 	
 	
