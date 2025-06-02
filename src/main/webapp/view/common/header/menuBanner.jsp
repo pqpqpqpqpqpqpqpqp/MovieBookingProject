@@ -360,7 +360,7 @@
 	
 	for (var i = 0; i < ticketLinks.length; i++) {
 		ticketLinks[i].addEventListener("click", function() {
-			location.href = "${pageContext.request.contextPath}/view/ticket/fastTicketMain.jsp";
+			location.href = "${pageContext.request.contextPath}/view/ticket/test/testTemplate.jsp";
 		});
 	}
 
