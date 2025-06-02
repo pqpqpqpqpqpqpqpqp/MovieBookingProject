@@ -11,9 +11,11 @@
 	href="${pageContext.request.contextPath}/asset/css/ticketSeat.css" />
 </head>
 <body>
+	<jsp:include page="/view/common/header.jsp" />
 	<div class="bodyContainer">
 		<jsp:include page="/view/ticket/test/testReserveMovie.jsp" />
 	</div>
 	<jsp:include page="/view/ticket/test/testReserveFoot.jsp" />
+	<jsp:include page="/view/common/footer.jsp" />
 </body>
 </html>
