@@ -1,12 +1,12 @@
-<context>
+<Context>
 	<Resource name="jdbc/MysqlDB"
 	auth="Container"
 	type="javax.sql.DataSource"
 	driverClassName="com.mysql.cj.jdbc.Driver"
-	url="jdbc:mysql://localhost:3306/cgv_project_db?serverTimezone=UTC"
-	username="root"
-	password="1234"
+	url="jdbc:mysql://192.168.80.100:3306/mydb?serverTimezone=UTC"
+	username="study"
+	password="Gangnam1234!"
 	maxActive="20"
 	maxIdle="10"
 	maxWait="-1" />
-</context>
+</Context>

@@ -33,7 +33,7 @@ public class ReviewWriteDAO {
 	}
 	
 	public Boolean checkReviewed(int userIdx, int movieIdx) {
-		String sql = "Select * from review where user_idx = ? and movie_idx = ?";
+		String sql = "Select * from REVIEW where USER_IDX = ? and MOVIE_IDX = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -53,7 +53,7 @@ public class ReviewWriteDAO {
 	}
 
 	public boolean insertReview(ReviewWriteVO reviewVO) {
-		String sql = "INSERT INTO review (user_idx, movie_idx, REVIEW_SCORE, REVIEW_CONTENT) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO REVIEW (USER_IDX, MOVIE_IDX, REVIEW_SCORE, REVIEW_CONTENT) VALUES (?, ?, ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, reviewVO.getUserIdx());
