@@ -53,9 +53,9 @@ public class ReviewListDAO {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
 		String sql =  "SELECT m. MOVIE_IDX, r.REVIEW_IDX, m.MOVIE_IMG, m.MOVIE_NAME, r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME "
-		           + "FROM review r "
-		           + "JOIN user u ON r.USER_IDX = u.USER_IDX "
-		           + "JOIN movie m ON m.MOVIE_IDX = r.MOVIE_IDX "
+		           + "FROM REVIEW r "
+		           + "JOIN USER u ON r.USER_IDX = u.USER_IDX "
+		           + "JOIN MOVIE m ON m.MOVIE_IDX = r.MOVIE_IDX "
 		           + "WHERE r.USER_IDX = ? AND r.REVIEW_USER_DEL = 'N' "
 		           + "ORDER BY r.REVIEW_DATE DESC";
 
@@ -93,9 +93,9 @@ public class ReviewListDAO {
 		List<ReviewListVO> reviewList = new ArrayList<>();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
-		String sql = "SELECT m.MOVIE_IDX, r.REVIEW_IDX, r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME FROM review r "
-				+ "JOIN user u ON r.USER_IDX = u.USER_IDX "
-				+ "JOIN movie m on r.movie_idx = m.movie_idx "
+		String sql = "SELECT m.MOVIE_IDX, r.REVIEW_IDX, r.REVIEW_CONTENT, r.REVIEW_SCORE, r.REVIEW_DATE, u.USER_IMG, u.USER_NICKNAME FROM REVIEW r "
+				+ "JOIN USER u ON r.USER_IDX = u.USER_IDX "
+				+ "JOIN MOVIE m on r.MOVIE_IDX = m.MOVIE_IDX "
 				+ "WHERE r.MOVIE_IDX = ? AND r.REVIEW_USER_DEL = 'N' ORDER BY r.REVIEW_DATE DESC;";
 
 		try {
@@ -127,7 +127,7 @@ public class ReviewListDAO {
 	
 	//리뷰 삭제 (r.REVIEW_USER_DEL = 'Y') 처리
 	public int deleteReview (int reviewIdx, int userIdx) {
-		String sql = "UPDATE review "
+		String sql = "UPDATE REVIEW "
 		           + "SET REVIEW_USER_DEL = 'Y' "
 		           + "WHERE REVIEW_IDX = ? AND USER_IDX = ?;";
 		int result =0;
@@ -149,7 +149,7 @@ public class ReviewListDAO {
 	
 	//리뷰 수정
 			public boolean editReview(int reviewIdx, int score, String content) {
-	        String sql = "UPDATE review SET review_score = ?, review_content = ?, review_date = NOW() WHERE review_idx = ?";
+	        String sql = "UPDATE REVIEW SET REVIEW_SCORE = ?, REVIEW_CONTENT = ?, REVIEW_DATE = NOW() WHERE REVIEW_IDX = ?";
 
 	        try {	
         		pstmt = conn.prepareStatement(sql);	        	 

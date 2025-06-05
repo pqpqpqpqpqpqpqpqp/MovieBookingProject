@@ -169,7 +169,7 @@ public class MemberDAO {
 	
 	public MemberVO getUserInfo(int userIdx) {
 		MemberVO memberVO = null;
-		String sql = "SELECT USER_NAME, USER_NICKNAME, USER_IMG FROM user WHERE USER_IDX = ?";
+		String sql = "SELECT USER_NAME, USER_NICKNAME, USER_IMG FROM USER WHERE USER_IDX = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, userIdx);

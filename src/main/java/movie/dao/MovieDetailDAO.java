@@ -36,8 +36,8 @@ public class MovieDetailDAO {
 					 "WHEN SUBSTRING(REPLACE(u.USER_NUM, '-', ''), 7, 1) IN ('2', '4') THEN '여성' " +
 					 "end as gender " +
 					 ", count(*) as count " +
-					 "from user u " + 
-					 "inner join (select * from ticketing where MOVIE_IDX =? AND TICKETING_DEL = 'N' ) t " +
+					 "from USER u " + 
+					 "inner join (select * from TICKETING where MOVIE_IDX =? AND TICKETING_DEL = 'N' ) t " +
 					 "on t.USER_IDX = u.USER_IDX " + "group by gender;";
 
 
@@ -76,8 +76,8 @@ public class MovieDetailDAO {
 				+ "        WHEN birthYear > RIGHT(YEAR(CURDATE()), 2) " + "          THEN 1900 + birthYear "
 				+ "        ELSE 2000 + birthYear " + "      END " + "    ) / 10 ) * 10 AS ageGroup "
 				+ ", COUNT(*) as count " + " FROM ( SELECT USER_NUM"
-				+ ", CAST(SUBSTRING(USER_NUM, 1, 2) AS UNSIGNED) AS birthYear " + " FROM user u "
-				+ " inner join  (select * from ticketing  where MOVIE_IDX =? AND TICKETING_DEL = 'N' ) t "
+				+ ", CAST(SUBSTRING(USER_NUM, 1, 2) AS UNSIGNED) AS birthYear " + " FROM USER u "
+				+ " inner join  (select * from TICKETING  where MOVIE_IDX =? AND TICKETING_DEL = 'N' ) t "
 				+ "on t.USER_IDX = u.USER_IDX) AS sub " + "group by ageGroup;";
 
 			pstmt = conn.prepareStatement(sql);

@@ -29,8 +29,8 @@ public class MovieDetailReviewDAO {
 		MovieDetailReviewVO modal = new MovieDetailReviewVO();
 		String sql = "select user_img "
 				+ ", user_nickname "
-				+ "from user "
-				+ "where user_idx =? ;";
+				+ "from USER "
+				+ "where USER_IDX =? ;";
 			
 
 		        pstmt = conn.prepareStatement(sql);
